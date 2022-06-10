@@ -1,0 +1,12 @@
+export const PATH_NAME = 'pathname';
+export const ADMIN = 'Anonymous';
+export const GTO_REPORT_VIEWER = 'Transalator';
+export const GTO_SUPPORT = 'Auditor';
+export const LEASING = 'Customer';
+export const SUPER_ADMIN = 'Admin';
+export const USER_NAME = 'userName';
+export const ACCESS_TOKEN = 'accessToken';
+export const ACCESS_TOKEN_AZURE = 'accessTokenAzure';
+export const REFRESH_TOKEN = 'refreshToken';
+export const USER_TYPE = 'userType';
+export const ACCESS_TYPE = 'accessType';

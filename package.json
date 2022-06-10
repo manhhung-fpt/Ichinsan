@@ -1,0 +1,89 @@
+{
+  "homepage" : "http://ichinsan.ml/",
+  "name": "now-ui-dashboard-pro-react",
+  "proxy": "https://api-dotnet-test.herokuapp.com/api/",
+  "version": "1.5.0",
+  "private": true,
+  "engines": {
+    "node": "14.x",
+    "npm": "6.x"
+  },
+  "homepage": "https://demos.creative-tim.com/now-ui-dashboard-pro-react/#/",
+  "dependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@material-ui/core": "^4.12.4",
+    "@material-ui/icons": "^4.11.3",
+    "@mui/icons-material": "^5.8.0",
+    "@mui/material": "^5.8.1",
+    "@mui/styled-engine-sc": "^5.8.0",
+    "axios": "^0.27.2",
+    "bootstrap": "4.6.0",
+    "chart.js": "3.2.1",
+    "classnames": "2.3.1",
+    "cool-ascii-faces": "^1.3.4",
+    "dotenv": "^16.0.1",
+    "firebase": "^9.8.2",
+    "gulp": "4.0.2",
+    "gulp-append-prepend": "1.0.9",
+    "history": "^5.3.0",
+    "match-sorter": "6.3.0",
+    "moment": "2.29.1",
+    "node-sass": "6.0.0",
+    "nouislider": "15.1.1",
+    "perfect-scrollbar": "1.5.1",
+    "react": "17.0.2",
+    "react-big-calendar": "0.33.3",
+    "react-bootstrap-sweetalert": "5.2.0",
+    "react-bootstrap-switch": "15.5.3",
+    "react-bootstrap-wizard": "0.0.9",
+    "react-chartjs-2": "3.0.3",
+    "react-datetime": "3.0.4",
+    "react-dom": "17.0.2",
+    "react-jvectormap": "0.0.16",
+    "react-notification-alert": "0.0.13",
+    "react-router-dom": "5.2.0",
+    "react-scripts": "4.0.3",
+    "react-select": "4.3.1",
+    "react-slick": "^0.29.0",
+    "react-table": "7.7.0",
+    "react-tagsinput": "3.19.0",
+    "reactstrap": "8.9.0",
+    "slick-carousel": "^1.8.1",
+    "styled-components": "^5.3.5",
+    "swiper": "^8.2.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "predeploy" : "npm run build",
+    "deploy" : "gh-pages -d build",
+    "build": "react-scripts build && gulp licenses",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "compile-sass": "node-sass src/assets/scss/now-ui-dashboard.scss src/assets/css/now-ui-dashboard.css",
+    "minify-sass": "node-sass src/assets/scss/now-ui-dashboard.scss src/assets/css/now-ui-dashboard.min.css --output-style compressed",
+    "map-sass": "node-sass src/assets/scss/now-ui-dashboard.scss src/assets/css/now-ui-dashboard.css --source-map true",
+    "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start"
+  },
+  "devDependencies": {
+    "typescript": "4.2.4"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "optionalDependencies": {
+    "@babel/core": "7.14.3"
+  }
+}
