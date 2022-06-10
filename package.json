@@ -1,5 +1,4 @@
 {
-  "homepage" : "http://ichinsan.ml/",
   "name": "now-ui-dashboard-pro-react",
   "proxy": "https://api-dotnet-test.herokuapp.com/api/",
   "version": "1.5.0",
@@ -8,7 +7,6 @@
     "node": "14.x",
     "npm": "6.x"
   },
-  "homepage": "https://demos.creative-tim.com/now-ui-dashboard-pro-react/#/",
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
@@ -55,8 +53,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "predeploy" : "npm run build",
-    "deploy" : "gh-pages -d build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build && gulp licenses",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -66,6 +64,7 @@
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start"
   },
   "devDependencies": {
+    "gh-pages": "^4.0.0",
     "typescript": "4.2.4"
   },
   "eslintConfig": {
