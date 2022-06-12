@@ -89,7 +89,7 @@ function CustomerHome() {
             pagination={{
               clickable: true,
             }}
-            modules={[EffectFade, Navigation, Pagination]}
+            modules={[EffectFade, Navigation]}
             className="mySwiper"
             style={
               {

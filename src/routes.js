@@ -56,6 +56,10 @@ import AdminFeedBackCategory from "views/AdminFeedBackCategory/AdminFeedBackCate
 import CustomerHome from './views/CustomerHome/CustomerHome';
 import CustomerProgressProject from './views/CustomerProgressProject/CustomerProgressProject';
 import CustomerCreate from './views/CustomerCreate/CustomerCreate';
+import CustomeArticle from './views/CustomeArticle/CustomeArticle';
+import CustomerAddArticle from './views/CustomerAddArticle/CustomerAddArticle';
+import CustomerProgressArticle from './views/CustomerProgressArticle/CustomerProgressArticle';
+import CustomerCreateFeedback from './views/CustomerCreateFeedback/CustomerCreateFeedback';
 
 let routes = [
   {
@@ -148,6 +152,38 @@ let routes = [
     name: "Customer Create Project",
     icon: "now-ui-icons business_badge",
     component: CustomerCreate,
+
+    layout: "/admin",
+  },
+  {
+    path: "/customer-article",
+    name: "Customer Article",
+    icon: "now-ui-icons business_badge",
+    component: CustomeArticle,
+
+    layout: "/admin",
+  },
+  {
+    path: "/customer-add-article",
+    name: "Customer Add Article",
+    icon: "now-ui-icons business_badge",
+    component: CustomerAddArticle,
+
+    layout: "/admin",
+  },
+  {
+    path: "/customer-progress-article",
+    name: "Customer Progress Article",
+    icon: "now-ui-icons business_badge",
+    component: CustomerProgressArticle,
+
+    layout: "/admin",
+  },
+  {
+    path: "/customer-create=feedback",
+    name: "Customer Create Feedback",
+    icon: "now-ui-icons business_badge",
+    component: CustomerCreateFeedback,
 
     layout: "/admin",
   },
