@@ -88,7 +88,7 @@ function AdminAccount() {
                     Sort :
                   </Col>
                   <Col Col xs={12} md={3} size="sm" >
-                    Paging:
+
                   </Col>
                 </Row>
                 <Row>
@@ -113,15 +113,7 @@ function AdminAccount() {
 
                   </Col>
                   <Col xs={12} md={3} size="sm">
-                    <Select
-                      className="react-select primary"
-                      classNamePrefix="react-select"
-                      placeholder="Result of Page"
-                      name="singleSelect"
-                      value={singleSelect}
-                      options={selectOptions}
-                      onChange={(value) => setSingleSelect(value)}
-                    />
+
                   </Col>
                 </Row>
               </CardHeader>
@@ -141,27 +133,33 @@ function AdminAccount() {
                     </tr>
                   </thead>
                   <tbody>
-                    {users.map((user, index) => 
-                       (
-                        <tr>
-                          <td className="text-center">{index+1}</td>
-                          <td>{user.email}</td>
-                          <td>{user.balance}</td>
+                    {users.map((user, index) =>
+                    (
+                      <tr>
+                        <td className="text-center">{index + 1}</td>
+                        <td>{user.email}</td>
+                        <td>{user.balance}</td>
 
-                          <td className="text-right">
-                            <Switch defaultValue={false} />
+                        <td className="text-right">
+                          <Switch defaultValue={false} />
 
 
-                          </td>
-                          <td className="text-right btns-mr-5">
-                            <a href="/admin/wizard"></a>
-                            <Button onClick={onClickView} color="primary" className="btn-round">
-                              <i className="now-ui-icons users_single-02" /> View
-                            </Button>
+                        </td>
+                        <td className="text-right btns-mr-5">
+                          <a href="/admin/wizard"></a>
+                          <Button onClick={onClickView} color="primary" className="btn-round" style={
+                            {
 
-                          </td>
-                        </tr>
-                      )
+                              fontSize: "10px",
+
+                            }
+                          }>
+                            <i className="now-ui-icons users_single-02" /> View
+                          </Button>
+
+                        </td>
+                      </tr>
+                    )
                     )}
 
                   </tbody>
@@ -171,39 +169,46 @@ function AdminAccount() {
 
             </Card>
           </Col>
-          <Pagination>
-                  <PaginationItem>
-                    <PaginationLink href="#">
-                      <span aria-hidden="true">
-                        <i
-                          className="fa fa-angle-double-left"
-                          aria-hidden="true"
-                        />
-                      </span>
-                    </PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink href="#">1</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem active>
-                    <PaginationLink href="#">2</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink href="#">3</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink href="#">
-                      <span aria-hidden="true">
-                        <i
-                          className="fa fa-angle-double-right"
-                          aria-hidden="true"
-                        />
-                      </span>
-                    </PaginationLink>
-                  </PaginationItem>
-                </Pagination>
+          <Col xs={12} md={5} size="sm">
+
+          </Col>
+          <Col xs={12} md={3} size="sm">
+            <Pagination>
+              <PaginationItem>
+                <PaginationLink href="#">
+                  <span aria-hidden="true">
+                    <i
+                      className="fa fa-angle-double-left"
+                      aria-hidden="true"
+                    />
+                  </span>
+                </PaginationLink>
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationLink href="#">1</PaginationLink>
+              </PaginationItem>
+              <PaginationItem active>
+                <PaginationLink href="#">2</PaginationLink>
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationLink href="#">3</PaginationLink>
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationLink href="#">
+                  <span aria-hidden="true">
+                    <i
+                      className="fa fa-angle-double-right"
+                      aria-hidden="true"
+                    />
+                  </span>
+                </PaginationLink>
+              </PaginationItem>
+            </Pagination>
+          </Col>
+          <Col xs={12} md={4} size="sm">
+          </Col>
         </Row>
-      
+
       </div>
     </>
   );

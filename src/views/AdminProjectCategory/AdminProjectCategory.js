@@ -91,31 +91,16 @@ function AdminProjectCategory() {
                     Sort :
                   </Col>
                   <Col Col xs={12} md={4} size="sm" >
-                    Paging:
+
                   </Col>
                 </Row>
                 <Row>
                   <Col xs={12} md={4} size="sm">
-                    <Select
-                      className="react-select warning"
-                      classNamePrefix="react-select"
-                      isMulti
-                      closeMenuOnSelect={false}
-                      placeholder="Sort"
-                      name="multipleSelect"
-                      value={multipleSelect}
-                      options={selectOptions}
-                      onChange={(value) => setMultipleSelect(value)}
-                    />
+
                   </Col>
                   <Col xs={12} md={1} size="sm"></Col>
                   <Col xs={12} md={3} size="sm">
-                    <Button onClick={toggleModalNotice} color="info">
-                      Add Category
-                      <span className="btn-label">
-                        <i className="now-ui-icons arrows-1_minimal-right" />
-                      </span>
-                    </Button>
+
                     <Modal
                       isOpen={modalNotice}
                       toggle={toggleModalNotice}
@@ -172,7 +157,13 @@ function AdminProjectCategory() {
                       <ModalFooter className="justify-content-center">
                         <Row>
                           <Col md="6">
-                            <Button color="primary" onClick={toggleModalNotice}>
+                            <Button color="primary" onClick={toggleModalNotice} style={
+                              {
+
+                                fontSize: "10px",
+
+                              }
+                            }>
 
 
 
@@ -180,7 +171,13 @@ function AdminProjectCategory() {
                             </Button>
                           </Col>
                           <Col md="6">
-                            <Button color="info">
+                            <Button color="info" style={
+                              {
+
+                                fontSize: "10px",
+
+                              }
+                            }>
                               Add
                             </Button>
                           </Col>
@@ -238,7 +235,13 @@ function AdminProjectCategory() {
                       </td>
                       <td className="text-right btns-mr-5">
 
-                        <Button onClick={toggleModalEdit} color="primary" className="btn-round">
+                        <Button onClick={toggleModalEdit} color="primary" className="btn-round" style={
+                          {
+
+                            fontSize: "10px",
+
+                          }
+                        }>
                           <i className="now-ui-icons ui-2_settings-90" /> Edit
                         </Button>
                         <Modal
@@ -297,12 +300,24 @@ function AdminProjectCategory() {
                           <ModalFooter className="justify-content-center">
                             <Row>
                               <Col md="6">
-                                <Button color="primary" onClick={toggleModalEdit}>
+                                <Button color="primary" onClick={toggleModalEdit} style={
+                                  {
+
+                                    fontSize: "10px",
+
+                                  }
+                                }>
                                   Cancel
                                 </Button>
                               </Col>
                               <Col md="6">
-                                <Button color="info">
+                                <Button color="info" style={
+                                  {
+
+                                    fontSize: "10px",
+
+                                  }
+                                }>
                                   Edit
                                 </Button>
                               </Col>
@@ -337,7 +352,13 @@ function AdminProjectCategory() {
                       </td>
                       <td className="text-right btns-mr-5">
 
-                        <Button color="primary" className="btn-round">
+                        <Button color="primary" className="btn-round" style={
+                          {
+
+                            fontSize: "10px",
+
+                          }
+                        }>
                           <i className="now-ui-icons ui-2_settings-90" /> Edit
                         </Button>
 
@@ -369,7 +390,13 @@ function AdminProjectCategory() {
                       </td>
                       <td className="text-right btns-mr-5">
 
-                        <Button color="primary" className="btn-round">
+                        <Button color="primary" className="btn-round" style={
+                          {
+
+                            fontSize: "10px",
+
+                          }
+                        }>
                           <i className="now-ui-icons ui-2_settings-90" /> Edit
                         </Button>
 
@@ -401,7 +428,13 @@ function AdminProjectCategory() {
                       </td>
                       <td className="text-right btns-mr-5">
 
-                        <Button color="primary" className="btn-round">
+                        <Button color="primary" className="btn-round" style={
+                          {
+
+                            fontSize: "10px",
+
+                          }
+                        }>
                           <i className="now-ui-icons ui-2_settings-90" /> Edit
                         </Button>
 
@@ -433,7 +466,13 @@ function AdminProjectCategory() {
                       </td>
                       <td className="text-right btns-mr-5">
 
-                        <Button color="primary" className="btn-round">
+                        <Button color="primary" className="btn-round" style={
+                          {
+
+                            fontSize: "10px",
+
+                          }
+                        }>
                           <i className="now-ui-icons ui-2_settings-90" /> Edit
                         </Button>
 
@@ -443,6 +482,73 @@ function AdminProjectCategory() {
                   </tbody>
                 </Table>
               </CardBody>
+              <CardHeader>
+                <Row>
+                  <Col xs={12} md={5} size="sm">
+
+                  </Col>
+                  <Col xs={12} md={5} size="sm"></Col>
+                  <Col xs={12} md={2} size="sm">
+                    <Button color="info" style={
+                      {
+
+                        fontSize: "10px",
+
+                      }
+                    }>
+                      Add Auditor
+                      <span className="btn-label">
+                        <i className="now-ui-icons arrows-1_minimal-right" />
+                      </span>
+
+                    </Button>
+                  </Col>
+                </Row>
+              </CardHeader>
+              <CardHeader>
+                <Row>
+                  <Col xs={12} md={4} size="sm">
+
+                  </Col>
+                  <Col xs={12} md={1} size="sm"></Col>
+                  <Col xs={12} md={3} size="sm">
+                    <Pagination>
+                      <PaginationItem>
+                        <PaginationLink href="#">
+                          <span aria-hidden="true">
+                            <i
+                              className="fa fa-angle-double-left"
+                              aria-hidden="true"
+                            />
+                          </span>
+                        </PaginationLink>
+                      </PaginationItem>
+                      <PaginationItem>
+                        <PaginationLink href="#">1</PaginationLink>
+                      </PaginationItem>
+                      <PaginationItem active>
+                        <PaginationLink href="#">2</PaginationLink>
+                      </PaginationItem>
+                      <PaginationItem>
+                        <PaginationLink href="#">3</PaginationLink>
+                      </PaginationItem>
+                      <PaginationItem>
+                        <PaginationLink href="#">
+                          <span aria-hidden="true">
+                            <i
+                              className="fa fa-angle-double-right"
+                              aria-hidden="true"
+                            />
+                          </span>
+                        </PaginationLink>
+                      </PaginationItem>
+                    </Pagination>
+                  </Col>
+                  <Col xs={12} md={4} size="sm">
+
+                  </Col>
+                </Row>
+              </CardHeader>
             </Card>
           </Col>
         </Row>

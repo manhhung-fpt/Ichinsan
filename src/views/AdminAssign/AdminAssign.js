@@ -57,7 +57,13 @@ function AdminAssign() {
             <Card>
               <CardHeader>
 
-                <Button>
+                <Button style={
+              {
+               
+                fontSize: "10px",
+               
+              }
+            }>
                   <span className="btn-label">
                     <i className="now-ui-icons arrows-1_minimal-left" />
                   </span>
@@ -73,7 +79,13 @@ function AdminAssign() {
                   </Col>
                   <Col xs={12} md={1} size="sm"></Col>
                   <Col xs={12} md={3} size="sm">
-                  <Button color="info">
+                  <Button color="info" style={
+              {
+               
+                fontSize: "10px",
+               
+              }
+            }>
                       <span className="btn-label">
                         <i className="now-ui-icons ui-1_simple-add" />
                       </span>

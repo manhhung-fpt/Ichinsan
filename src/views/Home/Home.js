@@ -115,6 +115,7 @@ function Home() {
                     <NavLink
                       className={hTabs === "ht1" ? "active" : ""}
                       onClick={() => sethTabs("ht1")}
+                      
                     >
                       User Guides
                     </NavLink>
@@ -206,7 +207,13 @@ function Home() {
                         </IconButton>
                         </Col>
                         <Col md={1}>
-                        <Button color="primary" className="btn-round">
+                        <Button color="primary" className="btn-round" style={
+              {
+               
+                fontSize: "10px",
+               
+              }
+            }>
                           Apply
                         </Button>
                         </Col>

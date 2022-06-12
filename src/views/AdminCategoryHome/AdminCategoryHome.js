@@ -89,7 +89,13 @@ function AdminCategoryHome() {
                         <CardTitle tag="h4">Projects</CardTitle>
                       </CardHeader>
                       <CardBody>
-                        <Button onClick={onclickProject} color="info">
+                        <Button onClick={onclickProject} color="info" style={
+              {
+               
+                fontSize: "10px",
+               
+              }
+            }>
                         Go to
                           <span className="btn-label">
                             <i className="now-ui-icons arrows-1_minimal-right" />
@@ -105,7 +111,13 @@ function AdminCategoryHome() {
                         <CardTitle tag="h4">Feedbacks</CardTitle>
                       </CardHeader>
                       <CardBody>
-                        <Button onClick={onclickFeedBack} color="info">
+                        <Button onClick={onclickFeedBack} color="info" style={
+              {
+               
+                fontSize: "10px",
+               
+              }
+            }>
                         Go to
                           <span className="btn-label">
                             <i className="now-ui-icons arrows-1_minimal-right" />

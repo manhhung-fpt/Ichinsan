@@ -76,7 +76,13 @@ function AdminAddCategory() {
                   </Row>
                   <Row>
                     <Col md="2">
-                    <Button color="primary">
+                    <Button color="primary" style={
+              {
+               
+                fontSize: "10px",
+               
+              }
+            }>
                     
                     <span className="btn-label">
                       <i className="now-ui-icons ui-1_simple-remove" />
@@ -85,7 +91,13 @@ function AdminAddCategory() {
                   </Button>
                     </Col>
                     <Col md="10">
-                      <Button color="info">
+                      <Button color="info" style={
+              {
+               
+                fontSize: "10px",
+               
+              }
+            }>
                         <span className="btn-label">
                           <i className="now-ui-icons ui-1_check" />
                         </span>
