@@ -89,7 +89,7 @@ var selectOptions = [
     { value: "six", label: "Six" },
 ];
 function CustomerProgressArticle() {
-    let history = useHistory();
+
     const [singleSelect, setSingleSelect] = React.useState(null);
     const [singleFileName, setSingleFileName] = React.useState("");
     const [singleFile, setSingleFile] = React.useState(null);
@@ -141,8 +141,15 @@ function CustomerProgressArticle() {
         }
         return tableRows;
     };
+    let history = useHistory();
     const onClick = () => {
         history.push("/admin/admin-projec/admin-project-details")
+    };
+    const onClickBack = () => {
+        history.push("/admin/customer-progress-project")
+    };
+    const onClickFeedback = () => {
+        history.push("/admin/customer-create=feedback")
     };
     return (
         <>
@@ -153,16 +160,36 @@ function CustomerProgressArticle() {
 
                     <Col lg={12} md={12} xs={12}>
                         <Card>
+                            <CardHeader>
+                                <Button onClick={onClickBack} style={
+                                    {
 
+                                        fontSize: "10px",
+
+                                    }
+                                }>
+                                    <span className="btn-label">
+                                        <i className="now-ui-icons arrows-1_minimal-left" />
+                                    </span>
+                                    Back
+                                </Button>
+                            </CardHeader>
 
 
                             <CardBody>
 
                                 <CardTitle tag="h4" >Article Tittle</CardTitle>
 
-                                <Button color="info" >Edit</Button>
+                                <Button color="info" style={
+                                    {
 
-                                <Button color="primary" className="btn-right" style={
+                                        fontSize: "10px",
+
+                                    }
+                                }>
+                                    Edit</Button>
+
+                                <Button color="primary" style={
                                     {
 
                                         fontSize: "10px",
@@ -601,7 +628,15 @@ function CustomerProgressArticle() {
 
                                             </Col>
                                             <Col xs={12} md={3} size="sm">
-                                            <Button color="info" >Add Feedbacks</Button>
+                                                <Button onClick={onClickFeedback} className="btn-info" color="default" style={
+                                                    {
+
+                                                        fontSize: "10px",
+
+                                                    }
+                                                }>
+                                                    Add Feedback
+                                                </Button>
                                             </Col>
                                         </Row>
                                         <Card>
@@ -635,7 +670,7 @@ function CustomerProgressArticle() {
                                                         <Row>
                                                             <Col xs={12} md={12}>
 
-                                                                
+
                                                             </Col>
                                                             <Col xs={12} md={12}>
                                                                 <CardHeader>
@@ -643,7 +678,7 @@ function CustomerProgressArticle() {
                                                                 </CardHeader>
                                                             </Col>
                                                         </Row>
-                                                       
+
 
                                                         <Row>
                                                             <Col xs={12} md={12}>
@@ -663,7 +698,7 @@ function CustomerProgressArticle() {
                                                                 </CardBody>
                                                             </Col>
                                                         </Row>
-                                                    
+
                                                         <Row>
                                                             <Col xs={12} md={12}>
                                                                 <CardHeader>

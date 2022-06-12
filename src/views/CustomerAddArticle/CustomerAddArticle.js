@@ -90,7 +90,7 @@ function CustomerAddArticle() {
     history.push("/admin/admin-feedback-category");
   }
   const onClickBack = () => {
-    history.push("/admin/admin-project")
+    history.push("/admin/customer-article");
   }
   const handleSingleFileInput = (e) => {
     singleFileRef.current.click(e);

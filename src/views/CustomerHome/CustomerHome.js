@@ -68,10 +68,14 @@ import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 
 function CustomerHome() {
+
   const [hTabs, sethTabs] = React.useState("ht1");
+  let history = useHistory();
   const onClickView = () => {
 
+    history.push("/admin/customer-progress-project")
   }
+ 
 
 
   return (
@@ -79,7 +83,7 @@ function CustomerHome() {
       <PanelHeader
         size="sm"
       />
-
+      
       <div className="content">
         <Card>
 
@@ -90,7 +94,7 @@ function CustomerHome() {
             pagination={{
               clickable: true,
             }}
-            modules={[EffectFade, Navigation, Pagination]}
+            modules={[EffectFade, Navigation]}
             className="mySwiper"
             style={
               {
@@ -281,7 +285,7 @@ function CustomerHome() {
           </SwiperSlide>
 
         </Swiper>
-        <Button color="info" >+ Create project</Button>
+
         <CardTitle tag="h4">Progress</CardTitle>
         <Row>
 
@@ -296,7 +300,7 @@ function CustomerHome() {
 
           </Col>
           <Col xs={12} md={1} size="sm">
-            <Button color="info" style={
+            <Button onClick={onClickView} color="info" style={
               {
 
                 fontSize: "10px",
@@ -374,7 +378,7 @@ function CustomerHome() {
 
               <CardBody>
 
-                <div className="progress-bar" role="progressbar" style={{ width: "25%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">                  
+                <div className="progress-bar" role="progressbar" style={{ width: "25%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
                 </div>
                 <CardHeader>
                   <CardTitle tag="h4">Progress : Pending</CardTitle>
@@ -444,21 +448,27 @@ function CustomerHome() {
                   </ButtonToolbar>
                 </Col>
                 <Col xs={12} md={6}>
-                  <CardHeader>
-                    <CardTitle className="text-primary" >Date : 06/08/2022 12:00 AM</CardTitle>
-                  </CardHeader>
+
                 </Col>
               </Row>
+              <CardHeader>
+                <CardTitle className="text-primary" >Date : 06/08/2022 12:00 AM</CardTitle>
+              </CardHeader>
               <Row>
-                <Col xs={12} md={12}>
+                <Col xs={12} md={3}>
                   <CardHeader>
                     <CardTitle >Category :</CardTitle>
                   </CardHeader>
+                </Col>
+                <Col xs={12} md={1}>
                   <CardBody>
                     <div className="btns-mr-5">
-                      <Button>Default</Button>
+                      <Button>Cate1</Button>
                     </div>
                   </CardBody>
+                </Col>
+                <Col xs={12} md={8}>
+
                 </Col>
               </Row>
               <Row>
@@ -528,21 +538,28 @@ function CustomerHome() {
                   </ButtonToolbar>
                 </Col>
                 <Col xs={12} md={6}>
-                  <CardHeader>
-                    <CardTitle className="text-primary" >Date : 06/08/2022 12:00 AM</CardTitle>
-                  </CardHeader>
+
                 </Col>
+
               </Row>
+              <CardHeader>
+                <CardTitle className="text-primary" >Date : 06/08/2022 12:00 AM</CardTitle>
+              </CardHeader>
               <Row>
-                <Col xs={12} md={12}>
+                <Col xs={12} md={3}>
                   <CardHeader>
                     <CardTitle >Category :</CardTitle>
                   </CardHeader>
+                </Col>
+                <Col xs={12} md={1}>
                   <CardBody>
                     <div className="btns-mr-5">
-                      <Button color="success">Category 3</Button>
+                      <Button color="success">Cate2</Button>
                     </div>
                   </CardBody>
+                </Col>
+                <Col xs={12} md={8}>
+
                 </Col>
               </Row>
               <Row>

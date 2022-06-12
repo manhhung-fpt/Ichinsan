@@ -63,6 +63,7 @@ var selectOptions = [
   { value: "Category6", label: "Category6" },
 ];
 function CustomeArticle() {
+  
   const [singleSelect, setSingleSelect] = React.useState(null);
   const [singleFileName, setSingleFileName] = React.useState("");
   const [singleFile, setSingleFile] = React.useState(null);
@@ -94,7 +95,7 @@ function CustomeArticle() {
     history.push("/admin/admin-project")
   }
   const onClick = () => {
-    history.push("/admin/admin-projec/admin-project-details")
+    history.push("/admin/customer-add-article")
   };
 
   return (
@@ -116,7 +117,7 @@ function CustomeArticle() {
               Back
             </Button>
 
-            <CardTitle tag="h4">Lastest Project</CardTitle>
+            <CardTitle tag="h4"> Project</CardTitle>
             <Card>
 
               <CardBody>
@@ -319,7 +320,7 @@ function CustomeArticle() {
               <Col xs={12} md={1} size="sm">
               </Col>
               <Col xs={12} md={1} size="sm">
-                <Button color="info" style={
+                <Button onClick={onClick} color="info" style={
                   {
 
                     fontSize: "10px",

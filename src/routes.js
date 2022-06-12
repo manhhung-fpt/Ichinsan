@@ -144,7 +144,7 @@ let routes = [
     name: "Customer Progress Project",
     icon: "now-ui-icons business_badge",
     component: CustomerProgressProject,
-
+    hideInDetail: true,
     layout: "/admin",
   },
   {
@@ -152,7 +152,7 @@ let routes = [
     name: "Customer Create Project",
     icon: "now-ui-icons business_badge",
     component: CustomerCreate,
-
+    hideInDetail: true,
     layout: "/admin",
   },
   {
@@ -168,7 +168,7 @@ let routes = [
     name: "Customer Add Article",
     icon: "now-ui-icons business_badge",
     component: CustomerAddArticle,
-
+    hideInDetail: true,
     layout: "/admin",
   },
   {
@@ -184,7 +184,7 @@ let routes = [
     name: "Customer Create Feedback",
     icon: "now-ui-icons business_badge",
     component: CustomerCreateFeedback,
-
+    hideInDetail: true,
     layout: "/admin",
   },
   {
