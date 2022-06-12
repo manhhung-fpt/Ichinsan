@@ -629,6 +629,29 @@ function CustomerHome() {
                   </CardBody>
                 </Col>
               </Row>
+              <Row>
+                <Col xs={12} md={4}>
+                </Col>
+                <Col xs={12} md={4}>
+                  <Button onClick={onClick} color="info" style={
+                    {
+
+                      fontSize: "10px",
+
+                    }
+                  }>
+                    View
+                    <span className="btn-label">
+                      <i className="now-ui-icons arrows-1_minimal-right" />
+                    </span>
+
+                  </Button>
+                </Col>
+                <Col xs={12} md={4}>
+
+                </Col>
+
+              </Row>
             </Card>
           </Col>
 
