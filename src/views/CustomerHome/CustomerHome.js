@@ -30,6 +30,7 @@ import 'swiper/modules/effect-fade/effect-fade.scss'; // Pagination module
 import { EffectFade } from "swiper";
 import { Keyboard, Scrollbar, Mousewheel } from "swiper";
 import "./CustomerHome.css"
+import ProgressBar from 'react-bootstrap/ProgressBar';
 
 // reactstrap components
 import {
@@ -89,7 +90,7 @@ function CustomerHome() {
             pagination={{
               clickable: true,
             }}
-            modules={[EffectFade, Navigation]}
+            modules={[EffectFade, Navigation, Pagination]}
             className="mySwiper"
             style={
               {
@@ -327,70 +328,15 @@ function CustomerHome() {
               <CardBody>
 
                 <div className="progress-bar" role="progressbar" style={{ width: "25%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                  <img alt="" src="https://ids.si.edu/ids/deliveryService?max_w=210&amp;id=AAA-AAA_takatosh_3270221" width="100%">
-                  </img>
+
                 </div>
                 <CardHeader>
-                  <CardTitle tag="h4">Progress</CardTitle>
+                  <CardTitle tag="h4">Progress : Pending</CardTitle>
                 </CardHeader>
-                <ButtonToolbar>
-                  <ButtonGroup>
-                    <Button className="btn-round" color="success" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-                      Complete
-                    </Button>
-                    <Button className="btn-round" color="danger" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-                      Not complete
-                    </Button>
-                    <Button className="btn-round" color="danger" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-
-                    </Button>
-                    <Button className="btn-round" color="danger" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-
-                    </Button>
-                    <Button className="btn-round" color="danger" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-
-                    </Button>
-                    <Button className="btn-round" color="danger" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-
-                    </Button>
-                  </ButtonGroup>
-                </ButtonToolbar>
+                <ProgressBar>
+                  <ProgressBar variant="success" now={35} key={1} />
+                  <ProgressBar variant="danger" now={65} key={2} />
+                </ProgressBar>
               </CardBody>
             </Card>
           </Col>
@@ -406,70 +352,14 @@ function CustomerHome() {
               <CardBody>
 
                 <div className="progress-bar" role="progressbar" style={{ width: "25%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                  <img alt="" src="https://ids.si.edu/ids/deliveryService?max_w=210&amp;id=AAA-AAA_takatosh_3270221" width="100%">
-                  </img>
                 </div>
                 <CardHeader>
-                  <CardTitle tag="h4">Progress</CardTitle>
+                  <CardTitle tag="h4">Progress : Pending</CardTitle>
                 </CardHeader>
-                <ButtonToolbar>
-                  <ButtonGroup>
-                    <Button className="btn-round" color="success" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-                      Complete
-                    </Button>
-                    <Button className="btn-round" color="danger" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-                      Not complete
-                    </Button>
-                    <Button className="btn-round" color="danger" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-
-                    </Button>
-                    <Button className="btn-round" color="danger" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-
-                    </Button>
-                    <Button className="btn-round" color="danger" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-
-                    </Button>
-                    <Button className="btn-round" color="danger" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-
-                    </Button>
-                  </ButtonGroup>
-                </ButtonToolbar>
+                <ProgressBar>
+                  <ProgressBar variant="success" now={35} key={1} />
+                  <ProgressBar variant="danger" now={65} key={2} />
+                </ProgressBar>
               </CardBody>
             </Card>
           </Col>
@@ -484,71 +374,15 @@ function CustomerHome() {
 
               <CardBody>
 
-                <div className="progress-bar" role="progressbar" style={{ width: "25%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                  <img alt="" src="https://ids.si.edu/ids/deliveryService?max_w=210&amp;id=AAA-AAA_takatosh_3270221" width="100%">
-                  </img>
+                <div className="progress-bar" role="progressbar" style={{ width: "25%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">                  
                 </div>
                 <CardHeader>
-                  <CardTitle tag="h4">Progress</CardTitle>
+                  <CardTitle tag="h4">Progress : Pending</CardTitle>
                 </CardHeader>
-                <ButtonToolbar>
-                  <ButtonGroup>
-                    <Button className="btn-round" color="success" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-                      Complete
-                    </Button>
-                    <Button className="btn-round" color="danger" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-                      Not complete
-                    </Button>
-                    <Button className="btn-round" color="danger" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-
-                    </Button>
-                    <Button className="btn-round" color="danger" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-
-                    </Button>
-                    <Button className="btn-round" color="danger" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-
-                    </Button>
-                    <Button className="btn-round" color="danger" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-
-                    </Button>
-                  </ButtonGroup>
-                </ButtonToolbar>
+                <ProgressBar>
+                  <ProgressBar variant="success" now={35} key={1} />
+                  <ProgressBar variant="danger" now={65} key={2} />
+                </ProgressBar>
               </CardBody>
             </Card>
           </Col>
@@ -623,12 +457,6 @@ function CustomerHome() {
                   <CardBody>
                     <div className="btns-mr-5">
                       <Button>Default</Button>
-                      <Button color="primary">Category 1</Button>
-                      <Button color="danger">Category 2</Button>
-
-                      <Button color="success">Category 3</Button>
-                      <Button color="warning">Category 4</Button>
-                      <Button color="info">+ More</Button>
                     </div>
                   </CardBody>
                 </Col>
@@ -712,13 +540,7 @@ function CustomerHome() {
                   </CardHeader>
                   <CardBody>
                     <div className="btns-mr-5">
-                      <Button>Default</Button>
-                      <Button color="primary">Category 1</Button>
-                      <Button color="danger">Category 2</Button>
-
                       <Button color="success">Category 3</Button>
-                      <Button color="warning">Category 4</Button>
-                      <Button color="info">+ More</Button>
                     </div>
                   </CardBody>
                 </Col>

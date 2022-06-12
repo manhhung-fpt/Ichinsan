@@ -41,7 +41,9 @@ import PanelHeader from "components/PanelHeader/PanelHeader.js";
 import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 var selectOptions = [
   { value: "One", label: "One" },
   { value: "two", label: "Two" },
@@ -52,9 +54,24 @@ var selectOptions = [
 ];
 function AdminAddAuditor() {
   let history = useHistory();
+  const location = useLocation();
+  const Edit ="edit";
+  debugger
   const [singleSelect, setSingleSelect] = React.useState(null);
   const [multipleSelect, setMultipleSelect] = React.useState(null);
-  const onClickBack = () =>{
+  const [projects, setProjects] = useState([]);
+  useEffect(() => {
+    axios
+      .get("https://62a586f2b9b74f766a3afda9.mockapi.io/api/projectDetails/articles")
+      .then((res) => {
+        const data = res.data;
+        setProjects(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }, []);
+  const onClickBack = () => {
     history.push("/admin/admin-projec/admin-project-details");
   }
   return (
@@ -67,12 +84,12 @@ function AdminAddAuditor() {
               <CardHeader>
 
                 <Button onClick={onClickBack} style={
-              {
-               
-                fontSize: "10px",
-               
-              }
-            }>
+                  {
+
+                    fontSize: "10px",
+
+                  }
+                }>
                   <span className="btn-label">
                     <i className="now-ui-icons arrows-1_minimal-left" />
                   </span>
@@ -91,30 +108,46 @@ function AdminAddAuditor() {
                 </Link>
                 <Typography color="text.primary">Add Auditor</Typography>
               </Breadcrumbs>
-
               <CardBody>
                 <Row>
-                  <Col xs={12} md={6} size="sm">
+                  <Col xs={12} md={10} size="sm">
 
                   </Col>
-                  <Col xs={12} md={6} size="sm">
-                    <Button color="info" style={
-              {
-               
-                fontSize: "10px",
-               
-              }
-            }>
-                      <span className="btn-label">
-                        <i className="now-ui-icons ui-1_simple-add" />
-                      </span>
-                      Add Auditor
-                    </Button>
-                  </Col>
+                  { location.state !== undefined && location.state.actionType === Edit ? (
+                    <Col xs={12} md={2} size="sm">
+                      <Button color="danger" style={
+                        {
+                          
+                          fontSize: "10px",
+
+                        }
+                      }>
+                        <span className="btn-label">
+                          <i className="now-ui-icons ui-1_simple-add" />
+                        </span>
+                        Change Auditor
+                      </Button>
+                    </Col>
+                  ) : (
+                    <Col xs={12} md={2} size="sm">
+                      <Button color="info" style={
+                        {
+
+                          fontSize: "10px",
+
+                        }
+                      }>
+                        <span className="btn-label">
+                          <i className="now-ui-icons ui-1_simple-add" />
+                        </span>
+                        Add Auditor
+                      </Button>
+                    </Col>
+
+                  )}
+
                 </Row>
               </CardBody>
-
-
               <CardBody>
                 <Row>
                   <Col xs={12} md={4}>
@@ -173,88 +206,28 @@ function AdminAddAuditor() {
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td className="text-center">1</td>
-                          <td>Andrew Mike</td>
-                          <td>English</td>
-                          <td>Professional</td>
-
-                          <td className="text-center">
-                            <FormGroup check>
-                              <Label check>
-                                <Input defaultChecked type="checkbox" />
-                                <span className="form-check-sign" />
-                              </Label>
-                            </FormGroup>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="text-center">2</td>
-                          <td>John Doe</td>
-                          <td>English</td>
-                          <td>Immediate</td>
-
-                          <td className="text-center">
-                            <FormGroup check>
-                              <Label check>
-                                <Input defaultChecked type="checkbox" />
-                                <span className="form-check-sign" />
-                              </Label>
-                            </FormGroup>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="text-center">3</td>
-                          <td>Alex Mike</td>
-                          <td>English</td>
-                          <td>Immediate</td>
-
-                          <td className="text-center">
-                            <FormGroup check>
-                              <Label check>
-                                <Input defaultChecked type="checkbox" />
-                                <span className="form-check-sign" />
-                              </Label>
-                            </FormGroup>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="text-center">4</td>
-                          <td>Mike Monday</td>
-                          <td>Chinese</td>
-                          <td>Immediate</td>
-
-                          <td className="text-center">
-                            <FormGroup check>
-                              <Label check>
-                                <Input defaultChecked type="checkbox" />
-                                <span className="form-check-sign" />
-                              </Label>
-                            </FormGroup>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="text-center">5</td>
-                          <td>Paul Dickens</td>
-                          <td>Japanese</td>
-                          <td>Immediate</td>
-
-                          <td className="text-center">
-                            <FormGroup check>
-                              <Label check>
-                                <Input defaultChecked type="checkbox" />
-                                <span className="form-check-sign" />
-                              </Label>
-                            </FormGroup>
-                          </td>
-                        </tr>
-
+                        {projects.map((project, index) => (
+                          <tr>
+                            <td className="text-center">{index + 1}</td>
+                            <td>{project.auditorName}</td>
+                            <td>{project.language}</td>
+                            <td>{project.level}</td>
+                            <td className="text-center">
+                              <FormGroup check>
+                                <Label check>
+                                  <Input defaultChecked type="checkbox" />
+                                  <span className="form-check-sign" />
+                                </Label>
+                              </FormGroup>
+                            </td>
+                          </tr>
+                        ))}
                       </tbody>
                     </Table>
                   </Col>
                 </Row>
               </CardBody>
-              
+
             </Card>
           </Col>
         </Row>

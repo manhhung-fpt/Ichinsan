@@ -18,6 +18,7 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 // used for making the prop types of this component
 import PropTypes from "prop-types";
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';  
 
 // reactstrap components
 import {
@@ -39,6 +40,7 @@ import {
 } from "reactstrap";
 import { useHistory } from "react-router-dom";
 import { Route } from "react-router-dom/cjs/react-router-dom.min";
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 function AdminNavbar(props) {
   const location = useLocation();
@@ -127,24 +129,15 @@ function AdminNavbar(props) {
           <span className="navbar-toggler-bar navbar-kebab" />
         </NavbarToggler>
         <Collapse isOpen={isOpen} navbar className="justify-content-end">
-          <form>
-            <InputGroup className="no-border">
-              <Input placeholder="Search..." />
-
-              <InputGroupAddon addonType="append">
-                <InputGroupText>
-                  <i className="now-ui-icons ui-1_zoom-bold" />
-                </InputGroupText>
-              </InputGroupAddon>
-            </InputGroup>
-          </form>
           <Nav navbar>
             <NavItem>
               <Link to="#pablo" className="nav-link">
-                <i className="now-ui-icons media-2_sound-wave" />
-                <p>
-                  <span className="d-lg-none d-md-block">Stats</span>
-                </p>
+              <AddCircleIcon></AddCircleIcon>
+              </Link>
+            </NavItem>
+            <NavItem>
+            <Link to="#pablo" className="nav-link">
+              <NotificationsNoneIcon></NotificationsNoneIcon>
               </Link>
             </NavItem>
             <Dropdown

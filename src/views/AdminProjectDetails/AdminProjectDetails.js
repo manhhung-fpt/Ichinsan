@@ -1,21 +1,7 @@
-/*!
 
-=========================================================
-* Now UI Dashboard PRO React - v1.5.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/now-ui-dashboard-pro-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Switch from "react-bootstrap-switch";
+import moment from 'moment';
 
 // reactstrap components
 import {
@@ -43,6 +29,7 @@ import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 import { useHistory } from "react-router-dom";
 import Select from "react-select";
+import axios from "axios";
 // core components
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
 var selectOptions = [
@@ -55,7 +42,22 @@ var selectOptions = [
 ];
 function AdminProjectDetails() {
   let history = useHistory();
+  const [projects, setProjects] = useState([]);
+  const Change = 'Change';
+  const Assign = 'Assign';
+  useEffect(() => {
+    axios
+      .get("https://62a586f2b9b74f766a3afda9.mockapi.io/api/projectDetails/articles")
+      .then((res) => {
+        const data = res.data;
+        setProjects(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }, []);
   const [singleSelect, setSingleSelect] = React.useState(null);
+
   const [multipleSelect, setMultipleSelect] = React.useState(null);
   const [modalNotice, setModalNotice] = React.useState(false);
   const [modalView, setModalView] = React.useState(false);
@@ -69,6 +71,13 @@ function AdminProjectDetails() {
   const onClickBack = () => {
     history.push("/admin/admin-project")
   }
+  const editAuditor = () => {
+    history.push({
+      pathname: '/admin/admin-add-auditor',
+      state: { actionType: 'edit' }
+  });
+  }
+
   const addAuditor = () => {
     history.push("/admin/admin-add-auditor");
   }
@@ -101,6 +110,15 @@ function AdminProjectDetails() {
                   </Link>
                   <Typography color="text.primary">Project Details</Typography>
                 </Breadcrumbs>
+                <Row>
+                  <Col xs={12} md={3} size="sm"  >
+                    Customer :  Alexander The III
+                  </Col>
+                  <Col xs={12} md={9} size="sm"  >
+                    Auditor: XX/10
+                  </Col>
+
+                </Row>
                 <Row>
                   <Col xs={12} md={8} size="sm"  >
                     Sort :
@@ -137,7 +155,6 @@ function AdminProjectDetails() {
                   <thead className="text-primary">
                     <tr>
                       <th className="text-center">#</th>
-                      <th>Auditor</th>
                       <th>Article Name</th>
                       <th>Language</th>
                       <th>Deadline</th>
@@ -146,292 +163,215 @@ function AdminProjectDetails() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td className="text-center">1</td>
-                      <td>Andrew Mike</td>
-                      <td>Develop</td>
-                      <td>Chinese to Korean</td>
-                      <td>06/08/2022 12:00 AM</td>
-                      <td className="text-right">
-                        In-Progress
-                      </td>
-                      <td className="text-right btns-mr-5">
+                    {projects.map((project, index) => (
+                      <tr>
+                        <td className="text-center">{index + 1}</td>
+                        <td>{project.articelName}</td>
+                        <td>{project.language}</td>
+                        <td>{moment(project.deadline).format('DD/MM/YYYY')}</td>
+                        <td className="text-right">
+                          {project.status}
+                        </td>
+                        {project.actionType === Change && (
+                          <td className="text-right btns-mr-5">
+                            <Button onClick={editAuditor} color="primary" className="btn-round" style={
+                              {
 
-                        <Button color="primary" className="btn-round" style={
-                          {
+                                fontSize: "10px",
 
-                            fontSize: "10px",
-
-                          }
-                        }>
-                          <i className="now-ui-icons users_single-02" /> View
-                        </Button>
-
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="text-center">2</td>
-                      <td>John Doe</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td className="text-right">
-                        New
-                      </td>
-                      <td className="text-right btns-mr-5">
-
-                        <Button onClick={toggleModalNotice} color="primary" className="btn-info" style={
-                          {
-
-                            fontSize: "10px",
-
-                          }
-                        }>
-                          <i className="now-ui-icons ui-2_settings-90" /> Assign
-                        </Button>
-                        <Modal
-                          isOpen={modalNotice}
-                          toggle={toggleModalNotice}
-                          className="modal-notice text-center"
-                        >
-                          <ModalHeader style={{ width: '150%' }} toggle={toggleModalNotice}>
-                            Assign Auditor
-                          </ModalHeader>
-                          <ModalBody>
-                            <div className="content" >
-                              <Row>
-                                <Col md="12" >
-                                  <Card>
-                                    <CardHeader>
-                                      <CardTitle tag="h4">Auditor's Name : John Doe</CardTitle>
-                                      <Row>
-                                        <Col xs={12} md={4} size="sm">
-                                        </Col>
-                                        <Col xs={12} md={1} size="sm"></Col>
-                                        <Col xs={12} md={3} size="sm">
-                                        </Col>
-                                        <Col xs={12} md={4} size="sm">
-                                          <Select
-                                            className="react-select primary"
-                                            classNamePrefix="react-select"
-                                            placeholder="Result of Page"
-                                            name="singleSelect"
-                                            value={singleSelect}
-                                            options={selectOptions}
-                                            onChange={(value) => setSingleSelect(value)}
-                                          />
-                                        </Col>
-                                      </Row>
-                                    </CardHeader>
-                                    <CardBody>
-                                      <Table responsive>
-                                        <thead className="text-primary">
-                                          <tr>
-                                            <th className="text-center">#</th>
-
-                                            <th>Article Name</th>
-                                            <th>Language</th>
-                                            <th>Deadline</th>
-                                            <th className="text-right">Status</th>
-                                            <th className="text-right"></th>
-                                          </tr>
-                                        </thead>
-                                        <tbody>
-                                          <tr>
-                                            <td className="text-center">1</td>
-
-                                            <td>Develop</td>
-                                            <td>English</td>
-                                            <td>06/08/2022 12:00 AM</td>
-                                            <td className="text-right">
-                                              Pending
-                                            </td>
-                                            <td className="text-center">
-                                              <FormGroup check>
-                                                <Label check>
-                                                  <Input defaultChecked type="checkbox" />
-                                                  <span className="form-check-sign" />
-                                                </Label>
-                                              </FormGroup>
-                                            </td>
-
-                                          </tr>
-                                          <tr>
-                                            <td className="text-center">2</td>
-
-                                            <td>Marketing</td>
-                                            <td>English</td>
-                                            <td>06/08/2022 12:00 AM</td>
-                                            <td className="text-right">
-                                              Pending
-                                            </td>
-                                            <td className="text-center">
-                                              <FormGroup check>
-                                                <Label check>
-                                                  <Input defaultChecked type="checkbox" />
-                                                  <span className="form-check-sign" />
-                                                </Label>
-                                              </FormGroup>
-                                            </td>
-                                          </tr>
-                                          <tr>
-                                            <td className="text-center">3</td>
-
-                                            <td>Design</td>
-                                            <td>English</td>
-                                            <td>06/08/2022 12:00 AM</td>
-                                            <td className="text-right">
-                                              <Switch defaultValue={false} />
-
-
-                                            </td>
-                                            <td className="text-center">
-                                              <FormGroup check>
-                                                <Label check>
-                                                  <Input defaultChecked type="checkbox" />
-                                                  <span className="form-check-sign" />
-                                                </Label>
-                                              </FormGroup>
-                                            </td>
-                                          </tr>
-                                          <tr>
-                                            <td className="text-center">4</td>
-
-                                            <td>Communication</td>
-                                            <td>Japanese</td>
-                                            <td>06/08/2022 12:00 AM</td>
-                                            <td className="text-right">
-                                              <Switch defaultValue={false} />
-
-
-                                            </td>
-                                            <td className="text-center">
-                                              <FormGroup check>
-                                                <Label check>
-                                                  <Input defaultChecked type="checkbox" />
-                                                  <span className="form-check-sign" />
-                                                </Label>
-                                              </FormGroup>
-                                            </td>
-                                          </tr>
-                                          <tr>
-                                            <td className="text-center">5</td>
-
-                                            <td>Marketing</td>
-                                            <td>Japanese</td>
-                                            <td>06/08/2022 12:00 AM</td>
-                                            <td className="text-right">
-                                              <Switch defaultValue={false} />
-
-
-                                            </td>
-                                            <td className="text-center">
-                                              <FormGroup check>
-                                                <Label check>
-                                                  <Input defaultChecked type="checkbox" />
-                                                  <span className="form-check-sign" />
-                                                </Label>
-                                              </FormGroup>
-                                            </td>
-                                          </tr>
-
-                                        </tbody>
-                                      </Table>
-                                    </CardBody>
-                                  </Card>
-                                </Col>
-                              </Row>
-                            </div>
-                          </ModalBody>
-                          <ModalFooter className="justify-content-center">
-                            <Button
-                              color="info"
-                              className="btn-round"
-                              onClick={toggleModalNotice}
-                              style={
-                                {
-
-                                  fontSize: "10px",
-
-                                }
-                              }>
-                              Assign !!
+                              }
+                            }>
+                              <i className="now-ui-icons users_single-02" /> Edit
                             </Button>
-                          </ModalFooter>
-                        </Modal>
 
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="text-center">3</td>
-                      <td>Alex Mike</td>
-                      <td>Design</td>
-                      <td>English to VietNamese</td>
-                      <td>06/08/2022 12:00 AM</td>
-                      <td className="text-right">
-                        In-Progress
-                      </td>
-                      <td className="text-right btns-mr-5">
+                          </td>
+                        )}
+                        {project.actionType === Assign && (
+                          <td className="text-right btns-mr-5">
+                          <Button onClick={toggleModalNotice} color="primary" className="btn-info" style={
+                            {
 
-                        <Button color="primary" className="btn-round" style={
-                          {
+                              fontSize: "10px",
 
-                            fontSize: "10px",
+                            }
+                          }>
+                            <i className="now-ui-icons ui-2_settings-90" /> Assign
+                          </Button>
+                          <Modal
+                            isOpen={modalNotice}
+                            toggle={toggleModalNotice}
+                            className="modal-notice text-center"
+                          >
+                            <ModalHeader style={{ width: '150%' }} toggle={toggleModalNotice}>
+                              Assign Auditor
+                            </ModalHeader>
+                            <ModalBody>
+                              <div className="content" >
+                                <Row>
+                                  <Col md="12" >
+                                    <Card>
+                                      <CardHeader>
+                                        <CardTitle tag="h4">Auditor's Name : John Doe</CardTitle>
+                                        <Row>
+                                          <Col xs={12} md={4} size="sm">
+                                          </Col>
+                                          <Col xs={12} md={1} size="sm"></Col>
+                                          <Col xs={12} md={3} size="sm">
+                                          </Col>
+                                          <Col xs={12} md={4} size="sm">
+                                            <Select
+                                              className="react-select primary"
+                                              classNamePrefix="react-select"
+                                              placeholder="Result of Page"
+                                              name="singleSelect"
+                                              value={singleSelect}
+                                              options={selectOptions}
+                                              onChange={(value) => setSingleSelect(value)}
+                                            />
+                                          </Col>
+                                        </Row>
+                                      </CardHeader>
+                                      <CardBody>
+                                        <Table responsive>
+                                          <thead className="text-primary">
+                                            <tr>
+                                              <th className="text-center">#</th>
 
-                          }
-                        }>
-                          <i className="now-ui-icons users_single-02" /> View
-                        </Button>
+                                              <th>Article Name</th>
+                                              <th>Language</th>
+                                              <th>Deadline</th>
+                                              <th className="text-right">Status</th>
+                                              <th className="text-right"></th>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                            <tr>
+                                              <td className="text-center">1</td>
 
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="text-center">4</td>
-                      <td>Mike Monday</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td className="text-right">
-                        Pending Approver
-                      </td>
-                      <td className="text-right btns-mr-5">
+                                              <td>Develop</td>
+                                              <td>English</td>
+                                              <td>06/08/2022 12:00 AM</td>
+                                              <td className="text-right">
+                                                Pending
+                                              </td>
+                                              <td className="text-center">
+                                                <FormGroup check>
+                                                  <Label check>
+                                                    <Input defaultChecked type="checkbox" />
+                                                    <span className="form-check-sign" />
+                                                  </Label>
+                                                </FormGroup>
+                                              </td>
 
-                        <Button color="primary" className="btn-info" style={
-                          {
+                                            </tr>
+                                            <tr>
+                                              <td className="text-center">2</td>
 
-                            fontSize: "10px",
+                                              <td>Marketing</td>
+                                              <td>English</td>
+                                              <td>06/08/2022 12:00 AM</td>
+                                              <td className="text-right">
+                                                Pending
+                                              </td>
+                                              <td className="text-center">
+                                                <FormGroup check>
+                                                  <Label check>
+                                                    <Input defaultChecked type="checkbox" />
+                                                    <span className="form-check-sign" />
+                                                  </Label>
+                                                </FormGroup>
+                                              </td>
+                                            </tr>
+                                            <tr>
+                                              <td className="text-center">3</td>
 
-                          }
-                        }>
-                          <i className="now-ui-icons ui-2_settings-90" /> Assign
-                        </Button>
+                                              <td>Design</td>
+                                              <td>English</td>
+                                              <td>06/08/2022 12:00 AM</td>
+                                              <td className="text-right">
+                                                <Switch defaultValue={false} />
 
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="text-center">5</td>
-                      <td>Paul Dickens</td>
-                      <td>Communication</td>
-                      <td>Japanese to VietNamese</td>
-                      <td>06/08/2022 12:00 AM</td>
-                      <td className="text-right">
-                        Done
-                      </td>
-                      <td className="text-right btns-mr-5">
 
-                        <Button color="primary" className="btn-round" style={
-                          {
+                                              </td>
+                                              <td className="text-center">
+                                                <FormGroup check>
+                                                  <Label check>
+                                                    <Input defaultChecked type="checkbox" />
+                                                    <span className="form-check-sign" />
+                                                  </Label>
+                                                </FormGroup>
+                                              </td>
+                                            </tr>
+                                            <tr>
+                                              <td className="text-center">4</td>
 
-                            fontSize: "10px",
+                                              <td>Communication</td>
+                                              <td>Japanese</td>
+                                              <td>06/08/2022 12:00 AM</td>
+                                              <td className="text-right">
+                                                <Switch defaultValue={false} />
 
-                          }
-                        }>
-                          <i className="now-ui-icons users_single-02" /> View
-                        </Button>
 
-                      </td>
-                    </tr>
+                                              </td>
+                                              <td className="text-center">
+                                                <FormGroup check>
+                                                  <Label check>
+                                                    <Input defaultChecked type="checkbox" />
+                                                    <span className="form-check-sign" />
+                                                  </Label>
+                                                </FormGroup>
+                                              </td>
+                                            </tr>
+                                            <tr>
+                                              <td className="text-center">5</td>
 
+                                              <td>Marketing</td>
+                                              <td>Japanese</td>
+                                              <td>06/08/2022 12:00 AM</td>
+                                              <td className="text-right">
+                                                <Switch defaultValue={false} />
+
+
+                                              </td>
+                                              <td className="text-center">
+                                                <FormGroup check>
+                                                  <Label check>
+                                                    <Input defaultChecked type="checkbox" />
+                                                    <span className="form-check-sign" />
+                                                  </Label>
+                                                </FormGroup>
+                                              </td>
+                                            </tr>
+
+                                          </tbody>
+                                        </Table>
+                                      </CardBody>
+                                    </Card>
+                                  </Col>
+                                </Row>
+                              </div>
+                            </ModalBody>
+                            <ModalFooter className="justify-content-center">
+                              <Button
+                                color="info"
+                                className="btn-round"
+                                onClick={toggleModalNotice}
+                                style={
+                                  {
+
+                                    fontSize: "10px",
+
+                                  }
+                                }>
+                                Assign !!
+                              </Button>
+                            </ModalFooter>
+                          </Modal>
+
+                        </td>
+                         )}
+                      </tr>
+                    ))}
                   </tbody>
                 </Table>
               </CardBody>

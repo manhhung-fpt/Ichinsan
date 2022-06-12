@@ -59,7 +59,7 @@ function Auth(props) {
           <Footer fluid />
         </div>
       </div>
-      <FixedPlugin bgColor={filterColor} handleColorClick={handleColorClick} />
+     
     </>
   );
 }
