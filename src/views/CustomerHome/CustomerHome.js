@@ -75,7 +75,10 @@ function CustomerHome() {
 
     history.push("/admin/customer-progress-project")
   }
- 
+  const onClick = () => {
+
+    history.push("/admin/customer-article")
+  }
 
 
   return (
@@ -83,7 +86,7 @@ function CustomerHome() {
       <PanelHeader
         size="sm"
       />
-      
+
       <div className="content">
         <Card>
 
@@ -511,6 +514,29 @@ function CustomerHome() {
                     </TabContent>
                   </CardBody>
                 </Col>
+              </Row>
+              <Row>
+                <Col xs={12} md={4}>
+                </Col>
+                <Col xs={12} md={4}>
+                  <Button onClick={onClick} color="info" style={
+                    {
+
+                      fontSize: "10px",
+
+                    }
+                  }>
+                    View
+                    <span className="btn-label">
+                      <i className="now-ui-icons arrows-1_minimal-right" />
+                    </span>
+
+                  </Button>
+                </Col>
+                <Col xs={12} md={4}>
+
+                </Col>
+
               </Row>
             </Card>
           </Col>

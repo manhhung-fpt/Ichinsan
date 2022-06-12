@@ -92,7 +92,7 @@ function CustomeArticle() {
     history.push("/admin/admin-feedback-category");
   }
   const onClickBack = () => {
-    history.push("/admin/admin-project")
+    history.push("/admin/customer-home")
   }
   const onClick = () => {
     history.push("/admin/customer-add-article")

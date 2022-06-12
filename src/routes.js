@@ -160,7 +160,7 @@ let routes = [
     name: "Customer Article",
     icon: "now-ui-icons business_badge",
     component: CustomeArticle,
-
+    hideInDetail: true,
     layout: "/admin",
   },
   {
