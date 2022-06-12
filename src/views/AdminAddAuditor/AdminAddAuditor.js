@@ -66,7 +66,13 @@ function AdminAddAuditor() {
             <Card>
               <CardHeader>
 
-                <Button onClick={onClickBack}>
+                <Button onClick={onClickBack} style={
+              {
+               
+                fontSize: "10px",
+               
+              }
+            }>
                   <span className="btn-label">
                     <i className="now-ui-icons arrows-1_minimal-left" />
                   </span>
@@ -92,7 +98,13 @@ function AdminAddAuditor() {
 
                   </Col>
                   <Col xs={12} md={6} size="sm">
-                    <Button color="info">
+                    <Button color="info" style={
+              {
+               
+                fontSize: "10px",
+               
+              }
+            }>
                       <span className="btn-label">
                         <i className="now-ui-icons ui-1_simple-add" />
                       </span>
@@ -242,6 +254,7 @@ function AdminAddAuditor() {
                   </Col>
                 </Row>
               </CardBody>
+              
             </Card>
           </Col>
         </Row>

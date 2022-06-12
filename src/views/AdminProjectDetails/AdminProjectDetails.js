@@ -34,6 +34,9 @@ import {
   FormGroup,
   Label,
   Input,
+  Pagination,
+  PaginationItem,
+  PaginationLink,
 } from "reactstrap";
 import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
@@ -77,7 +80,13 @@ function AdminProjectDetails() {
           <Col md="12" >
             <Card>
               <CardHeader>
-                <Button onClick={onClickBack}>
+                <Button onClick={onClickBack} style={
+                  {
+
+                    fontSize: "10px",
+
+                  }
+                }>
                   <span className="btn-label">
                     <i className="now-ui-icons arrows-1_minimal-left" />
                   </span>
@@ -97,7 +106,7 @@ function AdminProjectDetails() {
                     Sort :
                   </Col>
                   <Col Col xs={12} md={4} size="sm" >
-                    Paging:
+
                   </Col>
                 </Row>
                 <Row>
@@ -115,24 +124,10 @@ function AdminProjectDetails() {
                   </Col>
                   <Col xs={12} md={1} size="sm"></Col>
                   <Col xs={12} md={3} size="sm">
-                    <Button onClick={addAuditor} color="info">
-                      Add Auditor
-                      <span className="btn-label">
-                        <i className="now-ui-icons arrows-1_minimal-right" />
-                      </span>
 
-                    </Button>
                   </Col>
                   <Col xs={12} md={4} size="sm">
-                    <Select
-                      className="react-select primary"
-                      classNamePrefix="react-select"
-                      placeholder="Result of Page"
-                      name="singleSelect"
-                      value={singleSelect}
-                      options={selectOptions}
-                      onChange={(value) => setSingleSelect(value)}
-                    />
+
                   </Col>
                 </Row>
               </CardHeader>
@@ -162,7 +157,13 @@ function AdminProjectDetails() {
                       </td>
                       <td className="text-right btns-mr-5">
 
-                        <Button color="primary" className="btn-round">
+                        <Button color="primary" className="btn-round" style={
+                          {
+
+                            fontSize: "10px",
+
+                          }
+                        }>
                           <i className="now-ui-icons users_single-02" /> View
                         </Button>
 
@@ -179,7 +180,13 @@ function AdminProjectDetails() {
                       </td>
                       <td className="text-right btns-mr-5">
 
-                        <Button onClick={toggleModalNotice} color="primary" className="btn-info">
+                        <Button onClick={toggleModalNotice} color="primary" className="btn-info" style={
+                          {
+
+                            fontSize: "10px",
+
+                          }
+                        }>
                           <i className="now-ui-icons ui-2_settings-90" /> Assign
                         </Button>
                         <Modal
@@ -341,7 +348,13 @@ function AdminProjectDetails() {
                               color="info"
                               className="btn-round"
                               onClick={toggleModalNotice}
-                            >
+                              style={
+                                {
+
+                                  fontSize: "10px",
+
+                                }
+                              }>
                               Assign !!
                             </Button>
                           </ModalFooter>
@@ -360,7 +373,13 @@ function AdminProjectDetails() {
                       </td>
                       <td className="text-right btns-mr-5">
 
-                        <Button color="primary" className="btn-round">
+                        <Button color="primary" className="btn-round" style={
+                          {
+
+                            fontSize: "10px",
+
+                          }
+                        }>
                           <i className="now-ui-icons users_single-02" /> View
                         </Button>
 
@@ -377,7 +396,13 @@ function AdminProjectDetails() {
                       </td>
                       <td className="text-right btns-mr-5">
 
-                        <Button color="primary" className="btn-info">
+                        <Button color="primary" className="btn-info" style={
+                          {
+
+                            fontSize: "10px",
+
+                          }
+                        }>
                           <i className="now-ui-icons ui-2_settings-90" /> Assign
                         </Button>
 
@@ -394,7 +419,13 @@ function AdminProjectDetails() {
                       </td>
                       <td className="text-right btns-mr-5">
 
-                        <Button color="primary" className="btn-round">
+                        <Button color="primary" className="btn-round" style={
+                          {
+
+                            fontSize: "10px",
+
+                          }
+                        }>
                           <i className="now-ui-icons users_single-02" /> View
                         </Button>
 
@@ -404,6 +435,73 @@ function AdminProjectDetails() {
                   </tbody>
                 </Table>
               </CardBody>
+              <CardHeader>
+                <Row>
+                  <Col xs={12} md={5} size="sm">
+
+                  </Col>
+                  <Col xs={12} md={5} size="sm"></Col>
+                  <Col xs={12} md={2} size="sm">
+                    <Button onClick={addAuditor} color="info" style={
+                      {
+
+                        fontSize: "10px",
+
+                      }
+                    }>
+                      Add Auditor
+                      <span className="btn-label">
+                        <i className="now-ui-icons arrows-1_minimal-right" />
+                      </span>
+
+                    </Button>
+                  </Col>
+                </Row>
+              </CardHeader>
+              <CardHeader>
+                <Row>
+                  <Col xs={12} md={4} size="sm">
+
+                  </Col>
+                  <Col xs={12} md={1} size="sm"></Col>
+                  <Col xs={12} md={3} size="sm">
+                    <Pagination>
+                      <PaginationItem>
+                        <PaginationLink href="#">
+                          <span aria-hidden="true">
+                            <i
+                              className="fa fa-angle-double-left"
+                              aria-hidden="true"
+                            />
+                          </span>
+                        </PaginationLink>
+                      </PaginationItem>
+                      <PaginationItem>
+                        <PaginationLink href="#">1</PaginationLink>
+                      </PaginationItem>
+                      <PaginationItem active>
+                        <PaginationLink href="#">2</PaginationLink>
+                      </PaginationItem>
+                      <PaginationItem>
+                        <PaginationLink href="#">3</PaginationLink>
+                      </PaginationItem>
+                      <PaginationItem>
+                        <PaginationLink href="#">
+                          <span aria-hidden="true">
+                            <i
+                              className="fa fa-angle-double-right"
+                              aria-hidden="true"
+                            />
+                          </span>
+                        </PaginationLink>
+                      </PaginationItem>
+                    </Pagination>
+                  </Col>
+                  <Col xs={12} md={4} size="sm">
+
+                  </Col>
+                </Row>
+              </CardHeader>
             </Card>
           </Col>
         </Row>

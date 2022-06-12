@@ -145,7 +145,13 @@ function AdminProject() {
                           </td>
                           <td className="text-right btns-mr-5">
     
-                            <Button onClick={onClick} color="primary" className="btn-round">
+                            <Button onClick={onClick} color="primary" className="btn-round" style={
+              {
+               
+                fontSize: "10px",
+               
+              }
+            }>
                               <i className="now-ui-icons users_single-02" /> View
                             </Button>
     

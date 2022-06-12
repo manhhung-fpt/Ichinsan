@@ -54,6 +54,8 @@ import AdminProjectCategory from "views/AdminProjectCategory/AdminProjectCategor
 import AdminAddCategory from "views/AdminAddCategory/AdminAddCategory";
 import AdminFeedBackCategory from "views/AdminFeedBackCategory/AdminFeedBackCategory";
 import CustomerHome from './views/CustomerHome/CustomerHome';
+import CustomerProgressProject from './views/CustomerProgressProject/CustomerProgressProject';
+import CustomerCreate from './views/CustomerCreate/CustomerCreate';
 
 let routes = [
   {
@@ -70,7 +72,7 @@ let routes = [
     component: Dashboard,
     layout: "/admin",
   },
-  
+
   {
     path: "/admin-account",
     name: "Admin Account",
@@ -91,30 +93,23 @@ let routes = [
     icon: "now-ui-icons business_badge",
     component: AdminProjectDetails,
     layout: "/admin",
-    hideInDetail: true ,
+    hideInDetail: true,
   },
   {
     path: "/admin-add-auditor",
     name: "Admin Add Auditor",
     icon: "now-ui-icons business_badge",
     component: AdminAddAuditor,
-    hideInDetail : true,
+    hideInDetail: true,
     layout: "/admin",
   },
-  {
-    path: "/customer-home",
-    name: "Customer Home",
-    icon: "now-ui-icons business_badge",
-    component: CustomerHome,
-   
-    layout: "/admin",
-  },
-  
+
+
   {
     path: "/wizard",
     name: "Edit Profile",
     component: Wizard,
-    hideInDetail: true ,
+    hideInDetail: true,
     layout: "/admin",
   },
   {
@@ -122,7 +117,7 @@ let routes = [
     name: "Admin Assign",
     icon: "now-ui-icons business_badge",
     component: AdminAssign,
-    hideInDetail: true ,
+    hideInDetail: true,
     layout: "/admin",
   },
   {
@@ -130,6 +125,30 @@ let routes = [
     name: "Admin Category Home",
     icon: "now-ui-icons business_badge",
     component: AdminCategoryHome,
+    layout: "/admin",
+  },
+  {
+    path: "/customer-home",
+    name: "Customer Home",
+    icon: "now-ui-icons business_badge",
+    component: CustomerHome,
+
+    layout: "/admin",
+  },
+  {
+    path: "/customer-progress-project",
+    name: "Customer Progress Project",
+    icon: "now-ui-icons business_badge",
+    component: CustomerProgressProject,
+
+    layout: "/admin",
+  },
+  {
+    path: "/customer-create-project",
+    name: "Customer Create Project",
+    icon: "now-ui-icons business_badge",
+    component: CustomerCreate,
+
     layout: "/admin",
   },
   {
@@ -141,7 +160,7 @@ let routes = [
     hideInDetail: true,
   },
   {
-    path:"/admin-feedback-category",
+    path: "/admin-feedback-category",
     name: "Admin Feedback Category",
     icon: "now-ui-icons business_badge",
     component: AdminFeedBackCategory,
@@ -152,7 +171,7 @@ let routes = [
     path: "/admin-add-category",
     name: "Admin Add Category",
     icon: "now-ui-icons business_badge",
-    hideInDetail : true,
+    hideInDetail: true,
     component: AdminAddCategory,
     layout: "/admin",
   },
@@ -160,13 +179,13 @@ let routes = [
     path: "/login-page",
     short: "Login",
     component: LoginPage,
-    hideInDetail: true ,
+    hideInDetail: true,
     layout: "/auth",
   },
   {
     path: "/user-page",
     component: UserPage,
-    hideInDetail: true ,
+    hideInDetail: true,
     layout: "/common",
   },
   // {
@@ -224,7 +243,7 @@ let routes = [
     name: "Components",
     state: "openComponents",
     icon: "now-ui-icons education_atom",
-    hideInDetail : true,
+    hideInDetail: true,
     views: [
       {
         path: "/buttons",

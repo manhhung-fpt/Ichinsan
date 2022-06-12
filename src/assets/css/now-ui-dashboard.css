@@ -244,6 +244,7 @@
       box-shadow: none; }
 
 .btn-info {
+  
   background-color: #2ca8ff;
   color: #ffffff; }
   .btn-info:hover, .btn-info:focus, .btn-info:not(:disabled):not(.disabled):active, .btn-info:not(:disabled):not(.disabled).active, .btn-info:not(:disabled):not(.disabled):active:focus, .btn-info:not(:disabled):not(.disabled).active:focus, .btn-info:active:hover, .btn-info.active:hover,
