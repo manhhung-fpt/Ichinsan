@@ -382,19 +382,7 @@ function AdminProjectDetails() {
                   </Col>
                   <Col xs={12} md={5} size="sm"></Col>
                   <Col xs={12} md={2} size="sm">
-                    <Button onClick={addAuditor} color="info" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-                      Add Auditor
-                      <span className="btn-label">
-                        <i className="now-ui-icons arrows-1_minimal-right" />
-                      </span>
-
-                    </Button>
+                 
                   </Col>
                 </Row>
               </CardHeader>
