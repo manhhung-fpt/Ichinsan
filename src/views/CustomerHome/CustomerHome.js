@@ -395,7 +395,7 @@ function CustomerHome() {
           </Col>
         </Row>
 
-        <CardTitle tag="h4">Lastest Project</CardTitle>
+        <CardTitle tag="h4">Lastest Article</CardTitle>
         <Row>
 
           <Col xs={12} md={5} size="sm">
@@ -429,13 +429,18 @@ function CustomerHome() {
           <Col xs={12} md={6}>
 
             <Card>
+              <CardBody>
+                <div className="btns-mr-5">
+                  <Button>Cate1</Button>
+                </div>
+              </CardBody>
               <CardHeader>
-                <CardTitle tag="h4" >Project Name</CardTitle>
+                <CardTitle tag="h4" >Article Name</CardTitle>
               </CardHeader>
               <Row>
                 <Col xs={12} md={6}>
 
-                  <ButtonToolbar>
+                  {/* <ButtonToolbar>
                     <ButtonGroup>
                       <Button className="btn-round" color="success" style={
                         {
@@ -448,7 +453,7 @@ function CustomerHome() {
                       </Button>
 
                     </ButtonGroup>
-                  </ButtonToolbar>
+                  </ButtonToolbar> */}
                 </Col>
                 <Col xs={12} md={6}>
 
@@ -457,18 +462,18 @@ function CustomerHome() {
               <CardHeader>
                 <CardTitle className="text-primary" >Date : 06/08/2022 12:00 AM</CardTitle>
               </CardHeader>
+              <CardHeader>
+                <CardTitle className="text-primary" >Salary : $500</CardTitle>
+              </CardHeader>
+              <CardHeader>
+                <CardTitle >Language : From ... To ...</CardTitle>
+              </CardHeader>
               <Row>
                 <Col xs={12} md={3}>
-                  <CardHeader>
-                    <CardTitle >Category :</CardTitle>
-                  </CardHeader>
+
                 </Col>
                 <Col xs={12} md={1}>
-                  <CardBody>
-                    <div className="btns-mr-5">
-                      <Button>Cate1</Button>
-                    </div>
-                  </CardBody>
+
                 </Col>
                 <Col xs={12} md={8}>
 
@@ -476,9 +481,7 @@ function CustomerHome() {
               </Row>
               <Row>
                 <Col xs={12} md={12}>
-                  <CardHeader>
-                    <CardTitle >Translators : 03/10</CardTitle>
-                  </CardHeader>
+                  
                   <CardBody>
 
                   </CardBody>
@@ -542,13 +545,18 @@ function CustomerHome() {
           </Col>
           <Col xs={12} md={6}>
             <Card>
+            <CardBody>
+                    <div className="btns-mr-5">
+                      <Button color="success">Cate2</Button>
+                    </div>
+                  </CardBody>
               <CardHeader>
-                <CardTitle tag="h4" >Project Name</CardTitle>
+                <CardTitle tag="h4" >Article Name</CardTitle>
               </CardHeader>
               <Row>
                 <Col xs={12} md={6}>
 
-                  <ButtonToolbar>
+                  {/* <ButtonToolbar>
                     <ButtonGroup>
                       <Button className="btn-round" color="success" style={
                         {
@@ -561,7 +569,7 @@ function CustomerHome() {
                       </Button>
 
                     </ButtonGroup>
-                  </ButtonToolbar>
+                  </ButtonToolbar> */}
                 </Col>
                 <Col xs={12} md={6}>
 
@@ -571,18 +579,18 @@ function CustomerHome() {
               <CardHeader>
                 <CardTitle className="text-primary" >Date : 06/08/2022 12:00 AM</CardTitle>
               </CardHeader>
+              <CardHeader>
+                <CardTitle className="text-primary" >Salary : $500</CardTitle>
+              </CardHeader>
+              <CardHeader>
+                <CardTitle >Language : From ... To ...</CardTitle>
+              </CardHeader>
               <Row>
                 <Col xs={12} md={3}>
-                  <CardHeader>
-                    <CardTitle >Category :</CardTitle>
-                  </CardHeader>
+               
                 </Col>
                 <Col xs={12} md={1}>
-                  <CardBody>
-                    <div className="btns-mr-5">
-                      <Button color="success">Cate2</Button>
-                    </div>
-                  </CardBody>
+                  
                 </Col>
                 <Col xs={12} md={8}>
 
@@ -590,9 +598,7 @@ function CustomerHome() {
               </Row>
               <Row>
                 <Col xs={12} md={12}>
-                  <CardHeader>
-                    <CardTitle >Translators : 03/10</CardTitle>
-                  </CardHeader>
+                 
                   <CardBody>
 
                   </CardBody>

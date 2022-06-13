@@ -257,7 +257,7 @@ function CustomerProgressArticle() {
 
 
                                                         <CardHeader>
-                                                            <CardTitle tag="h4" >Project Name</CardTitle>
+                                                            <CardTitle tag="h4" >Article Name</CardTitle>
                                                         </CardHeader>
 
                                                         <Button onClick={onClick} color="primary" className="btn-round" style={
