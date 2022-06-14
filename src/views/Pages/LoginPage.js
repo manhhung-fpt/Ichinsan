@@ -37,8 +37,12 @@ function LoginPage() {
         const name = result.user.displayName;
         const email = result.user.email;
         const profilePic = result.user.photoURL;
+        const checkEmail = email.split('@');
+        const role = checkEmail[1] ===  "fpt.edu.vn" ? 'Admin' : 'Customer';
+        console.log(checkEmail[1]);
         localStorage.setItem("name", name);
         localStorage.setItem("email", email);
+        localStorage.setItem("role", role);
         localStorage.setItem("profilePic", profilePic);
         history.push("/admin/home")
     }).catch((error) =>{

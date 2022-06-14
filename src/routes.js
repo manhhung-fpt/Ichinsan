@@ -68,6 +68,7 @@ let routes = [
     icon: "now-ui-icons shopping_shop",
     component: Home,
     layout: "/admin",
+    mainScreen: true,
   },
   {
     path: "/dashboard",
@@ -75,6 +76,7 @@ let routes = [
     icon: "now-ui-icons design_app",
     component: Dashboard,
     layout: "/admin",
+    mainScreen: true,
   },
 
   {
@@ -83,6 +85,7 @@ let routes = [
     icon: "now-ui-icons business_badge",
     component: AdminAccount,
     layout: "/admin",
+    rolePermission: "Admin"
   },
   {
     path: "/admin-project",
@@ -90,6 +93,7 @@ let routes = [
     icon: "now-ui-icons business_badge",
     component: AdminProject,
     layout: "/admin",
+    rolePermission: "Admin"
   },
   {
     path: "/admin-projec/admin-project-details",
@@ -130,14 +134,15 @@ let routes = [
     icon: "now-ui-icons business_badge",
     component: AdminCategoryHome,
     layout: "/admin",
+    rolePermission: "Admin"
   },
   {
     path: "/customer-home",
     name: "Customer Home",
     icon: "now-ui-icons business_badge",
     component: CustomerHome,
-
     layout: "/admin",
+    rolePermission: "Customer"
   },
   {
     path: "/customer-progress-project",
@@ -176,7 +181,7 @@ let routes = [
     name: "Customer Progress Article",
     icon: "now-ui-icons business_badge",
     component: CustomerProgressArticle,
-
+    rolePermission: "Customer",
     layout: "/admin",
   },
   {
