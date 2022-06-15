@@ -3217,10 +3217,10 @@ Created using IcoMoon - icomoon.io
   margin-bottom: 15px; }
 
 .nav-pills.nav-pills:not(.flex-column) .nav-item:not(:last-child) .nav-link {
-  margin-right: 19px; }
+  margin-right: 200px; }
 
 .nav-pills:not(.nav-pills-icons):not(.nav-pills-just-icons) .nav-item .nav-link {
-  border-radius: 30px; }
+  }
 
 .nav-pills.nav-pills-just-icons .nav-item .nav-link {
   border-radius: 50%;

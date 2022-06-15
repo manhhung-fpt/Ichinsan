@@ -153,7 +153,9 @@ function CustomerCreateFeedback() {
                   <Col xs={12} md={2} size="sm"  >
                     Rating
                   </Col>
-                  <Col xs={12} md={5} size="sm"  >
+                  <Col xs={12} md={5} size="sm" style={{
+                    color: "#ec00f9"
+                  }}>
                     <StarRateIcon></StarRateIcon>
                     <StarRateIcon></StarRateIcon>
                     <StarRateIcon></StarRateIcon>

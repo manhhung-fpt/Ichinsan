@@ -75,6 +75,19 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import SignalWifiStatusbar4BarIcon from '@mui/icons-material/SignalWifiStatusbar4Bar';
+import DescriptionIcon from '@mui/icons-material/Description';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import CategoryIcon from '@mui/icons-material/Category';
+import GTranslateIcon from '@mui/icons-material/GTranslate';
+import TranslateIcon from '@mui/icons-material/Translate';
+import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
+import DownloadIcon from '@mui/icons-material/Download';
+import CropOriginalIcon from '@mui/icons-material/CropOriginal';
+import SpellcheckIcon from '@mui/icons-material/Spellcheck';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+
 
 import { table_data } from "variables/general.js";
 var selectOptions = [
@@ -170,7 +183,7 @@ function CustomerProgressProject() {
 
                                     }
                                 }>
-                                    <span className="btn-label">
+                                    <span className="btn-label" >
                                         <i className="now-ui-icons arrows-1_minimal-left" />
                                     </span>
                                     Back
@@ -182,7 +195,9 @@ function CustomerProgressProject() {
                                 <CardTitle tag="h4" >Progress</CardTitle>
 
 
-                                <Nav pills className="nav-pills-primary">
+                                <Nav pills className="nav-pills-info"
+
+                                >
                                     <NavItem>
                                         <NavLink
                                             className={hTabs === "ht1" ? "active" : ""}
@@ -217,7 +232,6 @@ function CustomerProgressProject() {
                                 <TabContent activeTab={hTabs} className="tab-space">
 
                                     <TabPane tabId="ht1">
-
                                         <Row>
                                             <Col xs={12} md={9} size="sm"  >
                                                 Sort :
@@ -231,17 +245,19 @@ function CustomerProgressProject() {
 
                                             <Col xs={12} md={3} size="sm">
                                                 <Select
-                                                    className="react-select primary"
+                                                    className="react-select warning"
                                                     classNamePrefix="react-select"
-                                                    placeholder="Single Select"
-                                                    name="singleSelect"
+                                                    isMulti
+                                                    closeMenuOnSelect={false}
+                                                    placeholder="Sort "
+                                                    name="multipleSelect"
                                                     value={singleSelect}
                                                     options={selectOptions}
                                                     onChange={(value) => setSingleSelect(value)}
                                                 />
                                             </Col>
                                             <Col xs={12} md={3} size="sm">
-                                                Number of Projects : 5
+                                                Number of Recruitments : 6
                                             </Col>
                                             <Col xs={12} md={3} size="sm">
 
@@ -251,121 +267,114 @@ function CustomerProgressProject() {
                                             </Col>
                                         </Row>
 
-                                        <Card>
-                                            <CardHeader>
-                                                <CardTitle tag="h4" >Project Name</CardTitle>
-                                            </CardHeader>
-                                            <Row>
-                                                <Col xs={12} md={6}>
 
-                                                    <ButtonToolbar>
-                                                        <ButtonGroup>
-                                                            <Button className="btn-round" color="success" style={
-                                                                {
-                                                                    marginLeft: "20px",
-                                                                    fontSize: "10px",
 
-                                                                }
-                                                            }>
-                                                                Complete
-                                                            </Button>
+                                        <Row style={{
+                                            marginTop: "40px",
+                                        }}>
+                                            <Col xs={12} md={12}>
 
-                                                        </ButtonGroup>
-                                                    </ButtonToolbar>
-                                                </Col>
-                                                <Col xs={12} md={6}>
+
+                                                <Card>
+
                                                     <CardHeader>
-                                                        <CardTitle className="text-primary" >Date : 06/08/2022 12:00 AM</CardTitle>
+                                                        <CardTitle style={{
+                                                            marginLeft: "",
+                                                            color: "green",
+                                                        }}>
+                                                            <CategoryIcon></CategoryIcon>
+                                                            Computer Science</CardTitle>
+
                                                     </CardHeader>
-                                                </Col>
-                                            </Row>
-                                            <Row>
-                                                <Col xs={12} md={12}>
+
                                                     <CardHeader>
-                                                        <CardTitle >Category :</CardTitle>
+                                                        <CardTitle tag="h4" style={{
+                                                            color: "green",
+                                                            marginTop: "-10px",
+                                                        }}>Computer Vision AI</CardTitle>
+                                                        <CardTitle style={{
+                                                            marginLeft: "",
+                                                            color: "black",
+                                                        }}>
+                                                            <AccountCircleIcon></AccountCircleIcon>
+                                                            Tran Manh Hung</CardTitle>
+                                                        <CardTitle style={{
+                                                            marginLeft: "",
+                                                            color: "black",
+                                                        }}>
+                                                            <TranslateIcon></TranslateIcon>
+                                                            <ArrowRightAltIcon></ArrowRightAltIcon>
+                                                            <TranslateIcon></TranslateIcon>
+                                                        </CardTitle>
+
+
+                                                        <CardTitle style={{
+                                                            marginLeft: "",
+                                                            color: "black",
+                                                        }}>
+                                                            <CalendarMonthIcon></CalendarMonthIcon>
+                                                            06/08/2022 12:00 AM</CardTitle>
+
+                                                        <CardTitle style={{
+                                                            marginLeft: "",
+                                                            color: "black",
+                                                        }}>
+                                                            <DescriptionIcon></DescriptionIcon>
+                                                            Description :
+
+
+                                                            <CardContent>
+                                                                <div className="card-description">
+                                                                    <p>This impressive paella is a perfect party dish and
+                                                                        a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.</p>
+                                                                </div>
+
+                                                            </CardContent>
+
+
+                                                        </CardTitle>
                                                     </CardHeader>
-                                                    <CardBody>
-                                                        <div className="btns-mr-5">
-                                                            <Button>Default</Button>
-                                                            <Button color="primary">Category 1</Button>
-                                                            <Button color="danger">Category 2</Button>
 
-                                                            <Button color="success">Category 3</Button>
-                                                            <Button color="warning">Category 4</Button>
-                                                            <Button color="info">+ More</Button>
-                                                        </div>
-                                                    </CardBody>
-                                                </Col>
-                                            </Row>
-                                            <Row>
-                                                <Col xs={12} md={12}>
-                                                    <CardHeader>
-                                                        <CardTitle >Translators : 03/10</CardTitle>
-                                                    </CardHeader>
-                                                    <CardBody>
+                                                </Card>
 
-                                                    </CardBody>
-                                                </Col>
-                                            </Row>
-                                            <Row>
-                                                <Col xs={12} md={12}>
-                                                    <CardHeader>
-                                                        <CardTitle >Summary</CardTitle>
-                                                    </CardHeader>
-                                                    <CardBody>
-                                                        <TabContent activeTab={hTabs} className="tab-space">
-                                                            <TabPane tabId="ht1">
-                                                                <Card sx={{ maxWidth: 1500, borderStyle: 'groove', borderRadius: 8 }}>
+                                            </Col>
 
-                                                                    <CardContent>
-                                                                        <Typography variant="body2" color="text.secondary">
-                                                                            This impressive paella is a perfect party dish and a fun meal to cook
-                                                                            together with your guests. Add 1 cup of frozen peas along with the mussels,
-                                                                            if you like.
-                                                                        </Typography>
-                                                                    </CardContent>
-                                                                    <CardActions disableSpacing>
-                                                                        <Col md={11}>
+                                        </Row>
 
-                                                                        </Col>
-                                                                        <Col md={1}>
 
-                                                                        </Col>
-                                                                    </CardActions>
-                                                                </Card>
-                                                            </TabPane>
-                                                        </TabContent>
-                                                    </CardBody>
-                                                </Col>
-                                            </Row>
-                                            <CardActions disableSpacing>
-                                                <Col md={10}>
 
-                                                </Col>
-                                                <Col md={1}>
-                                                    <Button color="primary" className="btn-info" style={
-                                                        {
 
-                                                            fontSize: "10px",
 
-                                                        }
-                                                    }>
-                                                        Edit
-                                                    </Button>
-                                                </Col>
-                                                <Col md={1}>
-                                                    <Button color="primary" className="btn-right" style={
-                                                        {
 
-                                                            fontSize: "10px",
 
-                                                        }
-                                                    }>
-                                                        Postpose
-                                                    </Button>
-                                                </Col>
-                                            </CardActions>
-                                        </Card>
+                                        <CardActions disableSpacing>
+                                            <Col md={10}>
+
+                                            </Col>
+                                            <Col md={1}>
+                                                <Button color="primary" className="btn-info" style={
+                                                    {
+
+                                                        fontSize: "10px",
+
+                                                    }
+                                                }>
+                                                    Edit
+                                                </Button>
+                                            </Col>
+                                            <Col md={1}>
+                                                <Button color="primary" className="btn-right" style={
+                                                    {
+
+                                                        fontSize: "10px",
+
+                                                    }
+                                                }>
+                                                    Postpose
+                                                </Button>
+                                            </Col>
+                                        </CardActions>
+
                                     </TabPane>
 
                                     <TabPane tabId="ht2">
@@ -456,211 +465,166 @@ function CustomerProgressProject() {
                                         </CardBody>
                                     </TabPane>
                                     <TabPane tabId="ht3">
-                                        <Row>
-                                            <Col xs={12} md={9} size="sm"  >
-                                                Sort :
+                                        <Row style={{
+                                            marginTop: "40px",
+                                        }}>
+                                            <Col xs={12} md={3}>
+
+                                                <Card>
+
+                                                    <CardHeader>
+                                                        <CardTitle style={{
+                                                            marginLeft: "",
+                                                            color: "green",
+                                                        }}>
+                                                            <CategoryIcon></CategoryIcon>
+                                                            Computer Science</CardTitle>
+                                                    </CardHeader>
+
+                                                    <CardHeader>
+                                                        <CardTitle tag="h4" style={{
+                                                            color: "green",
+                                                            marginTop: "-10px",
+                                                        }}>Computer Vision AI</CardTitle>
+                                                        <CardTitle style={{
+                                                            marginLeft: "",
+                                                            color: "red",
+                                                        }}>
+                                                            <AttachMoneyIcon></AttachMoneyIcon>
+                                                            5000</CardTitle>
+                                                        <CardTitle style={{
+                                                            marginLeft: "",
+                                                            color: "black",
+                                                        }}>
+                                                            <GTranslateIcon></GTranslateIcon>
+                                                            Translator : 2/10</CardTitle>
+
+                                                        <CardTitle style={{
+                                                            marginLeft: "",
+                                                            color: "black",
+                                                        }}>
+                                                            <SpellcheckIcon></SpellcheckIcon>
+                                                            Auditor : 2/10</CardTitle>
+                                                        <Button onClick={onClickFeedback} className="btn-info" color="default" style={
+                                                            {
+
+                                                                fontSize: "10px",
+
+                                                            }
+                                                        }>
+                                                            Add Feedback
+                                                        </Button>
+                                                    </CardHeader>
+
+
+
+                                                </Card>
+
                                             </Col>
-                                            <Col Col xs={12} md={3} size="sm" >
+                                            <Col xs={12} md={3}>
+
+                                                <Card>
+
+                                                    <CardHeader>
+                                                        <CardTitle style={{
+                                                            marginLeft: "",
+                                                            color: "green",
+                                                        }}>
+                                                            <CategoryIcon></CategoryIcon>
+                                                            Computer Science</CardTitle>
+                                                    </CardHeader>
+
+                                                    <CardHeader>
+                                                        <CardTitle tag="h4" style={{
+                                                            color: "green",
+                                                            marginTop: "-10px",
+                                                        }}>Computer Vision AI</CardTitle>
+                                                        <CardTitle style={{
+                                                            marginLeft: "",
+                                                            color: "red",
+                                                        }}>
+                                                            <AttachMoneyIcon></AttachMoneyIcon>
+                                                            5000</CardTitle>
+                                                        <CardTitle style={{
+                                                            marginLeft: "",
+                                                            color: "black",
+                                                        }}>
+                                                            <GTranslateIcon></GTranslateIcon>
+                                                            Translator : 2/10</CardTitle>
+
+                                                        <CardTitle style={{
+                                                            marginLeft: "",
+                                                            color: "black",
+                                                        }}>
+                                                            <SpellcheckIcon></SpellcheckIcon>
+                                                            Auditor : 2/10</CardTitle>
+                                                        <Button onClick={onClickFeedback} className="btn-info" color="default" style={
+                                                            {
+
+                                                                fontSize: "10px",
+
+                                                            }
+                                                        }>
+                                                            Add Feedback
+                                                        </Button>
+                                                    </CardHeader>
+
+
+
+                                                </Card>
+
+                                            </Col>
+                                            <Col xs={12} md={3}>
+
+                                            </Col>
+                                            <Col xs={12} md={3}>
 
                                             </Col>
                                         </Row>
 
-                                        <Row>
-
-                                            <Col xs={12} md={3} size="sm">
-                                                <Select
-                                                    className="react-select warning"
-                                                    classNamePrefix="react-select"
-                                                    isMulti
-                                                    closeMenuOnSelect={false}
-                                                    placeholder="Sort "
-                                                    name="multipleSelect"
-                                                    value={singleSelect}
-                                                    options={selectOptions}
-                                                    onChange={(value) => setSingleSelect(value)}
-                                                />
-                                            </Col>
-                                            <Col xs={12} md={3} size="sm">
-
-                                            </Col>
-                                            <Col xs={12} md={3} size="sm">
-
-                                            </Col>
-                                            <Col xs={12} md={3} size="sm">
-
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col xs={12} md={4}>
-
-                                                <Card>
-                                                    <CardHeader>
-                                                        <CardTitle tag="h4" >Project Name</CardTitle>
-                                                    </CardHeader>
-                                                    <CardHeader>
-                                                        <CardTitle className="text-primary" >Deadline : 06/08/2022 12:00 AM</CardTitle>
-                                                    </CardHeader>
-
-                                                    <CardBody>
-
-                                                        <div className="progress-bar" role="progressbar" style={{ width: "25%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                                            <img alt="" src="https://ids.si.edu/ids/deliveryService?max_w=210&amp;id=AAA-AAA_takatosh_3270221" width="100%">
-                                                            </img>
-                                                        </div>
-                                                        <CardBody>
-
-                                                            <div className="progress-bar" role="progressbar" style={{ width: "25%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-
-                                                            </div>
-                                                            <CardHeader>
-                                                                <CardTitle tag="h4">Progress : Pending</CardTitle>
-                                                            </CardHeader>
-                                                            <ProgressBar>
-                                                                <ProgressBar variant="success" now={35} key={1} />
-                                                                <ProgressBar variant="danger" now={65} key={2} />
-                                                            </ProgressBar>
-                                                        </CardBody>
-                                                        <ButtonToolbar>
-                                                            <ButtonGroup>
-                                                                <Button onClick={onClickFeedback} className="btn-round" color="success" style={
-                                                                    {
-
-                                                                        fontSize: "10px",
-
-                                                                    }
-                                                                }>
-                                                                    Feedback
-                                                                </Button>
-
-                                                            </ButtonGroup>
-                                                        </ButtonToolbar>
-                                                    </CardBody>
-                                                </Card>
-                                            </Col>
-                                            <Col xs={12} md={4}>
-                                                <Card>
-                                                    <CardHeader>
-                                                        <CardTitle tag="h4" >Project Name</CardTitle>
-                                                    </CardHeader>
-                                                    <CardHeader>
-                                                        <CardTitle className="text-primary" >Deadline : 06/08/2022 12:00 AM</CardTitle>
-                                                    </CardHeader>
-
-                                                    <CardBody>
-
-                                                        <div className="progress-bar" role="progressbar" style={{ width: "25%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                                            <img alt="" src="https://ids.si.edu/ids/deliveryService?max_w=210&amp;id=AAA-AAA_takatosh_3270221" width="100%">
-                                                            </img>
-                                                        </div>
-                                                        <CardBody>
-
-                                                            <div className="progress-bar" role="progressbar" style={{ width: "25%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-
-                                                            </div>
-                                                            <CardHeader>
-                                                                <CardTitle tag="h4">Progress : Pending</CardTitle>
-                                                            </CardHeader>
-                                                            <ProgressBar>
-                                                                <ProgressBar variant="success" now={35} key={1} />
-                                                                <ProgressBar variant="danger" now={65} key={2} />
-                                                            </ProgressBar>
-                                                        </CardBody>
-                                                        <ButtonToolbar>
-                                                            <ButtonGroup>
-                                                                <Button className="btn-round" color="success" style={
-                                                                    {
-
-                                                                        fontSize: "10px",
-
-                                                                    }
-                                                                }>
-                                                                    Feedback
-                                                                </Button>
-                                                            </ButtonGroup>
-                                                        </ButtonToolbar>
-                                                    </CardBody>
-                                                </Card>
-                                            </Col>
-                                            <Col xs={12} md={4}>
-                                                <Card>
-                                                    <CardHeader>
-                                                        <CardTitle tag="h4" >Project Name</CardTitle>
-                                                    </CardHeader>
-                                                    <CardHeader>
-                                                        <CardTitle className="text-primary" >Deadline : 06/08/2022 12:00 AM</CardTitle>
-                                                    </CardHeader>
-
-                                                    <CardBody>
-
-                                                        <div className="progress-bar" role="progressbar" style={{ width: "25%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                                            <img alt="" src="https://ids.si.edu/ids/deliveryService?max_w=210&amp;id=AAA-AAA_takatosh_3270221" width="100%">
-                                                            </img>
-                                                        </div>
-                                                        <CardBody>
-
-                                                            <div className="progress-bar" role="progressbar" style={{ width: "25%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-
-                                                            </div>
-                                                            <CardHeader>
-                                                                <CardTitle tag="h4">Progress : Pending</CardTitle>
-                                                            </CardHeader>
-                                                            <ProgressBar>
-                                                                <ProgressBar variant="success" now={35} key={1} />
-                                                                <ProgressBar variant="danger" now={65} key={2} />
-                                                            </ProgressBar>
-                                                        </CardBody>
-                                                        <ButtonToolbar>
-                                                            <ButtonGroup>
-                                                                <Button className="btn-round" color="success" style={
-                                                                    {
-
-                                                                        fontSize: "10px",
-
-                                                                    }
-                                                                }>
-                                                                    Feedback
-                                                                </Button>
-                                                            </ButtonGroup>
-                                                        </ButtonToolbar>
-                                                    </CardBody>
-                                                </Card>
-                                            </Col>
-                                        </Row>
                                     </TabPane>
                                 </TabContent>
                             </CardBody>
-                            <Pagination>
-                                <PaginationItem>
-                                    <PaginationLink href="#">
-                                        <span aria-hidden="true">
-                                            <i
-                                                className="fa fa-angle-double-left"
-                                                aria-hidden="true"
-                                            />
-                                        </span>
-                                    </PaginationLink>
-                                </PaginationItem>
-                                <PaginationItem>
-                                    <PaginationLink href="#">1</PaginationLink>
-                                </PaginationItem>
-                                <PaginationItem active>
-                                    <PaginationLink href="#">2</PaginationLink>
-                                </PaginationItem>
-                                <PaginationItem>
-                                    <PaginationLink href="#">3</PaginationLink>
-                                </PaginationItem>
-                                <PaginationItem>
-                                    <PaginationLink href="#">
-                                        <span aria-hidden="true">
-                                            <i
-                                                className="fa fa-angle-double-right"
-                                                aria-hidden="true"
-                                            />
-                                        </span>
-                                    </PaginationLink>
-                                </PaginationItem>
-                            </Pagination>
+                            <Row>
+                                <Col xs={12} md={5} size="sm">
+
+                                </Col>
+                                <Col xs={12} md={3} size="sm">
+                                    <Pagination>
+                                        <PaginationItem>
+                                            <PaginationLink href="#">
+                                                <span aria-hidden="true">
+                                                    <i
+                                                        className="fa fa-angle-double-left"
+                                                        aria-hidden="true"
+                                                    />
+                                                </span>
+                                            </PaginationLink>
+                                        </PaginationItem>
+                                        <PaginationItem>
+                                            <PaginationLink href="#">1</PaginationLink>
+                                        </PaginationItem>
+                                        <PaginationItem active>
+                                            <PaginationLink href="#">2</PaginationLink>
+                                        </PaginationItem>
+                                        <PaginationItem>
+                                            <PaginationLink href="#">3</PaginationLink>
+                                        </PaginationItem>
+                                        <PaginationItem>
+                                            <PaginationLink href="#">
+                                                <span aria-hidden="true">
+                                                    <i
+                                                        className="fa fa-angle-double-right"
+                                                        aria-hidden="true"
+                                                    />
+                                                </span>
+                                            </PaginationLink>
+                                        </PaginationItem>
+                                    </Pagination>
+                                </Col>
+                                <Col xs={12} md={4} size="sm">
+                                </Col>
+                            </Row>
                         </Card>
                     </Col>
                 </Row>

@@ -65,6 +65,16 @@ import swim from "assets/img/prada.jpg";
 import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import SignalWifiStatusbar4BarIcon from '@mui/icons-material/SignalWifiStatusbar4Bar';
+import DescriptionIcon from '@mui/icons-material/Description';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import CategoryIcon from '@mui/icons-material/Category';
+import GTranslateIcon from '@mui/icons-material/GTranslate';
+import TranslateIcon from '@mui/icons-material/Translate';
+import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
+import DownloadIcon from '@mui/icons-material/Download';
+import CropOriginalIcon from '@mui/icons-material/CropOriginal';
 
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
@@ -146,636 +156,596 @@ function CustomerProgressArticle() {
         history.push("/admin/admin-projec/admin-project-details")
     };
     const onClickBack = () => {
-        history.push("/admin/customer-progress-project")
+        history.push("/admin/customer-arti-detail")
     };
     const onClickFeedback = () => {
         history.push("/admin/customer-create=feedback")
+    };
+    const onClickCard = () => {
+        history.push("/admin/customer-arti-detail")
     };
     return (
         <>
             <PanelHeader
                 size="sm" />
             <div className="content">
+
+
+
                 <Row>
-
-                    <Col lg={12} md={12} xs={12}>
-                        <Card>
-                            <CardHeader>
-                                <Button onClick={onClickBack} style={
-                                    {
-
-                                        fontSize: "10px",
-
-                                    }
-                                }>
-                                    <span className="btn-label">
-                                        <i className="now-ui-icons arrows-1_minimal-left" />
-                                    </span>
-                                    Back
-                                </Button>
-                            </CardHeader>
-
-
-                            <CardBody>
-
-                                <CardTitle tag="h4" >Article Tittle</CardTitle>
-
-                                <Button color="info" style={
-                                    {
-
-                                        fontSize: "10px",
-
-                                    }
-                                }>
-                                    Edit</Button>
-
-                                <Button color="primary" style={
-                                    {
-
-                                        fontSize: "10px",
-
-                                    }
-                                }>
-
-                                    Postpose
-                                </Button>
-
-
-
-                                <Nav pills className="nav-pills-primary">
-                                    <NavItem>
-                                        <NavLink
-                                            className={hTabs === "ht1" ? "active" : ""}
-                                            onClick={() => sethTabs("ht1")}
-
-                                        >
-                                            Details
-                                        </NavLink>
-                                    </NavItem>
-                                    <NavItem>
-                                        <NavLink
-                                            className={hTabs === "ht2" ? "active" : ""}
-                                            onClick={() => sethTabs("ht2")}
-                                        >
-                                            Recruitments
-                                        </NavLink>
-                                    </NavItem>
-                                    <NavItem>
-                                        <NavLink
-                                            className={hTabs === "ht3" ? "active" : ""}
-                                            onClick={() => sethTabs("ht3")}
-                                        >
-                                            Translation
-                                        </NavLink>
-                                    </NavItem>
-                                    <NavItem>
-                                        <NavLink
-                                            className={hTabs === "ht4" ? "active" : ""}
-                                            onClick={() => sethTabs("ht4")}
-                                        >
-                                            Feedbacks
-                                        </NavLink>
-                                    </NavItem>
-
-
-                                </Nav>
-
-
-
-
-                                <TabContent activeTab={hTabs} className="tab-space">
-
-                                    <TabPane tabId="ht1">
-
-
-                                        <Card>
-
-                                            <CardBody>
-                                                <Row>
-                                                    <Col xs={12} md={12}>
-
-
-
-                                                        <CardHeader>
-                                                            <CardTitle tag="h4" >Article Name</CardTitle>
-                                                        </CardHeader>
-
-                                                        <Button onClick={onClick} color="primary" className="btn-round" style={
-                                                            {
-
-                                                                fontSize: "10px",
-                                                                marginLeft: "20px",
-
-                                                            }
-                                                        }>
-                                                            <i className="now-ui-icons users_single-02" /> Vo Khac Trieu
-                                                        </Button>
-
-
-                                                        <Row>
-                                                            <Col xs={12} md={12}>
-
-                                                                <ButtonToolbar>
-                                                                    <ButtonGroup>
-                                                                        <Button className="btn-round" color="success" style={
-                                                                            {
-                                                                                marginLeft: "20px",
-                                                                                fontSize: "10px",
-
-                                                                            }
-                                                                        }>
-                                                                            Complete
-                                                                        </Button>
-
-                                                                    </ButtonGroup>
-                                                                </ButtonToolbar>
-                                                            </Col>
-                                                            <Col xs={12} md={12}>
-                                                                <CardHeader>
-                                                                    <CardTitle className="text-primary" >Created Date : 06/08/2022 12:00 AM</CardTitle>
-                                                                </CardHeader>
-                                                            </Col>
-                                                        </Row>
-                                                        <Row>
-                                                            <Col xs={12} md={12}>
-
-                                                                <CardHeader>
-                                                                    <CardTitle className="text-primary" >Language From : </CardTitle>
-                                                                </CardHeader>
-                                                            </Col>
-                                                            <Col xs={12} md={12}>
-                                                                <CardHeader>
-                                                                    <CardTitle className="text-primary" >Language To : </CardTitle>
-                                                                </CardHeader>
-                                                            </Col>
-                                                        </Row>
-
-                                                        <Row>
-                                                            <Col xs={12} md={12}>
-                                                                <CardHeader>
-                                                                    <CardTitle >Category :</CardTitle>
-                                                                </CardHeader>
-                                                                <CardBody>
-                                                                    <div className="btns-mr-5">
-                                                                        <Button>Default</Button>
-                                                                        <Button color="primary">Category 1</Button>
-                                                                        <Button color="danger">Category 2</Button>
-
-                                                                        <Button color="success">Category 3</Button>
-                                                                        <Button color="warning">Category 4</Button>
-                                                                        <Button color="info">+ More</Button>
-                                                                    </div>
-                                                                </CardBody>
-                                                            </Col>
-                                                        </Row>
-                                                        <Row>
-                                                            <Col xs={12} md={12}>
-                                                                <CardHeader>
-                                                                    <CardTitle >Translators : 03/10</CardTitle>
-                                                                </CardHeader>
-
-                                                            </Col>
-                                                        </Row>
-
-
-
-
-
-
-
-
-                                                        <Row>
-                                                            <Col xs={12} md={12}>
-                                                                <CardHeader>
-                                                                    <CardTitle >Summary</CardTitle>
-                                                                </CardHeader>
-                                                                <CardBody>
-                                                                    <TabContent activeTab={hTabs} className="tab-space">
-                                                                        <TabPane tabId="ht1">
-                                                                            <Card sx={{ maxWidth: 1500, borderStyle: 'groove', borderRadius: 8 }}>
-
-                                                                                <CardContent>
-                                                                                    <Typography variant="body2" color="text.secondary">
-                                                                                        This impressive paella is a perfect party dish and a fun meal to cook
-                                                                                        together with your guests. Add 1 cup of frozen peas along with the mussels,
-                                                                                        if you like.
-                                                                                    </Typography>
-                                                                                </CardContent>
-                                                                                <CardActions disableSpacing>
-                                                                                    <Col md={11}>
-
-                                                                                    </Col>
-                                                                                    <Col md={1}>
-
-                                                                                    </Col>
-                                                                                </CardActions>
-                                                                            </Card>
-                                                                        </TabPane>
-                                                                    </TabContent>
-                                                                </CardBody>
-                                                            </Col>
-                                                        </Row>
-
-                                                    </Col>
-                                                </Row>
-                                            </CardBody>
-
-
-                                        </Card>
-                                    </TabPane>
-
-                                    <TabPane tabId="ht2">
-                                        <Row>
-                                            <Col xs={12} md={9} size="sm"  >
-                                                Sort :
-                                            </Col>
-                                            <Col Col xs={12} md={3} size="sm" >
-
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-
-                                            <Col xs={12} md={3} size="sm">
-                                                <Select
-                                                    className="react-select warning"
-                                                    classNamePrefix="react-select"
-                                                    isMulti
-                                                    closeMenuOnSelect={false}
-                                                    placeholder="Sort "
-                                                    name="multipleSelect"
-                                                    value={singleSelect}
-                                                    options={selectOptions}
-                                                    onChange={(value) => setSingleSelect(value)}
-                                                />
-                                            </Col>
-                                            <Col xs={12} md={3} size="sm">
-                                                Number of Recruitments : 5
-                                            </Col>
-                                            <Col xs={12} md={3} size="sm">
-
-                                            </Col>
-                                            <Col xs={12} md={3} size="sm">
-
-                                            </Col>
-                                        </Row>
-                                        <CardBody>
-                                            <Table responsive>
-                                                <thead className="text-primary">
-                                                    <tr>
-                                                        <th className="text-center">#</th>
-                                                        <th>Translation Name</th>
-                                                        <th>Level</th>
-                                                        <th>Apply Date</th>
-                                                        <th>Status</th>
-                                                        <th>Choose</th>
-
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-
-
-                                                    {
-                                                        fakeData.map((item, index) => {
-                                                            return (<tr>
-                                                                <td className="text-center">{index + 1}</td>
-                                                                <td>{item.first_name}</td>
-                                                                <td>{item.last_name}</td>
-                                                                <td>{item.email}</td>
-                                                                <td >
-                                                                    {/* <Switch defaultValue={false} /> */}
-                                                                    <Button>Applied</Button>
-
-                                                                </td>
-                                                                <td>
-                                                                    <Button color="info" className="btn-right" style={
-                                                                        {
-
-                                                                            fontSize: "10px",
-
-                                                                        }
-                                                                    }>
-
-                                                                        Choose
-                                                                    </Button>
-                                                                </td>
-
-                                                            </tr>);
-                                                        })
-                                                    }
-
-
-                                                </tbody>
-                                            </Table>
-                                        </CardBody>
-                                    </TabPane>
-                                    <TabPane tabId="ht3">
-
-
-
-
-                                        <Row>
-                                            <Col xs={12} md={12}>
-
-                                                <Card>
-                                                    <CardBody>
-
-                                                        <Row>
-                                                            <Col xs={12} md={2} size="sm"  >
-                                                                Status
-                                                            </Col>
-                                                            <Col xs={12} md={5} size="sm"  >
-
-                                                            </Col>
-                                                            <Col xs={12} md={5} size="sm"  >
-
-                                                            </Col>
-                                                        </Row>
-
-                                                    </CardBody>
-
-
-
-
-
-                                                    <CardBody>
-
-                                                        <Row>
-                                                            <Col xs={12} md={2} size="sm"  >
-                                                                Original Article
-                                                            </Col>
-                                                            <Col xs={12} md={5} size="sm"  >
-                                                                <FormGroup className="form-file-upload form-file-simple">
-                                                                    <Input
-                                                                        type="text"
-                                                                        className="inputFileVisible"
-                                                                        placeholder="Dowdload File..."
-                                                                        onClick={(e) => handleSingleFileInput(e)}
-                                                                        defaultValue={singleFileName}
-                                                                    />
-                                                                    <input
-                                                                        type="file"
-                                                                        className="inputFileHidden"
-                                                                        style={{ zIndex: -1 }}
-                                                                        ref={singleFileRef}
-                                                                        onChange={(e) => addSingleFile(e)}
-                                                                    />
-                                                                </FormGroup>
-                                                            </Col>
-                                                            <Col xs={12} md={5} size="sm"  >
-                                                                <i className="now-ui-icons arrows-1_cloud-download-93" />
-                                                            </Col>
-                                                        </Row>
-
-                                                    </CardBody>
-                                                    <CardBody>
-                                                        <Row>
-                                                            <Col xs={12} md={2} size="sm"  >
-                                                                Translation Article
-                                                            </Col>
-                                                            <Col xs={12} md={5} size="sm"  >
-                                                                <FormGroup className="form-file-upload form-file-simple">
-                                                                    <Input
-                                                                        type="text"
-                                                                        className="inputFileVisible"
-                                                                        placeholder="Dowdload File..."
-                                                                        onClick={(e) => handleSingleFileInput(e)}
-                                                                        defaultValue={singleFileName}
-                                                                    />
-                                                                    <input
-                                                                        type="file"
-                                                                        className="inputFileHidden"
-                                                                        style={{ zIndex: -1 }}
-                                                                        ref={singleFileRef}
-                                                                        onChange={(e) => addSingleFile(e)}
-                                                                    />
-                                                                </FormGroup>
-                                                            </Col>
-                                                            <Col xs={12} md={5} size="sm"  >
-                                                                <i className="now-ui-icons arrows-1_cloud-download-93" />
-                                                            </Col>
-                                                        </Row>
-
-
-                                                    </CardBody>
-
-                                                    <CardBody>
-
-                                                        <Row>
-                                                            <Col xs={12} md={2} size="sm"  >
-                                                                Translator
-                                                            </Col>
-                                                            <Col xs={12} md={5} size="sm"  >
-                                                                Vo Khac Trieu
-                                                            </Col>
-                                                            <Col xs={12} md={5} size="sm"  >
-                                                                <i className="now-ui-icons ui-1_email-85" />
-                                                            </Col>
-                                                        </Row>
-
-                                                    </CardBody>
-                                                    <CardBody>
-
-                                                        <Row>
-                                                            <Col xs={12} md={2} size="sm"  >
-                                                                Auditor
-                                                            </Col>
-                                                            <Col xs={12} md={5} size="sm"  >
-                                                                Tran Manh Hung
-                                                            </Col>
-                                                            <Col xs={12} md={5} size="sm"  >
-                                                                <i className="now-ui-icons ui-1_email-85" />
-
-                                                            </Col>
-                                                        </Row>
-
-                                                    </CardBody>
-
-                                                </Card>
-                                            </Col>
-
-                                        </Row>
-                                    </TabPane>
-                                    <TabPane tabId="ht4">
-                                        <Row>
-                                            <Col xs={12} md={9} size="sm"  >
-                                                Sort :
-                                            </Col>
-                                            <Col Col xs={12} md={3} size="sm" >
-
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-
-                                            <Col xs={12} md={3} size="sm">
-                                                <Select
-                                                    className="react-select warning"
-                                                    classNamePrefix="react-select"
-                                                    isMulti
-                                                    closeMenuOnSelect={false}
-                                                    placeholder="Sort "
-                                                    name="multipleSelect"
-                                                    value={singleSelect}
-                                                    options={selectOptions}
-                                                    onChange={(value) => setSingleSelect(value)}
-                                                />
-                                            </Col>
-                                            <Col xs={12} md={3} size="sm">
-                                                Number of Recruitments : 5
-                                            </Col>
-                                            <Col xs={12} md={3} size="sm">
-
-                                            </Col>
-                                            <Col xs={12} md={3} size="sm">
-                                                <Button onClick={onClickFeedback} className="btn-info" color="default" style={
-                                                    {
-
-                                                        fontSize: "10px",
-
-                                                    }
-                                                }>
-                                                    Add Feedback
-                                                </Button>
-                                            </Col>
-                                        </Row>
-                                        <Card>
-
-                                            <CardBody>
-                                                <Row>
-                                                    <Col xs={12} md={12}>
-
-
-
-                                                        <CardHeader>
-                                                            <CardTitle tag="h4" >Feedbacks</CardTitle>
-                                                            <StarRateIcon></StarRateIcon>
-                                                            <StarRateIcon></StarRateIcon>
-                                                            <StarRateIcon></StarRateIcon>
-                                                            <StarRateIcon></StarRateIcon>
-                                                        </CardHeader>
-
-                                                        <Button onClick={onClick} color="primary" className="btn-round" style={
-                                                            {
-
-                                                                fontSize: "10px",
-                                                                marginLeft: "20px",
-
-                                                            }
-                                                        }>
-                                                            <i className="now-ui-icons users_single-02" /> Tran Manh Hung
-                                                        </Button>
-
-
-                                                        <Row>
-                                                            <Col xs={12} md={12}>
-
-
-                                                            </Col>
-                                                            <Col xs={12} md={12}>
-                                                                <CardHeader>
-                                                                    <CardTitle className="text-primary" >Created Date : 06/08/2022 12:00 AM</CardTitle>
-                                                                </CardHeader>
-                                                            </Col>
-                                                        </Row>
-
-
-                                                        <Row>
-                                                            <Col xs={12} md={12}>
-                                                                <CardHeader>
-                                                                    <CardTitle >Category :</CardTitle>
-                                                                </CardHeader>
-                                                                <CardBody>
-                                                                    <div className="btns-mr-5">
-                                                                        <Button>Default</Button>
-                                                                        <Button color="primary">Category 1</Button>
-                                                                        <Button color="danger">Category 2</Button>
-
-                                                                        <Button color="success">Category 3</Button>
-                                                                        <Button color="warning">Category 4</Button>
-                                                                        <Button color="info">+ More</Button>
-                                                                    </div>
-                                                                </CardBody>
-                                                            </Col>
-                                                        </Row>
-
-                                                        <Row>
-                                                            <Col xs={12} md={12}>
-                                                                <CardHeader>
-                                                                    <CardTitle >Summary</CardTitle>
-                                                                </CardHeader>
-                                                                <CardBody>
-                                                                    <TabContent activeTab={hTabs} className="tab-space">
-                                                                        <TabPane tabId="ht4">
-                                                                            <Card sx={{ maxWidth: 1500, borderStyle: 'groove', borderRadius: 8 }}>
-
-                                                                                <CardContent>
-                                                                                    <Typography variant="body2" color="text.secondary">
-                                                                                        This impressive paella is a perfect party dish and a fun meal to cook
-                                                                                        together with your guests. Add 1 cup of frozen peas along with the mussels,
-                                                                                        if you like.
-                                                                                    </Typography>
-                                                                                </CardContent>
-                                                                                <CardActions disableSpacing>
-                                                                                    <Col md={11}>
-
-                                                                                    </Col>
-                                                                                    <Col md={1}>
-
-                                                                                    </Col>
-                                                                                </CardActions>
-                                                                            </Card>
-                                                                        </TabPane>
-                                                                    </TabContent>
-                                                                </CardBody>
-                                                            </Col>
-                                                        </Row>
-
-                                                    </Col>
-                                                </Row>
-                                            </CardBody>
-
-
-                                        </Card>
-                                    </TabPane>
-                                </TabContent>
-                            </CardBody>
-                            <Pagination>
-                                <PaginationItem>
-                                    <PaginationLink href="#">
-                                        <span aria-hidden="true">
-                                            <i
-                                                className="fa fa-angle-double-left"
-                                                aria-hidden="true"
-                                            />
-                                        </span>
-                                    </PaginationLink>
-                                </PaginationItem>
-                                <PaginationItem>
-                                    <PaginationLink href="#">1</PaginationLink>
-                                </PaginationItem>
-                                <PaginationItem active>
-                                    <PaginationLink href="#">2</PaginationLink>
-                                </PaginationItem>
-                                <PaginationItem>
-                                    <PaginationLink href="#">3</PaginationLink>
-                                </PaginationItem>
-                                <PaginationItem>
-                                    <PaginationLink href="#">
-                                        <span aria-hidden="true">
-                                            <i
-                                                className="fa fa-angle-double-right"
-                                                aria-hidden="true"
-                                            />
-                                        </span>
-                                    </PaginationLink>
-                                </PaginationItem>
-                            </Pagination>
-                        </Card>
+                    <Col xs={12}>
+                        <Button onClick={onClickBack} style={
+                            {
+
+                                fontSize: "10px",
+
+                            }
+                        }>
+                            <span className="btn-label">
+                                <i className="now-ui-icons arrows-1_minimal-left" />
+                            </span>
+                            Back
+                        </Button>
                     </Col>
                 </Row>
 
+
+
+                <CardTitle tag="h4" >Article Tittle</CardTitle>
+
+
+                <Button color="info" style={
+                    {
+
+                        fontSize: "10px",
+
+                    }
+                }>
+                    Edit</Button>
+
+                <Button color="primary" style={
+                    {
+
+                        fontSize: "10px",
+
+                    }
+                }>
+
+                    Postpose
+                </Button>
+
+
+
+
+                <Nav pills className="nav-pills-info"
+
+                >
+                    <NavItem>
+
+                        <NavLink
+                            className={hTabs === "ht1" ? "active" : ""}
+                            onClick={() => sethTabs("ht1")}
+
+                        >
+                            Detail
+
+                        </NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink
+                            className={hTabs === "ht2" ? "active" : ""}
+                            onClick={() => sethTabs("ht2")}
+                        >
+                            Recruitment
+                        </NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink
+                            className={hTabs === "ht3" ? "active" : ""}
+                            onClick={() => sethTabs("ht3")}
+                        >
+                            Translation
+                        </NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink
+                            className={hTabs === "ht4" ? "active" : ""}
+                            onClick={() => sethTabs("ht4")}
+                        >
+                            Feedback
+                        </NavLink>
+                    </NavItem>
+
+                </Nav>
+
+
+
+
+                <TabContent activeTab={hTabs} className="tab-space">
+
+                    <TabPane tabId="ht1">
+
+
+                        <Row style={{
+                            marginTop: "40px",
+                        }}>
+                            <Col xs={12} md={12}>
+
+
+                                <Card>
+
+                                    <CardHeader>
+                                        <CardTitle style={{
+                                            marginLeft: "",
+                                            color: "green",
+                                        }}>
+                                            <CategoryIcon></CategoryIcon>
+                                            Computer Science</CardTitle>
+                                    </CardHeader>
+
+                                    <CardHeader>
+                                        <CardTitle tag="h4" style={{
+                                            color: "green",
+                                            marginTop: "-10px",
+                                        }}>Computer Vision AI</CardTitle>
+                                        <CardTitle style={{
+                                            marginLeft: "",
+                                            color: "black",
+                                        }}>
+                                            <AccountCircleIcon></AccountCircleIcon>
+                                            Tran Manh Hung</CardTitle>
+                                        <CardTitle style={{
+                                            marginLeft: "",
+                                            color: "black",
+                                        }}>
+                                            <TranslateIcon></TranslateIcon>
+                                            <ArrowRightAltIcon></ArrowRightAltIcon>
+                                            <TranslateIcon></TranslateIcon>
+                                        </CardTitle>
+                                        <CardTitle style={{
+                                            marginLeft: "",
+                                            color: "black",
+                                        }}>
+                                            <GTranslateIcon></GTranslateIcon>
+                                            Translator : 2/10</CardTitle>
+
+                                        <CardTitle style={{
+                                            marginLeft: "",
+                                            color: "black",
+                                        }}>
+                                            <CalendarMonthIcon></CalendarMonthIcon>
+                                            06/08/2022 12:00 AM</CardTitle>
+                                        <CardTitle style={{
+                                            marginLeft: "",
+                                            color: "orange",
+                                        }}>
+                                            <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
+                                            Pending</CardTitle>
+                                        <CardTitle style={{
+                                            marginLeft: "",
+                                            color: "black",
+                                        }}>
+                                            <DescriptionIcon></DescriptionIcon>
+                                            Description :
+
+
+                                            <CardContent>
+                                                <div className="card-description">
+                                                    <p>This impressive paella is a perfect party dish and
+                                                        a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.</p>
+                                                </div>
+
+                                            </CardContent>
+
+
+                                        </CardTitle>
+                                    </CardHeader>
+
+                                </Card>
+
+                            </Col>
+
+                        </Row>
+
+
+                    </TabPane>
+
+                    <TabPane tabId="ht2">
+                        <Row>
+                            <Col xs={12} md={9} size="sm"  >
+                                Sort :
+                            </Col>
+                            <Col Col xs={12} md={3} size="sm" >
+
+                            </Col>
+                        </Row>
+
+                        <Row>
+
+                            <Col xs={12} md={3} size="sm">
+                                <Select
+                                    className="react-select warning"
+                                    classNamePrefix="react-select"
+                                    isMulti
+                                    closeMenuOnSelect={false}
+                                    placeholder="Sort "
+                                    name="multipleSelect"
+                                    value={singleSelect}
+                                    options={selectOptions}
+                                    onChange={(value) => setSingleSelect(value)}
+                                />
+                            </Col>
+                            <Col xs={12} md={3} size="sm">
+                                Number of Recruitments : 5
+                            </Col>
+                            <Col xs={12} md={3} size="sm">
+
+                            </Col>
+                            <Col xs={12} md={3} size="sm">
+
+                            </Col>
+                        </Row>
+                        <CardBody>
+                            <Table responsive>
+                                <thead className="text-primary">
+                                    <tr>
+                                        <th className="text-center">#</th>
+                                        <th>Translation Name</th>
+                                        <th>Level</th>
+                                        <th>Apply Date</th>
+                                        <th>Status</th>
+                                        <th>Choose</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+
+                                    {
+                                        fakeData.map((item, index) => {
+                                            return (<tr>
+                                                <td className="text-center">{index + 1}</td>
+                                                <td>{item.first_name}</td>
+                                                <td>{item.last_name}</td>
+                                                <td>{item.email}</td>
+                                                <td >
+                                                    {/* <Switch defaultValue={false} /> */}
+                                                    <Button>Applied</Button>
+
+                                                </td>
+                                                <td>
+                                                    <Button color="info" className="btn-right" style={
+                                                        {
+
+                                                            fontSize: "10px",
+
+                                                        }
+                                                    }>
+
+                                                        Choose
+                                                    </Button>
+                                                </td>
+
+                                            </tr>);
+                                        })
+                                    }
+
+
+                                </tbody>
+                            </Table>
+                        </CardBody>
+                    </TabPane>
+                    <TabPane tabId="ht3">
+
+
+
+
+                        <Row>
+                            <Col xs={12} md={12}>
+
+                                <Card>
+                                    <CardBody>
+
+                                        <Row>
+                                            <Col xs={12} md={2} size="sm" style={{
+                                                color: "orange",
+                                            }} >
+                                                <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
+                                                Pending
+
+                                            </Col>
+                                            <Col xs={12} md={5} size="sm"  >
+
+                                            </Col>
+                                            <Col xs={12} md={5} size="sm"  >
+
+                                            </Col>
+                                        </Row>
+
+                                    </CardBody>
+
+
+
+
+
+                                    <CardBody>
+
+                                        <Row>
+                                            <Col xs={12} md={2} size="sm"  >
+                                                <CropOriginalIcon></CropOriginalIcon>
+                                                Original Article
+                                            </Col>
+                                            <Col xs={12} md={5} size="sm"  >
+                                                <FormGroup className="form-file-upload form-file-simple">
+                                                    <Input
+                                                        type="text"
+                                                        className="inputFileVisible"
+                                                        placeholder="Dowdload File..."
+                                                        onClick={(e) => handleSingleFileInput(e)}
+                                                        defaultValue={singleFileName}
+                                                    />
+                                                    <input
+                                                        type="file"
+                                                        className="inputFileHidden"
+                                                        style={{ zIndex: -1 }}
+                                                        ref={singleFileRef}
+                                                        onChange={(e) => addSingleFile(e)}
+                                                    />
+                                                </FormGroup>
+                                            </Col>
+                                            <Col xs={12} md={5} size="sm"  >
+                                                <DownloadIcon></DownloadIcon>
+                                            </Col>
+                                        </Row>
+
+                                    </CardBody>
+                                    <CardBody>
+                                        <Row>
+                                            <Col xs={12} md={2} size="sm"  >
+                                                <TranslateIcon></TranslateIcon>
+                                                Translation Article
+                                            </Col>
+                                            <Col xs={12} md={5} size="sm"  >
+                                                <FormGroup className="form-file-upload form-file-simple">
+                                                    <Input
+                                                        type="text"
+                                                        className="inputFileVisible"
+                                                        placeholder="Dowdload File..."
+                                                        onClick={(e) => handleSingleFileInput(e)}
+                                                        defaultValue={singleFileName}
+                                                    />
+                                                    <input
+                                                        type="file"
+                                                        className="inputFileHidden"
+                                                        style={{ zIndex: -1 }}
+                                                        ref={singleFileRef}
+                                                        onChange={(e) => addSingleFile(e)}
+                                                    />
+                                                </FormGroup>
+                                            </Col>
+                                            <Col xs={12} md={5} size="sm"  >
+                                                <DownloadIcon></DownloadIcon>
+                                            </Col>
+                                        </Row>
+
+
+                                    </CardBody>
+
+                                    <CardBody>
+
+                                        <Row>
+                                            <Col xs={12} md={2} size="sm"  >
+                                                <AccountCircleIcon></AccountCircleIcon>
+                                                Translator
+                                            </Col>
+                                            <Col xs={12} md={5} size="sm"  >
+
+                                                Vo Khac Trieu
+                                            </Col>
+                                            <Col xs={12} md={5} size="sm"  >
+
+                                            </Col>
+                                        </Row>
+
+                                    </CardBody>
+                                    <CardBody>
+
+                                        <Row>
+                                            <Col xs={12} md={2} size="sm"  >
+                                                <AccountCircleIcon></AccountCircleIcon>
+                                                Auditor
+                                            </Col>
+                                            <Col xs={12} md={5} size="sm"  >
+                                                Tran Manh Hung
+                                            </Col>
+                                            <Col xs={12} md={5} size="sm"  >
+                                            </Col>
+                                        </Row>
+
+                                    </CardBody>
+
+                                </Card>
+                            </Col>
+
+                        </Row>
+                    </TabPane>
+                    <TabPane tabId="ht4">
+                        <Row>
+                            <Col xs={12} md={9} size="sm"  >
+                                Sort :
+                            </Col>
+                            <Col Col xs={12} md={3} size="sm" >
+
+                            </Col>
+                        </Row>
+
+                        <Row>
+
+                            <Col xs={12} md={3} size="sm">
+                                <Select
+                                    className="react-select warning"
+                                    classNamePrefix="react-select"
+                                    isMulti
+                                    closeMenuOnSelect={false}
+                                    placeholder="Sort "
+                                    name="multipleSelect"
+                                    value={singleSelect}
+                                    options={selectOptions}
+                                    onChange={(value) => setSingleSelect(value)}
+                                />
+                            </Col>
+                            <Col xs={12} md={3} size="sm">
+                                Number of Recruitments : 6
+                            </Col>
+                            <Col xs={12} md={3} size="sm">
+
+                            </Col>
+                            <Col xs={12} md={3} size="sm">
+                                <Button onClick={onClickFeedback} className="btn-info" color="default" style={
+                                    {
+
+                                        fontSize: "10px",
+
+                                    }
+                                }>
+                                    Add Feedback
+                                </Button>
+                            </Col>
+                        </Row>
+
+
+
+                        <Row style={{
+                            marginTop: "40px",
+                        }}>
+                            <Col xs={12} md={12}>
+
+
+                                <Card>
+
+                                    <CardHeader>
+                                        <CardTitle style={{
+                                            marginLeft: "",
+                                            color: "green",
+                                        }}>
+                                            <CategoryIcon></CategoryIcon>
+                                            Computer Science</CardTitle>
+                                        <CardTitle style={{
+                                            marginLeft: "",
+                                            color: "#ec00f9",
+                                        }}>
+                                            <StarRateIcon></StarRateIcon>
+                                            <StarRateIcon></StarRateIcon>
+                                            <StarRateIcon></StarRateIcon>
+                                            <StarRateIcon></StarRateIcon>
+                                            <StarRateIcon></StarRateIcon>
+                                        </CardTitle>
+                                    </CardHeader>
+
+                                    <CardHeader>
+                                        <CardTitle tag="h4" style={{
+                                            color: "green",
+                                            marginTop: "-10px",
+                                        }}>Computer Vision AI</CardTitle>
+                                        <CardTitle style={{
+                                            marginLeft: "",
+                                            color: "black",
+                                        }}>
+                                            <AccountCircleIcon></AccountCircleIcon>
+                                            Tran Manh Hung</CardTitle>
+                                        <CardTitle style={{
+                                            marginLeft: "",
+                                            color: "black",
+                                        }}>
+                                            <TranslateIcon></TranslateIcon>
+                                            <ArrowRightAltIcon></ArrowRightAltIcon>
+                                            <TranslateIcon></TranslateIcon>
+                                        </CardTitle>
+
+
+                                        <CardTitle style={{
+                                            marginLeft: "",
+                                            color: "black",
+                                        }}>
+                                            <CalendarMonthIcon></CalendarMonthIcon>
+                                            06/08/2022 12:00 AM</CardTitle>
+
+                                        <CardTitle style={{
+                                            marginLeft: "",
+                                            color: "black",
+                                        }}>
+                                            <DescriptionIcon></DescriptionIcon>
+                                            Description :
+
+
+                                            <CardContent>
+                                                <div className="card-description">
+                                                    <p>This impressive paella is a perfect party dish and
+                                                        a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.</p>
+                                                </div>
+
+                                            </CardContent>
+
+
+                                        </CardTitle>
+                                    </CardHeader>
+
+                                </Card>
+
+                            </Col>
+
+                        </Row>
+
+
+
+
+
+
+                    </TabPane>
+                </TabContent>
+                <Row>
+                    <Col xs={12} md={5} size="sm">
+
+                    </Col>
+                    <Col xs={12} md={3} size="sm">
+                        <Pagination>
+                            <PaginationItem>
+                                <PaginationLink href="#">
+                                    <span aria-hidden="true">
+                                        <i
+                                            className="fa fa-angle-double-left"
+                                            aria-hidden="true"
+                                        />
+                                    </span>
+                                </PaginationLink>
+                            </PaginationItem>
+                            <PaginationItem>
+                                <PaginationLink href="#">1</PaginationLink>
+                            </PaginationItem>
+                            <PaginationItem active>
+                                <PaginationLink href="#">2</PaginationLink>
+                            </PaginationItem>
+                            <PaginationItem>
+                                <PaginationLink href="#">3</PaginationLink>
+                            </PaginationItem>
+                            <PaginationItem>
+                                <PaginationLink href="#">
+                                    <span aria-hidden="true">
+                                        <i
+                                            className="fa fa-angle-double-right"
+                                            aria-hidden="true"
+                                        />
+                                    </span>
+                                </PaginationLink>
+                            </PaginationItem>
+                        </Pagination>
+                    </Col>
+                    <Col xs={12} md={4} size="sm">
+                    </Col>
+                </Row>
             </div>
+
+
         </>
     );
 }

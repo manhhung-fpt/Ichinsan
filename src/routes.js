@@ -60,6 +60,8 @@ import CustomeArticle from './views/CustomeArticle/CustomeArticle';
 import CustomerAddArticle from './views/CustomerAddArticle/CustomerAddArticle';
 import CustomerProgressArticle from './views/CustomerProgressArticle/CustomerProgressArticle';
 import CustomerCreateFeedback from './views/CustomerCreateFeedback/CustomerCreateFeedback';
+import CustomerArticleDetail from './views/CustomerArticleDetail/CustomerArticleDetail';
+
 
 let routes = [
   {
@@ -138,12 +140,13 @@ let routes = [
   },
   {
     path: "/customer-home",
-    name: "Customer Home",
+    name: "Customer Progress",
     icon: "now-ui-icons business_badge",
     component: CustomerHome,
     layout: "/admin",
     rolePermission: "Customer"
   },
+  
   {
     path: "/customer-progress-project",
     name: "Customer Progress Project",
@@ -182,6 +185,7 @@ let routes = [
     icon: "now-ui-icons business_badge",
     component: CustomerProgressArticle,
     rolePermission: "Customer",
+    hideInDetail: true,
     layout: "/admin",
   },
   {
@@ -192,6 +196,15 @@ let routes = [
     hideInDetail: true,
     layout: "/admin",
   },
+  {
+    path: "/customer-arti-detail",
+    name: "Customer Article Detail",
+    icon: "now-ui-icons business_badge",
+    component: CustomerArticleDetail,
+    hideInDetail: true,
+    layout: "/admin",
+  },
+  
   {
     path: "/admin-projec-category",
     name: "Admin Project Category",

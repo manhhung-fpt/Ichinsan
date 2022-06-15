@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /*!
 
 =========================================================
@@ -15,10 +16,10 @@
 
 */
 import React from "react";
-import Switch from "react-bootstrap-switch";
+
 
 // Core modules imports are same as usual
-import { Navigation, Pagination } from 'swiper';
+// import { Navigation, Pagination } from 'swiper';
 // Direct React component imports
 import { Swiper, SwiperSlide } from 'swiper/react/swiper-react.js';
 // Styles must use direct files imports
@@ -28,9 +29,12 @@ import 'swiper/modules/navigation/navigation.scss'; // Navigation module
 import 'swiper/modules/pagination/pagination.scss'; // Pagination module
 import 'swiper/modules/effect-fade/effect-fade.scss'; // Pagination module
 import { EffectFade } from "swiper";
-import { Keyboard, Scrollbar, Mousewheel } from "swiper";
+
 import "./CustomerHome.css"
-import ProgressBar from 'react-bootstrap/ProgressBar';
+
+import CategoryIcon from '@mui/icons-material/Category';
+import GTranslateIcon from '@mui/icons-material/GTranslate';
+import SpellcheckIcon from '@mui/icons-material/Spellcheck';
 
 // reactstrap components
 import {
@@ -41,6 +45,9 @@ import {
   Label,
   Input,
   Card,
+  Pagination,
+  PaginationItem,
+  PaginationLink,
   TabContent,
   TabPane,
   CardHeader,
@@ -51,6 +58,11 @@ import {
   Button,
   ButtonToolbar,
   Form,
+  Nav,
+  NavItem,
+  NavLink,
+
+
 } from "reactstrap";
 import { useHistory } from "react-router-dom";
 
@@ -66,14 +78,25 @@ import SwiperFirst from './SwiperFirst';
 import ImageUpload from './../../components/CustomUpload/ImageUpload';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
+import './Card.css';
 
+var rolesOptions = [
+  { value: "Option1", label: "Option1" },
+  { value: "Option2", label: "Option2" },
+  { value: "Option3", label: "Option3" },
+];
 function CustomerHome() {
 
   const [hTabs, sethTabs] = React.useState("ht1");
   let history = useHistory();
+  const [singleRoleSelect, setSingleRoleSelect] = React.useState(null);
+  const selectFilterHandler = (e) => {
+    alert(e.value)
+    setSingleRoleSelect(() => e.value);
+  }
   const onClickView = () => {
 
-    history.push("/admin/customer-progress-project")
+    history.push("/admin/customer-arti-detail")
   }
   const onClick = () => {
 
@@ -83,6 +106,8 @@ function CustomerHome() {
 
   return (
     <>
+
+
       <PanelHeader
         size="sm"
       />
@@ -97,7 +122,7 @@ function CustomerHome() {
             pagination={{
               clickable: true,
             }}
-            modules={[EffectFade, Navigation]}
+            modules={[EffectFade]}
             className="mySwiper"
             style={
               {
@@ -122,549 +147,1099 @@ function CustomerHome() {
         </Card>
 
 
-        <Swiper
-          slidesPerView={6}
-          spaceBetween={12}
-          slidesPerGroup={6}
-          loop={true}
-          loopFillGroupWithBlank={true}
-          pagination={{
-            clickable: true,
-          }}
-          navigation={false}
-          modules={[Pagination, Navigation]}
-          className="mySwiper"
-          style={
-            {
-              height: "80px",
 
-            }
-          }
+
+        <CardTitle tag="h4">Progress
+          <span class="fi fi-AU"></span> <span class="fi fi-gr fis"></span>
+        </CardTitle>
+
+        <Nav pills className="nav-pills-info"
+
         >
-          <SwiperSlide >
-            <Button onClick={onClickView} color="primary" className="btn-round" style={
-              {
-                // margin: "auto",
-                fontSize: "10px",
-                marginBottom: "20px",
-                marginLeft: "40px",
-              }
-            }>
+          <NavItem>
+         
+            <NavLink 
+              className={hTabs === "ht1" ? "active" : ""}
+              onClick={() => sethTabs("ht1")}
 
-              <i className="now-ui-icons users_single-02" /> Maintenance Manuals
-            </Button>
-          </SwiperSlide>
-          <SwiperSlide>
-            <Button onClick={onClickView} color="primary" className="btn-round" style={
-              {
-                // margin: "auto",
-                fontSize: "10px",
-                marginBottom: "20px",
-                marginLeft: "40px",
-              }
-            }>
-              <i className="now-ui-icons users_single-02" /> Maintenance Manuals
-            </Button>
-          </SwiperSlide>
-          <SwiperSlide>
-            <Button onClick={onClickView} color="primary" className="btn-round" style={
-              {
-                // margin: "auto",
-                fontSize: "10px",
-                marginBottom: "20px",
-                marginLeft: "40px",
-              }
-            }>
-              <i className="now-ui-icons users_single-02" /> Maintenance Manuals
-            </Button>
-          </SwiperSlide>
-          <SwiperSlide>
-            <Button onClick={onClickView} color="primary" className="btn-round" style={
-              {
-                // margin: "auto",
-                fontSize: "10px",
-                marginBottom: "20px",
-                marginLeft: "40px",
-              }
-            }>
-              <i className="now-ui-icons users_single-02" /> 	Maintenance Manuals
-            </Button>
-          </SwiperSlide>
-          <SwiperSlide>
-            <Button onClick={onClickView} color="primary" className="btn-round" style={
-              {
-                // margin: "auto",
-                fontSize: "10px",
-                marginBottom: "20px",
-                marginLeft: "40px",
-              }
-            }>
-              <i className="now-ui-icons users_single-02" /> Maintenance Manuals
-            </Button>
-          </SwiperSlide>
-          <SwiperSlide>
-            <Button onClick={onClickView} color="primary" className="btn-round" style={
-              {
-                // margin: "auto",
-                fontSize: "10px",
-                marginBottom: "20px",
-                marginLeft: "40px",
-              }
-            }>
-              <i className="now-ui-icons users_single-02" /> Maintenance Manuals
-            </Button>
-          </SwiperSlide>
-          <SwiperSlide>
-            <Button onClick={onClickView} color="primary" className="btn-round" style={
-              {
-                // margin: "auto",
-                fontSize: "10px",
-                marginBottom: "20px",
-                marginLeft: "40px",
-              }
-            }>
-              <i className="now-ui-icons users_single-02" /> Maintenance Manuals
-            </Button>
-          </SwiperSlide>
-          <SwiperSlide>
-            <Button onClick={onClickView} color="primary" className="btn-round" style={
-              {
-                // margin: "auto",
-                fontSize: "10px",
-                marginBottom: "20px",
-                marginLeft: "40px",
-              }
-            }>
-              <i className="now-ui-icons users_single-02" /> Maintenance Manuals
-            </Button>
-          </SwiperSlide>
-          <SwiperSlide>
-            <Button onClick={onClickView} color="primary" className="btn-round" style={
-              {
-                // margin: "auto",
-                fontSize: "10px",
-                marginBottom: "20px",
-                marginLeft: "40px",
-              }
-            }>
-              <i className="now-ui-icons users_single-02" /> Maintenance Manuals
-            </Button>
-          </SwiperSlide>
-          <SwiperSlide>
-            <Button onClick={onClickView} color="primary" className="btn-round" style={
-              {
-                // margin: "auto",
-                fontSize: "10px",
-                marginBottom: "20px",
-                marginLeft: "40px",
-              }
-            }>
-              <i className="now-ui-icons users_single-02" /> Maintenance Manuals
-            </Button>
-          </SwiperSlide>
-          <SwiperSlide>
-            <Button onClick={onClickView} color="primary" className="btn-round" style={
-              {
-                // margin: "auto",
-                fontSize: "10px",
-                marginBottom: "20px",
-                marginLeft: "40px",
-              }
-            }>
-              <i className="now-ui-icons users_single-02" /> Maintenance Manuals
-            </Button>
-          </SwiperSlide>
-          <SwiperSlide>
-            <Button onClick={onClickView} color="primary" className="btn-round" style={
-              {
-                // margin: "auto",
-                fontSize: "10px",
-                marginBottom: "20px",
-                marginLeft: "40px",
-              }
-            }>
-              <i className="now-ui-icons users_single-02" /> Maintenance Manuals
-            </Button>
-          </SwiperSlide>
+            >     
+            Pending  
+            
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink
+              className={hTabs === "ht2" ? "active" : ""}
+              onClick={() => sethTabs("ht2")}
+            >
+              In-Progress
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink
+              className={hTabs === "ht3" ? "active" : ""}
+              onClick={() => sethTabs("ht3")}
+            >
+              Done
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink
+              className={hTabs === "ht4" ? "active" : ""}
+              onClick={() => sethTabs("ht4")}
+            >
+              Postpose
+            </NavLink>
+          </NavItem>
 
-        </Swiper>
-
-        <CardTitle tag="h4">Progress</CardTitle>
-        <Row>
-
-          <Col xs={12} md={5} size="sm">
-
-
+        </Nav>
+        <Row style={{
+          marginTop: "20px"
+        }}>
+          <Col xs={12} md={1} size="sm"  >
+            Sort :
           </Col>
-          <Col xs={12} md={5} size="sm">
-
+          <Col Col xs={12} md={2} size="sm" >
+            <Select
+              className="react-select primary"
+              classNamePrefix="react-select"
+              placeholder="Select a role"
+              name="singleSelect"
+              value={singleRoleSelect}
+              options={rolesOptions}
+              onChange={selectFilterHandler}
+            />
           </Col>
-          <Col xs={12} md={1} size="sm">
-
-          </Col>
-          <Col xs={12} md={1} size="sm">
-            <Button onClick={onClickView} color="info" style={
-              {
-
-                fontSize: "10px",
-
-              }
-            }>
-              More...
-              <span className="btn-label">
-                <i className="now-ui-icons arrows-1_minimal-right" />
-              </span>
-
-            </Button>
-
+          <Col Col xs={12} md={9} size="sm" >
           </Col>
         </Row>
+        <TabContent activeTab={hTabs} className="tab-space">
+          <TabPane tabId="ht1">
+            <Row style={{
+              marginTop: "40px",
+            }}>
+              <Col xs={12} md={3}>
+                <a classname="card" href="" onClick={onClickView}>
+                  <Card>
 
+                    <CardHeader>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "green",
+                      }}>
+                        <CategoryIcon></CategoryIcon>
+                        Computer Science</CardTitle>
+                    </CardHeader>
 
-        <Row>
-          <Col xs={12} md={4}>
+                    <CardHeader>
+                      <CardTitle tag="h4" style={{
+                        color: "green",
+                        marginTop: "-10px",
+                      }}>Computer Vision AI</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <GTranslateIcon></GTranslateIcon>
+                        Translator : 2/10</CardTitle>
 
-            <Card>
-              <CardHeader>
-                <CardTitle tag="h4" >Project Name</CardTitle>
-              </CardHeader>
-              <CardHeader>
-                <CardTitle className="text-primary" >Deadline : 06/08/2022 12:00 AM</CardTitle>
-              </CardHeader>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <SpellcheckIcon></SpellcheckIcon>
+                        Auditor : 2/10</CardTitle>
+                    </CardHeader>
 
-              <CardBody>
-
-                <div className="progress-bar" role="progressbar" style={{ width: "25%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-
-                </div>
-                <CardHeader>
-                  <CardTitle tag="h4">Progress : Pending</CardTitle>
-                </CardHeader>
-                <ProgressBar>
-                  <ProgressBar variant="success" now={35} key={1} />
-                  <ProgressBar variant="danger" now={65} key={2} />
-                </ProgressBar>
-              </CardBody>
-            </Card>
-          </Col>
-          <Col xs={12} md={4}>
-            <Card>
-              <CardHeader>
-                <CardTitle tag="h4" >Project Name</CardTitle>
-              </CardHeader>
-              <CardHeader>
-                <CardTitle className="text-primary" >Deadline : 06/08/2022 12:00 AM</CardTitle>
-              </CardHeader>
-
-              <CardBody>
-
-                <div className="progress-bar" role="progressbar" style={{ width: "25%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                </div>
-                <CardHeader>
-                  <CardTitle tag="h4">Progress : Pending</CardTitle>
-                </CardHeader>
-                <ProgressBar>
-                  <ProgressBar variant="success" now={35} key={1} />
-                  <ProgressBar variant="danger" now={65} key={2} />
-                </ProgressBar>
-              </CardBody>
-            </Card>
-          </Col>
-          <Col xs={12} md={4}>
-            <Card>
-              <CardHeader>
-                <CardTitle tag="h4" >Project Name</CardTitle>
-              </CardHeader>
-              <CardHeader>
-                <CardTitle className="text-primary" >Deadline : 06/08/2022 12:00 AM</CardTitle>
-              </CardHeader>
-
-              <CardBody>
-
-                <div className="progress-bar" role="progressbar" style={{ width: "25%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                </div>
-                <CardHeader>
-                  <CardTitle tag="h4">Progress : Pending</CardTitle>
-                </CardHeader>
-                <ProgressBar>
-                  <ProgressBar variant="success" now={35} key={1} />
-                  <ProgressBar variant="danger" now={65} key={2} />
-                </ProgressBar>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
-
-        <CardTitle tag="h4">Lastest Article</CardTitle>
-        <Row>
-
-          <Col xs={12} md={5} size="sm">
-
-
-          </Col>
-          <Col xs={12} md={5} size="sm">
-
-          </Col>
-          <Col xs={12} md={1} size="sm">
-
-          </Col>
-          <Col xs={12} md={1} size="sm">
-            <Button color="info" style={
-              {
-
-                fontSize: "10px",
-
-              }
-            }>
-              More...
-              <span className="btn-label">
-                <i className="now-ui-icons arrows-1_minimal-right" />
-              </span>
-
-            </Button>
-
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={12} md={6}>
-
-            <Card>
-              <CardBody>
-                <div className="btns-mr-5">
-                  <Button>Cate1</Button>
-                </div>
-              </CardBody>
-              <CardHeader>
-                <CardTitle tag="h4" >Article Name</CardTitle>
-              </CardHeader>
-              <Row>
-                <Col xs={12} md={6}>
-
-                  {/* <ButtonToolbar>
-                    <ButtonGroup>
-                      <Button className="btn-round" color="success" style={
-                        {
-                          marginLeft: "20px",
-                          fontSize: "10px",
-
-                        }
-                      }>
-                        Complete
-                      </Button>
-
-                    </ButtonGroup>
-                  </ButtonToolbar> */}
-                </Col>
-                <Col xs={12} md={6}>
-
-                </Col>
-              </Row>
-              <CardHeader>
-                <CardTitle className="text-primary" >Date : 06/08/2022 12:00 AM</CardTitle>
-              </CardHeader>
-              <CardHeader>
-                <CardTitle className="text-primary" >Salary : $500</CardTitle>
-              </CardHeader>
-              <CardHeader>
-                <CardTitle >Language : From ... To ...</CardTitle>
-              </CardHeader>
-              <Row>
-                <Col xs={12} md={3}>
-
-                </Col>
-                <Col xs={12} md={1}>
-
-                </Col>
-                <Col xs={12} md={8}>
-
-                </Col>
-              </Row>
-              <Row>
-                <Col xs={12} md={12}>
-                  
-                  <CardBody>
-
-                  </CardBody>
-                </Col>
-              </Row>
-              <Row>
-                <Col xs={12} md={12}>
-                  <CardHeader>
-                    <CardTitle >Summary</CardTitle>
-                  </CardHeader>
-                  <CardBody>
-                    <TabContent activeTab={hTabs} className="tab-space">
-                      <TabPane tabId="ht1">
-                        <Card sx={{ maxWidth: 1500, borderStyle: 'groove', borderRadius: 8 }}>
-
-                          <CardContent>
-                            <Typography variant="body2" color="text.secondary">
-                              This impressive paella is a perfect party dish and a fun meal to cook
-                              together with your guests. Add 1 cup of frozen peas along with the mussels,
-                              if you like.
-                            </Typography>
-                          </CardContent>
-                          <CardActions disableSpacing>
-                            <Col md={11}>
-
-                            </Col>
-                            <Col md={1}>
-
-                            </Col>
-                          </CardActions>
-                        </Card>
-                      </TabPane>
-                    </TabContent>
-                  </CardBody>
-                </Col>
-              </Row>
-              <Row>
-                <Col xs={12} md={4}>
-                </Col>
-                <Col xs={12} md={4}>
-                  <Button onClick={onClick} color="info" style={
-                    {
-
-                      fontSize: "10px",
-
-                    }
-                  }>
-                    View
-                    <span className="btn-label">
-                      <i className="now-ui-icons arrows-1_minimal-right" />
-                    </span>
-
-                  </Button>
-                </Col>
-                <Col xs={12} md={4}>
-
-                </Col>
-
-              </Row>
-            </Card>
-          </Col>
-          <Col xs={12} md={6}>
-            <Card>
-            <CardBody>
-                    <div className="btns-mr-5">
-                      <Button color="success">Cate2</Button>
+                    <div class="go-corner" href="#">
+                      <div class="go-arrow">
+                        →
+                      </div>
                     </div>
-                  </CardBody>
-              <CardHeader>
-                <CardTitle tag="h4" >Article Name</CardTitle>
-              </CardHeader>
-              <Row>
-                <Col xs={12} md={6}>
 
-                  {/* <ButtonToolbar>
-                    <ButtonGroup>
-                      <Button className="btn-round" color="success" style={
-                        {
-                          marginLeft: "20px",
-                          fontSize: "10px",
+                  </Card>
+                </a>
+              </Col>
+              <Col xs={12} md={3}>
+                <a classname="card" href="" onClick={onClickView}>
+                  <Card>
 
-                        }
-                      }>
-                        Complete
-                      </Button>
+                    <CardHeader>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "green",
+                      }}>
+                        <CategoryIcon></CategoryIcon>
+                        Computer Science</CardTitle>
+                    </CardHeader>
 
-                    </ButtonGroup>
-                  </ButtonToolbar> */}
-                </Col>
-                <Col xs={12} md={6}>
+                    <CardHeader>
+                      <CardTitle tag="h4" style={{
+                        color: "green",
+                        marginTop: "-10px",
+                      }}>Computer Vision AI</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <GTranslateIcon></GTranslateIcon>
+                        Translator : 2/10</CardTitle>
 
-                </Col>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <SpellcheckIcon></SpellcheckIcon>
+                        Auditor : 2/10</CardTitle>
+                    </CardHeader>
 
-              </Row>
-              <CardHeader>
-                <CardTitle className="text-primary" >Date : 06/08/2022 12:00 AM</CardTitle>
-              </CardHeader>
-              <CardHeader>
-                <CardTitle className="text-primary" >Salary : $500</CardTitle>
-              </CardHeader>
-              <CardHeader>
-                <CardTitle >Language : From ... To ...</CardTitle>
-              </CardHeader>
-              <Row>
-                <Col xs={12} md={3}>
-               
-                </Col>
-                <Col xs={12} md={1}>
-                  
-                </Col>
-                <Col xs={12} md={8}>
+                    <div class="go-corner" href="#">
+                      <div class="go-arrow">
+                        →
+                      </div>
+                    </div>
 
-                </Col>
-              </Row>
-              <Row>
-                <Col xs={12} md={12}>
-                 
-                  <CardBody>
+                  </Card>
+                </a>
+              </Col>
+              <Col xs={12} md={3}>
+                <a classname="card" href="" onClick={onClickView}>
+                  <Card>
 
-                  </CardBody>
-                </Col>
-              </Row>
-              <Row>
-                <Col xs={12} md={12}>
-                  <CardHeader>
-                    <CardTitle >Summary</CardTitle>
-                  </CardHeader>
-                  <CardBody>
-                    <TabContent activeTab={hTabs} className="tab-space">
-                      <TabPane tabId="ht1">
-                        <Card sx={{ maxWidth: 1500, borderStyle: 'groove', borderRadius: 8 }}>
+                    <CardHeader>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "green",
+                      }}>
+                        <CategoryIcon></CategoryIcon>
+                        Computer Science</CardTitle>
+                    </CardHeader>
 
-                          <CardContent>
-                            <Typography variant="body2" color="text.secondary">
-                              This impressive paella is a perfect party dish and a fun meal to cook
-                              together with your guests. Add 1 cup of frozen peas along with the mussels,
-                              if you like.
-                            </Typography>
-                          </CardContent>
-                          <CardActions disableSpacing>
-                            <Col md={11}>
+                    <CardHeader>
+                      <CardTitle tag="h4" style={{
+                        color: "green",
+                        marginTop: "-10px",
+                      }}>Computer Vision AI</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <GTranslateIcon></GTranslateIcon>
+                        Translator : 2/10</CardTitle>
 
-                            </Col>
-                            <Col md={1}>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <SpellcheckIcon></SpellcheckIcon>
+                        Auditor : 2/10</CardTitle>
+                    </CardHeader>
 
-                            </Col>
-                          </CardActions>
-                        </Card>
-                      </TabPane>
-                    </TabContent>
-                  </CardBody>
-                </Col>
-              </Row>
-              <Row>
-                <Col xs={12} md={4}>
-                </Col>
-                <Col xs={12} md={4}>
-                  <Button onClick={onClick} color="info" style={
-                    {
+                    <div class="go-corner" href="#">
+                      <div class="go-arrow">
+                        →
+                      </div>
+                    </div>
 
-                      fontSize: "10px",
+                  </Card>
+                </a>
+              </Col>
+              <Col xs={12} md={3}>
+                <a classname="card" href="" onClick={onClickView}>
+                  <Card>
 
-                    }
-                  }>
-                    View
-                    <span className="btn-label">
-                      <i className="now-ui-icons arrows-1_minimal-right" />
-                    </span>
+                    <CardHeader>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "green",
+                      }}>
+                        <CategoryIcon></CategoryIcon>
+                        Computer Science</CardTitle>
+                    </CardHeader>
 
-                  </Button>
-                </Col>
-                <Col xs={12} md={4}>
+                    <CardHeader>
+                      <CardTitle tag="h4" style={{
+                        color: "green",
+                        marginTop: "-10px",
+                      }}>Computer Vision AI</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <GTranslateIcon></GTranslateIcon>
+                        Translator : 2/10</CardTitle>
 
-                </Col>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <SpellcheckIcon></SpellcheckIcon>
+                        Auditor : 2/10</CardTitle>
+                    </CardHeader>
 
-              </Row>
-            </Card>
-          </Col>
+                    <div class="go-corner" href="#">
+                      <div class="go-arrow">
+                        →
+                      </div>
+                    </div>
 
-        </Row>
+                  </Card>
+                </a>
+              </Col>
+            </Row>
+
+
+
+
+            <Row style={{
+              marginTop: "40px",
+            }}>
+              <Col xs={12} md={3}>
+                <a classname="card" href="" onClick={onClickView}>
+                  <Card>
+
+                    <CardHeader>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "green",
+                      }}>
+                        <CategoryIcon></CategoryIcon>
+                        Computer Science</CardTitle>
+                    </CardHeader>
+
+                    <CardHeader>
+                      <CardTitle tag="h4" style={{
+                        color: "green",
+                        marginTop: "-10px",
+                      }}>Computer Vision AI</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <GTranslateIcon></GTranslateIcon>
+                        Translator : 2/10</CardTitle>
+
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <SpellcheckIcon></SpellcheckIcon>
+                        Auditor : 2/10</CardTitle>
+                    </CardHeader>
+
+                    <div class="go-corner" href="#">
+                      <div class="go-arrow">
+                        →
+                      </div>
+                    </div>
+
+                  </Card>
+                </a>
+              </Col>
+              <Col xs={12} md={3}>
+                <a classname="card" href="" onClick={onClickView}>
+                  <Card>
+
+                    <CardHeader>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "green",
+                      }}>
+                        <CategoryIcon></CategoryIcon>
+                        Computer Science</CardTitle>
+                    </CardHeader>
+
+                    <CardHeader>
+                      <CardTitle tag="h4" style={{
+                        color: "green",
+                        marginTop: "-10px",
+                      }}>Computer Vision AI</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <GTranslateIcon></GTranslateIcon>
+                        Translator : 2/10</CardTitle>
+
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <SpellcheckIcon></SpellcheckIcon>
+                        Auditor : 2/10</CardTitle>
+                    </CardHeader>
+
+                    <div class="go-corner" href="#">
+                      <div class="go-arrow">
+                        →
+                      </div>
+                    </div>
+
+                  </Card>
+                </a>
+              </Col>
+              <Col xs={12} md={3}>
+                <a classname="card" href="" onClick={onClickView}>
+                  <Card>
+
+                    <CardHeader>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "green",
+                      }}>
+                        <CategoryIcon></CategoryIcon>
+                        Computer Science</CardTitle>
+                    </CardHeader>
+
+                    <CardHeader>
+                      <CardTitle tag="h4" style={{
+                        color: "green",
+                        marginTop: "-10px",
+                      }}>Computer Vision AI</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <GTranslateIcon></GTranslateIcon>
+                        Translator : 2/10</CardTitle>
+
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <SpellcheckIcon></SpellcheckIcon>
+                        Auditor : 2/10</CardTitle>
+                    </CardHeader>
+
+                    <div class="go-corner" href="#">
+                      <div class="go-arrow">
+                        →
+                      </div>
+                    </div>
+
+                  </Card>
+                </a>
+              </Col>
+              <Col xs={12} md={3}>
+                <a classname="card" href="" onClick={onClickView}>
+                  <Card>
+
+                    <CardHeader>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "green",
+                      }}>
+                        <CategoryIcon></CategoryIcon>
+                        Computer Science</CardTitle>
+                    </CardHeader>
+
+                    <CardHeader>
+                      <CardTitle tag="h4" style={{
+                        color: "green",
+                        marginTop: "-10px",
+                      }}>Computer Vision AI</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <GTranslateIcon></GTranslateIcon>
+                        Translator : 2/10</CardTitle>
+
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <SpellcheckIcon></SpellcheckIcon>
+                        Auditor : 2/10</CardTitle>
+                    </CardHeader>
+
+                    <div class="go-corner" href="#">
+                      <div class="go-arrow">
+                        →
+                      </div>
+                    </div>
+
+                  </Card>
+                </a>
+              </Col>
+
+            </Row>
+          </TabPane>
+          <TabPane tabId="ht2">
+            <Row style={{
+              marginTop: "40px",
+            }}>
+              <Col xs={12} md={3}>
+                <a classname="card" href="" onClick={onClickView}>
+                  <Card>
+
+                    <CardHeader>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "green",
+                      }}>
+                        <CategoryIcon></CategoryIcon>
+                        Computer Science</CardTitle>
+                    </CardHeader>
+
+                    <CardHeader>
+                      <CardTitle tag="h4" style={{
+                        color: "green",
+                        marginTop: "-10px",
+                      }}>Computer Vision AI</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <GTranslateIcon></GTranslateIcon>
+                        Translator : 2/10</CardTitle>
+
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <SpellcheckIcon></SpellcheckIcon>
+                        Auditor : 2/10</CardTitle>
+                    </CardHeader>
+
+                    <div class="go-corner" href="#">
+                      <div class="go-arrow">
+                        →
+                      </div>
+                    </div>
+
+                  </Card>
+                </a>
+              </Col>
+              <Col xs={12} md={3}>
+                <a classname="card" href="" onClick={onClickView}>
+                  <Card>
+
+                    <CardHeader>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "green",
+                      }}>
+                        <CategoryIcon></CategoryIcon>
+                        Computer Science</CardTitle>
+                    </CardHeader>
+
+                    <CardHeader>
+                      <CardTitle tag="h4" style={{
+                        color: "green",
+                        marginTop: "-10px",
+                      }}>Computer Vision AI</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <GTranslateIcon></GTranslateIcon>
+                        Translator : 2/10</CardTitle>
+
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <SpellcheckIcon></SpellcheckIcon>
+                        Auditor : 2/10</CardTitle>
+                    </CardHeader>
+
+                    <div class="go-corner" href="#">
+                      <div class="go-arrow">
+                        →
+                      </div>
+                    </div>
+
+                  </Card>
+                </a>
+              </Col>
+              <Col xs={12} md={3}>
+                <a classname="card" href="" onClick={onClickView}>
+                  <Card>
+
+                    <CardHeader>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "green",
+                      }}>
+                        <CategoryIcon></CategoryIcon>
+                        Computer Science</CardTitle>
+                    </CardHeader>
+
+                    <CardHeader>
+                      <CardTitle tag="h4" style={{
+                        color: "green",
+                        marginTop: "-10px",
+                      }}>Computer Vision AI</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <GTranslateIcon></GTranslateIcon>
+                        Translator : 2/10</CardTitle>
+
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <SpellcheckIcon></SpellcheckIcon>
+                        Auditor : 2/10</CardTitle>
+                    </CardHeader>
+
+                    <div class="go-corner" href="#">
+                      <div class="go-arrow">
+                        →
+                      </div>
+                    </div>
+
+                  </Card>
+                </a>
+              </Col>
+              <Col xs={12} md={3}>
+                <a classname="card" href="" onClick={onClickView}>
+                  <Card>
+
+                    <CardHeader>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "green",
+                      }}>
+                        <CategoryIcon></CategoryIcon>
+                        Computer Science</CardTitle>
+                    </CardHeader>
+
+                    <CardHeader>
+                      <CardTitle tag="h4" style={{
+                        color: "green",
+                        marginTop: "-10px",
+                      }}>Computer Vision AI</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <GTranslateIcon></GTranslateIcon>
+                        Translator : 2/10</CardTitle>
+
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <SpellcheckIcon></SpellcheckIcon>
+                        Auditor : 2/10</CardTitle>
+                    </CardHeader>
+
+                    <div class="go-corner" href="#">
+                      <div class="go-arrow">
+                        →
+                      </div>
+                    </div>
+
+                  </Card>
+                </a>
+              </Col>
+            </Row>
+
+
+
+
+
+          </TabPane>
+          <TabPane tabId="ht3">
+            <Row style={{
+              marginTop: "40px",
+            }}>
+              <Col xs={12} md={3}>
+                <a classname="card" href="" onClick={onClickView}>
+                  <Card>
+
+                    <CardHeader>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "green",
+                      }}>
+                        <CategoryIcon></CategoryIcon>
+                        Computer Science</CardTitle>
+                    </CardHeader>
+
+                    <CardHeader>
+                      <CardTitle tag="h4" style={{
+                        color: "green",
+                        marginTop: "-10px",
+                      }}>Computer Vision AI</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <GTranslateIcon></GTranslateIcon>
+                        Translator : 2/10</CardTitle>
+
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <SpellcheckIcon></SpellcheckIcon>
+                        Auditor : 2/10</CardTitle>
+                    </CardHeader>
+
+                    <div class="go-corner" href="#">
+                      <div class="go-arrow">
+                        →
+                      </div>
+                    </div>
+
+                  </Card>
+                </a>
+              </Col>
+              <Col xs={12} md={3}>
+                <a classname="card" href="" onClick={onClickView}>
+                  <Card>
+
+                    <CardHeader>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "green",
+                      }}>
+                        <CategoryIcon></CategoryIcon>
+                        Computer Science</CardTitle>
+                    </CardHeader>
+
+                    <CardHeader>
+                      <CardTitle tag="h4" style={{
+                        color: "green",
+                        marginTop: "-10px",
+                      }}>Computer Vision AI</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <GTranslateIcon></GTranslateIcon>
+                        Translator : 2/10</CardTitle>
+
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <SpellcheckIcon></SpellcheckIcon>
+                        Auditor : 2/10</CardTitle>
+                    </CardHeader>
+
+                    <div class="go-corner" href="#">
+                      <div class="go-arrow">
+                        →
+                      </div>
+                    </div>
+
+                  </Card>
+                </a>
+              </Col>
+              <Col xs={12} md={3}>
+
+              </Col>
+              <Col xs={12} md={3}>
+
+              </Col>
+            </Row>
+
+
+
+
+
+          </TabPane>
+          <TabPane tabId="ht4">
+            <Row style={{
+              marginTop: "40px",
+            }}>
+              <Col xs={12} md={3}>
+                <a classname="card" href="" onClick={onClickView}>
+                  <Card>
+
+                    <CardHeader>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "green",
+                      }}>
+                        <CategoryIcon></CategoryIcon>
+                        Computer Science</CardTitle>
+                    </CardHeader>
+
+                    <CardHeader>
+                      <CardTitle tag="h4" style={{
+                        color: "green",
+                        marginTop: "-10px",
+                      }}>Computer Vision AI</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <GTranslateIcon></GTranslateIcon>
+                        Translator : 2/10</CardTitle>
+
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <SpellcheckIcon></SpellcheckIcon>
+                        Auditor : 2/10</CardTitle>
+                    </CardHeader>
+
+                    <div class="go-corner" href="#">
+                      <div class="go-arrow">
+                        →
+                      </div>
+                    </div>
+
+                  </Card>
+                </a>
+              </Col>
+              <Col xs={12} md={3}>
+                <a classname="card" href="" onClick={onClickView}>
+                  <Card>
+
+                    <CardHeader>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "green",
+                      }}>
+                        <CategoryIcon></CategoryIcon>
+                        Computer Science</CardTitle>
+                    </CardHeader>
+
+                    <CardHeader>
+                      <CardTitle tag="h4" style={{
+                        color: "green",
+                        marginTop: "-10px",
+                      }}>Computer Vision AI</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <GTranslateIcon></GTranslateIcon>
+                        Translator : 2/10</CardTitle>
+
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <SpellcheckIcon></SpellcheckIcon>
+                        Auditor : 2/10</CardTitle>
+                    </CardHeader>
+
+                    <div class="go-corner" href="#">
+                      <div class="go-arrow">
+                        →
+                      </div>
+                    </div>
+
+                  </Card>
+                </a>
+              </Col>
+              <Col xs={12} md={3}>
+                <a classname="card" href="" onClick={onClickView}>
+                  <Card>
+
+                    <CardHeader>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "green",
+                      }}>
+                        <CategoryIcon></CategoryIcon>
+                        Computer Science</CardTitle>
+                    </CardHeader>
+
+                    <CardHeader>
+                      <CardTitle tag="h4" style={{
+                        color: "green",
+                        marginTop: "-10px",
+                      }}>Computer Vision AI</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <GTranslateIcon></GTranslateIcon>
+                        Translator : 2/10</CardTitle>
+
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <SpellcheckIcon></SpellcheckIcon>
+                        Auditor : 2/10</CardTitle>
+                    </CardHeader>
+
+                    <div class="go-corner" href="#">
+                      <div class="go-arrow">
+                        →
+                      </div>
+                    </div>
+
+                  </Card>
+                </a>
+              </Col>
+              <Col xs={12} md={3}>
+                <a classname="card" href="" onClick={onClickView}>
+                  <Card>
+
+                    <CardHeader>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "green",
+                      }}>
+                        <CategoryIcon></CategoryIcon>
+                        Computer Science</CardTitle>
+                    </CardHeader>
+
+                    <CardHeader>
+                      <CardTitle tag="h4" style={{
+                        color: "green",
+                        marginTop: "-10px",
+                      }}>Computer Vision AI</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <GTranslateIcon></GTranslateIcon>
+                        Translator : 2/10</CardTitle>
+
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <SpellcheckIcon></SpellcheckIcon>
+                        Auditor : 2/10</CardTitle>
+                    </CardHeader>
+
+                    <div class="go-corner" href="#">
+                      <div class="go-arrow">
+                        →
+                      </div>
+                    </div>
+
+                  </Card>
+                </a>
+              </Col>
+            </Row>
+
+
+
+
+            <Row style={{
+              marginTop: "40px",
+            }}>
+              <Col xs={12} md={3}>
+                <a classname="card" href="" onClick={onClickView}>
+                  <Card>
+
+                    <CardHeader>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "green",
+                      }}>
+                        <CategoryIcon></CategoryIcon>
+                        Computer Science</CardTitle>
+                    </CardHeader>
+
+                    <CardHeader>
+                      <CardTitle tag="h4" style={{
+                        color: "green",
+                        marginTop: "-10px",
+                      }}>Computer Vision AI</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <GTranslateIcon></GTranslateIcon>
+                        Translator : 2/10</CardTitle>
+
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <SpellcheckIcon></SpellcheckIcon>
+                        Auditor : 2/10</CardTitle>
+                    </CardHeader>
+
+                    <div class="go-corner" href="#">
+                      <div class="go-arrow">
+                        →
+                      </div>
+                    </div>
+
+                  </Card>
+                </a>
+              </Col>
+              <Col xs={12} md={3}>
+                <a classname="card" href="" onClick={onClickView}>
+                  <Card>
+
+                    <CardHeader>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "green",
+                      }}>
+                        <CategoryIcon></CategoryIcon>
+                        Computer Science</CardTitle>
+                    </CardHeader>
+
+                    <CardHeader>
+                      <CardTitle tag="h4" style={{
+                        color: "green",
+                        marginTop: "-10px",
+                      }}>Computer Vision AI</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <GTranslateIcon></GTranslateIcon>
+                        Translator : 2/10</CardTitle>
+
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <SpellcheckIcon></SpellcheckIcon>
+                        Auditor : 2/10</CardTitle>
+                    </CardHeader>
+
+                    <div class="go-corner" href="#">
+                      <div class="go-arrow">
+                        →
+                      </div>
+                    </div>
+
+                  </Card>
+                </a>
+              </Col>
+              <Col xs={12} md={3}>
+                <a classname="card" href="" onClick={onClickView}>
+                  <Card>
+
+                    <CardHeader>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "green",
+                      }}>
+                        <CategoryIcon></CategoryIcon>
+                        Computer Science</CardTitle>
+                    </CardHeader>
+
+                    <CardHeader>
+                      <CardTitle tag="h4" style={{
+                        color: "green",
+                        marginTop: "-10px",
+                      }}>Computer Vision AI</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <GTranslateIcon></GTranslateIcon>
+                        Translator : 2/10</CardTitle>
+
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <SpellcheckIcon></SpellcheckIcon>
+                        Auditor : 2/10</CardTitle>
+                    </CardHeader>
+
+                    <div class="go-corner" href="#">
+                      <div class="go-arrow">
+                        →
+                      </div>
+                    </div>
+
+                  </Card>
+                </a>
+              </Col>
+              <Col xs={12} md={3}>
+                <a classname="card" href="" onClick={onClickView}>
+                  <Card>
+
+                    <CardHeader>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "green",
+                      }}>
+                        <CategoryIcon></CategoryIcon>
+                        Computer Science</CardTitle>
+                    </CardHeader>
+
+                    <CardHeader>
+                      <CardTitle tag="h4" style={{
+                        color: "green",
+                        marginTop: "-10px",
+                      }}>Computer Vision AI</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <GTranslateIcon></GTranslateIcon>
+                        Translator : 2/10</CardTitle>
+
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <SpellcheckIcon></SpellcheckIcon>
+                        Auditor : 2/10</CardTitle>
+                    </CardHeader>
+
+                    <div class="go-corner" href="#">
+                      <div class="go-arrow">
+                        →
+                      </div>
+                    </div>
+
+                  </Card>
+                </a>
+              </Col>
+
+            </Row>
+          </TabPane>
+        </TabContent>
+
+
       </div>
+      <Row>
+        <Col xs={12} md={5} size="sm">
 
-
+        </Col>
+        <Col xs={12} md={3} size="sm">
+          <Pagination>
+            <PaginationItem>
+              <PaginationLink href="#">
+                <span aria-hidden="true">
+                  <i
+                    className="fa fa-angle-double-left"
+                    aria-hidden="true"
+                  />
+                </span>
+              </PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#">1</PaginationLink>
+            </PaginationItem>
+            <PaginationItem active>
+              <PaginationLink href="#">2</PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#">3</PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#">
+                <span aria-hidden="true">
+                  <i
+                    className="fa fa-angle-double-right"
+                    aria-hidden="true"
+                  />
+                </span>
+              </PaginationLink>
+            </PaginationItem>
+          </Pagination>
+        </Col>
+        <Col xs={12} md={4} size="sm">
+        </Col>
+      </Row>
 
     </>
   );
