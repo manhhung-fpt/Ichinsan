@@ -232,7 +232,11 @@ function Sidebar(props) {
           <Nav>{createLinks(props.routes)}</Nav>
           <div style={{position: 'absolute', bottom: '0'}}>
           <li className="active" key={6}>
-          <NavLink to="" activeClassName="">
+          <NavLink to="" activeClassName="" style={
+            {
+              color: '#fff',
+            }
+          }>
             
               <>
                 <span className="sidebar-mini-icon">abc</span>

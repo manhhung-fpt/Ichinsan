@@ -164,6 +164,22 @@ function CustomerProgressArticle() {
     const onClickCard = () => {
         history.push("/admin/customer-arti-detail")
     };
+    const onClickAdd = () => {
+        history.push("/admin/customer-create=feedback")
+    };
+    const onClickPostpose = () => {
+        history.push("/admin/customer-arti-detail")
+    };
+    const onClickEdit = () => {
+        history.push("/admin/customer-edit-feedback")
+    };
+    const onClickEditArti = () => {
+        history.push("/admin/customer-edit-article")
+    };
+    const onClickDelete = () => {
+        history.push("/admin/customer-arti-detail")
+    };
+
     return (
         <>
             <PanelHeader
@@ -193,30 +209,6 @@ function CustomerProgressArticle() {
 
                 <CardTitle tag="h4" >Article Tittle</CardTitle>
 
-
-                <Button color="info" style={
-                    {
-
-                        fontSize: "10px",
-
-                    }
-                }>
-                    Edit</Button>
-
-                <Button color="primary" style={
-                    {
-
-                        fontSize: "10px",
-
-                    }
-                }>
-
-                    Postpose
-                </Button>
-
-
-
-
                 <Nav pills className="nav-pills-info"
 
                 >
@@ -227,7 +219,8 @@ function CustomerProgressArticle() {
                             onClick={() => sethTabs("ht1")}
 
                         >
-                            Detail
+
+                            Recruitment
 
                         </NavLink>
                     </NavItem>
@@ -236,7 +229,8 @@ function CustomerProgressArticle() {
                             className={hTabs === "ht2" ? "active" : ""}
                             onClick={() => sethTabs("ht2")}
                         >
-                            Recruitment
+
+                            Translation
                         </NavLink>
                     </NavItem>
                     <NavItem>
@@ -244,7 +238,8 @@ function CustomerProgressArticle() {
                             className={hTabs === "ht3" ? "active" : ""}
                             onClick={() => sethTabs("ht3")}
                         >
-                            Translation
+
+                            Feedback
                         </NavLink>
                     </NavItem>
                     <NavItem>
@@ -252,7 +247,7 @@ function CustomerProgressArticle() {
                             className={hTabs === "ht4" ? "active" : ""}
                             onClick={() => sethTabs("ht4")}
                         >
-                            Feedback
+                            Detail
                         </NavLink>
                     </NavItem>
 
@@ -263,7 +258,7 @@ function CustomerProgressArticle() {
 
                 <TabContent activeTab={hTabs} className="tab-space">
 
-                    <TabPane tabId="ht1">
+                    <TabPane tabId="ht4">
 
 
                         <Row style={{
@@ -346,11 +341,48 @@ function CustomerProgressArticle() {
                             </Col>
 
                         </Row>
+                        <CardActions disableSpacing>
+                            <Col md={8}>
 
+                            </Col>
+                            <Col md={1}>
+                                <Button onClick={onClickEditArti} className="btn-info" color="primary" style={
+                                    {
+
+                                        fontSize: "10px",
+
+                                    }
+                                }>
+                                    Edit
+                                </Button>
+                            </Col>
+                            <Col md={2}>
+                                <Button onClick={onClickAdd} className="btn-info" color="default" style={
+                                    {
+
+                                        fontSize: "10px",
+
+                                    }
+                                }>
+                                    Add an Feedback
+                                </Button>
+                            </Col>
+                            <Col md={1}>
+                                <Button onClick={onClickPostpose} className="btn-danger" color="primary" style={
+                                    {
+
+                                        fontSize: "10px",
+
+                                    }
+                                }>
+                                    Delete
+                                </Button>
+                            </Col>
+                        </CardActions>
 
                     </TabPane>
 
-                    <TabPane tabId="ht2">
+                    <TabPane tabId="ht1">
                         <Row>
                             <Col xs={12} md={9} size="sm"  >
                                 Sort :
@@ -435,7 +467,7 @@ function CustomerProgressArticle() {
                             </Table>
                         </CardBody>
                     </TabPane>
-                    <TabPane tabId="ht3">
+                    <TabPane tabId="ht2">
 
 
 
@@ -569,7 +601,7 @@ function CustomerProgressArticle() {
 
                         </Row>
                     </TabPane>
-                    <TabPane tabId="ht4">
+                    <TabPane tabId="ht3">
                         <Row>
                             <Col xs={12} md={9} size="sm"  >
                                 Sort :
@@ -601,15 +633,7 @@ function CustomerProgressArticle() {
 
                             </Col>
                             <Col xs={12} md={3} size="sm">
-                                <Button onClick={onClickFeedback} className="btn-info" color="default" style={
-                                    {
 
-                                        fontSize: "10px",
-
-                                    }
-                                }>
-                                    Add Feedback
-                                </Button>
                             </Col>
                         </Row>
 
@@ -695,6 +719,34 @@ function CustomerProgressArticle() {
                             </Col>
 
                         </Row>
+                        <CardActions disableSpacing>
+                            <Col md={5}>
+
+                            </Col>
+                            <Col md={1}>
+                                <Button   onClick={onClickEdit} className="btn-info" color="primary"  style={
+                                    {
+
+                                        fontSize: "10px",
+
+                                    }
+                                }>
+                                    Edit
+                                </Button>
+                            </Col>
+                            <Col md={6}>
+                                <Button  onClick={onClickDelete} className="btn-right" color="primary" style={
+                                    {
+
+                                        fontSize: "10px",
+
+                                    }
+                                }>
+
+                                    Delete
+                                </Button>
+                            </Col>
+                        </CardActions>
 
 
 

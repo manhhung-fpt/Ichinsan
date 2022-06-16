@@ -61,6 +61,10 @@ import CustomerAddArticle from './views/CustomerAddArticle/CustomerAddArticle';
 import CustomerProgressArticle from './views/CustomerProgressArticle/CustomerProgressArticle';
 import CustomerCreateFeedback from './views/CustomerCreateFeedback/CustomerCreateFeedback';
 import CustomerArticleDetail from './views/CustomerArticleDetail/CustomerArticleDetail';
+import CustomerEditProject from './views/CustomerEditProject/CustomerEditProject';
+import CustomerEditFeedback from './views/CustomerEditFeedback/CustomerEditFeedback';
+import CustomerEditArticle from './views/CustomerEditArticle/CustomerEditArticle';
+import TranslatorProgress from './views/TranslatorProgress/TranslatorProgress';
 
 
 let routes = [
@@ -70,7 +74,8 @@ let routes = [
     icon: "now-ui-icons shopping_shop",
     component: Home,
     layout: "/admin",
-    mainScreen: true,
+    rolePermission: "Translator"
+   
   },
   {
     path: "/dashboard",
@@ -164,6 +169,14 @@ let routes = [
     layout: "/admin",
   },
   {
+    path: "/customer-edit-project",
+    name: "Customer Edit Project",
+    icon: "now-ui-icons business_badge",
+    component: CustomerEditProject,
+    hideInDetail: true,
+    layout: "/admin",
+  },
+  {
     path: "/customer-article",
     name: "Customer Article",
     icon: "now-ui-icons business_badge",
@@ -176,6 +189,14 @@ let routes = [
     name: "Customer Add Article",
     icon: "now-ui-icons business_badge",
     component: CustomerAddArticle,
+    hideInDetail: true,
+    layout: "/admin",
+  },
+  {
+    path: "/customer-edit-article",
+    name: "Customer Edit Article",
+    icon: "now-ui-icons business_badge",
+    component: CustomerEditArticle,
     hideInDetail: true,
     layout: "/admin",
   },
@@ -197,6 +218,14 @@ let routes = [
     layout: "/admin",
   },
   {
+    path: "/customer-edit-feedback",
+    name: "Customer Edit Feedback",
+    icon: "now-ui-icons business_badge",
+    component: CustomerEditFeedback,
+    hideInDetail: true,
+    layout: "/admin",
+  },
+  {
     path: "/customer-arti-detail",
     name: "Customer Article Detail",
     icon: "now-ui-icons business_badge",
@@ -204,7 +233,14 @@ let routes = [
     hideInDetail: true,
     layout: "/admin",
   },
-  
+  {
+    path: "/translator-progress",
+    name: "Translator Progress",
+    icon: "now-ui-icons business_badge",
+    component: TranslatorProgress,
+    rolePermission: "Translator",
+    layout: "/admin",
+  },
   {
     path: "/admin-projec-category",
     name: "Admin Project Category",

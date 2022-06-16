@@ -161,6 +161,16 @@ function CustomerProgressProject() {
     const onClickFeedback = () => {
         history.push("/admin/customer-create=feedback")
     };
+    const onClickAdd = () => {
+        history.push("/admin/customer-add-article")
+    };
+    const onClickPostpose = () => {
+        history.push("/admin/customer-home")
+    };
+    const onClickEdit = () => {
+        history.push("/admin/customer-edit-project")
+    };
+
 
     return (
         <>
@@ -348,11 +358,11 @@ function CustomerProgressProject() {
 
 
                                         <CardActions disableSpacing>
-                                            <Col md={10}>
+                                            <Col md={8}>
 
                                             </Col>
                                             <Col md={1}>
-                                                <Button color="primary" className="btn-info" style={
+                                                <Button onClick={onClickEdit}  className="btn-info" color="primary" style={
                                                     {
 
                                                         fontSize: "10px",
@@ -362,8 +372,19 @@ function CustomerProgressProject() {
                                                     Edit
                                                 </Button>
                                             </Col>
+                                            <Col md={2}>
+                                            <Button onClick={onClickAdd} className="btn-info" color="default" style={
+                                                            {
+
+                                                                fontSize: "10px",
+
+                                                            }
+                                                        }>
+                                                            Add an Article
+                                                        </Button>
+                                            </Col>
                                             <Col md={1}>
-                                                <Button color="primary" className="btn-right" style={
+                                                <Button onClick={onClickPostpose} className="btn-danger" color="primary"  style={
                                                     {
 
                                                         fontSize: "10px",

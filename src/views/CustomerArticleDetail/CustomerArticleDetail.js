@@ -68,6 +68,7 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import SignalWifiStatusbar4BarIcon from '@mui/icons-material/SignalWifiStatusbar4Bar';
 import DescriptionIcon from '@mui/icons-material/Description';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 
 var selectOptions = [
   { value: "Category1", label: "Category1" },
@@ -627,7 +628,7 @@ function CustomerArticleDetail() {
                 <Row style={{
                   marginTop: "40px",
                 }}>
-                  <Col xs={12} md={12}>
+                  <Col xs={12} md={6}>
 
                     <a classname="card" href="" onClick={onClickCard}>
                       <Card>
@@ -646,6 +647,12 @@ function CustomerArticleDetail() {
                             color: "green",
                             marginTop: "-10px",
                           }}>Computer Vision AI</CardTitle>
+                          <CardTitle style={{
+                            marginLeft: "",
+                            color: "red",
+                          }}>
+                            <AttachMoneyIcon></AttachMoneyIcon>
+                            5000</CardTitle>
                           <CardTitle style={{
                             marginLeft: "",
                             color: "black",

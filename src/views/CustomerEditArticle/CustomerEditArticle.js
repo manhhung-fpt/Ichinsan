@@ -48,7 +48,7 @@ var selectOptions = [
   { value: "Japanese", label: "Japanese" },
 ];
 
-function CustomerAddArticle() {
+function CustomerEditArticle() {
   const [singleSelect, setSingleSelect] = React.useState(null);
   const [singleSelect1, setSingleSelect1] = React.useState(null);
   const [singleFileName, setSingleFileName] = React.useState("");
@@ -90,7 +90,13 @@ function CustomerAddArticle() {
     history.push("/admin/admin-feedback-category");
   }
   const onClickBack = () => {
-    history.push("/admin/customer-arti-detail");
+    history.push("/admin/customer-progress-article");
+  }
+  const onClickDone = () => {
+    history.push("/admin/customer-progress-article");
+  }
+  const onClickCancel = () => {
+    history.push("/admin/customer-progress-article");
   }
   const handleSingleFileInput = (e) => {
     singleFileRef.current.click(e);
@@ -325,7 +331,7 @@ function CustomerAddArticle() {
 
                 </Col>
                 <Col md={1}>
-                  <Button color="primary" className="btn-info" style={
+                  <Button  onClick={onClickCancel} className="btn-info" color="primary" style={
                     {
 
                       fontSize: "10px",
@@ -336,7 +342,7 @@ function CustomerAddArticle() {
                   </Button>
                 </Col>
                 <Col md={6}>
-                  <Button color="primary" className="btn-right" style={
+                  <Button   onClick={onClickDone} className="btn-right" color="primary" style={
                     {
 
                       fontSize: "10px",
@@ -344,7 +350,7 @@ function CustomerAddArticle() {
                     }
                   }>
 
-                    publish
+                    Done
                   </Button>
                 </Col>
               </CardActions>
@@ -356,4 +362,4 @@ function CustomerAddArticle() {
   );
 }
 
-export default CustomerAddArticle;
+export default CustomerEditArticle;
