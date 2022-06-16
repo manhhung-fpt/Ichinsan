@@ -20,36 +20,81 @@ import {
 import nowLogo from "assets/img/now-logo.png";
 import { useEffect } from "react";
 import { auth } from "Firebase";
-import  {GoogleAuthProvider, signInWithPopup} from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import bgImage from "assets/img/bg14.jpg";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
+import jwt_decode from "jwt-decode";
+import SweetAlert from "react-bootstrap-sweetalert";
 
 
 
 
 function LoginPage() {
   let history = useHistory();
+  const [alert, setAlert] = React.useState(null);
+  const closeAlert = () => {
+    localStorage.clear();
+    setAlert(null) ;
+  }
+  const titleAndTextAlert = () => {
+    setAlert(
+      <SweetAlert
+        style={{ display: "block", marginTop: "-100px" }}
+        title="Alert"
+        onConfirm={closeAlert}
+        confirmBtnBsStyle="info"
+      >
+        This account is not in the system
+      </SweetAlert>
+    );
+  };
+  const getToken = (email) => {
+    var axios = require('axios');
+    var data = JSON.stringify({
+      "email": email
+    });
+
+    var config = {
+      method: 'post',
+      url: 'https://api-dotnet-test.herokuapp.com/api/account/login',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: data
+    };
+    axios(config)
+      .then(function (response) {
+        console.log(response.data === 'User is not existed');
+       if(response.data === 'User is not existed'){
+          titleAndTextAlert();
+          }else{
+          var token = response.data.token;
+          var decoded = jwt_decode(token);      
+          localStorage.setItem("role", decoded.role);
+          history.push("/admin/home")
+         }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
   const signInWithGooggle = () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
-    .then((result) =>{
-        console.log(result);
+      .then((result) => {
         const name = result.user.displayName;
         const email = result.user.email;
         const profilePic = result.user.photoURL;
-        const checkEmail = email.split('@');
-        const role = checkEmail[1] ===  "fpt.edu.vn" ? 'Admin' : 'Customer';
-        console.log(checkEmail[1]);
         localStorage.setItem("name", name);
         localStorage.setItem("email", email);
-        localStorage.setItem("role", role);
         localStorage.setItem("profilePic", profilePic);
-        history.push("/admin/home")
-    }).catch((error) =>{
+        getToken(email);
+      }).catch((error) => {
         console.log(error);
-    });
+      });
 
-};
+  };
   const [firstnameFocus, setfirstnameFocus] = React.useState(false);
   const [lastnameFocus, setlastnameFocus] = React.useState(false);
   React.useEffect(() => {
@@ -71,6 +116,7 @@ function LoginPage() {
                       <img src={nowLogo} alt="now-logo" />
                     </div>
                   </CardHeader>
+                  {alert}
                   <CardFooter>
                     <Button
                       block
