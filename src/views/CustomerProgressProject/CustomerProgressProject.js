@@ -22,6 +22,7 @@ import { Line } from "react-chartjs-2";
 import { VectorMap } from "react-jvectormap";
 import Switch from "react-bootstrap-switch";
 import axios from 'axios';
+import ProgressBar from 'react-bootstrap/ProgressBar';
 
 // reactstrap components
 import {
@@ -85,7 +86,7 @@ var selectOptions = [
     { value: "six", label: "Six" },
 ];
 function CustomerProgressProject() {
-    let history = useHistory();
+
     const [singleSelect, setSingleSelect] = React.useState(null);
     const [singleFileName, setSingleFileName] = React.useState("");
     const [singleFile, setSingleFile] = React.useState(null);
@@ -111,11 +112,11 @@ function CustomerProgressProject() {
         let fileNames = "";
         let files = e.target.files;
         for (let i = 0; i < e.target.files.length; i++) {
-          fileNames = fileNames + e.target.files[i].name;
+            fileNames = fileNames + e.target.files[i].name;
         }
         setSingleFile(files);
         setSingleFileName(fileNames);
-      };
+    };
     const createTableData = () => {
         var tableRows = [];
         for (var i = 0; i < table_data.length; i++) {
@@ -134,23 +135,50 @@ function CustomerProgressProject() {
         }
         return tableRows;
     };
+    let history = useHistory();
     const onClick = () => {
         history.push("/admin/admin-projec/admin-project-details")
     };
+    const onClickBack = () => {
+        history.push("/admin/customer-home")
+    };
+    const onClickView = () => {
+        history.push("/admin/customer-progress-article")
+    };
+    const onClickFeedback = () => {
+        history.push("/admin/customer-create=feedback")
+    };
+
     return (
         <>
             <PanelHeader
                 size="sm" />
+
             <div className="content">
+
                 <Row>
+
+
 
                     <Col lg={12} md={12} xs={12}>
                         <Card>
+                            <CardHeader>
+                                <Button onClick={onClickBack} style={
+                                    {
 
+                                        fontSize: "10px",
 
+                                    }
+                                }>
+                                    <span className="btn-label">
+                                        <i className="now-ui-icons arrows-1_minimal-left" />
+                                    </span>
+                                    Back
+                                </Button>
+                            </CardHeader>
 
                             <CardBody>
-                                <Button color="info" >+ Create project</Button>
+
                                 <CardTitle tag="h4" >Progress</CardTitle>
 
 
@@ -181,7 +209,6 @@ function CustomerProgressProject() {
                                         </NavLink>
                                     </NavItem>
 
-                                    <ExpandCircleDownIcon sx={{ fontSize: 40 }}></ExpandCircleDownIcon>
                                 </Nav>
 
 
@@ -384,6 +411,7 @@ function CustomerProgressProject() {
                                                         <th>Article Name</th>
                                                         <th>Applicants</th>
                                                         <th>Deadline</th>
+                                                        <th className="text-right">View</th>
                                                         <th className="text-right">Status</th>
 
                                                     </tr>
@@ -398,6 +426,20 @@ function CustomerProgressProject() {
                                                                 <td>{item.first_name}</td>
                                                                 <td>{item.last_name}</td>
                                                                 <td>{item.email}</td>
+                                                                <td className="text-right btns-mr-5">
+
+                                                                    <Button onClick={onClickView} style={
+                                                                        {
+
+                                                                            fontSize: "10px",
+
+                                                                        }
+                                                                    }>
+
+                                                                        View
+                                                                    </Button>
+
+                                                                </td>
                                                                 <td className="text-right">
                                                                     <Switch defaultValue={false} />
 
@@ -466,12 +508,22 @@ function CustomerProgressProject() {
                                                             <img alt="" src="https://ids.si.edu/ids/deliveryService?max_w=210&amp;id=AAA-AAA_takatosh_3270221" width="100%">
                                                             </img>
                                                         </div>
-                                                        <CardHeader>
-                                                            <CardTitle tag="h4">Progress</CardTitle>
-                                                        </CardHeader>
+                                                        <CardBody>
+
+                                                            <div className="progress-bar" role="progressbar" style={{ width: "25%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+
+                                                            </div>
+                                                            <CardHeader>
+                                                                <CardTitle tag="h4">Progress : Pending</CardTitle>
+                                                            </CardHeader>
+                                                            <ProgressBar>
+                                                                <ProgressBar variant="success" now={35} key={1} />
+                                                                <ProgressBar variant="danger" now={65} key={2} />
+                                                            </ProgressBar>
+                                                        </CardBody>
                                                         <ButtonToolbar>
                                                             <ButtonGroup>
-                                                                <Button className="btn-round" color="success" style={
+                                                                <Button onClick={onClickFeedback} className="btn-round" color="success" style={
                                                                     {
 
                                                                         fontSize: "10px",
@@ -501,9 +553,19 @@ function CustomerProgressProject() {
                                                             <img alt="" src="https://ids.si.edu/ids/deliveryService?max_w=210&amp;id=AAA-AAA_takatosh_3270221" width="100%">
                                                             </img>
                                                         </div>
-                                                        <CardHeader>
-                                                            <CardTitle tag="h4">Progress</CardTitle>
-                                                        </CardHeader>
+                                                        <CardBody>
+
+                                                            <div className="progress-bar" role="progressbar" style={{ width: "25%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+
+                                                            </div>
+                                                            <CardHeader>
+                                                                <CardTitle tag="h4">Progress : Pending</CardTitle>
+                                                            </CardHeader>
+                                                            <ProgressBar>
+                                                                <ProgressBar variant="success" now={35} key={1} />
+                                                                <ProgressBar variant="danger" now={65} key={2} />
+                                                            </ProgressBar>
+                                                        </CardBody>
                                                         <ButtonToolbar>
                                                             <ButtonGroup>
                                                                 <Button className="btn-round" color="success" style={
@@ -535,9 +597,19 @@ function CustomerProgressProject() {
                                                             <img alt="" src="https://ids.si.edu/ids/deliveryService?max_w=210&amp;id=AAA-AAA_takatosh_3270221" width="100%">
                                                             </img>
                                                         </div>
-                                                        <CardHeader>
-                                                            <CardTitle tag="h4">Progress</CardTitle>
-                                                        </CardHeader>
+                                                        <CardBody>
+
+                                                            <div className="progress-bar" role="progressbar" style={{ width: "25%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+
+                                                            </div>
+                                                            <CardHeader>
+                                                                <CardTitle tag="h4">Progress : Pending</CardTitle>
+                                                            </CardHeader>
+                                                            <ProgressBar>
+                                                                <ProgressBar variant="success" now={35} key={1} />
+                                                                <ProgressBar variant="danger" now={65} key={2} />
+                                                            </ProgressBar>
+                                                        </CardBody>
                                                         <ButtonToolbar>
                                                             <ButtonGroup>
                                                                 <Button className="btn-round" color="success" style={

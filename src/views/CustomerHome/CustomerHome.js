@@ -30,6 +30,7 @@ import 'swiper/modules/effect-fade/effect-fade.scss'; // Pagination module
 import { EffectFade } from "swiper";
 import { Keyboard, Scrollbar, Mousewheel } from "swiper";
 import "./CustomerHome.css"
+import ProgressBar from 'react-bootstrap/ProgressBar';
 
 // reactstrap components
 import {
@@ -67,9 +68,16 @@ import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 
 function CustomerHome() {
+
   const [hTabs, sethTabs] = React.useState("ht1");
+  let history = useHistory();
   const onClickView = () => {
 
+    history.push("/admin/customer-progress-project")
+  }
+  const onClick = () => {
+
+    history.push("/admin/customer-article")
   }
 
 
@@ -89,7 +97,7 @@ function CustomerHome() {
             pagination={{
               clickable: true,
             }}
-            modules={[EffectFade, Navigation, Pagination]}
+            modules={[EffectFade, Navigation]}
             className="mySwiper"
             style={
               {
@@ -280,7 +288,7 @@ function CustomerHome() {
           </SwiperSlide>
 
         </Swiper>
-        <Button color="info" >+ Create project</Button>
+
         <CardTitle tag="h4">Progress</CardTitle>
         <Row>
 
@@ -295,7 +303,7 @@ function CustomerHome() {
 
           </Col>
           <Col xs={12} md={1} size="sm">
-            <Button color="info" style={
+            <Button onClick={onClickView} color="info" style={
               {
 
                 fontSize: "10px",
@@ -327,70 +335,15 @@ function CustomerHome() {
               <CardBody>
 
                 <div className="progress-bar" role="progressbar" style={{ width: "25%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                  <img alt="" src="https://ids.si.edu/ids/deliveryService?max_w=210&amp;id=AAA-AAA_takatosh_3270221" width="100%">
-                  </img>
+
                 </div>
                 <CardHeader>
-                  <CardTitle tag="h4">Progress</CardTitle>
+                  <CardTitle tag="h4">Progress : Pending</CardTitle>
                 </CardHeader>
-                <ButtonToolbar>
-                  <ButtonGroup>
-                    <Button className="btn-round" color="success" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-                      Complete
-                    </Button>
-                    <Button className="btn-round" color="danger" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-                      Not complete
-                    </Button>
-                    <Button className="btn-round" color="danger" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-
-                    </Button>
-                    <Button className="btn-round" color="danger" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-
-                    </Button>
-                    <Button className="btn-round" color="danger" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-
-                    </Button>
-                    <Button className="btn-round" color="danger" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-
-                    </Button>
-                  </ButtonGroup>
-                </ButtonToolbar>
+                <ProgressBar>
+                  <ProgressBar variant="success" now={35} key={1} />
+                  <ProgressBar variant="danger" now={65} key={2} />
+                </ProgressBar>
               </CardBody>
             </Card>
           </Col>
@@ -406,70 +359,14 @@ function CustomerHome() {
               <CardBody>
 
                 <div className="progress-bar" role="progressbar" style={{ width: "25%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                  <img alt="" src="https://ids.si.edu/ids/deliveryService?max_w=210&amp;id=AAA-AAA_takatosh_3270221" width="100%">
-                  </img>
                 </div>
                 <CardHeader>
-                  <CardTitle tag="h4">Progress</CardTitle>
+                  <CardTitle tag="h4">Progress : Pending</CardTitle>
                 </CardHeader>
-                <ButtonToolbar>
-                  <ButtonGroup>
-                    <Button className="btn-round" color="success" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-                      Complete
-                    </Button>
-                    <Button className="btn-round" color="danger" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-                      Not complete
-                    </Button>
-                    <Button className="btn-round" color="danger" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-
-                    </Button>
-                    <Button className="btn-round" color="danger" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-
-                    </Button>
-                    <Button className="btn-round" color="danger" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-
-                    </Button>
-                    <Button className="btn-round" color="danger" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-
-                    </Button>
-                  </ButtonGroup>
-                </ButtonToolbar>
+                <ProgressBar>
+                  <ProgressBar variant="success" now={35} key={1} />
+                  <ProgressBar variant="danger" now={65} key={2} />
+                </ProgressBar>
               </CardBody>
             </Card>
           </Col>
@@ -485,76 +382,20 @@ function CustomerHome() {
               <CardBody>
 
                 <div className="progress-bar" role="progressbar" style={{ width: "25%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                  <img alt="" src="https://ids.si.edu/ids/deliveryService?max_w=210&amp;id=AAA-AAA_takatosh_3270221" width="100%">
-                  </img>
                 </div>
                 <CardHeader>
-                  <CardTitle tag="h4">Progress</CardTitle>
+                  <CardTitle tag="h4">Progress : Pending</CardTitle>
                 </CardHeader>
-                <ButtonToolbar>
-                  <ButtonGroup>
-                    <Button className="btn-round" color="success" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-                      Complete
-                    </Button>
-                    <Button className="btn-round" color="danger" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-                      Not complete
-                    </Button>
-                    <Button className="btn-round" color="danger" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-
-                    </Button>
-                    <Button className="btn-round" color="danger" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-
-                    </Button>
-                    <Button className="btn-round" color="danger" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-
-                    </Button>
-                    <Button className="btn-round" color="danger" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-
-                    </Button>
-                  </ButtonGroup>
-                </ButtonToolbar>
+                <ProgressBar>
+                  <ProgressBar variant="success" now={35} key={1} />
+                  <ProgressBar variant="danger" now={65} key={2} />
+                </ProgressBar>
               </CardBody>
             </Card>
           </Col>
         </Row>
 
-        <CardTitle tag="h4">Lastest Project</CardTitle>
+        <CardTitle tag="h4">Lastest Article</CardTitle>
         <Row>
 
           <Col xs={12} md={5} size="sm">
@@ -588,13 +429,18 @@ function CustomerHome() {
           <Col xs={12} md={6}>
 
             <Card>
+              <CardBody>
+                <div className="btns-mr-5">
+                  <Button>Cate1</Button>
+                </div>
+              </CardBody>
               <CardHeader>
-                <CardTitle tag="h4" >Project Name</CardTitle>
+                <CardTitle tag="h4" >Article Name</CardTitle>
               </CardHeader>
               <Row>
                 <Col xs={12} md={6}>
 
-                  <ButtonToolbar>
+                  {/* <ButtonToolbar>
                     <ButtonGroup>
                       <Button className="btn-round" color="success" style={
                         {
@@ -607,37 +453,35 @@ function CustomerHome() {
                       </Button>
 
                     </ButtonGroup>
-                  </ButtonToolbar>
+                  </ButtonToolbar> */}
                 </Col>
                 <Col xs={12} md={6}>
-                  <CardHeader>
-                    <CardTitle className="text-primary" >Date : 06/08/2022 12:00 AM</CardTitle>
-                  </CardHeader>
-                </Col>
-              </Row>
-              <Row>
-                <Col xs={12} md={12}>
-                  <CardHeader>
-                    <CardTitle >Category :</CardTitle>
-                  </CardHeader>
-                  <CardBody>
-                    <div className="btns-mr-5">
-                      <Button>Default</Button>
-                      <Button color="primary">Category 1</Button>
-                      <Button color="danger">Category 2</Button>
 
-                      <Button color="success">Category 3</Button>
-                      <Button color="warning">Category 4</Button>
-                      <Button color="info">+ More</Button>
-                    </div>
-                  </CardBody>
+                </Col>
+              </Row>
+              <CardHeader>
+                <CardTitle className="text-primary" >Date : 06/08/2022 12:00 AM</CardTitle>
+              </CardHeader>
+              <CardHeader>
+                <CardTitle className="text-primary" >Salary : $500</CardTitle>
+              </CardHeader>
+              <CardHeader>
+                <CardTitle >Language : From ... To ...</CardTitle>
+              </CardHeader>
+              <Row>
+                <Col xs={12} md={3}>
+
+                </Col>
+                <Col xs={12} md={1}>
+
+                </Col>
+                <Col xs={12} md={8}>
+
                 </Col>
               </Row>
               <Row>
                 <Col xs={12} md={12}>
-                  <CardHeader>
-                    <CardTitle >Translators : 03/10</CardTitle>
-                  </CardHeader>
+                  
                   <CardBody>
 
                   </CardBody>
@@ -674,17 +518,45 @@ function CustomerHome() {
                   </CardBody>
                 </Col>
               </Row>
+              <Row>
+                <Col xs={12} md={4}>
+                </Col>
+                <Col xs={12} md={4}>
+                  <Button onClick={onClick} color="info" style={
+                    {
+
+                      fontSize: "10px",
+
+                    }
+                  }>
+                    View
+                    <span className="btn-label">
+                      <i className="now-ui-icons arrows-1_minimal-right" />
+                    </span>
+
+                  </Button>
+                </Col>
+                <Col xs={12} md={4}>
+
+                </Col>
+
+              </Row>
             </Card>
           </Col>
           <Col xs={12} md={6}>
             <Card>
+            <CardBody>
+                    <div className="btns-mr-5">
+                      <Button color="success">Cate2</Button>
+                    </div>
+                  </CardBody>
               <CardHeader>
-                <CardTitle tag="h4" >Project Name</CardTitle>
+                <CardTitle tag="h4" >Article Name</CardTitle>
               </CardHeader>
               <Row>
                 <Col xs={12} md={6}>
 
-                  <ButtonToolbar>
+                  {/* <ButtonToolbar>
                     <ButtonGroup>
                       <Button className="btn-round" color="success" style={
                         {
@@ -697,37 +569,36 @@ function CustomerHome() {
                       </Button>
 
                     </ButtonGroup>
-                  </ButtonToolbar>
+                  </ButtonToolbar> */}
                 </Col>
                 <Col xs={12} md={6}>
-                  <CardHeader>
-                    <CardTitle className="text-primary" >Date : 06/08/2022 12:00 AM</CardTitle>
-                  </CardHeader>
-                </Col>
-              </Row>
-              <Row>
-                <Col xs={12} md={12}>
-                  <CardHeader>
-                    <CardTitle >Category :</CardTitle>
-                  </CardHeader>
-                  <CardBody>
-                    <div className="btns-mr-5">
-                      <Button>Default</Button>
-                      <Button color="primary">Category 1</Button>
-                      <Button color="danger">Category 2</Button>
 
-                      <Button color="success">Category 3</Button>
-                      <Button color="warning">Category 4</Button>
-                      <Button color="info">+ More</Button>
-                    </div>
-                  </CardBody>
+                </Col>
+
+              </Row>
+              <CardHeader>
+                <CardTitle className="text-primary" >Date : 06/08/2022 12:00 AM</CardTitle>
+              </CardHeader>
+              <CardHeader>
+                <CardTitle className="text-primary" >Salary : $500</CardTitle>
+              </CardHeader>
+              <CardHeader>
+                <CardTitle >Language : From ... To ...</CardTitle>
+              </CardHeader>
+              <Row>
+                <Col xs={12} md={3}>
+               
+                </Col>
+                <Col xs={12} md={1}>
+                  
+                </Col>
+                <Col xs={12} md={8}>
+
                 </Col>
               </Row>
               <Row>
                 <Col xs={12} md={12}>
-                  <CardHeader>
-                    <CardTitle >Translators : 03/10</CardTitle>
-                  </CardHeader>
+                 
                   <CardBody>
 
                   </CardBody>
@@ -763,6 +634,29 @@ function CustomerHome() {
                     </TabContent>
                   </CardBody>
                 </Col>
+              </Row>
+              <Row>
+                <Col xs={12} md={4}>
+                </Col>
+                <Col xs={12} md={4}>
+                  <Button onClick={onClick} color="info" style={
+                    {
+
+                      fontSize: "10px",
+
+                    }
+                  }>
+                    View
+                    <span className="btn-label">
+                      <i className="now-ui-icons arrows-1_minimal-right" />
+                    </span>
+
+                  </Button>
+                </Col>
+                <Col xs={12} md={4}>
+
+                </Col>
+
               </Row>
             </Card>
           </Col>

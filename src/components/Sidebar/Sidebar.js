@@ -89,13 +89,17 @@ function Sidebar(props) {
     return false;
   };
   // this function creates the links and collapses that appear in the sidebar (left menu)
+
   const createLinks = (routes) => {
-    return routes.filter(e => !e.hideInDetail).map((prop, key) => {
-      if (prop.collapse) {
+    
+    const currentRole = localStorage.getItem("role");
+    return routes.filter(e => (!e.hideInDetail && e.rolePermission === currentRole) || (e.mainScreen) ).map((prop, key) => {
+      console.log(prop.rolePermission === currentRole);
+      if (prop.collapse && prop.rolePermission === currentRole) {
         var st = {};
         st[prop["state"]] = !collapseStates[prop.state];
         return (
-          <li
+          <li 
             className={getCollapseInitialState(prop.views) ? "active" : ""}
             key={key}
           >
@@ -152,7 +156,7 @@ function Sidebar(props) {
     });
   };
   // verifies if routeName is the one active (in browser input)
-  const activeRoute = (routeName) => {
+  const activeRoute = (routeName, prop) => {
     return window.location.href.indexOf(routeName) > -1 ? "active" : "";
   };
   return (
@@ -226,6 +230,18 @@ function Sidebar(props) {
             </div>
           </div>
           <Nav>{createLinks(props.routes)}</Nav>
+          <div style={{position: 'absolute', bottom: '0'}}>
+          <li className="active" key={6}>
+          <NavLink to="" activeClassName="">
+            
+              <>
+                <span className="sidebar-mini-icon">abc</span>
+                <span className="sidebar-normal">def</span>
+              </>
+         
+          </NavLink>
+        </li>
+          </div>
         </div>
       </div>
     </>

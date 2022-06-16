@@ -17,6 +17,8 @@
 import React from "react";
 import Switch from "react-bootstrap-switch";
 import Datetime from "react-datetime";
+import StarRateIcon from '@mui/icons-material/StarRate';
+import StarOutlineIcon from '@mui/icons-material/StarOutline';
 // reactstrap components
 import {
   Table,
@@ -48,7 +50,7 @@ var selectOptions = [
   { value: "Category5", label: "Category5" },
   { value: "Category6", label: "Category6" },
 ];
-function CustomerCreate() {
+function CustomerCreateFeedback() {
   const [singleSelect, setSingleSelect] = React.useState(null);
   const [singleFileName, setSingleFileName] = React.useState("");
   const [singleFile, setSingleFile] = React.useState(null);
@@ -77,7 +79,7 @@ function CustomerCreate() {
     history.push("/admin/admin-feedback-category");
   }
   const onClickBack = () => {
-    history.push("/admin/customer-home")
+    history.push("/admin/customer-progress-project")
   }
 
   return (
@@ -106,7 +108,7 @@ function CustomerCreate() {
 
                 <Row>
                   <Col xs={12} md={2} size="sm"  >
-                    Projetc Name
+                    Tittle
                   </Col>
                   <Col xs={12} md={5} size="sm"  >
                     <FormGroup>
@@ -147,27 +149,22 @@ function CustomerCreate() {
                 </Row>
               </CardBody>
               <CardBody>
-
                 <Row>
                   <Col xs={12} md={2} size="sm"  >
-                    Summary
+                    Rating
                   </Col>
                   <Col xs={12} md={5} size="sm"  >
-                    <FormGroup>
-                      <Input
-                        cols="80"
-                        defaultValue="Lamborghini Mercy, Your chick she so thirsty, I'm in
-            that two seat Lambo."
-                        placeholder="Here can be your description"
-                        rows="4"
-                        type="textarea"
-                        onChange={e => setCount(e.target.value.length)}
-                      />
-                    </FormGroup>
-                    {count}/500
+                    <StarRateIcon></StarRateIcon>
+                    <StarRateIcon></StarRateIcon>
+                    <StarRateIcon></StarRateIcon>
+                    <StarRateIcon></StarRateIcon>
+                    <StarOutlineIcon></StarOutlineIcon>
                   </Col>
-                  <Col xs={12} md={5} size="sm"  ></Col>
+                  <Col xs={12} md={5} size="sm"  >
+
+                  </Col>
                 </Row>
+
 
               </CardBody>
               <CardBody>
@@ -218,7 +215,7 @@ function CustomerCreate() {
                     }
                   }>
 
-                    Done
+                    Create
                   </Button>
                 </Col>
               </CardActions>
@@ -230,4 +227,4 @@ function CustomerCreate() {
   );
 }
 
-export default CustomerCreate;
+export default CustomerCreateFeedback;

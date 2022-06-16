@@ -56,6 +56,10 @@ import AdminFeedBackCategory from "views/AdminFeedBackCategory/AdminFeedBackCate
 import CustomerHome from './views/CustomerHome/CustomerHome';
 import CustomerProgressProject from './views/CustomerProgressProject/CustomerProgressProject';
 import CustomerCreate from './views/CustomerCreate/CustomerCreate';
+import CustomeArticle from './views/CustomeArticle/CustomeArticle';
+import CustomerAddArticle from './views/CustomerAddArticle/CustomerAddArticle';
+import CustomerProgressArticle from './views/CustomerProgressArticle/CustomerProgressArticle';
+import CustomerCreateFeedback from './views/CustomerCreateFeedback/CustomerCreateFeedback';
 
 let routes = [
   {
@@ -64,6 +68,7 @@ let routes = [
     icon: "now-ui-icons shopping_shop",
     component: Home,
     layout: "/admin",
+    mainScreen: true,
   },
   {
     path: "/dashboard",
@@ -71,6 +76,7 @@ let routes = [
     icon: "now-ui-icons design_app",
     component: Dashboard,
     layout: "/admin",
+    mainScreen: true,
   },
 
   {
@@ -79,6 +85,7 @@ let routes = [
     icon: "now-ui-icons business_badge",
     component: AdminAccount,
     layout: "/admin",
+    rolePermission: "Admin"
   },
   {
     path: "/admin-project",
@@ -86,6 +93,7 @@ let routes = [
     icon: "now-ui-icons business_badge",
     component: AdminProject,
     layout: "/admin",
+    rolePermission: "Admin"
   },
   {
     path: "/admin-projec/admin-project-details",
@@ -126,21 +134,22 @@ let routes = [
     icon: "now-ui-icons business_badge",
     component: AdminCategoryHome,
     layout: "/admin",
+    rolePermission: "Admin"
   },
   {
     path: "/customer-home",
     name: "Customer Home",
     icon: "now-ui-icons business_badge",
     component: CustomerHome,
-
     layout: "/admin",
+    rolePermission: "Customer"
   },
   {
     path: "/customer-progress-project",
     name: "Customer Progress Project",
     icon: "now-ui-icons business_badge",
     component: CustomerProgressProject,
-
+    hideInDetail: true,
     layout: "/admin",
   },
   {
@@ -148,7 +157,39 @@ let routes = [
     name: "Customer Create Project",
     icon: "now-ui-icons business_badge",
     component: CustomerCreate,
-
+    hideInDetail: true,
+    layout: "/admin",
+  },
+  {
+    path: "/customer-article",
+    name: "Customer Article",
+    icon: "now-ui-icons business_badge",
+    component: CustomeArticle,
+    hideInDetail: true,
+    layout: "/admin",
+  },
+  {
+    path: "/customer-add-article",
+    name: "Customer Add Article",
+    icon: "now-ui-icons business_badge",
+    component: CustomerAddArticle,
+    hideInDetail: true,
+    layout: "/admin",
+  },
+  {
+    path: "/customer-progress-article",
+    name: "Customer Progress Article",
+    icon: "now-ui-icons business_badge",
+    component: CustomerProgressArticle,
+    rolePermission: "Customer",
+    layout: "/admin",
+  },
+  {
+    path: "/customer-create=feedback",
+    name: "Customer Create Feedback",
+    icon: "now-ui-icons business_badge",
+    component: CustomerCreateFeedback,
+    hideInDetail: true,
     layout: "/admin",
   },
   {

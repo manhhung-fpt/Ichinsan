@@ -16,7 +16,7 @@
 */
 import React from "react";
 import Switch from "react-bootstrap-switch";
-import  axios  from 'axios';
+import axios from 'axios';
 
 // reactstrap components
 import {
@@ -33,6 +33,9 @@ import {
   Row,
   Col,
   Button,
+  Pagination,
+  PaginationItem,
+  PaginationLink,
 } from "reactstrap";
 import { useHistory } from "react-router-dom";
 
@@ -58,17 +61,17 @@ function AdminProject() {
   const [multipleSelect, setMultipleSelect] = React.useState(null);
   // fake API Data
   const [fakeData, setFakeData] = React.useState([]);
-  
+
   React.useEffect(() => {
     axios
-    .get('https://reqres.in/api/users')
-    .then(res => {
-      setFakeData(res.data.data);
-    })
-    .catch(err => {console.log(err)}) 
+      .get('https://reqres.in/api/users')
+      .then(res => {
+        setFakeData(res.data.data);
+      })
+      .catch(err => { console.log(err) })
   }, [])
   console.log(fakeData);
-  
+
 
   const onClick = () => {
     history.push("/admin/admin-projec/admin-project-details")
@@ -104,15 +107,7 @@ function AdminProject() {
 
                   </Col>
                   <Col xs={12} md={3} size="sm">
-                    <Select
-                      className="react-select primary"
-                      classNamePrefix="react-select"
-                      placeholder="Result of Page"
-                      name="singleSelect"
-                      value={singleSelect}
-                      options={selectOptions}
-                      onChange={(value) => setSingleSelect(value)}
-                    />
+
                   </Col>
                 </Row>
               </CardHeader>
@@ -129,42 +124,73 @@ function AdminProject() {
                     </tr>
                   </thead>
                   <tbody>
-                    
+
 
                     {
                       fakeData.map((item, index) => {
-                        return(<tr>
-                          <td className="text-center">{index+1}</td>
+                        return (<tr>
+                          <td className="text-center">{index + 1}</td>
                           <td>{item.first_name}</td>
                           <td>{item.last_name}</td>
                           <td>{item.email}</td>
                           <td className="text-right">
                             <Switch defaultValue={false} />
-    
-    
+
+
                           </td>
                           <td className="text-right btns-mr-5">
-    
+
                             <Button onClick={onClick} color="primary" className="btn-round" style={
-              {
-               
-                fontSize: "10px",
-               
-              }
-            }>
+                              {
+
+                                fontSize: "10px",
+
+                              }
+                            }>
                               <i className="now-ui-icons users_single-02" /> View
                             </Button>
-    
+
                           </td>
                         </tr>);
                       })
                     }
-                    
+
 
                   </tbody>
                 </Table>
               </CardBody>
             </Card>
+            <Pagination>
+              <PaginationItem>
+                <PaginationLink href="#">
+                  <span aria-hidden="true">
+                    <i
+                      className="fa fa-angle-double-left"
+                      aria-hidden="true"
+                    />
+                  </span>
+                </PaginationLink>
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationLink href="#">1</PaginationLink>
+              </PaginationItem>
+              <PaginationItem active>
+                <PaginationLink href="#">2</PaginationLink>
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationLink href="#">3</PaginationLink>
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationLink href="#">
+                  <span aria-hidden="true">
+                    <i
+                      className="fa fa-angle-double-right"
+                      aria-hidden="true"
+                    />
+                  </span>
+                </PaginationLink>
+              </PaginationItem>
+            </Pagination>
           </Col>
         </Row>
       </div>
