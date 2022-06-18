@@ -15,17 +15,11 @@
 
 */
 import React from "react";
-import Switch from "react-bootstrap-switch";
-import Datetime from "react-datetime";
 import axios from 'axios';
+import ReactCountryFlag from "react-country-flag"
 // reactstrap components
 import {
   Table,
-  UncontrolledTooltip,
-  ButtonGroup,
-  FormGroup,
-  Label,
-  Input,
   Card,
   CardHeader,
   CardBody,
@@ -33,10 +27,8 @@ import {
   Row,
   Col,
   Button,
-  Form,
   TabContent,
   TabPane,
-  ButtonToolbar,
   Nav,
   NavItem,
   NavLink,
@@ -49,21 +41,11 @@ import Select from "react-select";
 // core components
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
 import { useHistory } from "react-router-dom";
-import CardActions from '@mui/material/CardActions';
-import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import Avatar from '@mui/material/Avatar';
-import IconButton, { IconButtonProps } from '@mui/material/IconButton';
-import { red } from '@mui/material/colors';
-import icons from '../../variables/icons';
-import { useState } from "react";
-import TranslateIcon from '@mui/icons-material/Translate';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 
 import CategoryIcon from '@mui/icons-material/Category';
 import GTranslateIcon from '@mui/icons-material/GTranslate';
-import SpellcheckIcon from '@mui/icons-material/Spellcheck';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import SignalWifiStatusbar4BarIcon from '@mui/icons-material/SignalWifiStatusbar4Bar';
 import DescriptionIcon from '@mui/icons-material/Description';
@@ -286,9 +268,25 @@ function CustomerArticleDetail() {
                                 <td>{item.last_name}</td>
                                 <td>$5000</td>
                                 <td>
-                                  <TranslateIcon></TranslateIcon>
+                                <ReactCountryFlag
+                                    countryCode="US"
+                                    svg
+                                    style={{
+                                      width: '2em',
+                                      height: '2em',
+                                    }}
+                                    title="US"
+                                  />
                                   <ArrowRightAltIcon></ArrowRightAltIcon>
-                                  <TranslateIcon></TranslateIcon>
+                                  <ReactCountryFlag
+                                    countryCode="VN"
+                                    svg
+                                    style={{
+                                      width: '2em',
+                                      height: '2em',
+                                    }}
+                                    title="US"
+                                  />
 
                                 </td>
                                 <td className="text-right btns-mr-5">
@@ -374,9 +372,25 @@ function CustomerArticleDetail() {
                                 <td>Computer Science</td>
                                 <td>$5000</td>
                                 <td>
-                                  <TranslateIcon></TranslateIcon>
+                                  <ReactCountryFlag
+                                    countryCode="US"
+                                    svg
+                                    style={{
+                                      width: '2em',
+                                      height: '2em',
+                                    }}
+                                    title="US"
+                                  />
                                   <ArrowRightAltIcon></ArrowRightAltIcon>
-                                  <TranslateIcon></TranslateIcon>
+                                  <ReactCountryFlag
+                                    countryCode="VN"
+                                    svg
+                                    style={{
+                                      width: '2em',
+                                      height: '2em',
+                                    }}
+                                    title="US"
+                                  />
 
                                 </td>
                                 <td className="text-right btns-mr-5">
@@ -462,9 +476,25 @@ function CustomerArticleDetail() {
                                 <td>Computer Vision</td>
                                 <td>$1000</td>
                                 <td>
-                                  <TranslateIcon></TranslateIcon>
+                                <ReactCountryFlag
+                                    countryCode="US"
+                                    svg
+                                    style={{
+                                      width: '2em',
+                                      height: '2em',
+                                    }}
+                                    title="US"
+                                  />
                                   <ArrowRightAltIcon></ArrowRightAltIcon>
-                                  <TranslateIcon></TranslateIcon>
+                                  <ReactCountryFlag
+                                    countryCode="VN"
+                                    svg
+                                    style={{
+                                      width: '2em',
+                                      height: '2em',
+                                    }}
+                                    title="US"
+                                  />
 
                                 </td>
                                 <td className="text-right btns-mr-5">
@@ -550,9 +580,25 @@ function CustomerArticleDetail() {
                                 <td>Healthy Vegetable</td>
                                 <td>$50</td>
                                 <td>
-                                  <TranslateIcon></TranslateIcon>
+                                <ReactCountryFlag
+                                    countryCode="US"
+                                    svg
+                                    style={{
+                                      width: '2em',
+                                      height: '2em',
+                                    }}
+                                    title="US"
+                                  />
                                   <ArrowRightAltIcon></ArrowRightAltIcon>
-                                  <TranslateIcon></TranslateIcon>
+                                  <ReactCountryFlag
+                                    countryCode="VN"
+                                    svg
+                                    style={{
+                                      width: '2em',
+                                      height: '2em',
+                                    }}
+                                    title="US"
+                                  />
 
                                 </td>
                                 <td className="text-right btns-mr-5">

@@ -1,42 +1,18 @@
-/*!
 
-=========================================================
-* Now UI Dashboard PRO React - v1.5.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/now-ui-dashboard-pro-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
-import Switch from "react-bootstrap-switch";
-import Datetime from "react-datetime";
 import axios from 'axios';
 // reactstrap components
 import {
-  Table,
-  UncontrolledTooltip,
-  ButtonGroup,
-  FormGroup,
-  Label,
-  Input,
+  
   Card,
   CardHeader,
-  CardBody,
+
   CardTitle,
   Row,
   Col,
-  Button,
-  Form,
+
   TabContent,
   TabPane,
-  ButtonToolbar,
   Nav,
   NavItem,
   NavLink,
@@ -49,15 +25,6 @@ import Select from "react-select";
 // core components
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
 import { useHistory } from "react-router-dom";
-import CardActions from '@mui/material/CardActions';
-import Typography from '@mui/material/Typography';
-import CardContent from '@mui/material/CardContent';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import Avatar from '@mui/material/Avatar';
-import IconButton, { IconButtonProps } from '@mui/material/IconButton';
-import { red } from '@mui/material/colors';
-import icons from '../../variables/icons';
-import { useState } from "react";
 import TranslateIcon from '@mui/icons-material/Translate';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 
@@ -68,15 +35,8 @@ import 'swiper/modules/scrollbar/scrollbar.scss'; // Scrollbar module
 import 'swiper/modules/navigation/navigation.scss'; // Navigation module
 import 'swiper/modules/pagination/pagination.scss'; // Pagination module
 import 'swiper/modules/effect-fade/effect-fade.scss'; // Pagination module
-import { EffectFade } from "swiper";
 
 import CategoryIcon from '@mui/icons-material/Category';
-import GTranslateIcon from '@mui/icons-material/GTranslate';
-import SpellcheckIcon from '@mui/icons-material/Spellcheck';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import SignalWifiStatusbar4BarIcon from '@mui/icons-material/SignalWifiStatusbar4Bar';
-import DescriptionIcon from '@mui/icons-material/Description';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 
 var selectOptions = [

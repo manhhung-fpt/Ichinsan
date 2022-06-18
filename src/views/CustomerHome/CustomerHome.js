@@ -1,20 +1,4 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/*!
 
-=========================================================
-* Now UI Dashboard PRO React - v1.5.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/now-ui-dashboard-pro-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 
 
@@ -38,12 +22,6 @@ import SpellcheckIcon from '@mui/icons-material/Spellcheck';
 
 // reactstrap components
 import {
-  Table,
-  UncontrolledTooltip,
-  ButtonGroup,
-  FormGroup,
-  Label,
-  Input,
   Card,
   Pagination,
   PaginationItem,
@@ -51,13 +29,9 @@ import {
   TabContent,
   TabPane,
   CardHeader,
-  CardBody,
   CardTitle,
   Row,
   Col,
-  Button,
-  ButtonToolbar,
-  Form,
   Nav,
   NavItem,
   NavLink,
@@ -66,18 +40,10 @@ import {
 } from "reactstrap";
 import { useHistory } from "react-router-dom";
 
-import Typography from '@mui/material/Typography';
-import Breadcrumbs from '@mui/material/Breadcrumbs';
-import Link from '@mui/material/Link';
 import Select from "react-select";
-import Slider from "react-slick";
 
 // core components
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
-import SwiperFirst from './SwiperFirst';
-import ImageUpload from './../../components/CustomUpload/ImageUpload';
-import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
 import './Card.css';
 
 var rolesOptions = [

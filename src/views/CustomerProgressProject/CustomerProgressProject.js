@@ -56,37 +56,18 @@ import {
     dashboardActiveCountriesCard,
 } from "variables/charts.js";
 import Select from "react-select";
-import jacket from "assets/img/saint-laurent.jpg";
-import shirt from "assets/img/balmain.jpg";
-import swim from "assets/img/prada.jpg";
-import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown';
-import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
-
-import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
-import Collapse from '@mui/material/Collapse';
-import Avatar from '@mui/material/Avatar';
-import IconButton, { IconButtonProps } from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import SignalWifiStatusbar4BarIcon from '@mui/icons-material/SignalWifiStatusbar4Bar';
 import DescriptionIcon from '@mui/icons-material/Description';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CategoryIcon from '@mui/icons-material/Category';
 import GTranslateIcon from '@mui/icons-material/GTranslate';
-import TranslateIcon from '@mui/icons-material/Translate';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
-import DownloadIcon from '@mui/icons-material/Download';
-import CropOriginalIcon from '@mui/icons-material/CropOriginal';
 import SpellcheckIcon from '@mui/icons-material/Spellcheck';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import ReactCountryFlag from "react-country-flag"
 
 
 import { table_data } from "variables/general.js";
@@ -312,9 +293,25 @@ function CustomerProgressProject() {
                                                             marginLeft: "",
                                                             color: "black",
                                                         }}>
-                                                            <TranslateIcon></TranslateIcon>
+                                                            <ReactCountryFlag
+                                                                countryCode="US"
+                                                                svg
+                                                                style={{
+                                                                    width: '2em',
+                                                                    height: '2em',
+                                                                }}
+                                                                title="US"
+                                                            />
                                                             <ArrowRightAltIcon></ArrowRightAltIcon>
-                                                            <TranslateIcon></TranslateIcon>
+                                                            <ReactCountryFlag
+                                                                countryCode="VN"
+                                                                svg
+                                                                style={{
+                                                                    width: '2em',
+                                                                    height: '2em',
+                                                                }}
+                                                                title="US"
+                                                            />
                                                         </CardTitle>
 
 
@@ -362,7 +359,7 @@ function CustomerProgressProject() {
 
                                             </Col>
                                             <Col md={1}>
-                                                <Button onClick={onClickEdit}  className="btn-info" color="primary" style={
+                                                <Button onClick={onClickEdit} className="btn-info" color="primary" style={
                                                     {
 
                                                         fontSize: "10px",
@@ -373,18 +370,18 @@ function CustomerProgressProject() {
                                                 </Button>
                                             </Col>
                                             <Col md={2}>
-                                            <Button onClick={onClickAdd} className="btn-info" color="default" style={
-                                                            {
+                                                <Button onClick={onClickAdd} className="btn-info" color="default" style={
+                                                    {
 
-                                                                fontSize: "10px",
+                                                        fontSize: "10px",
 
-                                                            }
-                                                        }>
-                                                            Add an Article
-                                                        </Button>
+                                                    }
+                                                }>
+                                                    Add an Article
+                                                </Button>
                                             </Col>
                                             <Col md={1}>
-                                                <Button onClick={onClickPostpose} className="btn-danger" color="primary"  style={
+                                                <Button onClick={onClickPostpose} className="btn-danger" color="primary" style={
                                                     {
 
                                                         fontSize: "10px",
