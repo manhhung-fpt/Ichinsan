@@ -20,11 +20,6 @@ import Switch from "react-bootstrap-switch";
 // reactstrap components
 import {
   Table,
-  UncontrolledTooltip,
-  ButtonGroup,
-  FormGroup,
-  Label,
-  Input,
   Card,
   CardHeader,
   CardBody,

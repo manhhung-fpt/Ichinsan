@@ -1,40 +1,17 @@
-/*!
 
-=========================================================
-* Now UI Dashboard PRO React - v1.5.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/now-ui-dashboard-pro-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
-import Switch from "react-bootstrap-switch";
-import Datetime from "react-datetime";
 import StarRateIcon from '@mui/icons-material/StarRate';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
 // reactstrap components
 import {
-  Table,
-  UncontrolledTooltip,
-  ButtonGroup,
   FormGroup,
-  Label,
   Input,
   Card,
   CardHeader,
   CardBody,
-  CardTitle,
   Row,
   Col,
   Button,
-  Form,
 } from "reactstrap";
 
 import Select from "react-select";

@@ -52,18 +52,7 @@ import {
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
 import { useHistory } from "react-router-dom";
 
-import {
-    dashboardPanelChart,
-    dashboardActiveUsersChart,
-    dashboardSummerChart,
-    dashboardActiveCountriesCard,
-} from "variables/charts.js";
 import Select from "react-select";
-import jacket from "assets/img/saint-laurent.jpg";
-import shirt from "assets/img/balmain.jpg";
-import swim from "assets/img/prada.jpg";
-import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown';
-import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import SignalWifiStatusbar4BarIcon from '@mui/icons-material/SignalWifiStatusbar4Bar';
@@ -75,19 +64,12 @@ import TranslateIcon from '@mui/icons-material/Translate';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import DownloadIcon from '@mui/icons-material/Download';
 import CropOriginalIcon from '@mui/icons-material/CropOriginal';
+import ReactCountryFlag from "react-country-flag"
 
-import CardMedia from '@mui/material/CardMedia';
+
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
-import Collapse from '@mui/material/Collapse';
-import Avatar from '@mui/material/Avatar';
-import IconButton, { IconButtonProps } from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+
 
 import { table_data } from "variables/general.js";
 var selectOptions = [
@@ -293,9 +275,26 @@ function CustomerProgressArticle() {
                                             marginLeft: "",
                                             color: "black",
                                         }}>
-                                            <TranslateIcon></TranslateIcon>
+                                            <ReactCountryFlag
+                                                countryCode="US"
+                                                svg
+                                                style={{
+                                                    width: '2em',
+                                                    height: '2em',
+                                                }}
+                                                title="US"
+                                            />
                                             <ArrowRightAltIcon></ArrowRightAltIcon>
-                                            <TranslateIcon></TranslateIcon>
+                                            <ReactCountryFlag
+                                                countryCode="VN"
+                                                svg
+                                                style={{
+                                                    width: '2em',
+                                                    height: '2em',
+                                                }}
+                                                title="US"
+                                            />
+
                                         </CardTitle>
                                         <CardTitle style={{
                                             marginLeft: "",
@@ -681,9 +680,25 @@ function CustomerProgressArticle() {
                                             marginLeft: "",
                                             color: "black",
                                         }}>
-                                            <TranslateIcon></TranslateIcon>
+                                            <ReactCountryFlag
+                                                countryCode="US"
+                                                svg
+                                                style={{
+                                                    width: '2em',
+                                                    height: '2em',
+                                                }}
+                                                title="US"
+                                            />
                                             <ArrowRightAltIcon></ArrowRightAltIcon>
-                                            <TranslateIcon></TranslateIcon>
+                                            <ReactCountryFlag
+                                                countryCode="VN"
+                                                svg
+                                                style={{
+                                                    width: '2em',
+                                                    height: '2em',
+                                                }}
+                                                title="US"
+                                            />
                                         </CardTitle>
 
 
@@ -724,7 +739,7 @@ function CustomerProgressArticle() {
 
                             </Col>
                             <Col md={1}>
-                                <Button   onClick={onClickEdit} className="btn-info" color="primary"  style={
+                                <Button onClick={onClickEdit} className="btn-info" color="primary" style={
                                     {
 
                                         fontSize: "10px",
@@ -735,7 +750,7 @@ function CustomerProgressArticle() {
                                 </Button>
                             </Col>
                             <Col md={6}>
-                                <Button  onClick={onClickDelete} className="btn-right" color="primary" style={
+                                <Button onClick={onClickDelete} className="btn-right" color="primary" style={
                                     {
 
                                         fontSize: "10px",

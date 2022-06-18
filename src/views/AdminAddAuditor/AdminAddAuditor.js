@@ -15,13 +15,9 @@
 
 */
 import React from "react";
-import Switch from "react-bootstrap-switch";
-import Datetime from "react-datetime";
 // reactstrap components
 import {
   Table,
-  UncontrolledTooltip,
-  ButtonGroup,
   FormGroup,
   Label,
   Input,
