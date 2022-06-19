@@ -75,7 +75,7 @@ import SignalWifiStatusbar4BarIcon from '@mui/icons-material/SignalWifiStatusbar
 import TranslateIcon from '@mui/icons-material/Translate';
 import DownloadIcon from '@mui/icons-material/Download';
 import CropOriginalIcon from '@mui/icons-material/CropOriginal';
-
+import StarRateIcon from '@mui/icons-material/StarRate';
 
 
 import { table_data } from "variables/general.js";
@@ -562,7 +562,6 @@ function TranslatorProgressArticle() {
                                             marginTop: "40px",
                                         }}>
                                             <Col xs={12} md={3}>
-
                                                 <Card>
 
                                                     <CardHeader>
@@ -572,6 +571,16 @@ function TranslatorProgressArticle() {
                                                         }}>
                                                             <CategoryIcon></CategoryIcon>
                                                             Computer Science</CardTitle>
+                                                        <CardTitle style={{
+                                                            marginLeft: "",
+                                                            color: "#ec00f9",
+                                                        }}>
+                                                            <StarRateIcon></StarRateIcon>
+                                                            <StarRateIcon></StarRateIcon>
+                                                            <StarRateIcon></StarRateIcon>
+                                                            <StarRateIcon></StarRateIcon>
+                                                            <StarRateIcon></StarRateIcon>
+                                                        </CardTitle>
                                                     </CardHeader>
 
                                                     <CardHeader>
@@ -581,35 +590,62 @@ function TranslatorProgressArticle() {
                                                         }}>Computer Vision AI</CardTitle>
                                                         <CardTitle style={{
                                                             marginLeft: "",
-                                                            color: "red",
+                                                            color: "black",
                                                         }}>
-                                                            <AttachMoneyIcon></AttachMoneyIcon>
-                                                            5000</CardTitle>
+                                                            <AccountCircleIcon></AccountCircleIcon>
+                                                            Tran Manh Hung</CardTitle>
                                                         <CardTitle style={{
                                                             marginLeft: "",
                                                             color: "black",
                                                         }}>
-                                                            <GTranslateIcon></GTranslateIcon>
-                                                            Translator : 2/10</CardTitle>
+                                                            <ReactCountryFlag
+                                                                countryCode="US"
+                                                                svg
+                                                                style={{
+                                                                    width: '2em',
+                                                                    height: '2em',
+                                                                }}
+                                                                title="US"
+                                                            />
+                                                            <ArrowRightAltIcon></ArrowRightAltIcon>
+                                                            <ReactCountryFlag
+                                                                countryCode="VN"
+                                                                svg
+                                                                style={{
+                                                                    width: '2em',
+                                                                    height: '2em',
+                                                                }}
+                                                                title="US"
+                                                            />
+                                                        </CardTitle>
+
 
                                                         <CardTitle style={{
                                                             marginLeft: "",
                                                             color: "black",
                                                         }}>
-                                                            <SpellcheckIcon></SpellcheckIcon>
-                                                            Auditor : 2/10</CardTitle>
-                                                        <Button onClick={onClickFeedback} className="btn-info" color="default" style={
-                                                            {
+                                                            <CalendarMonthIcon></CalendarMonthIcon>
+                                                            06/08/2022 12:00 AM</CardTitle>
 
-                                                                fontSize: "10px",
+                                                        <CardTitle style={{
+                                                            marginLeft: "",
+                                                            color: "black",
+                                                        }}>
+                                                            <DescriptionIcon></DescriptionIcon>
+                                                            Description :
 
-                                                            }
-                                                        }>
-                                                            Add Feedback
-                                                        </Button>
+
+                                                            <CardContent>
+                                                                <div className="card-description">
+                                                                    <p>This impressive paella is a perfect party dish and
+                                                                        a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.</p>
+                                                                </div>
+
+                                                            </CardContent>
+
+
+                                                        </CardTitle>
                                                     </CardHeader>
-
-
 
                                                 </Card>
 
@@ -625,6 +661,16 @@ function TranslatorProgressArticle() {
                                                         }}>
                                                             <CategoryIcon></CategoryIcon>
                                                             Computer Science</CardTitle>
+                                                        <CardTitle style={{
+                                                            marginLeft: "",
+                                                            color: "#ec00f9",
+                                                        }}>
+                                                            <StarRateIcon></StarRateIcon>
+                                                            <StarRateIcon></StarRateIcon>
+                                                            <StarRateIcon></StarRateIcon>
+                                                            <StarRateIcon></StarRateIcon>
+                                                            <StarRateIcon></StarRateIcon>
+                                                        </CardTitle>
                                                     </CardHeader>
 
                                                     <CardHeader>
@@ -634,35 +680,62 @@ function TranslatorProgressArticle() {
                                                         }}>Computer Vision AI</CardTitle>
                                                         <CardTitle style={{
                                                             marginLeft: "",
-                                                            color: "red",
+                                                            color: "black",
                                                         }}>
-                                                            <AttachMoneyIcon></AttachMoneyIcon>
-                                                            5000</CardTitle>
+                                                            <AccountCircleIcon></AccountCircleIcon>
+                                                            Tran Manh Hung</CardTitle>
                                                         <CardTitle style={{
                                                             marginLeft: "",
                                                             color: "black",
                                                         }}>
-                                                            <GTranslateIcon></GTranslateIcon>
-                                                            Translator : 2/10</CardTitle>
+                                                            <ReactCountryFlag
+                                                                countryCode="US"
+                                                                svg
+                                                                style={{
+                                                                    width: '2em',
+                                                                    height: '2em',
+                                                                }}
+                                                                title="US"
+                                                            />
+                                                            <ArrowRightAltIcon></ArrowRightAltIcon>
+                                                            <ReactCountryFlag
+                                                                countryCode="VN"
+                                                                svg
+                                                                style={{
+                                                                    width: '2em',
+                                                                    height: '2em',
+                                                                }}
+                                                                title="US"
+                                                            />
+                                                        </CardTitle>
+
 
                                                         <CardTitle style={{
                                                             marginLeft: "",
                                                             color: "black",
                                                         }}>
-                                                            <SpellcheckIcon></SpellcheckIcon>
-                                                            Auditor : 2/10</CardTitle>
-                                                        <Button onClick={onClickFeedback} className="btn-info" color="default" style={
-                                                            {
+                                                            <CalendarMonthIcon></CalendarMonthIcon>
+                                                            06/08/2022 12:00 AM</CardTitle>
 
-                                                                fontSize: "10px",
+                                                        <CardTitle style={{
+                                                            marginLeft: "",
+                                                            color: "black",
+                                                        }}>
+                                                            <DescriptionIcon></DescriptionIcon>
+                                                            Description :
 
-                                                            }
-                                                        }>
-                                                            Add Feedback
-                                                        </Button>
+
+                                                            <CardContent>
+                                                                <div className="card-description">
+                                                                    <p>This impressive paella is a perfect party dish and
+                                                                        a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.</p>
+                                                                </div>
+
+                                                            </CardContent>
+
+
+                                                        </CardTitle>
                                                     </CardHeader>
-
-
 
                                                 </Card>
 
