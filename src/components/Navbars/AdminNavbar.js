@@ -33,14 +33,10 @@ import {
   DropdownMenu,
   DropdownItem,
   Container,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupText,
-  Input,
 } from "reactstrap";
 import { useHistory } from "react-router-dom";
-import { Route } from "react-router-dom/cjs/react-router-dom.min";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import SearchIcon from '@mui/icons-material/Search';
 
 function AdminNavbar(props) {
   const location = useLocation();
@@ -130,6 +126,11 @@ function AdminNavbar(props) {
         </NavbarToggler>
         <Collapse isOpen={isOpen} navbar className="justify-content-end">
           <Nav navbar>
+            <NavItem>
+            <Link to="/admin/customer-create-project" className="nav-link">
+            <SearchIcon></SearchIcon>
+            </Link>
+            </NavItem>
             <NavItem>
               <Link to="/admin/customer-create-project" className="nav-link">
               <AddCircleIcon></AddCircleIcon>

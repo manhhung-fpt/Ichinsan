@@ -34,6 +34,7 @@ import CustomerEditFeedback from './views/CustomerEditFeedback/CustomerEditFeedb
 import CustomerEditArticle from './views/CustomerEditArticle/CustomerEditArticle';
 import TranslatorProgress from './views/TranslatorProgress/TranslatorProgress';
 import Wallet from './views/Wallet/Wallet';
+import SearchFilter from './views/SearchFilter/SearchFilter';
 
 
 let routes = [
@@ -122,6 +123,15 @@ let routes = [
 
   },
 
+  {
+    path: "/Search",
+    name: "Search Filter",
+    icon: "now-ui-icons business_badge",
+    mainScreen: true,
+    component:  SearchFilter,
+    layout: "/admin",
+  },
+  
   {
     path: "/customer-progress-project",
     name: "Customer Progress Project",
