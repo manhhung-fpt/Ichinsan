@@ -35,6 +35,7 @@ import CustomerEditArticle from './views/CustomerEditArticle/CustomerEditArticle
 import TranslatorProgress from './views/TranslatorProgress/TranslatorProgress';
 import Wallet from './views/Wallet/Wallet';
 import SearchFilter from './views/SearchFilter/SearchFilter';
+import TranslatorProgressArticle from './views/TranslatorProgressArticle/TranslatorProgressArticle';
 
 
 let routes = [
@@ -219,6 +220,15 @@ let routes = [
     icon: "now-ui-icons business_badge",
     component: TranslatorProgress,
     rolePermission: "Translator",
+    layout: "/admin",
+  },
+  {
+    path: "/translator-progress-article",
+    name: "Translator Progress Article",
+    icon: "now-ui-icons business_badge",
+    component: TranslatorProgressArticle,
+    rolePermission: "Translator",
+    hideInDetail: true,
     layout: "/admin",
   },
   {
