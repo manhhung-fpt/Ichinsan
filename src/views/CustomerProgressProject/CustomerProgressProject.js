@@ -67,7 +67,11 @@ import GTranslateIcon from '@mui/icons-material/GTranslate';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import SpellcheckIcon from '@mui/icons-material/Spellcheck';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import ReactCountryFlag from "react-country-flag"
+import ReactCountryFlag from "react-country-flag";
+
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Link from '@mui/material/Link';
+import Typography from '@mui/material/Typography';
 
 
 import { table_data } from "variables/general.js";
@@ -184,7 +188,15 @@ function CustomerProgressProject() {
                             <CardBody>
 
                                 <CardTitle tag="h4" >Progress</CardTitle>
-
+                                <Breadcrumbs separator="›" aria-label="breadcrumb" style={{ padding: '20px' }}>
+                                    <Link underline="hover" color="inherit" href="/admin/customer-home">
+                                        Customer Home
+                                    </Link>
+                                    <Link underline="hover" color="inherit" href="/admin/customer-arti-detail">
+                                        Project Article Deatails
+                                    </Link>
+                                    <Typography color="text.primary">Project Progress</Typography>
+                                </Breadcrumbs>
 
                                 <Nav pills className="nav-pills-info"
 

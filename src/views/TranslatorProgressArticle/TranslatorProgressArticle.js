@@ -76,6 +76,10 @@ import TranslateIcon from '@mui/icons-material/Translate';
 import DownloadIcon from '@mui/icons-material/Download';
 import CropOriginalIcon from '@mui/icons-material/CropOriginal';
 import StarRateIcon from '@mui/icons-material/StarRate';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Link from '@mui/material/Link';
+import Typography from '@mui/material/Typography';
+
 
 
 import { table_data } from "variables/general.js";
@@ -157,7 +161,7 @@ function TranslatorProgressArticle() {
         history.push("/admin/customer-add-article")
     };
     const onClickPostpose = () => {
-        history.push("/admin/customer-home")
+        history.push("/admin/translator-progress")
     };
     const onClickEdit = () => {
         history.push("/admin/customer-edit-project")
@@ -191,7 +195,13 @@ function TranslatorProgressArticle() {
                                     Back
                                 </Button>
                             </CardHeader>
+                            <Breadcrumbs separator="›" aria-label="breadcrumb" style={{ padding: '20px' }}>
+                                <Link underline="hover" color="inherit" href="/admin/translator-progress">
+                                    Translator Progress
+                                </Link>
 
+                                <Typography color="text.primary">Article Details</Typography>
+                            </Breadcrumbs>
                             <CardBody>
 
                                 <CardTitle tag="h4" >Article</CardTitle>
