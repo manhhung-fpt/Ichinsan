@@ -33,6 +33,7 @@ import CustomerEditProject from './views/CustomerEditProject/CustomerEditProject
 import CustomerEditFeedback from './views/CustomerEditFeedback/CustomerEditFeedback';
 import CustomerEditArticle from './views/CustomerEditArticle/CustomerEditArticle';
 import TranslatorProgress from './views/TranslatorProgress/TranslatorProgress';
+import SearchFilter from './views/SearchFilter/SearchFilter';
 
 
 let routes = [
@@ -118,6 +119,14 @@ let routes = [
     component: CustomerHome,
     layout: "/admin",
     rolePermission: "Customer"
+  },
+  {
+    path: "/Search",
+    name: "Search Filter",
+    icon: "now-ui-icons business_badge",
+    mainScreen: true,
+    component:  SearchFilter,
+    layout: "/admin",
   },
   
   {

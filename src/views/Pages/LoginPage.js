@@ -64,7 +64,11 @@ function LoginPage() {
           titleAndTextAlert();
           }else{
           var token = response.data.token;
-          var decoded = jwt_decode(token);      
+          var decoded = jwt_decode(token);     
+          localStorage.setItem("token", token); 
+          var token = localStorage.getItem("token")
+          var profile = jwt_decode(token);  
+            
           localStorage.setItem("role", decoded.role);
           history.push("/admin/home")
          }
