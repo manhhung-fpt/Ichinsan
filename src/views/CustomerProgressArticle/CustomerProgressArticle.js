@@ -52,6 +52,9 @@ import {
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
 import { useHistory } from "react-router-dom";
 
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Link from '@mui/material/Link';
+import Typography from '@mui/material/Typography';
 import Select from "react-select";
 import Card from '@mui/material/Card';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
@@ -190,7 +193,15 @@ function CustomerProgressArticle() {
 
 
                 <CardTitle tag="h4" >Article Tittle</CardTitle>
-
+                <Breadcrumbs separator="›" aria-label="breadcrumb" style={{ padding: '20px' }}>
+                    <Link underline="hover" color="inherit" href="/admin/customer-home">
+                        Customer Home
+                    </Link>
+                    <Link underline="hover" color="inherit" href="/admin/customer-arti-detail">
+                        Project Article Details 
+                    </Link>
+                    <Typography color="text.primary">Article Details</Typography>
+                </Breadcrumbs>
                 <Nav pills className="nav-pills-info"
 
                 >

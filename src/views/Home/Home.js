@@ -35,6 +35,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 import { table_data } from "variables/general.js";
+import { height } from "@mui/system";
 
 function Home() {
   const [openedCollapses, setOpenCollapses] = React.useState(["collapseOne"]);
@@ -78,12 +79,11 @@ function Home() {
           <Col lg={12} md={12} xs={12}>
             <Card>
               <CardBody>
-                <Nav pills className="nav-pills-primary">
+                <Nav pills className="nav-pills-info justify-content-center">
                   <NavItem>
                     <NavLink
                       className={hTabs === "ht1" ? "active" : ""}
                       onClick={() => sethTabs("ht1")}
-                      
                     >
                       User Guides
                     </NavLink>
@@ -128,15 +128,7 @@ function Home() {
                       API Documentation
                     </NavLink>
                   </NavItem>
-                  <NavItem>
-                    <NavLink
-                      className={hTabs === "ht7" ? "active" : ""}
-                      onClick={() => sethTabs("ht7")}
-                    >
-                      Webpages
-                    </NavLink>
-                  </NavItem>
-                  <ExpandCircleDownIcon sx={{ fontSize: 40 }}></ExpandCircleDownIcon>
+                  
                 </Nav>
                 <TabContent activeTab={hTabs} className="tab-space">
                   <TabPane tabId="ht1">
@@ -166,24 +158,18 @@ function Home() {
                         </Typography>
                       </CardContent>
                       <CardActions disableSpacing>
-                      <Col md={11}>
-                        <IconButton aria-label="add to favorites">
-                          <FavoriteIcon />
-                        </IconButton>
-                        <IconButton aria-label="share">
-                          <ShareIcon />
-                        </IconButton>
+                        <Col md={11}>
+                          <IconButton aria-label="add to favorites">
+                            <FavoriteIcon />
+                          </IconButton>
+                          <IconButton aria-label="share">
+                            <ShareIcon />
+                          </IconButton>
                         </Col>
                         <Col md={1}>
-                        <Button color="primary" className="btn-round" style={
-              {
-               
-                fontSize: "10px",
-               
-              }
-            }>
-                          Apply
-                        </Button>
+                          <Button color="primary" className="btn-round">
+                            Apply
+                          </Button>
                         </Col>
                       </CardActions>
                     </Card>

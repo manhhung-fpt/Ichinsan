@@ -43,6 +43,9 @@ import PanelHeader from "components/PanelHeader/PanelHeader.js";
 import { useHistory } from "react-router-dom";
 import CardContent from '@mui/material/CardContent';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Link from '@mui/material/Link';
+import Typography from '@mui/material/Typography';
 
 import CategoryIcon from '@mui/icons-material/Category';
 import GTranslateIcon from '@mui/icons-material/GTranslate';
@@ -132,7 +135,12 @@ function CustomerArticleDetail() {
             </Button>
 
             <CardTitle tag="h4"> Project</CardTitle>
-
+            <Breadcrumbs separator="›" aria-label="breadcrumb" style={{ padding: '20px' }}>
+              <Link underline="hover" color="inherit" href="/admin/customer-home">
+                Customer Home
+              </Link>
+              <Typography color="text.primary"> Project Article Details</Typography>
+            </Breadcrumbs>
 
 
             <Nav pills className="nav-pills-primary">
@@ -268,7 +276,7 @@ function CustomerArticleDetail() {
                                 <td>{item.last_name}</td>
                                 <td>$5000</td>
                                 <td>
-                                <ReactCountryFlag
+                                  <ReactCountryFlag
                                     countryCode="US"
                                     svg
                                     style={{
@@ -476,7 +484,7 @@ function CustomerArticleDetail() {
                                 <td>Computer Vision</td>
                                 <td>$1000</td>
                                 <td>
-                                <ReactCountryFlag
+                                  <ReactCountryFlag
                                     countryCode="US"
                                     svg
                                     style={{
@@ -580,7 +588,7 @@ function CustomerArticleDetail() {
                                 <td>Healthy Vegetable</td>
                                 <td>$50</td>
                                 <td>
-                                <ReactCountryFlag
+                                  <ReactCountryFlag
                                     countryCode="US"
                                     svg
                                     style={{

@@ -140,6 +140,11 @@ function AdminProject() {
                 </Table>
               </CardBody>
             </Card>
+          </Col>
+          <Col xs={12} md={5} size="sm">
+
+          </Col>
+          <Col xs={12} md={3} size="sm">
             <Pagination>
               <PaginationItem>
                 <PaginationLink href="#">
@@ -172,6 +177,9 @@ function AdminProject() {
               </PaginationItem>
             </Pagination>
           </Col>
+          <Col xs={12} md={4} size="sm">
+          </Col>
+
         </Row>
       </div>
     </>
