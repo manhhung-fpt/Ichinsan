@@ -33,6 +33,7 @@ import CustomerEditProject from './views/CustomerEditProject/CustomerEditProject
 import CustomerEditFeedback from './views/CustomerEditFeedback/CustomerEditFeedback';
 import CustomerEditArticle from './views/CustomerEditArticle/CustomerEditArticle';
 import TranslatorProgress from './views/TranslatorProgress/TranslatorProgress';
+import Wallet from './views/Wallet/Wallet';
 
 
 let routes = [
@@ -43,7 +44,7 @@ let routes = [
     component: Home,
     layout: "/admin",
     rolePermission: "Translator"
-   
+
   },
   {
     path: "/dashboard",
@@ -118,8 +119,9 @@ let routes = [
     component: CustomerHome,
     layout: "/admin",
     rolePermission: "Customer"
+
   },
-  
+
   {
     path: "/customer-progress-project",
     name: "Customer Progress Project",
@@ -207,6 +209,14 @@ let routes = [
     icon: "now-ui-icons business_badge",
     component: TranslatorProgress,
     rolePermission: "Translator",
+    layout: "/admin",
+  },
+  {
+    path: "/wallet",
+    name: "Wallet",
+    icon: "now-ui-icons business_badge",
+    component: Wallet,
+    mainScreen: true,
     layout: "/admin",
   },
   {

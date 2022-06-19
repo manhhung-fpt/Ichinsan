@@ -143,7 +143,7 @@ function AdminAccount() {
                         <td>{user.role}</td>
 
                         <td className="text-right">
-                          <Switch defaultValue={false} />
+                          <Switch defaultValue={user.status} />
 
 
                         </td>

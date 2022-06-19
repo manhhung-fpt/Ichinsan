@@ -693,12 +693,12 @@ function CustomerArticleDetail() {
                             color: "green",
                             marginTop: "-10px",
                           }}>Computer Vision AI</CardTitle>
-                          <CardTitle style={{
+                          {/* <CardTitle style={{
                             marginLeft: "",
                             color: "red",
                           }}>
                             <AttachMoneyIcon></AttachMoneyIcon>
-                            5000</CardTitle>
+                            5000</CardTitle> */}
                           <CardTitle style={{
                             marginLeft: "",
                             color: "black",

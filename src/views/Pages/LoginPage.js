@@ -29,7 +29,7 @@ function LoginPage() {
   const [alert, setAlert] = React.useState(null);
   const closeAlert = () => {
     localStorage.clear();
-    setAlert(null) ;
+    setAlert(null);
   }
   const titleAndTextAlert = () => {
     setAlert(
@@ -60,14 +60,19 @@ function LoginPage() {
     axios(config)
       .then(function (response) {
         console.log(response.data === 'User is not existed');
-       if(response.data === 'User is not existed'){
+        if (response.data === 'User is not existed') {
           titleAndTextAlert();
-          }else{
+        } else {
           var token = response.data.token;
-          var decoded = jwt_decode(token);      
+          var decoded = jwt_decode(token);
+          var userId = response.data.id;
+          var profileId = response.data.profileId;
+          localStorage.setItem("token", token);
+          localStorage.setItem("userId", userId);
+          localStorage.setItem("profileId", profileId);
           localStorage.setItem("role", decoded.role);
           history.push("/admin/home")
-         }
+        }
       })
       .catch(function (error) {
         console.log(error);
@@ -77,6 +82,7 @@ function LoginPage() {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
       .then((result) => {
+        console.log(result);
         const name = result.user.displayName;
         const email = result.user.email;
         const profilePic = result.user.photoURL;
