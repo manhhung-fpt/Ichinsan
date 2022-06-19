@@ -4,11 +4,11 @@
   }
 
   &.nav-pills:not(.flex-column) .nav-item:not(:last-child) .nav-link {
-    margin-right: 19px;
+    
   }
 
   &:not(.nav-pills-icons):not(.nav-pills-just-icons) .nav-item .nav-link {
-    border-radius: $btn-round-radius;
+    border-radius: 0;
   }
 
   &.nav-pills-just-icons .nav-item .nav-link {
@@ -29,7 +29,7 @@
     .nav-link {
       padding: 0 15.5px;
       text-align: center;
-      padding: $padding-btn-vertical $padding-round-horizontal;
+      padding: 12px 143px;
       min-width: 100px;
       font-weight: $font-weight-normal;
       color: $light-black;

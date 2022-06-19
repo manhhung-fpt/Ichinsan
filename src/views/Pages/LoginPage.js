@@ -3,22 +3,16 @@ import React from "react";
 // reactstrap components
 import {
   Card,
-  CardBody,
   CardHeader,
   CardFooter,
   Form,
   Container,
   Col,
-  Input,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupText,
   Button,
 } from "reactstrap";
 
 // core components
 import nowLogo from "assets/img/now-logo.png";
-import { useEffect } from "react";
 import { auth } from "Firebase";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import bgImage from "assets/img/bg14.jpg";
@@ -70,7 +64,11 @@ function LoginPage() {
           titleAndTextAlert();
           }else{
           var token = response.data.token;
-          var decoded = jwt_decode(token);      
+          var decoded = jwt_decode(token);     
+          localStorage.setItem("token", token); 
+          var token = localStorage.getItem("token")
+          var profile = jwt_decode(token);  
+            
           localStorage.setItem("role", decoded.role);
           history.push("/admin/home")
          }

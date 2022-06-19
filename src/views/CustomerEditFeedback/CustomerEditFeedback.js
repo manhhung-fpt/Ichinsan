@@ -27,7 +27,7 @@ var selectOptions = [
   { value: "Category5", label: "Category5" },
   { value: "Category6", label: "Category6" },
 ];
-function CustomerCreateFeedback() {
+function CustomerEditFeedback() {
   const [singleSelect, setSingleSelect] = React.useState(null);
   const [singleFileName, setSingleFileName] = React.useState("");
   const [singleFile, setSingleFile] = React.useState(null);
@@ -57,6 +57,12 @@ function CustomerCreateFeedback() {
   }
   const onClickBack = () => {
     history.push("/admin/customer-progress-project")
+  }
+  const onClickEdit = () => {
+    history.push("/admin/customer-progress-article")
+  }
+  const onClickCancel = () => {
+    history.push("/admin/customer-progress-article")
   }
 
   return (
@@ -175,7 +181,7 @@ function CustomerCreateFeedback() {
 
                 </Col>
                 <Col md={1}>
-                  <Button color="primary" className="btn-info" style={
+                  <Button  onClick={onClickCancel} className="btn-info" color="primary" style={
                     {
 
                       fontSize: "10px",
@@ -186,7 +192,7 @@ function CustomerCreateFeedback() {
                   </Button>
                 </Col>
                 <Col md={6}>
-                  <Button color="primary" className="btn-right" style={
+                  <Button  onClick={onClickEdit} className="btn-right" color="primary" style={
                     {
 
                       fontSize: "10px",
@@ -194,7 +200,7 @@ function CustomerCreateFeedback() {
                     }
                   }>
 
-                    Create
+                    Edit
                   </Button>
                 </Col>
               </CardActions>
@@ -206,4 +212,4 @@ function CustomerCreateFeedback() {
   );
 }
 
-export default CustomerCreateFeedback;
+export default CustomerEditFeedback;

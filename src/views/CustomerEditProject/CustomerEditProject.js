@@ -1,17 +1,38 @@
+/*!
 
+=========================================================
+* Now UI Dashboard PRO React - v1.5.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/now-ui-dashboard-pro-react
+* Copyright 2021 Creative Tim (https://www.creative-tim.com)
+
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+*/
 import React from "react";
-import StarRateIcon from '@mui/icons-material/StarRate';
-import StarOutlineIcon from '@mui/icons-material/StarOutline';
+import Switch from "react-bootstrap-switch";
+import Datetime from "react-datetime";
 // reactstrap components
 import {
+  Table,
+  UncontrolledTooltip,
+  ButtonGroup,
   FormGroup,
+  Label,
   Input,
   Card,
   CardHeader,
   CardBody,
+  CardTitle,
   Row,
   Col,
   Button,
+  Form,
 } from "reactstrap";
 
 import Select from "react-select";
@@ -27,7 +48,7 @@ var selectOptions = [
   { value: "Category5", label: "Category5" },
   { value: "Category6", label: "Category6" },
 ];
-function CustomerCreateFeedback() {
+function CustomerEditProject() {
   const [singleSelect, setSingleSelect] = React.useState(null);
   const [singleFileName, setSingleFileName] = React.useState("");
   const [singleFile, setSingleFile] = React.useState(null);
@@ -58,6 +79,9 @@ function CustomerCreateFeedback() {
   const onClickBack = () => {
     history.push("/admin/customer-progress-project")
   }
+  const onClick = () => {
+    history.push("/admin/customer-progress-project")
+  }
 
   return (
     <>
@@ -85,7 +109,7 @@ function CustomerCreateFeedback() {
 
                 <Row>
                   <Col xs={12} md={2} size="sm"  >
-                    Tittle
+                    Projetc Name
                   </Col>
                   <Col xs={12} md={5} size="sm"  >
                     <FormGroup>
@@ -126,24 +150,27 @@ function CustomerCreateFeedback() {
                 </Row>
               </CardBody>
               <CardBody>
+
                 <Row>
                   <Col xs={12} md={2} size="sm"  >
-                    Rating
-                  </Col>
-                  <Col xs={12} md={5} size="sm" style={{
-                    color: "#ec00f9"
-                  }}>
-                    <StarRateIcon></StarRateIcon>
-                    <StarRateIcon></StarRateIcon>
-                    <StarRateIcon></StarRateIcon>
-                    <StarRateIcon></StarRateIcon>
-                    <StarOutlineIcon></StarOutlineIcon>
+                    Summary
                   </Col>
                   <Col xs={12} md={5} size="sm"  >
-
+                    <FormGroup>
+                      <Input
+                        cols="80"
+                        defaultValue="Lamborghini Mercy, Your chick she so thirsty, I'm in
+            that two seat Lambo."
+                        placeholder="Here can be your description"
+                        rows="4"
+                        type="textarea"
+                        onChange={e => setCount(e.target.value.length)}
+                      />
+                    </FormGroup>
+                    {count}/500
                   </Col>
+                  <Col xs={12} md={5} size="sm"  ></Col>
                 </Row>
-
 
               </CardBody>
               <CardBody>
@@ -175,7 +202,7 @@ function CustomerCreateFeedback() {
 
                 </Col>
                 <Col md={1}>
-                  <Button color="primary" className="btn-info" style={
+                  <Button onClick={onClick} className="btn-info" color="primary" style={
                     {
 
                       fontSize: "10px",
@@ -186,7 +213,7 @@ function CustomerCreateFeedback() {
                   </Button>
                 </Col>
                 <Col md={6}>
-                  <Button color="primary" className="btn-right" style={
+                  <Button onClick={onClick} className="btn-right" color="primary" style={
                     {
 
                       fontSize: "10px",
@@ -194,7 +221,7 @@ function CustomerCreateFeedback() {
                     }
                   }>
 
-                    Create
+                    Done
                   </Button>
                 </Col>
               </CardActions>
@@ -206,4 +233,4 @@ function CustomerCreateFeedback() {
   );
 }
 
-export default CustomerCreateFeedback;
+export default CustomerEditProject;

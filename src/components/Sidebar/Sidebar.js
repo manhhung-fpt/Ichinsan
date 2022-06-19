@@ -61,6 +61,11 @@ function Sidebar(props) {
   }, []);
   // this creates the intial state of this component based on the collapse routes
   // that it gets through props.routes
+  const logOutOnClick = () => {
+    console.log(history);
+    localStorage.clear();
+    history.push({pathname: "/auth/login-page"});
+  }
   const getCollapseStates = (routes) => {
     let initialState = {};
     routes.map((prop, key) => {
@@ -91,15 +96,15 @@ function Sidebar(props) {
   // this function creates the links and collapses that appear in the sidebar (left menu)
 
   const createLinks = (routes) => {
-    
+
     const currentRole = localStorage.getItem("role");
-    return routes.filter(e => (!e.hideInDetail && e.rolePermission === currentRole) || (e.mainScreen) ).map((prop, key) => {
+    return routes.filter(e => (!e.hideInDetail && e.rolePermission === currentRole) || (e.mainScreen)).map((prop, key) => {
       console.log(prop.rolePermission === currentRole);
       if (prop.collapse && prop.rolePermission === currentRole) {
         var st = {};
         st[prop["state"]] = !collapseStates[prop.state];
         return (
-          <li 
+          <li
             className={getCollapseInitialState(prop.views) ? "active" : ""}
             key={key}
           >
@@ -206,7 +211,7 @@ function Sidebar(props) {
                 onClick={() => setOpenAvatar(!openAvatar)}
               >
                 <span>
-                {localStorage.getItem('name') ? localStorage.getItem('name') : "Anonymous"}
+                  {localStorage.getItem('name') ? localStorage.getItem('name') : "Anonymous"}
                   <b className="caret" />
                 </span>
               </a>
@@ -222,7 +227,7 @@ function Sidebar(props) {
                     <a href="/common/user-page" onClick={(e) => e.preventDefault}>
                       <span className="sidebar-mini-icon">MP</span>
                       <span className="sidebar-normal">My Profile</span>
-                      
+
                     </a>
                   </li>
                 </ul>
@@ -230,17 +235,19 @@ function Sidebar(props) {
             </div>
           </div>
           <Nav>{createLinks(props.routes)}</Nav>
-          <div style={{position: 'absolute', bottom: '0'}}>
-          <li className="active" key={6}>
-          <NavLink to="" activeClassName="">
-            
-              <>
-                <span className="sidebar-mini-icon">abc</span>
-                <span className="sidebar-normal">def</span>
-              </>
-         
-          </NavLink>
-        </li>
+          <div style={{ position: 'absolute', bottom: '0' }}>
+          {localStorage.getItem('name')  && (
+                <>
+                  <Button onClick={logOutOnClick} color="primary" className="btn-info" style={
+                    {
+
+                      fontSize: "10px",
+                    }
+                  }>
+                     Logout
+                  </Button>
+                </>
+                )}
           </div>
         </div>
       </div>
@@ -252,7 +259,7 @@ Sidebar.defaultProps = {
   routes: [],
   showNotification: false,
   backgroundColor: "blue",
-  minimizeSidebar: () => {},
+  minimizeSidebar: () => { },
 };
 
 Sidebar.propTypes = {

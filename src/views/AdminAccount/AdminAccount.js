@@ -20,11 +20,6 @@ import Switch from "react-bootstrap-switch";
 // reactstrap components
 import {
   Table,
-  UncontrolledTooltip,
-  ButtonGroup,
-  FormGroup,
-  Label,
-  Input,
   Card,
   CardHeader,
   CardBody,
@@ -42,24 +37,28 @@ import { useHistory } from "react-router-dom";
 // core components
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
 import axios from "axios";
-var selectOptions = [
-  { value: "one", label: "One" },
-  { value: "two", label: "Two" },
-  { value: "three", label: "Three" },
-  { value: "four", label: "Four" },
-  { value: "five", label: "Five" },
-  { value: "six", label: "Six" },
+var rolesOptions = [
+  { value: "Translator", label: "Translator" },
+  { value: "Admin", label: "Admin" },
+  { value: "Customer", label: "Customer" },
 ];
 function AdminAccount() {
   let history = useHistory();
-  const [singleSelect, setSingleSelect] = React.useState(null);
-  const [multipleSelect, setMultipleSelect] = React.useState(null);
+  const [singleRoleSelect, setSingleRoleSelect] = React.useState(null);
+  const [multipleSelect, setMultipleSelect] = React.useState("");
+  const [roles, setRoles] = React.useState([]);
   const onClickView = () => {
     history.push("/admin/wizard")
   }
 
   // useState 
   const [users, setUsers] = useState([]);
+  const [sortField, setSortField] = useState("");
+
+  const selectFilterHandler = (e) => {
+    alert(e.value)
+    setSingleRoleSelect(() => e.value);
+  }
 
   useEffect(() => {
     axios
@@ -72,7 +71,10 @@ function AdminAccount() {
         console.log(err);
       })
   }, []);
-  console.log(users);
+
+
+
+
   return (
     <>
       <PanelHeader size="sm" />
@@ -95,15 +97,13 @@ function AdminAccount() {
 
                   <Col xs={12} md={3} size="sm">
                     <Select
-                      className="react-select warning"
+                      className="react-select primary"
                       classNamePrefix="react-select"
-                      isMulti
-                      closeMenuOnSelect={false}
-                      placeholder="Sort "
-                      name="multipleSelect"
-                      value={multipleSelect}
-                      options={selectOptions}
-                      onChange={(value) => setMultipleSelect(value)}
+                      placeholder="Select a role"
+                      name="singleSelect"
+                      value={singleRoleSelect}
+                      options={rolesOptions}
+                      onChange={selectFilterHandler}
                     />
                   </Col>
                   <Col xs={12} md={3} size="sm">
@@ -125,8 +125,9 @@ function AdminAccount() {
                   <thead className="text-primary">
                     <tr>
                       <th className="text-center">#</th>
-                      <th>Full Name</th>
-                      <th>Roles</th>
+                      <th>Email</th>
+                      <th>Balance</th>
+                      <th>Role</th>
 
                       <th className="text-right">Status</th>
                       <th className="text-right">View</th>
@@ -139,6 +140,7 @@ function AdminAccount() {
                         <td className="text-center">{index + 1}</td>
                         <td>{user.email}</td>
                         <td>{user.balance}</td>
+                        <td>{user.role}</td>
 
                         <td className="text-right">
                           <Switch defaultValue={false} />

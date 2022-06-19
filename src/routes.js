@@ -1,19 +1,4 @@
-/*!
 
-=========================================================
-* Now UI Dashboard PRO React - v1.5.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/now-ui-dashboard-pro-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import Dashboard from "views/Dashboard/Dashboard.js";
 import Home from "views/Home/Home.js";
 import Buttons from "views/Components/Buttons.js";
@@ -23,26 +8,9 @@ import SweetAlert from "views/Components/SweetAlertPage.js";
 import Notifications from "views/Components/Notifications.js";
 import Icons from "views/Components/Icons.js";
 import Typography from "views/Components/Typography.js";
-import RegularForms from "views/Forms/RegularForms.js";
-import ExtendedForms from "views/Forms/ExtendedForms.js";
-import ValidationForms from "views/Forms/ValidationForms.js";
 import Wizard from "views/Forms/Wizard/Wizard.js";
-import RegularTables from "views/Tables/RegularTables.js";
-import ExtendedTables from "views/Tables/ExtendedTables.js";
-import ReactTable from "views/Tables/ReactTable.js";
-import GoogleMaps from "views/Maps/GoogleMaps.js";
-import FullScreenMap from "views/Maps/FullScreenMap.js";
-import VectorMap from "views/Maps/VectorMap.js";
-import Charts from "views/Charts/Charts.js";
-import Calendar from "views/Calendar/Calendar.js";
-import Widgets from "views/Widgets/Widgets.js";
 import UserPage from "views/Pages/UserPage.js";
-import TimelinePage from "views/Pages/TimelinePage.js";
-import RTL from "views/Pages/RTL.js";
-import PricingPage from "views/Pages/PricingPage.js";
 import LoginPage from "views/Pages/LoginPage.js";
-import RegisterPage from "views/Pages/RegisterPage.js";
-import LockScreenPage from "views/Pages/LockScreenPage.js";
 
 import AdminAccount from "views/AdminAccount/AdminAccount.js";
 import AdminProject from "views/AdminProject/AdminProject.js";
@@ -60,6 +28,13 @@ import CustomeArticle from './views/CustomeArticle/CustomeArticle';
 import CustomerAddArticle from './views/CustomerAddArticle/CustomerAddArticle';
 import CustomerProgressArticle from './views/CustomerProgressArticle/CustomerProgressArticle';
 import CustomerCreateFeedback from './views/CustomerCreateFeedback/CustomerCreateFeedback';
+import CustomerArticleDetail from './views/CustomerArticleDetail/CustomerArticleDetail';
+import CustomerEditProject from './views/CustomerEditProject/CustomerEditProject';
+import CustomerEditFeedback from './views/CustomerEditFeedback/CustomerEditFeedback';
+import CustomerEditArticle from './views/CustomerEditArticle/CustomerEditArticle';
+import TranslatorProgress from './views/TranslatorProgress/TranslatorProgress';
+import SearchFilter from './views/SearchFilter/SearchFilter';
+
 
 let routes = [
   {
@@ -68,7 +43,8 @@ let routes = [
     icon: "now-ui-icons shopping_shop",
     component: Home,
     layout: "/admin",
-    mainScreen: true,
+    rolePermission: "Translator"
+   
   },
   {
     path: "/dashboard",
@@ -138,12 +114,21 @@ let routes = [
   },
   {
     path: "/customer-home",
-    name: "Customer Home",
+    name: "Customer Progress",
     icon: "now-ui-icons business_badge",
     component: CustomerHome,
     layout: "/admin",
     rolePermission: "Customer"
   },
+  {
+    path: "/Search",
+    name: "Search Filter",
+    icon: "now-ui-icons business_badge",
+    mainScreen: true,
+    component:  SearchFilter,
+    layout: "/admin",
+  },
+  
   {
     path: "/customer-progress-project",
     name: "Customer Progress Project",
@@ -157,6 +142,14 @@ let routes = [
     name: "Customer Create Project",
     icon: "now-ui-icons business_badge",
     component: CustomerCreate,
+    hideInDetail: true,
+    layout: "/admin",
+  },
+  {
+    path: "/customer-edit-project",
+    name: "Customer Edit Project",
+    icon: "now-ui-icons business_badge",
+    component: CustomerEditProject,
     hideInDetail: true,
     layout: "/admin",
   },
@@ -177,11 +170,20 @@ let routes = [
     layout: "/admin",
   },
   {
+    path: "/customer-edit-article",
+    name: "Customer Edit Article",
+    icon: "now-ui-icons business_badge",
+    component: CustomerEditArticle,
+    hideInDetail: true,
+    layout: "/admin",
+  },
+  {
     path: "/customer-progress-article",
     name: "Customer Progress Article",
     icon: "now-ui-icons business_badge",
     component: CustomerProgressArticle,
     rolePermission: "Customer",
+    hideInDetail: true,
     layout: "/admin",
   },
   {
@@ -190,6 +192,30 @@ let routes = [
     icon: "now-ui-icons business_badge",
     component: CustomerCreateFeedback,
     hideInDetail: true,
+    layout: "/admin",
+  },
+  {
+    path: "/customer-edit-feedback",
+    name: "Customer Edit Feedback",
+    icon: "now-ui-icons business_badge",
+    component: CustomerEditFeedback,
+    hideInDetail: true,
+    layout: "/admin",
+  },
+  {
+    path: "/customer-arti-detail",
+    name: "Customer Article Detail",
+    icon: "now-ui-icons business_badge",
+    component: CustomerArticleDetail,
+    hideInDetail: true,
+    layout: "/admin",
+  },
+  {
+    path: "/translator-progress",
+    name: "Translator Progress",
+    icon: "now-ui-icons business_badge",
+    component: TranslatorProgress,
+    rolePermission: "Translator",
     layout: "/admin",
   },
   {
