@@ -33,8 +33,27 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import ReactCountryFlag from "react-country-flag"
 import { flexbox } from "@mui/system";
+import User from "views/Pages/UserPage";
 function SearchFilter() {
     const [articles, setArticle] = React.useState([]);
+    const [categorys, setCategory] = React.useState([]);
+    useEffect(() => {
+        var axios = require('axios');
+        var data = '';
+        var config = {
+            method: 'get',
+            url: 'https://62a586f2b9b74f766a3afda9.mockapi.io/api/projectDetails/Category',
+            headers: {},
+            data: data
+        };
+        axios(config)
+            .then(function (response) {
+                setCategory(response.data)
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }, []);
     useEffect(() => {
         var axios = require('axios');
         var data = '';
@@ -94,50 +113,29 @@ function SearchFilter() {
         alignItems: 'center',
         justifyContent: 'center',
     }));
-    const [checked, setChecked] = React.useState([true, false]);
-
-    const handleChange1 = (event) => {
-        setChecked([event.target.checked, event.target.checked]);
-    };
 
     const handleChange2 = (event) => {
-        setChecked([event.target.checked, checked[1]]);
+        const {name ,checked } = event.target;
+        if(name === "selectAll"){
+            let tempCategory = categorys.map((category) => {return{...category, isChecked:checked }})
+            setCategory(tempCategory);
+        }else{
+            let tempCategory = categorys.map((category) =>
+            category.categoryName === name ? {...category, isChecked: checked} : category
+            )
+            setCategory(tempCategory);
+        }
     };
-
-    const handleChange3 = (event) => {
-        setChecked([checked[0], event.target.checked]);
-    };
-
     const children = (
         <Box sx={{ display: 'flex', flexDirection: 'column', ml: 3 }}>
-            <FormControlLabel
-                label="Child 1"
-                control={<Checkbox checked={checked[0]} onChange={handleChange2} />}
+            {categorys.map((category, index) => (
+                <FormControlLabel
+                label={category.categoryName}
+                name={category.categoryName}
+                control={<Checkbox checked={category?.isChecked || false} onChange={handleChange2} />}
             />
-            <FormControlLabel
-                label="Child 2"
-                control={<Checkbox checked={checked[1]} onChange={handleChange3} />}
-            />
-            <FormControlLabel
-                label="Child 3"
-                control={<Checkbox checked={checked[1]} onChange={handleChange3} />}
-            />
-            <FormControlLabel
-                label="Child 4"
-                control={<Checkbox checked={checked[1]} onChange={handleChange3} />}
-            />
-            <FormControlLabel
-                label="Child 5"
-                control={<Checkbox checked={checked[1]} onChange={handleChange3} />}
-            />
-            <FormControlLabel
-                label="Child 5"
-                control={<Checkbox checked={checked[1]} onChange={handleChange3} />}
-            />
-            <FormControlLabel
-                label="Child 5"
-                control={<Checkbox checked={checked[1]} onChange={handleChange3} />}
-            />
+
+            ))}
         </Box>
     );
     console.log(articles);
@@ -146,125 +144,124 @@ function SearchFilter() {
             <PanelHeader size="sm" />
             <div className="content">
                 <Row >
-                   
-                        <Col xs={12} md={9}
-                           
-                        >
-                            {articles.map((article, index) => (
-                                <Col md={3}
 
-                                >
-                                    <a classname="card" href="" >
-                                        <Card>
-                                            <CardHeader>
-                                                <CardTitle style={{
-                                                    marginLeft: "",
-                                                    color: "green",
-                                                }}>
-                                                    <CategoryIcon></CategoryIcon>
-                                                    {article.articelName}</CardTitle>
-                                            </CardHeader>
+                    <Col xs={12} md={9}
 
-                                            <CardHeader>
-                                                <CardTitle tag="h4" style={{
-                                                    color: "green",
-                                                    marginTop: "-10px",
-                                                }}>{article.title}</CardTitle>
-                                                <CardTitle style={{
-                                                    marginLeft: "",
-                                                    color: "red",
-                                                }}>
-                                                    <AttachMoneyIcon></AttachMoneyIcon>
-                                                    {article.salary}</CardTitle>
-                                                <CardTitle style={{
-                                                    marginLeft: "",
-                                                    color: "red",
-                                                }}>
-                                                    <ReactCountryFlag
-                                                        countryCode={article.languageFrom}
-                                                        svg
-                                                        style={{
-                                                            width: '2em',
-                                                            height: '2em',
-                                                        }}
-                                                        title="US"
-                                                    />
-                                                    <ArrowRightAltIcon></ArrowRightAltIcon>
-                                                    <ReactCountryFlag
-                                                        countryCode={article.languageTo}
-                                                        svg
-                                                        style={{
-                                                            width: '2em',
-                                                            height: '2em',
-                                                        }}
-                                                        title="US"
-                                                    />
-                                                </CardTitle>
+                    >
+                        {articles.map((article, index) => (
+                            <Col md={3}
 
-                                            </CardHeader>
+                            >
+                                <a classname="card" href="" >
+                                    <Card>
+                                        <CardHeader>
+                                            <CardTitle style={{
+                                                marginLeft: "",
+                                                color: "green",
+                                            }}>
+                                                <CategoryIcon></CategoryIcon>
+                                                {article.articelName}</CardTitle>
+                                        </CardHeader>
 
-                                            <div class="go-corner" href="#">
-                                                <div class="go-arrow">
-                                                    →
-                                                </div>
-                                            </div>
-
-                                        </Card>
-                                    </a>
-                                </Col>
-                            ))};
-                        </Col>
-                        <Col xs={12} md={3}
-
-                        >
-                            <Card>
-
-                                <CardHeader>
-                                    <CardTitle style={{
-                                        marginLeft: "",
-                                        color: "black",
-                                    }}>
-                                        <CategoryIcon></CategoryIcon>
-                                        Filter With Category</CardTitle>
-                                </CardHeader>
-                                <CardBody>
-                                    <Search>
-                                        <SearchIconWrapper>
-                                            <SearchIcon />
-                                        </SearchIconWrapper>
-                                        <StyledInputBase
-                                            placeholder="Search…"
-                                            inputProps={{ 'aria-label': 'search' }}
-                                        />
-                                    </Search>
-                                    <div >
-                                        <FormControlLabel
-                                            label="All"
-                                            control={
-                                                <Checkbox
-                                                    checked={checked[0] && checked[1]}
-                                                    indeterminate={checked[0] !== checked[1]}
-                                                    onChange={handleChange1}
+                                        <CardHeader>
+                                            <CardTitle tag="h4" style={{
+                                                color: "green",
+                                                marginTop: "-10px",
+                                            }}>{article.title}</CardTitle>
+                                            <CardTitle style={{
+                                                marginLeft: "",
+                                                color: "red",
+                                            }}>
+                                                <AttachMoneyIcon></AttachMoneyIcon>
+                                                {article.salary}</CardTitle>
+                                            <CardTitle style={{
+                                                marginLeft: "",
+                                                color: "red",
+                                            }}>
+                                                <ReactCountryFlag
+                                                    countryCode={article.languageFrom}
+                                                    svg
+                                                    style={{
+                                                        width: '2em',
+                                                        height: '2em',
+                                                    }}
+                                                    title="US"
                                                 />
-                                            }
-                                        />
-                                        <div style={{ overflowY: 'scroll', scrollBehavior: 'smooth', height: 200 }}> {children}</div>
+                                                <ArrowRightAltIcon></ArrowRightAltIcon>
+                                                <ReactCountryFlag
+                                                    countryCode={article.languageTo}
+                                                    svg
+                                                    style={{
+                                                        width: '2em',
+                                                        height: '2em',
+                                                    }}
+                                                    title="US"
+                                                />
+                                            </CardTitle>
 
-                                    </div>
-                                    <Row>
-                                        <Col xs={12} md={6}>
-                                            <Button className="btn btn-primary btn-block btn-round" >Apply</Button>
-                                        </Col>
-                                        <Col xs={12} md={6}>
-                                            <Button className="btn btn-block btn-round btn-info" >Reset</Button>
-                                        </Col>
-                                    </Row>
+                                        </CardHeader>
 
-                                </CardBody>
+                                        <div class="go-corner" href="#">
+                                            <div class="go-arrow">
+                                                →
+                                            </div>
+                                        </div>
 
-                            </Card>
-                        </Col>
-                    
+                                    </Card>
+                                </a>
+                            </Col>
+                        ))};
+                    </Col>
+                    <Col xs={12} md={3}
+
+                    >
+                        <Card>
+
+                            <CardHeader>
+                                <CardTitle style={{
+                                    marginLeft: "",
+                                    color: "black",
+                                }}>
+                                    <CategoryIcon></CategoryIcon>
+                                    Filter With Category</CardTitle>
+                            </CardHeader>
+                            <CardBody>
+                                <Search>
+                                    <SearchIconWrapper>
+                                        <SearchIcon />
+                                    </SearchIconWrapper>
+                                    <StyledInputBase
+                                        placeholder="Search…"
+                                        inputProps={{ 'aria-label': 'search' }}
+                                    />
+                                </Search>
+                                <div >
+                                    <FormControlLabel
+                                        label="All"
+                                        name ="selectAll"
+                                        control={
+                                            <Checkbox
+                                                onChange={handleChange2}
+                                            />
+                                        }
+                                    />
+                                    <div style={{ overflowY: 'scroll', scrollBehavior: 'smooth', height: 200 }}> {children}</div>
+
+                                </div>
+                                <Row>
+                                    <Col xs={12} md={6}>
+                                        <Button className="btn btn-primary btn-block btn-round" >Apply</Button>
+                                    </Col>
+                                    <Col xs={12} md={6}>
+                                        <Button className="btn btn-block btn-round btn-info" >Reset</Button>
+                                    </Col>
+                                </Row>
+
+                            </CardBody>
+
+                        </Card>
+                    </Col>
+
                 </Row>
             </div>
         </>
