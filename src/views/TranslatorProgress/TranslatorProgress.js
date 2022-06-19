@@ -1,9 +1,10 @@
 
 import React from "react";
 import axios from 'axios';
+import ReactCountryFlag from "react-country-flag"
 // reactstrap components
 import {
-  
+
   Card,
   CardHeader,
 
@@ -271,9 +272,25 @@ function TranslatorProgress() {
                                 marginLeft: "",
                                 color: "red",
                               }}>
-                                <TranslateIcon></TranslateIcon>
+                                <ReactCountryFlag
+                                  countryCode="US"
+                                  svg
+                                  style={{
+                                    width: '2em',
+                                    height: '2em',
+                                  }}
+                                  title="US"
+                                />
                                 <ArrowRightAltIcon></ArrowRightAltIcon>
-                                <TranslateIcon></TranslateIcon>
+                                <ReactCountryFlag
+                                  countryCode="VN"
+                                  svg
+                                  style={{
+                                    width: '2em',
+                                    height: '2em',
+                                  }}
+                                  title="US"
+                                />
                               </CardTitle>
 
                             </CardHeader>
@@ -315,9 +332,25 @@ function TranslatorProgress() {
                                 marginLeft: "",
                                 color: "red",
                               }}>
-                                <TranslateIcon></TranslateIcon>
+                                <ReactCountryFlag
+                                  countryCode="US"
+                                  svg
+                                  style={{
+                                    width: '2em',
+                                    height: '2em',
+                                  }}
+                                  title="US"
+                                />
                                 <ArrowRightAltIcon></ArrowRightAltIcon>
-                                <TranslateIcon></TranslateIcon>
+                                <ReactCountryFlag
+                                  countryCode="VN"
+                                  svg
+                                  style={{
+                                    width: '2em',
+                                    height: '2em',
+                                  }}
+                                  title="US"
+                                />
                               </CardTitle>
                             </CardHeader>
 
@@ -373,9 +406,25 @@ function TranslatorProgress() {
                                 marginLeft: "",
                                 color: "red",
                               }}>
-                                <TranslateIcon></TranslateIcon>
+                                <ReactCountryFlag
+                                  countryCode="US"
+                                  svg
+                                  style={{
+                                    width: '2em',
+                                    height: '2em',
+                                  }}
+                                  title="US"
+                                />
                                 <ArrowRightAltIcon></ArrowRightAltIcon>
-                                <TranslateIcon></TranslateIcon>
+                                <ReactCountryFlag
+                                  countryCode="VN"
+                                  svg
+                                  style={{
+                                    width: '2em',
+                                    height: '2em',
+                                  }}
+                                  title="US"
+                                />
                               </CardTitle>
 
                             </CardHeader>
@@ -417,9 +466,25 @@ function TranslatorProgress() {
                                 marginLeft: "",
                                 color: "red",
                               }}>
-                                <TranslateIcon></TranslateIcon>
+                                <ReactCountryFlag
+                                  countryCode="US"
+                                  svg
+                                  style={{
+                                    width: '2em',
+                                    height: '2em',
+                                  }}
+                                  title="US"
+                                />
                                 <ArrowRightAltIcon></ArrowRightAltIcon>
-                                <TranslateIcon></TranslateIcon>
+                                <ReactCountryFlag
+                                  countryCode="VN"
+                                  svg
+                                  style={{
+                                    width: '2em',
+                                    height: '2em',
+                                  }}
+                                  title="US"
+                                />
                               </CardTitle>
                             </CardHeader>
 
@@ -473,9 +538,25 @@ function TranslatorProgress() {
                                 marginLeft: "",
                                 color: "red",
                               }}>
-                                <TranslateIcon></TranslateIcon>
+                                <ReactCountryFlag
+                                  countryCode="US"
+                                  svg
+                                  style={{
+                                    width: '2em',
+                                    height: '2em',
+                                  }}
+                                  title="US"
+                                />
                                 <ArrowRightAltIcon></ArrowRightAltIcon>
-                                <TranslateIcon></TranslateIcon>
+                                <ReactCountryFlag
+                                  countryCode="VN"
+                                  svg
+                                  style={{
+                                    width: '2em',
+                                    height: '2em',
+                                  }}
+                                  title="US"
+                                />
                               </CardTitle>
 
                             </CardHeader>
@@ -517,9 +598,25 @@ function TranslatorProgress() {
                                 marginLeft: "",
                                 color: "red",
                               }}>
-                                <TranslateIcon></TranslateIcon>
+                                <ReactCountryFlag
+                                  countryCode="US"
+                                  svg
+                                  style={{
+                                    width: '2em',
+                                    height: '2em',
+                                  }}
+                                  title="US"
+                                />
                                 <ArrowRightAltIcon></ArrowRightAltIcon>
-                                <TranslateIcon></TranslateIcon>
+                                <ReactCountryFlag
+                                  countryCode="VN"
+                                  svg
+                                  style={{
+                                    width: '2em',
+                                    height: '2em',
+                                  }}
+                                  title="US"
+                                />
                               </CardTitle>
                             </CardHeader>
 
@@ -573,9 +670,25 @@ function TranslatorProgress() {
                                 marginLeft: "",
                                 color: "red",
                               }}>
-                                <TranslateIcon></TranslateIcon>
+                                <ReactCountryFlag
+                                  countryCode="US"
+                                  svg
+                                  style={{
+                                    width: '2em',
+                                    height: '2em',
+                                  }}
+                                  title="US"
+                                />
                                 <ArrowRightAltIcon></ArrowRightAltIcon>
-                                <TranslateIcon></TranslateIcon>
+                                <ReactCountryFlag
+                                  countryCode="VN"
+                                  svg
+                                  style={{
+                                    width: '2em',
+                                    height: '2em',
+                                  }}
+                                  title="US"
+                                />
                               </CardTitle>
 
                             </CardHeader>
@@ -617,9 +730,25 @@ function TranslatorProgress() {
                                 marginLeft: "",
                                 color: "red",
                               }}>
-                                <TranslateIcon></TranslateIcon>
+                                <ReactCountryFlag
+                                  countryCode="US"
+                                  svg
+                                  style={{
+                                    width: '2em',
+                                    height: '2em',
+                                  }}
+                                  title="US"
+                                />
                                 <ArrowRightAltIcon></ArrowRightAltIcon>
-                                <TranslateIcon></TranslateIcon>
+                                <ReactCountryFlag
+                                  countryCode="VN"
+                                  svg
+                                  style={{
+                                    width: '2em',
+                                    height: '2em',
+                                  }}
+                                  title="US"
+                                />
                               </CardTitle>
                             </CardHeader>
 
@@ -718,6 +847,472 @@ function TranslatorProgress() {
                   </NavItem>
 
                 </Nav>
+                <Row style={{
+                  marginTop: "20px"
+                }}>
+                  <Col xs={12} md={1} size="sm"  >
+                    Sort :
+                  </Col>
+                  <Col Col xs={12} md={2} size="sm" >
+                    <Select
+                      className="react-select primary"
+                      classNamePrefix="react-select"
+                      placeholder="Select a role"
+                      name="singleSelect"
+                      value={singleRoleSelect}
+                      options={rolesOptions}
+                      onChange={selectFilterHandler}
+                    />
+                  </Col>
+                  <Col Col xs={12} md={9} size="sm" >
+                  </Col>
+                </Row>
+                <TabContent
+                  className="tab-space tab-subcategories"
+                  activeTab={pageSubcategories}
+                >
+                  <TabPane tabId="ps1">
+                    <Row style={{
+                      marginTop: "40px",
+                    }}>
+                      <Col xs={12} md={3}>
+                        <a classname="card" href="" onClick={onClickView}>
+                          <Card>
+
+                            <CardHeader>
+                              <CardTitle style={{
+                                marginLeft: "",
+                                color: "green",
+                              }}>
+                                <CategoryIcon></CategoryIcon>
+                                Computer Science</CardTitle>
+                            </CardHeader>
+
+                            <CardHeader>
+                              <CardTitle tag="h4" style={{
+                                color: "green",
+                                marginTop: "-10px",
+                              }}>Computer Vision AI</CardTitle>
+                              <CardTitle style={{
+                                marginLeft: "",
+                                color: "red",
+                              }}>
+                                <AttachMoneyIcon></AttachMoneyIcon>
+                                5000</CardTitle>
+                              <CardTitle style={{
+                                marginLeft: "",
+                                color: "red",
+                              }}>
+                                <ReactCountryFlag
+                                  countryCode="US"
+                                  svg
+                                  style={{
+                                    width: '2em',
+                                    height: '2em',
+                                  }}
+                                  title="US"
+                                />
+                                <ArrowRightAltIcon></ArrowRightAltIcon>
+                                <ReactCountryFlag
+                                  countryCode="VN"
+                                  svg
+                                  style={{
+                                    width: '2em',
+                                    height: '2em',
+                                  }}
+                                  title="US"
+                                />
+                              </CardTitle>
+
+                            </CardHeader>
+
+                            <div class="go-corner" href="#">
+                              <div class="go-arrow">
+                                →
+                              </div>
+                            </div>
+
+                          </Card>
+                        </a>
+                      </Col>
+                      <Col xs={12} md={3}>
+                        <a classname="card" href="" onClick={onClickView}>
+                          <Card>
+
+                            <CardHeader>
+                              <CardTitle style={{
+                                marginLeft: "",
+                                color: "green",
+                              }}>
+                                <CategoryIcon></CategoryIcon>
+                                Computer Science</CardTitle>
+                            </CardHeader>
+
+                            <CardHeader>
+                              <CardTitle tag="h4" style={{
+                                color: "green",
+                                marginTop: "-10px",
+                              }}>Computer Vision AI</CardTitle>
+                              <CardTitle style={{
+                                marginLeft: "",
+                                color: "red",
+                              }}>
+                                <AttachMoneyIcon></AttachMoneyIcon>
+                                5000</CardTitle>
+                              <CardTitle style={{
+                                marginLeft: "",
+                                color: "red",
+                              }}>
+                                <ReactCountryFlag
+                                  countryCode="US"
+                                  svg
+                                  style={{
+                                    width: '2em',
+                                    height: '2em',
+                                  }}
+                                  title="US"
+                                />
+                                <ArrowRightAltIcon></ArrowRightAltIcon>
+                                <ReactCountryFlag
+                                  countryCode="VN"
+                                  svg
+                                  style={{
+                                    width: '2em',
+                                    height: '2em',
+                                  }}
+                                  title="US"
+                                />
+                              </CardTitle>
+                            </CardHeader>
+
+                            <div class="go-corner" href="#">
+                              <div class="go-arrow">
+                                →
+                              </div>
+                            </div>
+
+                          </Card>
+                        </a>
+                      </Col>
+                      <Col xs={12} md={3}>
+
+                      </Col>
+                      <Col xs={12} md={3}>
+
+                      </Col>
+                    </Row>
+
+
+
+                  </TabPane>
+                  <TabPane tabId="ps2">
+                    <Row style={{
+                      marginTop: "40px",
+                    }}>
+                      <Col xs={12} md={3}>
+                        <a classname="card" href="" onClick={onClickView}>
+                          <Card>
+
+                            <CardHeader>
+                              <CardTitle style={{
+                                marginLeft: "",
+                                color: "green",
+                              }}>
+                                <CategoryIcon></CategoryIcon>
+                                Computer Science</CardTitle>
+                            </CardHeader>
+
+                            <CardHeader>
+                              <CardTitle tag="h4" style={{
+                                color: "green",
+                                marginTop: "-10px",
+                              }}>Computer Vision AI</CardTitle>
+                              <CardTitle style={{
+                                marginLeft: "",
+                                color: "red",
+                              }}>
+                                <AttachMoneyIcon></AttachMoneyIcon>
+                                5000</CardTitle>
+                              <CardTitle style={{
+                                marginLeft: "",
+                                color: "red",
+                              }}>
+                                <ReactCountryFlag
+                                  countryCode="US"
+                                  svg
+                                  style={{
+                                    width: '2em',
+                                    height: '2em',
+                                  }}
+                                  title="US"
+                                />
+                                <ArrowRightAltIcon></ArrowRightAltIcon>
+                                <ReactCountryFlag
+                                  countryCode="VN"
+                                  svg
+                                  style={{
+                                    width: '2em',
+                                    height: '2em',
+                                  }}
+                                  title="US"
+                                />
+                              </CardTitle>
+
+                            </CardHeader>
+
+                            <div class="go-corner" href="#">
+                              <div class="go-arrow">
+                                →
+                              </div>
+                            </div>
+
+                          </Card>
+                        </a>
+                      </Col>
+                      <Col xs={12} md={3}>
+                        <a classname="card" href="" onClick={onClickView}>
+                          <Card>
+
+                            <CardHeader>
+                              <CardTitle style={{
+                                marginLeft: "",
+                                color: "green",
+                              }}>
+                                <CategoryIcon></CategoryIcon>
+                                Computer Science</CardTitle>
+                            </CardHeader>
+
+                            <CardHeader>
+                              <CardTitle tag="h4" style={{
+                                color: "green",
+                                marginTop: "-10px",
+                              }}>Computer Vision AI</CardTitle>
+                              <CardTitle style={{
+                                marginLeft: "",
+                                color: "red",
+                              }}>
+                                <AttachMoneyIcon></AttachMoneyIcon>
+                                5000</CardTitle>
+                              <CardTitle style={{
+                                marginLeft: "",
+                                color: "red",
+                              }}>
+                                <ReactCountryFlag
+                                  countryCode="US"
+                                  svg
+                                  style={{
+                                    width: '2em',
+                                    height: '2em',
+                                  }}
+                                  title="US"
+                                />
+                                <ArrowRightAltIcon></ArrowRightAltIcon>
+                                <ReactCountryFlag
+                                  countryCode="VN"
+                                  svg
+                                  style={{
+                                    width: '2em',
+                                    height: '2em',
+                                  }}
+                                  title="US"
+                                />
+                              </CardTitle>
+                            </CardHeader>
+
+                            <div class="go-corner" href="#">
+                              <div class="go-arrow">
+                                →
+                              </div>
+                            </div>
+
+                          </Card>
+                        </a>
+                      </Col>
+                      <Col xs={12} md={3}>
+
+                      </Col>
+                      <Col xs={12} md={3}>
+
+                      </Col>
+                    </Row>
+
+                  </TabPane>
+                  <TabPane tabId="ps3">
+                    <Row style={{
+                      marginTop: "40px",
+                    }}>
+                      <Col xs={12} md={3}>
+                        <a classname="card" href="" onClick={onClickView}>
+                          <Card>
+
+                            <CardHeader>
+                              <CardTitle style={{
+                                marginLeft: "",
+                                color: "green",
+                              }}>
+                                <CategoryIcon></CategoryIcon>
+                                Computer Science</CardTitle>
+                            </CardHeader>
+
+                            <CardHeader>
+                              <CardTitle tag="h4" style={{
+                                color: "green",
+                                marginTop: "-10px",
+                              }}>Computer Vision AI</CardTitle>
+                              <CardTitle style={{
+                                marginLeft: "",
+                                color: "red",
+                              }}>
+                                <AttachMoneyIcon></AttachMoneyIcon>
+                                5000</CardTitle>
+                              <CardTitle style={{
+                                marginLeft: "",
+                                color: "red",
+                              }}>
+                                <ReactCountryFlag
+                                  countryCode="US"
+                                  svg
+                                  style={{
+                                    width: '2em',
+                                    height: '2em',
+                                  }}
+                                  title="US"
+                                />
+                                <ArrowRightAltIcon></ArrowRightAltIcon>
+                                <ReactCountryFlag
+                                  countryCode="VN"
+                                  svg
+                                  style={{
+                                    width: '2em',
+                                    height: '2em',
+                                  }}
+                                  title="US"
+                                />
+                              </CardTitle>
+
+                            </CardHeader>
+
+                            <div class="go-corner" href="#">
+                              <div class="go-arrow">
+                                →
+                              </div>
+                            </div>
+
+                          </Card>
+                        </a>
+                      </Col>
+                      <Col xs={12} md={3}>
+                        <a classname="card" href="" onClick={onClickView}>
+                          <Card>
+
+                            <CardHeader>
+                              <CardTitle style={{
+                                marginLeft: "",
+                                color: "green",
+                              }}>
+                                <CategoryIcon></CategoryIcon>
+                                Computer Science</CardTitle>
+                            </CardHeader>
+
+                            <CardHeader>
+                              <CardTitle tag="h4" style={{
+                                color: "green",
+                                marginTop: "-10px",
+                              }}>Computer Vision AI</CardTitle>
+                              <CardTitle style={{
+                                marginLeft: "",
+                                color: "red",
+                              }}>
+                                <AttachMoneyIcon></AttachMoneyIcon>
+                                5000</CardTitle>
+                              <CardTitle style={{
+                                marginLeft: "",
+                                color: "red",
+                              }}>
+                                <ReactCountryFlag
+                                  countryCode="US"
+                                  svg
+                                  style={{
+                                    width: '2em',
+                                    height: '2em',
+                                  }}
+                                  title="US"
+                                />
+                                <ArrowRightAltIcon></ArrowRightAltIcon>
+                                <ReactCountryFlag
+                                  countryCode="VN"
+                                  svg
+                                  style={{
+                                    width: '2em',
+                                    height: '2em',
+                                  }}
+                                  title="US"
+                                />
+                              </CardTitle>
+                            </CardHeader>
+
+                            <div class="go-corner" href="#">
+                              <div class="go-arrow">
+                                →
+                              </div>
+                            </div>
+
+                          </Card>
+                        </a>
+                      </Col>
+                      <Col xs={12} md={3}>
+
+                      </Col>
+                      <Col xs={12} md={3}>
+
+                      </Col>
+                    </Row>
+
+                  </TabPane>
+
+                </TabContent>
+                <Row>
+                  <Col xs={12} md={5} size="sm">
+
+                  </Col>
+                  <Col xs={12} md={3} size="sm">
+                    <Pagination>
+                      <PaginationItem>
+                        <PaginationLink href="#">
+                          <span aria-hidden="true">
+                            <i
+                              className="fa fa-angle-double-left"
+                              aria-hidden="true"
+                            />
+                          </span>
+                        </PaginationLink>
+                      </PaginationItem>
+                      <PaginationItem>
+                        <PaginationLink href="#">1</PaginationLink>
+                      </PaginationItem>
+                      <PaginationItem active>
+                        <PaginationLink href="#">2</PaginationLink>
+                      </PaginationItem>
+                      <PaginationItem>
+                        <PaginationLink href="#">3</PaginationLink>
+                      </PaginationItem>
+                      <PaginationItem>
+                        <PaginationLink href="#">
+                          <span aria-hidden="true">
+                            <i
+                              className="fa fa-angle-double-right"
+                              aria-hidden="true"
+                            />
+                          </span>
+                        </PaginationLink>
+                      </PaginationItem>
+                    </Pagination>
+                  </Col>
+                  <Col xs={12} md={4} size="sm">
+                  </Col>
+                </Row>
+
+
 
               </TabPane>
 

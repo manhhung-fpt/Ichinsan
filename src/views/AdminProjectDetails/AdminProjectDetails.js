@@ -75,10 +75,10 @@ function AdminProjectDetails() {
     history.push({
       pathname: '/admin/admin-add-auditor',
       state: { actionType: 'edit' }
-  });
+    });
   }
 
-  const addAuditor = () => {
+  const onClickAdd = () => {
     history.push("/admin/admin-add-auditor");
   }
   return (
@@ -188,188 +188,188 @@ function AdminProjectDetails() {
                         )}
                         {project.actionType === Assign && (
                           <td className="text-right btns-mr-5">
-                          <Button onClick={toggleModalNotice} color="primary" className="btn-info" style={
-                            {
+                            <Button onClick={toggleModalNotice} color="primary" className="btn-info" style={
+                              {
 
-                              fontSize: "10px",
+                                fontSize: "10px",
 
-                            }
-                          }>
-                            <i className="now-ui-icons ui-2_settings-90" /> Assign
-                          </Button>
-                          <Modal
-                            isOpen={modalNotice}
-                            toggle={toggleModalNotice}
-                            className="modal-notice text-center"
-                          >
-                            <ModalHeader style={{ width: '150%' }} toggle={toggleModalNotice}>
-                              Assign Auditor
-                            </ModalHeader>
-                            <ModalBody>
-                              <div className="content" >
-                                <Row>
-                                  <Col md="12" >
-                                    <Card>
-                                      <CardHeader>
-                                        <CardTitle tag="h4">Auditor's Name : John Doe</CardTitle>
-                                        <Row>
-                                          <Col xs={12} md={4} size="sm">
-                                          </Col>
-                                          <Col xs={12} md={1} size="sm"></Col>
-                                          <Col xs={12} md={3} size="sm">
-                                          </Col>
-                                          <Col xs={12} md={4} size="sm">
-                                            <Select
-                                              className="react-select primary"
-                                              classNamePrefix="react-select"
-                                              placeholder="Result of Page"
-                                              name="singleSelect"
-                                              value={singleSelect}
-                                              options={selectOptions}
-                                              onChange={(value) => setSingleSelect(value)}
-                                            />
-                                          </Col>
-                                        </Row>
-                                      </CardHeader>
-                                      <CardBody>
-                                        <Table responsive>
-                                          <thead className="text-primary">
-                                            <tr>
-                                              <th className="text-center">#</th>
+                              }
+                            }>
+                              <i className="now-ui-icons ui-2_settings-90" /> Assign
+                            </Button>
+                            <Modal
+                              isOpen={modalNotice}
+                              toggle={toggleModalNotice}
+                              className="modal-notice text-center"
+                            >
+                              <ModalHeader style={{ width: '150%' }} toggle={toggleModalNotice}>
+                                Assign Auditor
+                              </ModalHeader>
+                              <ModalBody>
+                                <div className="content" >
+                                  <Row>
+                                    <Col md="12" >
+                                      <Card>
+                                        <CardHeader>
+                                          <CardTitle tag="h4">Auditor's Name : John Doe</CardTitle>
+                                          <Row>
+                                            <Col xs={12} md={4} size="sm">
+                                            </Col>
+                                            <Col xs={12} md={1} size="sm"></Col>
+                                            <Col xs={12} md={3} size="sm">
+                                            </Col>
+                                            <Col xs={12} md={4} size="sm">
+                                              <Select
+                                                className="react-select primary"
+                                                classNamePrefix="react-select"
+                                                placeholder="Result of Page"
+                                                name="singleSelect"
+                                                value={singleSelect}
+                                                options={selectOptions}
+                                                onChange={(value) => setSingleSelect(value)}
+                                              />
+                                            </Col>
+                                          </Row>
+                                        </CardHeader>
+                                        <CardBody>
+                                          <Table responsive>
+                                            <thead className="text-primary">
+                                              <tr>
+                                                <th className="text-center">#</th>
 
-                                              <th>Article Name</th>
-                                              <th>Language</th>
-                                              <th>Deadline</th>
-                                              <th className="text-right">Status</th>
-                                              <th className="text-right"></th>
-                                            </tr>
-                                          </thead>
-                                          <tbody>
-                                            <tr>
-                                              <td className="text-center">1</td>
+                                                <th>Article Name</th>
+                                                <th>Language</th>
+                                                <th>Deadline</th>
+                                                <th className="text-right">Status</th>
+                                                <th className="text-right"></th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr>
+                                                <td className="text-center">1</td>
 
-                                              <td>Develop</td>
-                                              <td>English</td>
-                                              <td>06/08/2022 12:00 AM</td>
-                                              <td className="text-right">
-                                                Pending
-                                              </td>
-                                              <td className="text-center">
-                                                <FormGroup check>
-                                                  <Label check>
-                                                    <Input defaultChecked type="checkbox" />
-                                                    <span className="form-check-sign" />
-                                                  </Label>
-                                                </FormGroup>
-                                              </td>
+                                                <td>Develop</td>
+                                                <td>English</td>
+                                                <td>06/08/2022 12:00 AM</td>
+                                                <td className="text-right">
+                                                  Pending
+                                                </td>
+                                                <td className="text-center">
+                                                  <FormGroup check>
+                                                    <Label check>
+                                                      <Input defaultChecked type="checkbox" />
+                                                      <span className="form-check-sign" />
+                                                    </Label>
+                                                  </FormGroup>
+                                                </td>
 
-                                            </tr>
-                                            <tr>
-                                              <td className="text-center">2</td>
+                                              </tr>
+                                              <tr>
+                                                <td className="text-center">2</td>
 
-                                              <td>Marketing</td>
-                                              <td>English</td>
-                                              <td>06/08/2022 12:00 AM</td>
-                                              <td className="text-right">
-                                                Pending
-                                              </td>
-                                              <td className="text-center">
-                                                <FormGroup check>
-                                                  <Label check>
-                                                    <Input defaultChecked type="checkbox" />
-                                                    <span className="form-check-sign" />
-                                                  </Label>
-                                                </FormGroup>
-                                              </td>
-                                            </tr>
-                                            <tr>
-                                              <td className="text-center">3</td>
+                                                <td>Marketing</td>
+                                                <td>English</td>
+                                                <td>06/08/2022 12:00 AM</td>
+                                                <td className="text-right">
+                                                  Pending
+                                                </td>
+                                                <td className="text-center">
+                                                  <FormGroup check>
+                                                    <Label check>
+                                                      <Input defaultChecked type="checkbox" />
+                                                      <span className="form-check-sign" />
+                                                    </Label>
+                                                  </FormGroup>
+                                                </td>
+                                              </tr>
+                                              <tr>
+                                                <td className="text-center">3</td>
 
-                                              <td>Design</td>
-                                              <td>English</td>
-                                              <td>06/08/2022 12:00 AM</td>
-                                              <td className="text-right">
-                                                <Switch defaultValue={false} />
-
-
-                                              </td>
-                                              <td className="text-center">
-                                                <FormGroup check>
-                                                  <Label check>
-                                                    <Input defaultChecked type="checkbox" />
-                                                    <span className="form-check-sign" />
-                                                  </Label>
-                                                </FormGroup>
-                                              </td>
-                                            </tr>
-                                            <tr>
-                                              <td className="text-center">4</td>
-
-                                              <td>Communication</td>
-                                              <td>Japanese</td>
-                                              <td>06/08/2022 12:00 AM</td>
-                                              <td className="text-right">
-                                                <Switch defaultValue={false} />
+                                                <td>Design</td>
+                                                <td>English</td>
+                                                <td>06/08/2022 12:00 AM</td>
+                                                <td className="text-right">
+                                                  <Switch defaultValue={false} />
 
 
-                                              </td>
-                                              <td className="text-center">
-                                                <FormGroup check>
-                                                  <Label check>
-                                                    <Input defaultChecked type="checkbox" />
-                                                    <span className="form-check-sign" />
-                                                  </Label>
-                                                </FormGroup>
-                                              </td>
-                                            </tr>
-                                            <tr>
-                                              <td className="text-center">5</td>
+                                                </td>
+                                                <td className="text-center">
+                                                  <FormGroup check>
+                                                    <Label check>
+                                                      <Input defaultChecked type="checkbox" />
+                                                      <span className="form-check-sign" />
+                                                    </Label>
+                                                  </FormGroup>
+                                                </td>
+                                              </tr>
+                                              <tr>
+                                                <td className="text-center">4</td>
 
-                                              <td>Marketing</td>
-                                              <td>Japanese</td>
-                                              <td>06/08/2022 12:00 AM</td>
-                                              <td className="text-right">
-                                                <Switch defaultValue={false} />
+                                                <td>Communication</td>
+                                                <td>Japanese</td>
+                                                <td>06/08/2022 12:00 AM</td>
+                                                <td className="text-right">
+                                                  <Switch defaultValue={false} />
 
 
-                                              </td>
-                                              <td className="text-center">
-                                                <FormGroup check>
-                                                  <Label check>
-                                                    <Input defaultChecked type="checkbox" />
-                                                    <span className="form-check-sign" />
-                                                  </Label>
-                                                </FormGroup>
-                                              </td>
-                                            </tr>
+                                                </td>
+                                                <td className="text-center">
+                                                  <FormGroup check>
+                                                    <Label check>
+                                                      <Input defaultChecked type="checkbox" />
+                                                      <span className="form-check-sign" />
+                                                    </Label>
+                                                  </FormGroup>
+                                                </td>
+                                              </tr>
+                                              <tr>
+                                                <td className="text-center">5</td>
 
-                                          </tbody>
-                                        </Table>
-                                      </CardBody>
-                                    </Card>
-                                  </Col>
-                                </Row>
-                              </div>
-                            </ModalBody>
-                            <ModalFooter className="justify-content-center">
-                              <Button
-                                color="info"
-                                className="btn-round"
-                                onClick={toggleModalNotice}
-                                style={
-                                  {
+                                                <td>Marketing</td>
+                                                <td>Japanese</td>
+                                                <td>06/08/2022 12:00 AM</td>
+                                                <td className="text-right">
+                                                  <Switch defaultValue={false} />
 
-                                    fontSize: "10px",
 
-                                  }
-                                }>
-                                Assign !!
-                              </Button>
-                            </ModalFooter>
-                          </Modal>
+                                                </td>
+                                                <td className="text-center">
+                                                  <FormGroup check>
+                                                    <Label check>
+                                                      <Input defaultChecked type="checkbox" />
+                                                      <span className="form-check-sign" />
+                                                    </Label>
+                                                  </FormGroup>
+                                                </td>
+                                              </tr>
 
-                        </td>
-                         )}
+                                            </tbody>
+                                          </Table>
+                                        </CardBody>
+                                      </Card>
+                                    </Col>
+                                  </Row>
+                                </div>
+                              </ModalBody>
+                              <ModalFooter className="justify-content-center">
+                                <Button
+                                  color="info"
+                                  className="btn-round"
+                                  onClick={toggleModalNotice}
+                                  style={
+                                    {
+
+                                      fontSize: "10px",
+
+                                    }
+                                  }>
+                                  Assign !!
+                                </Button>
+                              </ModalFooter>
+                            </Modal>
+
+                          </td>
+                        )}
                       </tr>
                     ))}
                   </tbody>
@@ -377,60 +377,73 @@ function AdminProjectDetails() {
               </CardBody>
               <CardHeader>
                 <Row>
-                  <Col xs={12} md={5} size="sm">
-
-                  </Col>
-                  <Col xs={12} md={5} size="sm"></Col>
-                  <Col xs={12} md={2} size="sm">
-                 
-                  </Col>
-                </Row>
-              </CardHeader>
-              <CardHeader>
-                <Row>
-                  <Col xs={12} md={4} size="sm">
-
-                  </Col>
-                  <Col xs={12} md={1} size="sm"></Col>
                   <Col xs={12} md={3} size="sm">
-                    <Pagination>
-                      <PaginationItem>
-                        <PaginationLink href="#">
-                          <span aria-hidden="true">
-                            <i
-                              className="fa fa-angle-double-left"
-                              aria-hidden="true"
-                            />
-                          </span>
-                        </PaginationLink>
-                      </PaginationItem>
-                      <PaginationItem>
-                        <PaginationLink href="#">1</PaginationLink>
-                      </PaginationItem>
-                      <PaginationItem active>
-                        <PaginationLink href="#">2</PaginationLink>
-                      </PaginationItem>
-                      <PaginationItem>
-                        <PaginationLink href="#">3</PaginationLink>
-                      </PaginationItem>
-                      <PaginationItem>
-                        <PaginationLink href="#">
-                          <span aria-hidden="true">
-                            <i
-                              className="fa fa-angle-double-right"
-                              aria-hidden="true"
-                            />
-                          </span>
-                        </PaginationLink>
-                      </PaginationItem>
-                    </Pagination>
+
+                  </Col>
+                  <Col xs={12} md={2} size="sm">
+
+                  </Col>
+                  <Col xs={12} md={3} size="sm">
+
+                    <Button onClick={onClickAdd} color="primary" className="btn-info" style={
+                      {
+
+                        fontSize: "10px",
+
+                      }
+                    }>
+                      <i className="now-ui-icons ui-2_settings-90" /> Add Auditor
+                    </Button>
                   </Col>
                   <Col xs={12} md={4} size="sm">
 
                   </Col>
                 </Row>
               </CardHeader>
+
             </Card>
+            <Row>
+              <Col xs={12} md={4} size="sm">
+
+              </Col>
+              <Col xs={12} md={1} size="sm"></Col>
+              <Col xs={12} md={3} size="sm">
+                <Pagination>
+                  <PaginationItem>
+                    <PaginationLink href="#">
+                      <span aria-hidden="true">
+                        <i
+                          className="fa fa-angle-double-left"
+                          aria-hidden="true"
+                        />
+                      </span>
+                    </PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink href="#">1</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem active>
+                    <PaginationLink href="#">2</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink href="#">3</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink href="#">
+                      <span aria-hidden="true">
+                        <i
+                          className="fa fa-angle-double-right"
+                          aria-hidden="true"
+                        />
+                      </span>
+                    </PaginationLink>
+                  </PaginationItem>
+                </Pagination>
+              </Col>
+              <Col xs={12} md={4} size="sm">
+
+              </Col>
+            </Row>
           </Col>
         </Row>
       </div>

@@ -14,8 +14,10 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
 
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import jwt_decode from "jwt-decode";
 // reactstrap components
 import {
   Button,
@@ -33,10 +35,35 @@ import {
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
 
 function User() {
+  var token = localStorage.getItem("token");
+  var userprofile = jwt_decode(token);
+  console.log(userprofile);
+  const [profiles, setProfiles] = useState({});
+  
+
+  useEffect(() => {
+    axios
+      // .get(`https://62a586f2b9b74f766a3afda9.mockapi.io/api/projectDetails/Users/1`)
+      .get(`${process.env.REACT_APP_API_URL}/users/${localStorage.userId}`)
+      .then((res) => {
+        const data = res.data;
+        console.log(data);
+        setProfiles(data);
+      })
+
+      .catch((err) => {
+        console.log(err);
+      })
+  }, []);
+
   return (
     <>
+
+
+
       <PanelHeader size="sm" />
       <div className="content">
+
         <Row>
           <Col md="8">
             <Card>
@@ -48,9 +75,9 @@ function User() {
                   <Row>
                     <Col className="pr-1" md="5">
                       <FormGroup>
-                        <label>Company (disabled)</label>
+                        <label>Company</label>
                         <Input
-                          defaultValue="Creative Code Inc."
+                          defaultValue="Ichisan FPT"
                           disabled
                           placeholder="Company"
                           type="text"
@@ -59,9 +86,12 @@ function User() {
                     </Col>
                     <Col className="px-1" md="3">
                       <FormGroup>
-                        <label>Username</label>
+                        <label>Username </label>
+
                         <Input
-                          defaultValue={localStorage.getItem("name")}
+                          disabled
+                          // defaultValue={localStorage.getItem("name")}
+                          defaultValue={profiles.fullName}
                           placeholder="Username"
                           type="text"
                         />
@@ -69,42 +99,34 @@ function User() {
                     </Col>
                     <Col className="pl-1" md="4">
                       <FormGroup>
-                        <label htmlFor={localStorage.getItem("email")}>
+                        <label >
                           Email address
                         </label>
-                        <Input placeholder="Email" type="email" />
+                        <Input
+                          disabled
+                          defaultValue={localStorage.getItem("email")}
+                          placeholder="Email" type="email" />
                       </FormGroup>
                     </Col>
                   </Row>
                   <Row>
                     <Col className="pr-1" md="6">
                       <FormGroup>
-                        <label>First Name</label>
+                        <label>Gender</label>
                         <Input
-                          defaultValue="Mike"
-                          placeholder="Company"
+                          defaultValue={profiles.gender}
+
+                          // placeholder="Male"
                           type="text"
                         />
                       </FormGroup>
                     </Col>
                     <Col className="pl-1" md="6">
                       <FormGroup>
-                        <label>Last Name</label>
+                        <label>Phone number</label>
                         <Input
-                          defaultValue="Andrew"
-                          placeholder="Last Name"
-                          type="text"
-                        />
-                      </FormGroup>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col md="12">
-                      <FormGroup>
-                        <label>Address</label>
-                        <Input
-                          defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
-                          placeholder="Home Address"
+                          defaultValue={profiles.phoneNumber}
+                          // placeholder="Phone number"
                           type="text"
                         />
                       </FormGroup>
@@ -113,31 +135,48 @@ function User() {
                   <Row>
                     <Col className="pr-1" md="4">
                       <FormGroup>
-                        <label>City</label>
+                        <label>Role</label>
                         <Input
-                          defaultValue="Mike"
-                          placeholder="City"
+                          defaultValue={profiles.role}
+                          placeholder="Role"
                           type="text"
                         />
                       </FormGroup>
                     </Col>
                     <Col className="px-1" md="4">
                       <FormGroup>
-                        <label>Country</label>
+                        <label>Balance</label>
                         <Input
-                          defaultValue="Andrew"
-                          placeholder="Country"
+                          defaultValue={profiles.balance}
+                          placeholder="Balance"
                           type="text"
                         />
                       </FormGroup>
                     </Col>
                     <Col className="pl-1" md="4">
                       <FormGroup>
-                        <label>Postal Code</label>
-                        <Input placeholder="ZIP Code" type="number" />
+                        <label>Date of Birth</label>
+                        <Input
+                          defaultValue={profiles.DateOfBirth}
+                          placeholder="Balance"
+                          type="text"
+                        />
                       </FormGroup>
                     </Col>
                   </Row>
+                  <Row>
+                    <Col md="12">
+                      <FormGroup>
+                        <label>Website</label>
+                        <Input
+                          defaultValue={profiles.WebSite}
+                          placeholder="Website"
+                          type="text"
+                        />
+                      </FormGroup>
+                    </Col>
+                  </Row>
+
                   <Row>
                     <Col md="12">
                       <FormGroup>
@@ -213,7 +252,11 @@ function User() {
             </Card>
           </Col>
         </Row>
+
       </div>
+
+
+
     </>
   );
 }
