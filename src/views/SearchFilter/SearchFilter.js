@@ -148,9 +148,11 @@ function SearchFilter() {
                     <Col xs={12} md={9}
 
                     >
+                        <Row>
                         {articles.map((article, index) => (
-                            <Col md={3}
-
+                            <Col md={4} style={{
+                                marginBottom: '30px',
+                            }}
                             >
                                 <a classname="card" href="" >
                                     <Card>
@@ -211,6 +213,7 @@ function SearchFilter() {
                                 </a>
                             </Col>
                         ))};
+                        </Row>
                     </Col>
                     <Col xs={12} md={3}
 

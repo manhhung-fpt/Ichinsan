@@ -127,7 +127,7 @@ function AdminNavbar(props) {
         <Collapse isOpen={isOpen} navbar className="justify-content-end">
           <Nav navbar>
             <NavItem>
-            <Link to="/admin/customer-create-project" className="nav-link">
+            <Link to="/admin/Search" className="nav-link">
             <SearchIcon></SearchIcon>
             </Link>
             </NavItem>

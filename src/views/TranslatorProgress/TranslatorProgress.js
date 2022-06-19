@@ -107,7 +107,7 @@ function TranslatorProgress() {
     history.push("/admin/customer-progress-project")
   };
   const onClickView = () => {
-    history.push("")
+    history.push("/admin/translator-progress-article")
   };
 
   return (
