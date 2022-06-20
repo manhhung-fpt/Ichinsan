@@ -214,9 +214,8 @@ function TranslatorProgressArticle() {
                                         <NavLink
                                             className={hTabs === "ht1" ? "active" : ""}
                                             onClick={() => sethTabs("ht1")}
-
                                         >
-                                            Details
+                                            Translations
                                         </NavLink>
                                     </NavItem>
                                     <NavItem>
@@ -224,15 +223,18 @@ function TranslatorProgressArticle() {
                                             className={hTabs === "ht2" ? "active" : ""}
                                             onClick={() => sethTabs("ht2")}
                                         >
-                                            Translations
+                                            Feedbacks
                                         </NavLink>
                                     </NavItem>
+                                    
+
                                     <NavItem>
                                         <NavLink
                                             className={hTabs === "ht3" ? "active" : ""}
                                             onClick={() => sethTabs("ht3")}
+
                                         >
-                                            Feedbacks
+                                            Details
                                         </NavLink>
                                     </NavItem>
 
@@ -243,7 +245,7 @@ function TranslatorProgressArticle() {
 
                                 <TabContent activeTab={hTabs} className="tab-space">
 
-                                    <TabPane tabId="ht1">
+                                    <TabPane tabId="ht3">
                                         <Row style={{
                                             marginTop: "40px",
                                         }}>
@@ -381,7 +383,7 @@ function TranslatorProgressArticle() {
 
                                     </TabPane>
 
-                                    <TabPane tabId="ht2">
+                                    <TabPane tabId="ht1">
                                         <Card>
                                             <CardBody>
 
@@ -567,7 +569,7 @@ function TranslatorProgressArticle() {
 
                                         </Card>
                                     </TabPane>
-                                    <TabPane tabId="ht3">
+                                    <TabPane tabId="ht2">
                                         <Row style={{
                                             marginTop: "40px",
                                         }}>
