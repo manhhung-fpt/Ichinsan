@@ -215,7 +215,7 @@ function TranslatorProgressArticle() {
                                             className={hTabs === "ht1" ? "active" : ""}
                                             onClick={() => sethTabs("ht1")}
                                         >
-                                            Translations
+                                             Details
                                         </NavLink>
                                     </NavItem>
                                     <NavItem>
@@ -223,7 +223,7 @@ function TranslatorProgressArticle() {
                                             className={hTabs === "ht2" ? "active" : ""}
                                             onClick={() => sethTabs("ht2")}
                                         >
-                                            Feedbacks
+                                           Translations
                                         </NavLink>
                                     </NavItem>
                                     
@@ -234,7 +234,7 @@ function TranslatorProgressArticle() {
                                             onClick={() => sethTabs("ht3")}
 
                                         >
-                                            Details
+                                           Feedbacks
                                         </NavLink>
                                     </NavItem>
 
@@ -245,7 +245,7 @@ function TranslatorProgressArticle() {
 
                                 <TabContent activeTab={hTabs} className="tab-space">
 
-                                    <TabPane tabId="ht3">
+                                    <TabPane tabId="ht1">
                                         <Row style={{
                                             marginTop: "40px",
                                         }}>
@@ -337,53 +337,9 @@ function TranslatorProgressArticle() {
                                         </Row>
 
 
-
-
-
-
-
-                                        {/* <CardActions disableSpacing>
-                                            <Col md={8}>
-
-                                            </Col>
-                                            <Col md={1}>
-                                                <Button onClick={onClickEdit} className="btn-info" color="primary" style={
-                                                    {
-
-                                                        fontSize: "10px",
-
-                                                    }
-                                                }>
-                                                    Edit
-                                                </Button>
-                                            </Col>
-                                            <Col md={2}>
-                                                <Button onClick={onClickAdd} className="btn-info" color="default" style={
-                                                    {
-
-                                                        fontSize: "10px",
-
-                                                    }
-                                                }>
-                                                    Add an Article
-                                                </Button>
-                                            </Col>
-                                            <Col md={1}>
-                                                <Button onClick={onClickPostpose} className="btn-danger" color="primary" style={
-                                                    {
-
-                                                        fontSize: "10px",
-
-                                                    }
-                                                }>
-                                                    Postpose
-                                                </Button>
-                                            </Col>
-                                        </CardActions> */}
-
                                     </TabPane>
 
-                                    <TabPane tabId="ht1">
+                                    <TabPane tabId="ht2">
                                         <Card>
                                             <CardBody>
 
@@ -569,7 +525,7 @@ function TranslatorProgressArticle() {
 
                                         </Card>
                                     </TabPane>
-                                    <TabPane tabId="ht2">
+                                    <TabPane tabId="ht3">
                                         <Row style={{
                                             marginTop: "40px",
                                         }}>

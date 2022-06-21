@@ -14,9 +14,11 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React, { useRef } from "react";
 import axios from 'axios';
 import ReactCountryFlag from "react-country-flag"
+import { Fab, Action } from 'react-tiny-fab';
+
 // reactstrap components
 import {
   Table,
@@ -38,6 +40,7 @@ import {
 } from "reactstrap";
 
 import Select from "react-select";
+import { Swiper, SwiperSlide } from 'swiper/react/swiper-react.js';
 // core components
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
 import { useHistory } from "react-router-dom";
@@ -54,6 +57,9 @@ import SignalWifiStatusbar4BarIcon from '@mui/icons-material/SignalWifiStatusbar
 import DescriptionIcon from '@mui/icons-material/Description';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import 'react-tiny-fab/dist/styles.css';
+import Scrollbar from 'smooth-scrollbar';
+import { red } from '@mui/material/colors';
 
 var selectOptions = [
   { value: "Category1", label: "Category1" },
@@ -115,13 +121,16 @@ function CustomerArticleDetail() {
     history.push("/admin/customer-progress-article")
   };
 
+
+
   return (
     <>
       <PanelHeader size="sm" />
       <div className="content">
         <Row>
           <Col md="12" >
-            <Button onClick={onClickBack} style={
+
+            {/* <Button onClick={onClickBack} style={
               {
 
                 fontSize: "10px",
@@ -132,9 +141,34 @@ function CustomerArticleDetail() {
                 <i className="now-ui-icons arrows-1_minimal-left" />
               </span>
               Back
-            </Button>
+            </Button> */}
+            <Card>
 
-            <CardTitle tag="h4"> Project</CardTitle>
+              <Swiper
+
+                style={
+                  {
+                    height: "300px",
+                    width: "50%",
+                  }
+                }
+              >
+                <SwiperSlide>
+                  <img src="https://as1.ftcdn.net/v2/jpg/04/72/19/88/1000_F_472198810_bvrfLv3QhdQKQYjJXWTCCVFmvBARuoJy.jpg"></img>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <img src="https://as1.ftcdn.net/v2/jpg/04/72/19/88/1000_F_472198810_bvrfLv3QhdQKQYjJXWTCCVFmvBARuoJy.jpg"></img>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <img src="https://as1.ftcdn.net/v2/jpg/04/72/19/88/1000_F_472198810_bvrfLv3QhdQKQYjJXWTCCVFmvBARuoJy.jpg"></img>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <img src="https://as1.ftcdn.net/v2/jpg/04/72/19/88/1000_F_472198810_bvrfLv3QhdQKQYjJXWTCCVFmvBARuoJy.jpg"></img>
+                </SwiperSlide>
+              </Swiper>
+            </Card>
+
+
             <Breadcrumbs separator="›" aria-label="breadcrumb" style={{ padding: '20px' }}>
               <Link underline="hover" color="inherit" href="/admin/customer-home">
                 Customer Home
@@ -142,8 +176,145 @@ function CustomerArticleDetail() {
               <Typography color="text.primary"> Project Article Details</Typography>
             </Breadcrumbs>
 
+            <CardTitle id="card" tag="h4">Project Detail
+              <span class="fi fi-AU"></span> <span class="fi fi-gr fis"></span>
+            </CardTitle>
 
-            <Nav pills className="nav-pills-primary">
+
+
+            <Nav pills className="nav-pills-info"
+
+            >
+              <NavItem>
+
+                <NavLink
+                  className={hTabs === "ht1" ? "active" : ""}
+                  onClick={() => sethTabs("ht1")}
+
+                >
+
+                  Detail
+
+                </NavLink>
+              </NavItem>
+            </Nav>
+            <Row style={{
+              marginTop: "40px",
+            }}>
+              <Col xs={12} md={6}>
+
+                <a classname="card" href="" onClick={onClickCard}>
+                  <Card>
+
+                    <CardHeader>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "green",
+                      }}>
+                        <CategoryIcon></CategoryIcon>
+                        Computer Science</CardTitle>
+                    </CardHeader>
+
+                    <CardHeader>
+                      <CardTitle tag="h4" style={{
+                        color: "green",
+                        marginTop: "-10px",
+                      }}>Computer Vision AI</CardTitle>
+                      {/* <CardTitle style={{
+                            marginLeft: "",
+                            color: "red",
+                          }}>
+                            <AttachMoneyIcon></AttachMoneyIcon>
+                            5000</CardTitle> */}
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <AccountCircleIcon></AccountCircleIcon>
+                        Tran Manh Hung</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <GTranslateIcon></GTranslateIcon>
+                        Translator : 2/10</CardTitle>
+
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <CalendarMonthIcon></CalendarMonthIcon>
+                        06/08/2022 12:00 AM</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "orange",
+                      }}>
+                        <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
+                        Pending</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <DescriptionIcon></DescriptionIcon>
+                        Description :
+
+
+                        <CardContent>
+                          <div className="card-description">
+                            <p>This impressive paella is a perfect party dish and
+                              a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.</p>
+                          </div>
+
+                        </CardContent>
+
+
+                      </CardTitle>
+                    </CardHeader>
+
+                    <div class="go-corner" href="#">
+                      <div class="go-arrow">
+                        →
+                      </div>
+                    </div>
+
+                  </Card>
+                </a>
+              </Col>
+
+            </Row>
+
+
+            <CardTitle id="card1" tag="h4">Project Article
+              <span class="fi fi-AU"></span> <span class="fi fi-gr fis"></span>
+            </CardTitle>
+
+            <Fab
+              icon={"+"}
+              mainButtonStyles={{ backgroundColor: '#e74c3c' }}
+              alwaysShowTitle={false}
+            // onClick={someFunctionForTheMainButton}
+            >
+
+              <Action
+
+                text="Project Detail"
+                onClick={() => window.location.href = "#card"}
+              >
+              </Action>
+              <Action
+                text="Project Article"
+                onClick={() => window.location.href = "#card1"}
+              >
+                <i className="fa fa-help" />
+              </Action>
+
+
+
+            </Fab>
+
+
+
+            {/* <Nav pills className="nav-pills-primary">
               <NavItem>
                 <NavLink
                   className={hTabs === "ht1" ? "active" : ""}
@@ -164,11 +335,12 @@ function CustomerArticleDetail() {
                 </NavLink>
               </NavItem>
 
-            </Nav>
+            </Nav> */}
 
 
 
-            <TabContent activeTab={hTabs} className="tab-space">
+
+            <TabContent id="email" activeTab={hTabs} className="tab-space">
               <TabPane tabId="ht1">
 
 
@@ -179,6 +351,7 @@ function CustomerArticleDetail() {
                 >
                   <NavItem>
                     <NavLink
+
                       className={pageSubcategories === "ps1" ? "active" : ""}
                       onClick={() => setpageSubcategories("ps1")}
                     >
@@ -242,7 +415,12 @@ function CustomerArticleDetail() {
                         />
                       </Col>
                       <Col xs={12} md={3} size="sm">
-
+                        <CardTitle style={{
+                          marginLeft: "",
+                          color: "orange",
+                        }}>
+                          <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
+                          Pending</CardTitle>
                       </Col>
                       <Col xs={12} md={3} size="sm">
 
@@ -346,7 +524,12 @@ function CustomerArticleDetail() {
                         />
                       </Col>
                       <Col xs={12} md={3} size="sm">
-
+                        <CardTitle style={{
+                          marginLeft: "",
+                          color: "blue",
+                        }}>
+                          <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
+                          In-process</CardTitle>
                       </Col>
                       <Col xs={12} md={3} size="sm">
 
@@ -450,7 +633,12 @@ function CustomerArticleDetail() {
                         />
                       </Col>
                       <Col xs={12} md={3} size="sm">
-
+                        <CardTitle style={{
+                          marginLeft: "",
+                          color: "green",
+                        }}>
+                          <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
+                          Done</CardTitle>
                       </Col>
                       <Col xs={12} md={3} size="sm">
 
@@ -554,7 +742,12 @@ function CustomerArticleDetail() {
                         />
                       </Col>
                       <Col xs={12} md={3} size="sm">
-
+                        <CardTitle style={{
+                          marginLeft: "",
+                          color: "red",
+                        }}>
+                          <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
+                          Postponed</CardTitle>
                       </Col>
                       <Col xs={12} md={3} size="sm">
 
@@ -679,90 +872,7 @@ function CustomerArticleDetail() {
 
               </TabPane>
               <TabPane tabId="ht2">
-                <Row style={{
-                  marginTop: "40px",
-                }}>
-                  <Col xs={12} md={6}>
 
-                    <a classname="card" href="" onClick={onClickCard}>
-                      <Card>
-
-                        <CardHeader>
-                          <CardTitle style={{
-                            marginLeft: "",
-                            color: "green",
-                          }}>
-                            <CategoryIcon></CategoryIcon>
-                            Computer Science</CardTitle>
-                        </CardHeader>
-
-                        <CardHeader>
-                          <CardTitle tag="h4" style={{
-                            color: "green",
-                            marginTop: "-10px",
-                          }}>Computer Vision AI</CardTitle>
-                          {/* <CardTitle style={{
-                            marginLeft: "",
-                            color: "red",
-                          }}>
-                            <AttachMoneyIcon></AttachMoneyIcon>
-                            5000</CardTitle> */}
-                          <CardTitle style={{
-                            marginLeft: "",
-                            color: "black",
-                          }}>
-                            <AccountCircleIcon></AccountCircleIcon>
-                            Tran Manh Hung</CardTitle>
-                          <CardTitle style={{
-                            marginLeft: "",
-                            color: "black",
-                          }}>
-                            <GTranslateIcon></GTranslateIcon>
-                            Translator : 2/10</CardTitle>
-
-                          <CardTitle style={{
-                            marginLeft: "",
-                            color: "black",
-                          }}>
-                            <CalendarMonthIcon></CalendarMonthIcon>
-                            06/08/2022 12:00 AM</CardTitle>
-                          <CardTitle style={{
-                            marginLeft: "",
-                            color: "orange",
-                          }}>
-                            <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
-                            Pending</CardTitle>
-                          <CardTitle style={{
-                            marginLeft: "",
-                            color: "black",
-                          }}>
-                            <DescriptionIcon></DescriptionIcon>
-                            Description :
-
-
-                            <CardContent>
-                              <div className="card-description">
-                                <p>This impressive paella is a perfect party dish and
-                                  a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.</p>
-                              </div>
-
-                            </CardContent>
-
-
-                          </CardTitle>
-                        </CardHeader>
-
-                        <div class="go-corner" href="#">
-                          <div class="go-arrow">
-                            →
-                          </div>
-                        </div>
-
-                      </Card>
-                    </a>
-                  </Col>
-
-                </Row>
 
 
               </TabPane>
@@ -771,8 +881,10 @@ function CustomerArticleDetail() {
 
           </Col>
         </Row>
+
       </div>
     </>
+
   );
 }
 

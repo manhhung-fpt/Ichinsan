@@ -24,6 +24,7 @@ import { VectorMap } from "react-jvectormap";
 import Switch from "react-bootstrap-switch";
 import axios from 'axios';
 import StarRateIcon from '@mui/icons-material/StarRate';
+import { Fab, Action } from 'react-tiny-fab';
 
 // reactstrap components
 import {
@@ -192,16 +193,18 @@ function CustomerProgressArticle() {
 
 
 
-                <CardTitle tag="h4" >Article Tittle</CardTitle>
+
                 <Breadcrumbs separator="›" aria-label="breadcrumb" style={{ padding: '20px' }}>
                     <Link underline="hover" color="inherit" href="/admin/customer-home">
                         Customer Home
                     </Link>
                     <Link underline="hover" color="inherit" href="/admin/customer-arti-detail">
-                        Project Article Details 
+                        Project Article Details
                     </Link>
                     <Typography color="text.primary">Article Details</Typography>
                 </Breadcrumbs>
+
+                <CardTitle  id="card2" tag="h4" >Article Recruitment</CardTitle>
                 <Nav pills className="nav-pills-info"
 
                 >
@@ -215,6 +218,126 @@ function CustomerProgressArticle() {
 
                             Recruitment
 
+                        </NavLink>
+                    </NavItem>
+                </Nav>
+
+
+                <Row>
+
+                    <Col xs={12} md={3} size="sm">
+                        <Select
+                            className="react-select warning"
+                            classNamePrefix="react-select"
+                            isMulti
+                            closeMenuOnSelect={false}
+                            placeholder="Sort "
+                            name="multipleSelect"
+                            value={singleSelect}
+                            options={selectOptions}
+                            onChange={(value) => setSingleSelect(value)}
+                        />
+                    </Col>
+                    <Col xs={12} md={3} size="sm">
+                        Number of Recruitments : 5
+                    </Col>
+                    <Col xs={12} md={3} size="sm">
+
+                    </Col>
+                    <Col xs={12} md={3} size="sm">
+
+                    </Col>
+                </Row>
+                <CardBody>
+                    <Table responsive>
+                        <thead className="text-primary">
+                            <tr>
+                                <th className="text-center">#</th>
+                                <th>Translation Name</th>
+                                <th>Level</th>
+                                <th>Apply Date</th>
+                                <th>Status</th>
+                                <th>Choose</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                            {
+                                fakeData.map((item, index) => {
+                                    return (<tr>
+                                        <td className="text-center">{index + 1}</td>
+                                        <td>{item.first_name}</td>
+                                        <td>{item.last_name}</td>
+                                        <td>{item.email}</td>
+                                        <td >
+                                            {/* <Switch defaultValue={false} /> */}
+                                            <Button>Applied</Button>
+
+                                        </td>
+                                        <td>
+                                            <Button color="info" className="btn-right" style={
+                                                {
+
+                                                    fontSize: "10px",
+
+                                                }
+                                            }>
+
+                                                Choose
+                                            </Button>
+                                        </td>
+
+                                    </tr>);
+                                })
+                            }
+
+
+                        </tbody>
+                    </Table>
+                </CardBody>
+
+                <CardTitle id="card3" tag="h4">Article Detail
+                    <span class="fi fi-AU"></span> <span class="fi fi-gr fis"></span>
+                </CardTitle>
+                <Fab
+                    icon={"+"}
+                    mainButtonStyles={{ backgroundColor: '#e74c3c' }}
+                    alwaysShowTitle={false}
+                // onClick={someFunctionForTheMainButton}
+                >
+
+                    <Action
+
+                        text="Project Detail"
+                        onClick={() => window.location.href = "#card2"}
+                    >
+                    </Action>
+                    <Action
+                        text="Project Article"
+                        onClick={() => window.location.href = "#card3"}
+                    >
+                        <i className="fa fa-help" />
+                    </Action>
+
+
+
+                </Fab>
+
+
+
+
+                <Nav pills className="nav-pills-info"
+
+                >
+                    <NavItem>
+                        <NavLink
+                            className={hTabs === "ht1" ? "active" : ""}
+                            onClick={() => sethTabs("ht1")}
+                        >
+
+                            Detail
                         </NavLink>
                     </NavItem>
                     <NavItem>
@@ -231,16 +354,7 @@ function CustomerProgressArticle() {
                             className={hTabs === "ht3" ? "active" : ""}
                             onClick={() => sethTabs("ht3")}
                         >
-
-                            Feedback
-                        </NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink
-                            className={hTabs === "ht4" ? "active" : ""}
-                            onClick={() => sethTabs("ht4")}
-                        >
-                            Detail
+                            Feedbacks
                         </NavLink>
                     </NavItem>
 
@@ -251,7 +365,7 @@ function CustomerProgressArticle() {
 
                 <TabContent activeTab={hTabs} className="tab-space">
 
-                    <TabPane tabId="ht4">
+                    <TabPane tabId="ht1">
 
 
                         <Row style={{
@@ -392,91 +506,7 @@ function CustomerProgressArticle() {
 
                     </TabPane>
 
-                    <TabPane tabId="ht1">
-                        <Row>
-                            <Col xs={12} md={9} size="sm"  >
-                                Sort :
-                            </Col>
-                            <Col Col xs={12} md={3} size="sm" >
 
-                            </Col>
-                        </Row>
-
-                        <Row>
-
-                            <Col xs={12} md={3} size="sm">
-                                <Select
-                                    className="react-select warning"
-                                    classNamePrefix="react-select"
-                                    isMulti
-                                    closeMenuOnSelect={false}
-                                    placeholder="Sort "
-                                    name="multipleSelect"
-                                    value={singleSelect}
-                                    options={selectOptions}
-                                    onChange={(value) => setSingleSelect(value)}
-                                />
-                            </Col>
-                            <Col xs={12} md={3} size="sm">
-                                Number of Recruitments : 5
-                            </Col>
-                            <Col xs={12} md={3} size="sm">
-
-                            </Col>
-                            <Col xs={12} md={3} size="sm">
-
-                            </Col>
-                        </Row>
-                        <CardBody>
-                            <Table responsive>
-                                <thead className="text-primary">
-                                    <tr>
-                                        <th className="text-center">#</th>
-                                        <th>Translation Name</th>
-                                        <th>Level</th>
-                                        <th>Apply Date</th>
-                                        <th>Status</th>
-                                        <th>Choose</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-
-                                    {
-                                        fakeData.map((item, index) => {
-                                            return (<tr>
-                                                <td className="text-center">{index + 1}</td>
-                                                <td>{item.first_name}</td>
-                                                <td>{item.last_name}</td>
-                                                <td>{item.email}</td>
-                                                <td >
-                                                    {/* <Switch defaultValue={false} /> */}
-                                                    <Button>Applied</Button>
-
-                                                </td>
-                                                <td>
-                                                    <Button color="info" className="btn-right" style={
-                                                        {
-
-                                                            fontSize: "10px",
-
-                                                        }
-                                                    }>
-
-                                                        Choose
-                                                    </Button>
-                                                </td>
-
-                                            </tr>);
-                                        })
-                                    }
-
-
-                                </tbody>
-                            </Table>
-                        </CardBody>
-                    </TabPane>
                     <TabPane tabId="ht2">
 
 

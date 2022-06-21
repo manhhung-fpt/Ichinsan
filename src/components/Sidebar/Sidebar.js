@@ -64,7 +64,7 @@ function Sidebar(props) {
   const logOutOnClick = () => {
     console.log(history);
     localStorage.clear();
-    history.push({pathname: "/auth/login-page"});
+    history.push({ pathname: "/auth/login-page" });
   }
   const getCollapseStates = (routes) => {
     let initialState = {};
@@ -236,18 +236,20 @@ function Sidebar(props) {
           </div>
           <Nav>{createLinks(props.routes)}</Nav>
           <div style={{ position: 'absolute', bottom: '0' }}>
-          {localStorage.getItem('name')  && (
-                <>
-                  <Button onClick={logOutOnClick} color="primary" className="btn-info" style={
-                    {
+            {localStorage.getItem('name') && (
+              <>
+                <Button onClick={logOutOnClick}  color="primary" className="btn-info" style={
+                  {
+                    width: '100%',
+                    fontSize: "10px",
+                  }
+                }>
+                  <i className="now-ui-icons ui-2_settings-90" />
+                  Logout
+                </Button>
 
-                      fontSize: "10px",
-                    }
-                  }>
-                     Logout
-                  </Button>
-                </>
-                )}
+              </>
+            )}
           </div>
         </div>
       </div>

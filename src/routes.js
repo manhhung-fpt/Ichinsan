@@ -36,6 +36,7 @@ import TranslatorProgress from './views/TranslatorProgress/TranslatorProgress';
 import Wallet from './views/Wallet/Wallet';
 import SearchFilter from './views/SearchFilter/SearchFilter';
 import TranslatorProgressArticle from './views/TranslatorProgressArticle/TranslatorProgressArticle';
+import TranslatorRecruiment from './views/TranslatorRecruitment/TranslatorRecruiment';
 
 
 let routes = [
@@ -128,8 +129,9 @@ let routes = [
     path: "/Search",
     name: "Search Filter",
     icon: "now-ui-icons business_badge",
-    mainScreen: true,
+ 
     component:  SearchFilter,
+    hideInDetail: true,
     layout: "/admin",
   },
   
@@ -211,7 +213,7 @@ let routes = [
     name: "Customer Article Detail",
     icon: "now-ui-icons business_badge",
     component: CustomerArticleDetail,
-    hideInDetail: true,
+    rolePermission: "Customer",
     layout: "/admin",
   },
   {
@@ -224,11 +226,19 @@ let routes = [
   },
   {
     path: "/translator-progress-article",
-    name: "Translator Progress Article",
+    name: "Translator Article",
     icon: "now-ui-icons business_badge",
     component: TranslatorProgressArticle,
     rolePermission: "Translator",
     hideInDetail: true,
+    layout: "/admin",
+  },
+  {
+    path: "/translator-recruitment",
+    name: "Translator Recruitment",
+    icon: "now-ui-icons business_badge",
+    component: TranslatorRecruiment,
+    rolePermission: "Translator",
     layout: "/admin",
   },
   {
