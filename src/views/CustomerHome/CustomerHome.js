@@ -19,6 +19,7 @@ import "./CustomerHome.css"
 import CategoryIcon from '@mui/icons-material/Category';
 import GTranslateIcon from '@mui/icons-material/GTranslate';
 import SpellcheckIcon from '@mui/icons-material/Spellcheck';
+import SignalWifiStatusbar4BarIcon from '@mui/icons-material/SignalWifiStatusbar4Bar';
 
 // reactstrap components
 import {
@@ -123,14 +124,14 @@ function CustomerHome() {
 
         >
           <NavItem>
-         
-            <NavLink 
+
+            <NavLink
               className={hTabs === "ht1" ? "active" : ""}
               onClick={() => sethTabs("ht1")}
 
-            >     
-            Pending  
-            
+            >
+              Pending
+
             </NavLink>
           </NavItem>
           <NavItem>
@@ -204,46 +205,10 @@ function CustomerHome() {
                       }}>Computer Vision AI</CardTitle>
                       <CardTitle style={{
                         marginLeft: "",
-                        color: "black",
+                        color: "orange",
                       }}>
-                        <GTranslateIcon></GTranslateIcon>
-                        Translator : 2/10</CardTitle>
-
-                      <CardTitle style={{
-                        marginLeft: "",
-                        color: "black",
-                      }}>
-                        <SpellcheckIcon></SpellcheckIcon>
-                        Auditor : 2/10</CardTitle>
-                    </CardHeader>
-
-                    <div class="go-corner" href="#">
-                      <div class="go-arrow">
-                        →
-                      </div>
-                    </div>
-
-                  </Card>
-                </a>
-              </Col>
-              <Col xs={12} md={3}>
-                <a classname="card" href="" onClick={onClickView}>
-                  <Card>
-
-                    <CardHeader>
-                      <CardTitle style={{
-                        marginLeft: "",
-                        color: "green",
-                      }}>
-                        <CategoryIcon></CategoryIcon>
-                        Computer Science</CardTitle>
-                    </CardHeader>
-
-                    <CardHeader>
-                      <CardTitle tag="h4" style={{
-                        color: "green",
-                        marginTop: "-10px",
-                      }}>Computer Vision AI</CardTitle>
+                        <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
+                        Pending</CardTitle>
                       <CardTitle style={{
                         marginLeft: "",
                         color: "black",
@@ -288,6 +253,12 @@ function CustomerHome() {
                       }}>Computer Vision AI</CardTitle>
                       <CardTitle style={{
                         marginLeft: "",
+                        color: "orange",
+                      }}>
+                        <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
+                        Pending</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
                         color: "black",
                       }}>
                         <GTranslateIcon></GTranslateIcon>
@@ -328,6 +299,60 @@ function CustomerHome() {
                         color: "green",
                         marginTop: "-10px",
                       }}>Computer Vision AI</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "orange",
+                      }}>
+                        <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
+                        Pending</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <GTranslateIcon></GTranslateIcon>
+                        Translator : 2/10</CardTitle>
+
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <SpellcheckIcon></SpellcheckIcon>
+                        Auditor : 2/10</CardTitle>
+                    </CardHeader>
+
+                    <div class="go-corner" href="#">
+                      <div class="go-arrow">
+                        →
+                      </div>
+                    </div>
+
+                  </Card>
+                </a>
+              </Col>
+              <Col xs={12} md={3}>
+                <a classname="card" href="" onClick={onClickView}>
+                  <Card>
+
+                    <CardHeader>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "green",
+                      }}>
+                        <CategoryIcon></CategoryIcon>
+                        Computer Science</CardTitle>
+                    </CardHeader>
+
+                    <CardHeader>
+                      <CardTitle tag="h4" style={{
+                        color: "green",
+                        marginTop: "-10px",
+                      }}>Computer Vision AI</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "orange",
+                      }}>
+                        <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
+                        Pending</CardTitle>
                       <CardTitle style={{
                         marginLeft: "",
                         color: "black",
@@ -380,46 +405,10 @@ function CustomerHome() {
                       }}>Computer Vision AI</CardTitle>
                       <CardTitle style={{
                         marginLeft: "",
-                        color: "black",
+                        color: "orange",
                       }}>
-                        <GTranslateIcon></GTranslateIcon>
-                        Translator : 2/10</CardTitle>
-
-                      <CardTitle style={{
-                        marginLeft: "",
-                        color: "black",
-                      }}>
-                        <SpellcheckIcon></SpellcheckIcon>
-                        Auditor : 2/10</CardTitle>
-                    </CardHeader>
-
-                    <div class="go-corner" href="#">
-                      <div class="go-arrow">
-                        →
-                      </div>
-                    </div>
-
-                  </Card>
-                </a>
-              </Col>
-              <Col xs={12} md={3}>
-                <a classname="card" href="" onClick={onClickView}>
-                  <Card>
-
-                    <CardHeader>
-                      <CardTitle style={{
-                        marginLeft: "",
-                        color: "green",
-                      }}>
-                        <CategoryIcon></CategoryIcon>
-                        Computer Science</CardTitle>
-                    </CardHeader>
-
-                    <CardHeader>
-                      <CardTitle tag="h4" style={{
-                        color: "green",
-                        marginTop: "-10px",
-                      }}>Computer Vision AI</CardTitle>
+                        <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
+                        Pending</CardTitle>
                       <CardTitle style={{
                         marginLeft: "",
                         color: "black",
@@ -464,6 +453,12 @@ function CustomerHome() {
                       }}>Computer Vision AI</CardTitle>
                       <CardTitle style={{
                         marginLeft: "",
+                        color: "orange",
+                      }}>
+                        <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
+                        Pending</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
                         color: "black",
                       }}>
                         <GTranslateIcon></GTranslateIcon>
@@ -504,6 +499,60 @@ function CustomerHome() {
                         color: "green",
                         marginTop: "-10px",
                       }}>Computer Vision AI</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "orange",
+                      }}>
+                        <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
+                        Pending</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <GTranslateIcon></GTranslateIcon>
+                        Translator : 2/10</CardTitle>
+
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <SpellcheckIcon></SpellcheckIcon>
+                        Auditor : 2/10</CardTitle>
+                    </CardHeader>
+
+                    <div class="go-corner" href="#">
+                      <div class="go-arrow">
+                        →
+                      </div>
+                    </div>
+
+                  </Card>
+                </a>
+              </Col>
+              <Col xs={12} md={3}>
+                <a classname="card" href="" onClick={onClickView}>
+                  <Card>
+
+                    <CardHeader>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "green",
+                      }}>
+                        <CategoryIcon></CategoryIcon>
+                        Computer Science</CardTitle>
+                    </CardHeader>
+
+                    <CardHeader>
+                      <CardTitle tag="h4" style={{
+                        color: "green",
+                        marginTop: "-10px",
+                      }}>Computer Vision AI</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "orange",
+                      }}>
+                        <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
+                        Pending</CardTitle>
                       <CardTitle style={{
                         marginLeft: "",
                         color: "black",
@@ -555,46 +604,10 @@ function CustomerHome() {
                       }}>Computer Vision AI</CardTitle>
                       <CardTitle style={{
                         marginLeft: "",
-                        color: "black",
+                        color: "blue",
                       }}>
-                        <GTranslateIcon></GTranslateIcon>
-                        Translator : 2/10</CardTitle>
-
-                      <CardTitle style={{
-                        marginLeft: "",
-                        color: "black",
-                      }}>
-                        <SpellcheckIcon></SpellcheckIcon>
-                        Auditor : 2/10</CardTitle>
-                    </CardHeader>
-
-                    <div class="go-corner" href="#">
-                      <div class="go-arrow">
-                        →
-                      </div>
-                    </div>
-
-                  </Card>
-                </a>
-              </Col>
-              <Col xs={12} md={3}>
-                <a classname="card" href="" onClick={onClickView}>
-                  <Card>
-
-                    <CardHeader>
-                      <CardTitle style={{
-                        marginLeft: "",
-                        color: "green",
-                      }}>
-                        <CategoryIcon></CategoryIcon>
-                        Computer Science</CardTitle>
-                    </CardHeader>
-
-                    <CardHeader>
-                      <CardTitle tag="h4" style={{
-                        color: "green",
-                        marginTop: "-10px",
-                      }}>Computer Vision AI</CardTitle>
+                        <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
+                        In-process</CardTitle>
                       <CardTitle style={{
                         marginLeft: "",
                         color: "black",
@@ -639,6 +652,12 @@ function CustomerHome() {
                       }}>Computer Vision AI</CardTitle>
                       <CardTitle style={{
                         marginLeft: "",
+                        color: "blue",
+                      }}>
+                        <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
+                        In-process</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
                         color: "black",
                       }}>
                         <GTranslateIcon></GTranslateIcon>
@@ -679,6 +698,60 @@ function CustomerHome() {
                         color: "green",
                         marginTop: "-10px",
                       }}>Computer Vision AI</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "blue",
+                      }}>
+                        <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
+                        In-process</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <GTranslateIcon></GTranslateIcon>
+                        Translator : 2/10</CardTitle>
+
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <SpellcheckIcon></SpellcheckIcon>
+                        Auditor : 2/10</CardTitle>
+                    </CardHeader>
+
+                    <div class="go-corner" href="#">
+                      <div class="go-arrow">
+                        →
+                      </div>
+                    </div>
+
+                  </Card>
+                </a>
+              </Col>
+              <Col xs={12} md={3}>
+                <a classname="card" href="" onClick={onClickView}>
+                  <Card>
+
+                    <CardHeader>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "green",
+                      }}>
+                        <CategoryIcon></CategoryIcon>
+                        Computer Science</CardTitle>
+                    </CardHeader>
+
+                    <CardHeader>
+                      <CardTitle tag="h4" style={{
+                        color: "green",
+                        marginTop: "-10px",
+                      }}>Computer Vision AI</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "blue",
+                      }}>
+                        <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
+                        In-process</CardTitle>
                       <CardTitle style={{
                         marginLeft: "",
                         color: "black",
@@ -734,6 +807,12 @@ function CustomerHome() {
                       }}>Computer Vision AI</CardTitle>
                       <CardTitle style={{
                         marginLeft: "",
+                        color: "green",
+                      }}>
+                        <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
+                        Done</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
                         color: "black",
                       }}>
                         <GTranslateIcon></GTranslateIcon>
@@ -774,6 +853,12 @@ function CustomerHome() {
                         color: "green",
                         marginTop: "-10px",
                       }}>Computer Vision AI</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "green",
+                      }}>
+                        <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
+                        Done</CardTitle>
                       <CardTitle style={{
                         marginLeft: "",
                         color: "black",
@@ -835,46 +920,10 @@ function CustomerHome() {
                       }}>Computer Vision AI</CardTitle>
                       <CardTitle style={{
                         marginLeft: "",
-                        color: "black",
+                        color: "red",
                       }}>
-                        <GTranslateIcon></GTranslateIcon>
-                        Translator : 2/10</CardTitle>
-
-                      <CardTitle style={{
-                        marginLeft: "",
-                        color: "black",
-                      }}>
-                        <SpellcheckIcon></SpellcheckIcon>
-                        Auditor : 2/10</CardTitle>
-                    </CardHeader>
-
-                    <div class="go-corner" href="#">
-                      <div class="go-arrow">
-                        →
-                      </div>
-                    </div>
-
-                  </Card>
-                </a>
-              </Col>
-              <Col xs={12} md={3}>
-                <a classname="card" href="" onClick={onClickView}>
-                  <Card>
-
-                    <CardHeader>
-                      <CardTitle style={{
-                        marginLeft: "",
-                        color: "green",
-                      }}>
-                        <CategoryIcon></CategoryIcon>
-                        Computer Science</CardTitle>
-                    </CardHeader>
-
-                    <CardHeader>
-                      <CardTitle tag="h4" style={{
-                        color: "green",
-                        marginTop: "-10px",
-                      }}>Computer Vision AI</CardTitle>
+                        <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
+                        Postponed</CardTitle>
                       <CardTitle style={{
                         marginLeft: "",
                         color: "black",
@@ -919,6 +968,12 @@ function CustomerHome() {
                       }}>Computer Vision AI</CardTitle>
                       <CardTitle style={{
                         marginLeft: "",
+                        color: "red",
+                      }}>
+                        <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
+                        Postponed</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
                         color: "black",
                       }}>
                         <GTranslateIcon></GTranslateIcon>
@@ -959,6 +1014,60 @@ function CustomerHome() {
                         color: "green",
                         marginTop: "-10px",
                       }}>Computer Vision AI</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "red",
+                      }}>
+                        <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
+                        Postponed</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <GTranslateIcon></GTranslateIcon>
+                        Translator : 2/10</CardTitle>
+
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <SpellcheckIcon></SpellcheckIcon>
+                        Auditor : 2/10</CardTitle>
+                    </CardHeader>
+
+                    <div class="go-corner" href="#">
+                      <div class="go-arrow">
+                        →
+                      </div>
+                    </div>
+
+                  </Card>
+                </a>
+              </Col>
+              <Col xs={12} md={3}>
+                <a classname="card" href="" onClick={onClickView}>
+                  <Card>
+
+                    <CardHeader>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "green",
+                      }}>
+                        <CategoryIcon></CategoryIcon>
+                        Computer Science</CardTitle>
+                    </CardHeader>
+
+                    <CardHeader>
+                      <CardTitle tag="h4" style={{
+                        color: "green",
+                        marginTop: "-10px",
+                      }}>Computer Vision AI</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "red",
+                      }}>
+                        <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
+                        Postponed</CardTitle>
                       <CardTitle style={{
                         marginLeft: "",
                         color: "black",
@@ -1011,46 +1120,10 @@ function CustomerHome() {
                       }}>Computer Vision AI</CardTitle>
                       <CardTitle style={{
                         marginLeft: "",
-                        color: "black",
+                        color: "red",
                       }}>
-                        <GTranslateIcon></GTranslateIcon>
-                        Translator : 2/10</CardTitle>
-
-                      <CardTitle style={{
-                        marginLeft: "",
-                        color: "black",
-                      }}>
-                        <SpellcheckIcon></SpellcheckIcon>
-                        Auditor : 2/10</CardTitle>
-                    </CardHeader>
-
-                    <div class="go-corner" href="#">
-                      <div class="go-arrow">
-                        →
-                      </div>
-                    </div>
-
-                  </Card>
-                </a>
-              </Col>
-              <Col xs={12} md={3}>
-                <a classname="card" href="" onClick={onClickView}>
-                  <Card>
-
-                    <CardHeader>
-                      <CardTitle style={{
-                        marginLeft: "",
-                        color: "green",
-                      }}>
-                        <CategoryIcon></CategoryIcon>
-                        Computer Science</CardTitle>
-                    </CardHeader>
-
-                    <CardHeader>
-                      <CardTitle tag="h4" style={{
-                        color: "green",
-                        marginTop: "-10px",
-                      }}>Computer Vision AI</CardTitle>
+                        <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
+                        Postponed</CardTitle>
                       <CardTitle style={{
                         marginLeft: "",
                         color: "black",
@@ -1095,6 +1168,12 @@ function CustomerHome() {
                       }}>Computer Vision AI</CardTitle>
                       <CardTitle style={{
                         marginLeft: "",
+                        color: "red",
+                      }}>
+                        <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
+                        Postponed</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
                         color: "black",
                       }}>
                         <GTranslateIcon></GTranslateIcon>
@@ -1135,6 +1214,60 @@ function CustomerHome() {
                         color: "green",
                         marginTop: "-10px",
                       }}>Computer Vision AI</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "red",
+                      }}>
+                        <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
+                        Postponed</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <GTranslateIcon></GTranslateIcon>
+                        Translator : 2/10</CardTitle>
+
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "black",
+                      }}>
+                        <SpellcheckIcon></SpellcheckIcon>
+                        Auditor : 2/10</CardTitle>
+                    </CardHeader>
+
+                    <div class="go-corner" href="#">
+                      <div class="go-arrow">
+                        →
+                      </div>
+                    </div>
+
+                  </Card>
+                </a>
+              </Col>
+              <Col xs={12} md={3}>
+                <a classname="card" href="" onClick={onClickView}>
+                  <Card>
+
+                    <CardHeader>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "green",
+                      }}>
+                        <CategoryIcon></CategoryIcon>
+                        Computer Science</CardTitle>
+                    </CardHeader>
+
+                    <CardHeader>
+                      <CardTitle tag="h4" style={{
+                        color: "green",
+                        marginTop: "-10px",
+                      }}>Computer Vision AI</CardTitle>
+                      <CardTitle style={{
+                        marginLeft: "",
+                        color: "red",
+                      }}>
+                        <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
+                        Postponed</CardTitle>
                       <CardTitle style={{
                         marginLeft: "",
                         color: "black",

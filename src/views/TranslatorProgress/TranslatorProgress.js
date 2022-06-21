@@ -29,6 +29,8 @@ import { useHistory } from "react-router-dom";
 import TranslateIcon from '@mui/icons-material/Translate';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 
+import CardContent from '@mui/material/CardContent';
+
 import { Swiper, SwiperSlide } from 'swiper/react/swiper-react.js';
 // Styles must use direct files imports
 import 'swiper/swiper.scss'; // core Swiper
@@ -39,7 +41,7 @@ import 'swiper/modules/effect-fade/effect-fade.scss'; // Pagination module
 
 import CategoryIcon from '@mui/icons-material/Category';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-
+import SignalWifiStatusbar4BarIcon from '@mui/icons-material/SignalWifiStatusbar4Bar';
 var selectOptions = [
   { value: "Category1", label: "Category1" },
   { value: "Category2", label: "Category2" },
@@ -145,30 +147,6 @@ function TranslatorProgress() {
 
 
 
-            <Nav pills className="nav-pills-primary">
-              <NavItem>
-                <NavLink
-                  className={hTabs === "ht1" ? "active" : ""}
-                  onClick={() => sethTabs("ht1")}
-
-                >
-                  Projects
-
-
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink
-                  className={hTabs === "ht2" ? "active" : ""}
-                  onClick={() => sethTabs("ht2")}
-                >
-                  Recruitments
-                </NavLink>
-              </NavItem>
-
-            </Nav>
-
-
 
             <TabContent activeTab={hTabs} className="tab-space">
               <TabPane tabId="ht1">
@@ -258,10 +236,17 @@ function TranslatorProgress() {
                             </CardHeader>
 
                             <CardHeader>
+
                               <CardTitle tag="h4" style={{
                                 color: "green",
                                 marginTop: "-10px",
                               }}>Computer Vision AI</CardTitle>
+                              <CardTitle style={{
+                                marginLeft: "",
+                                color: "orange",
+                              }}>
+                                <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
+                                    Pending</CardTitle>
                               <CardTitle style={{
                                 marginLeft: "",
                                 color: "red",
@@ -294,6 +279,9 @@ function TranslatorProgress() {
                               </CardTitle>
 
                             </CardHeader>
+                       
+
+                      
 
                             <div class="go-corner" href="#">
                               <div class="go-arrow">
@@ -322,6 +310,12 @@ function TranslatorProgress() {
                                 color: "green",
                                 marginTop: "-10px",
                               }}>Computer Vision AI</CardTitle>
+                              <CardTitle style={{
+                                marginLeft: "",
+                                color: "orange",
+                              }}>
+                                <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
+                                    Pending</CardTitle>
                               <CardTitle style={{
                                 marginLeft: "",
                                 color: "red",
@@ -398,6 +392,12 @@ function TranslatorProgress() {
                               }}>Computer Vision AI</CardTitle>
                               <CardTitle style={{
                                 marginLeft: "",
+                                color: "blue",
+                              }}>
+                                <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
+                                   In-process</CardTitle>
+                              <CardTitle style={{
+                                marginLeft: "",
                                 color: "red",
                               }}>
                                 <AttachMoneyIcon></AttachMoneyIcon>
@@ -456,6 +456,12 @@ function TranslatorProgress() {
                                 color: "green",
                                 marginTop: "-10px",
                               }}>Computer Vision AI</CardTitle>
+                              <CardTitle style={{
+                                marginLeft: "",
+                                color: "blue",
+                              }}>
+                                <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
+                                   In-process</CardTitle>
                               <CardTitle style={{
                                 marginLeft: "",
                                 color: "red",
@@ -530,6 +536,12 @@ function TranslatorProgress() {
                               }}>Computer Vision AI</CardTitle>
                               <CardTitle style={{
                                 marginLeft: "",
+                                color: "green",
+                              }}>
+                                <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
+                                   Done</CardTitle>
+                              <CardTitle style={{
+                                marginLeft: "",
                                 color: "red",
                               }}>
                                 <AttachMoneyIcon></AttachMoneyIcon>
@@ -588,6 +600,12 @@ function TranslatorProgress() {
                                 color: "green",
                                 marginTop: "-10px",
                               }}>Computer Vision AI</CardTitle>
+                              <CardTitle style={{
+                                marginLeft: "",
+                                color: "green",
+                              }}>
+                                <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
+                                   Done</CardTitle>
                               <CardTitle style={{
                                 marginLeft: "",
                                 color: "red",
@@ -664,6 +682,12 @@ function TranslatorProgress() {
                                 marginLeft: "",
                                 color: "red",
                               }}>
+                                <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
+                                   Postponed</CardTitle>
+                              <CardTitle style={{
+                                marginLeft: "",
+                                color: "red",
+                              }}>
                                 <AttachMoneyIcon></AttachMoneyIcon>
                                 5000</CardTitle>
                               <CardTitle style={{
@@ -720,6 +744,12 @@ function TranslatorProgress() {
                                 color: "green",
                                 marginTop: "-10px",
                               }}>Computer Vision AI</CardTitle>
+                              <CardTitle style={{
+                                marginLeft: "",
+                                color: "red",
+                              }}>
+                                <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
+                                   Postponed</CardTitle>
                               <CardTitle style={{
                                 marginLeft: "",
                                 color: "red",

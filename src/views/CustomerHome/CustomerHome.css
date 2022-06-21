@@ -1,6 +1,7 @@
 #app { height: 100% }
 html,
 body {
+  scroll-behavior: smooth;
   position: relative;
   height: 100%;
 }
