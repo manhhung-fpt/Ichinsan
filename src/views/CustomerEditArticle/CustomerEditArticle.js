@@ -69,7 +69,7 @@ function CustomerEditArticle() {
     history.push("/admin/admin-feedback-category");
   }
   const onClickBack = () => {
-    history.push("/admin/customer-progress-article");
+    history.push("/admin/customer-recruitment-detail");
   }
   const onClickDone = () => {
     history.push("/admin/customer-progress-article");

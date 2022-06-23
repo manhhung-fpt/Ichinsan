@@ -36,7 +36,7 @@ import {
   Nav,
   NavItem,
   NavLink,
-
+  Button,
 
 } from "reactstrap";
 import { useHistory } from "react-router-dom";
@@ -68,6 +68,10 @@ function CustomerHome() {
   const onClick = () => {
 
     history.push("/admin/customer-article")
+  }
+  const onClickCreate = () => {
+
+    history.push("/admin/customer-create-project")
   }
 
 
@@ -115,10 +119,36 @@ function CustomerHome() {
 
 
 
+        <Row>
+          <Col xs={12} md={2} style={{
+            marginBottom: "10px",
+          }}>
+            <CardTitle tag="h4" > Customer Progress
+              <span class="fi fi-AU"></span> <span class="fi fi-gr fis"></span>
+            </CardTitle>
+          </Col>
+          <Col xs={12} md={8}>
+          </Col>
+          <Col xs={12} md={2}>
+            <Button onClick={onClickCreate} color="info" className="btn-right" style={
+              {
+                marginTop: "20px",
+                // fontSize: "10px",
+                backgroundColor: "#08becf",
 
-        <CardTitle tag="h4">Progress
-          <span class="fi fi-AU"></span> <span class="fi fi-gr fis"></span>
-        </CardTitle>
+              }
+            }>
+
+              Create Project +
+            </Button>
+          </Col>
+
+
+
+
+        </Row>
+
+
 
         <Nav pills className="nav-pills-info"
 

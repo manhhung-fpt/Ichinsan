@@ -173,7 +173,7 @@ function CustomerArticleDetail() {
               <Link underline="hover" color="inherit" href="/admin/customer-home">
                 Customer Home
               </Link>
-              <Typography color="text.primary"> Project Article Details</Typography>
+              <Typography color="text.primary"> Project Details</Typography>
             </Breadcrumbs>
 
             <CardTitle id="card" tag="h4">Project Detail

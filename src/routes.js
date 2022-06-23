@@ -38,6 +38,7 @@ import SearchFilter from './views/SearchFilter/SearchFilter';
 import TranslatorProgressArticle from './views/TranslatorProgressArticle/TranslatorProgressArticle';
 import TranslatorRecruiment from './views/TranslatorRecruitment/TranslatorRecruiment';
 import AdminViewAccount from './views/AdminViewAccount/AdminViewAccount';
+import CustomerRecruitmentDetail from './views/CustomerRecruitmentDetail/CustomerRecruitmentDetail';
 
 
 let routes = [
@@ -129,6 +130,7 @@ let routes = [
     path: "/customer-create-project",
     name: "Create Project",
     icon: "now-ui-icons business_badge",
+    hideInDetail: true,
     component: CustomerCreate,
     rolePermission: "Customer",
     layout: "/admin",
@@ -223,6 +225,16 @@ let routes = [
     name: "Customer Article Detail",
     icon: "now-ui-icons business_badge",
     component: CustomerArticleDetail,
+    hideInDetail: true,
+    rolePermission: "Customer",
+    layout: "/admin",
+  },
+  {
+    path: "/customer-recruitment-detail",
+    name: "Recruitment Article Detail",
+    icon: "now-ui-icons business_badge",
+    component: CustomerRecruitmentDetail,
+    hideInDetail: true,
     rolePermission: "Customer",
     layout: "/admin",
   },
