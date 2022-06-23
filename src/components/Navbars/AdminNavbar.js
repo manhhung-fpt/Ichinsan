@@ -131,11 +131,11 @@ function AdminNavbar(props) {
             <SearchIcon></SearchIcon>
             </Link>
             </NavItem>
-            <NavItem>
+            {/* <NavItem>
               <Link to="/admin/customer-create-project" className="nav-link">
               <AddCircleIcon></AddCircleIcon>
               </Link>
-            </NavItem>
+            </NavItem> */}
             <NavItem>
             <Link to="#pablo" className="nav-link">
               <NotificationsNoneIcon></NotificationsNoneIcon>

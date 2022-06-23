@@ -43,8 +43,8 @@ var selectOptions = [
 function AdminProjectDetails() {
   let history = useHistory();
   const [projects, setProjects] = useState([]);
-  const Change = 'Change';
-  const Assign = 'Assign';
+  const Change = 'actionType 1';
+  const Assign = 'actionType 2';
   useEffect(() => {
     axios
       .get("https://62a586f2b9b74f766a3afda9.mockapi.io/api/projectDetails/articles")
@@ -142,7 +142,15 @@ function AdminProjectDetails() {
                   </Col>
                   <Col xs={12} md={1} size="sm"></Col>
                   <Col xs={12} md={3} size="sm">
+                  <Button onClick={onClickAdd} color="primary" className="btn-info" style={
+                      {
 
+                        fontSize: "10px",
+
+                      }
+                    }>
+                      <i className="now-ui-icons ui-2_settings-90" /> Add Auditor
+                    </Button>
                   </Col>
                   <Col xs={12} md={4} size="sm">
 
@@ -164,7 +172,9 @@ function AdminProjectDetails() {
                   </thead>
                   <tbody>
                     {projects.map((project, index) => (
+                     
                       <tr>
+
                         <td className="text-center">{index + 1}</td>
                         <td>{project.articelName}</td>
                         <td>{project.language}</td>
@@ -385,15 +395,7 @@ function AdminProjectDetails() {
                   </Col>
                   <Col xs={12} md={3} size="sm">
 
-                    <Button onClick={onClickAdd} color="primary" className="btn-info" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-                      <i className="now-ui-icons ui-2_settings-90" /> Add Auditor
-                    </Button>
+                   
                   </Col>
                   <Col xs={12} md={4} size="sm">
 
