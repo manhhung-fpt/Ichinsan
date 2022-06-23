@@ -298,16 +298,11 @@ function CustomerProgressArticle() {
 
                     <Action
 
-                        text="Project Detail"
+                        text="Project Recruitment"
                         onClick={() => window.location.href = "#card2"}
                     >
                     </Action>
-                    <Action
-                        text="Project Article"
-                        onClick={() => window.location.href = "#card3"}
-                    >
-                        <i className="fa fa-help" />
-                    </Action>
+                  
 
 
 
