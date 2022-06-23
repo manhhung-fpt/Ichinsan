@@ -37,6 +37,7 @@ import Wallet from './views/Wallet/Wallet';
 import SearchFilter from './views/SearchFilter/SearchFilter';
 import TranslatorProgressArticle from './views/TranslatorProgressArticle/TranslatorProgressArticle';
 import TranslatorRecruiment from './views/TranslatorRecruitment/TranslatorRecruiment';
+import AdminViewAccount from './views/AdminViewAccount/AdminViewAccount';
 
 
 let routes = [
@@ -64,6 +65,15 @@ let routes = [
     icon: "now-ui-icons business_badge",
     component: AdminAccount,
     layout: "/admin",
+    rolePermission: "Admin"
+  },
+  {
+    path: "/admin-view-info",
+    name: "Admin View Info",
+    icon: "now-ui-icons business_badge",
+    component: AdminViewAccount,
+    layout: "/admin",
+    hideInDetail: true,
     rolePermission: "Admin"
   },
   {
@@ -116,6 +126,14 @@ let routes = [
     rolePermission: "Admin"
   },
   {
+    path: "/customer-create-project",
+    name: "Create Project",
+    icon: "now-ui-icons business_badge",
+    component: CustomerCreate,
+    rolePermission: "Customer",
+    layout: "/admin",
+  },
+  {
     path: "/customer-home",
     name: "Customer Progress",
     icon: "now-ui-icons business_badge",
@@ -129,11 +147,11 @@ let routes = [
     path: "/Search",
     name: "Search Filter",
     icon: "now-ui-icons business_badge",
- 
     component:  SearchFilter,
     hideInDetail: true,
     layout: "/admin",
   },
+ 
   
   {
     path: "/customer-progress-project",
@@ -143,14 +161,7 @@ let routes = [
     hideInDetail: true,
     layout: "/admin",
   },
-  {
-    path: "/customer-create-project",
-    name: "Customer Create Project",
-    icon: "now-ui-icons business_badge",
-    component: CustomerCreate,
-    hideInDetail: true,
-    layout: "/admin",
-  },
+  
   {
     path: "/customer-edit-project",
     name: "Customer Edit Project",
@@ -185,11 +196,10 @@ let routes = [
   },
   {
     path: "/customer-progress-article",
-    name: "Customer Progress Article",
+    name: "Customer Recruitment",
     icon: "now-ui-icons business_badge",
     component: CustomerProgressArticle,
     rolePermission: "Customer",
-    hideInDetail: true,
     layout: "/admin",
   },
   {

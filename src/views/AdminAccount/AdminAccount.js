@@ -48,7 +48,7 @@ function AdminAccount() {
   const [multipleSelect, setMultipleSelect] = React.useState("");
   const [roles, setRoles] = React.useState([]);
   const onClickView = () => {
-    history.push("/admin/wizard")
+    history.push("/admin/admin-view-info")
   }
 
   // useState 

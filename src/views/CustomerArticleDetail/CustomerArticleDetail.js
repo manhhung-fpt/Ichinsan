@@ -182,22 +182,7 @@ function CustomerArticleDetail() {
 
 
 
-            <Nav pills className="nav-pills-info"
-
-            >
-              <NavItem>
-
-                <NavLink
-                  className={hTabs === "ht1" ? "active" : ""}
-                  onClick={() => sethTabs("ht1")}
-
-                >
-
-                  Detail
-
-                </NavLink>
-              </NavItem>
-            </Nav>
+           
             <Row style={{
               marginTop: "40px",
             }}>
