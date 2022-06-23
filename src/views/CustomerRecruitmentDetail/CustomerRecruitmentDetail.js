@@ -208,7 +208,7 @@ function CustomerRecruitmentDetail() {
                     <Typography color="text.primary">Recruitment Article Detail</Typography>
                 </Breadcrumbs>
 
-                <CardTitle id="card2" tag="h4" >Recruitment Article Detail :</CardTitle>
+                <CardTitle id="card1" tag="h4" >Recruitment Article Detail :</CardTitle>
                 <CardActions disableSpacing>
 
                     <Col md={1}>
@@ -277,13 +277,25 @@ function CustomerRecruitmentDetail() {
 
                     <Action
 
-                        text="Project Detail"
+                        text="Recruitment Article"
+                        onClick={() => window.location.href = "#card1"}
+                    >
+                    </Action>
+                    <Action
+
+                        text="Translations"
                         onClick={() => window.location.href = "#card2"}
                     >
                     </Action>
                     <Action
-                        text="Project Article"
+
+                        text="Recruitments"
                         onClick={() => window.location.href = "#card3"}
+                    >
+                    </Action>
+                    <Action
+                        text="Feedback"
+                        onClick={() => window.location.href = "#card4"}
                     >
                         <i className="fa fa-help" />
                     </Action>
@@ -530,7 +542,7 @@ function CustomerRecruitmentDetail() {
 
                 </Row>
 
-                <CardTitle id="card2" tag="h4" >Recruitments : </CardTitle>
+                <CardTitle id="card3" tag="h4" >Recruitments : </CardTitle>
                 <CardBody>
                     <Table responsive>
                         <thead className="text-primary">
@@ -623,7 +635,7 @@ function CustomerRecruitmentDetail() {
                     </Col>
                 </Row>
 
-                <CardTitle id="card2" tag="h4" >Feedback : </CardTitle>
+                <CardTitle id="card4" tag="h4" >Feedback : </CardTitle>
                 <CardActions disableSpacing>
                     <Col md={1}>
                         <Button onClick={onClickEdit} className="btn-info" color="primary" style={
@@ -644,7 +656,7 @@ function CustomerRecruitmentDetail() {
 
                             }
                         }>
-                            
+
                             Delete
                         </Button>
                     </Col>
