@@ -56,7 +56,7 @@ function CustomerEditFeedback() {
     history.push("/admin/admin-feedback-category");
   }
   const onClickBack = () => {
-    history.push("/admin/customer-progress-project")
+    history.push("/admin/customer-recruitment-detail")
   }
   const onClickEdit = () => {
     history.push("/admin/customer-progress-article")

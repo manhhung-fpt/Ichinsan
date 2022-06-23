@@ -59,7 +59,7 @@ function CustomerCreateFeedback() {
     history.push("/admin/admin-feedback-category");
   }
   const onClickBack = () => {
-    history.push("/admin/customer-progress-project")
+    history.push("/admin/customer-recruitment-detail")
   }
 
   return (
@@ -83,7 +83,7 @@ function CustomerCreateFeedback() {
                   Back
                 </Button>
               </CardHeader>
-              <Breadcrumbs separator="›" aria-label="breadcrumb" style={{ padding: '20px' }}>
+              {/* <Breadcrumbs separator="›" aria-label="breadcrumb" style={{ padding: '20px' }}>
                 <Link underline="hover" color="inherit" href="/admin/customer-home">
                   Customer Home
                 </Link>
@@ -94,7 +94,7 @@ function CustomerCreateFeedback() {
                   Project Progress
                 </Link>
                 <Typography color="text.primary">Create Feddback</Typography>
-              </Breadcrumbs>
+              </Breadcrumbs> */}
               <CardBody>
 
                 <Row>

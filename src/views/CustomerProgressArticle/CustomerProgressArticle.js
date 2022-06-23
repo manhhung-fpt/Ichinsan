@@ -165,6 +165,9 @@ function CustomerProgressArticle() {
     const onClickDelete = () => {
         history.push("/admin/customer-arti-detail")
     };
+    const onClickView = () => {
+        history.push("/admin/customer-recruitment-detail")
+    };
 
     return (
         <>
@@ -199,28 +202,13 @@ function CustomerProgressArticle() {
                         Customer Home
                     </Link>
                     <Link underline="hover" color="inherit" href="/admin/customer-arti-detail">
-                        Project Article Details
+                        Project Details
                     </Link>
-                    <Typography color="text.primary">Article Details</Typography>
+                    <Typography color="text.primary">Project Recruitment</Typography>
                 </Breadcrumbs>
 
-                <CardTitle  id="card2" tag="h4" >Article Recruitment</CardTitle>
-                <Nav pills className="nav-pills-info"
-
-                >
-                    <NavItem>
-
-                        <NavLink
-                            className={hTabs === "ht1" ? "active" : ""}
-                            onClick={() => sethTabs("ht1")}
-
-                        >
-
-                            Recruitment
-
-                        </NavLink>
-                    </NavItem>
-                </Nav>
+                <CardTitle  id="card2" tag="h4" >Project Recruitment</CardTitle>
+                
 
 
                 <Row>
@@ -252,12 +240,12 @@ function CustomerProgressArticle() {
                     <Table responsive>
                         <thead className="text-primary">
                             <tr>
-                                <th className="text-center">#</th>
-                                <th>Translation Name</th>
-                                <th>Level</th>
-                                <th>Apply Date</th>
+                                <th className="text-center">ID</th>
+                                <th>Article Name</th>
+                                <th>Applicants</th>
+                                <th>Dealine</th>
                                 <th>Status</th>
-                                <th>Choose</th>
+                                <th>View</th>
 
                             </tr>
                         </thead>
@@ -270,14 +258,16 @@ function CustomerProgressArticle() {
                                         <td className="text-center">{index + 1}</td>
                                         <td>{item.first_name}</td>
                                         <td>{item.last_name}</td>
-                                        <td>{item.email}</td>
+                                        <td>{item.id}</td>
                                         <td >
                                             {/* <Switch defaultValue={false} /> */}
-                                            <Button>Applied</Button>
+                                            <Button style={{
+                                                backgroundColor: "orange",
+                                            }}>Pending</Button>
 
                                         </td>
                                         <td>
-                                            <Button color="info" className="btn-right" style={
+                                            <Button onClick={onClickView} color="info" className="btn-right" style={
                                                 {
 
                                                     fontSize: "10px",
@@ -285,7 +275,7 @@ function CustomerProgressArticle() {
                                                 }
                                             }>
 
-                                                Choose
+                                                View
                                             </Button>
                                         </td>
 
@@ -298,9 +288,7 @@ function CustomerProgressArticle() {
                     </Table>
                 </CardBody>
 
-                <CardTitle id="card3" tag="h4">Article Detail
-                    <span class="fi fi-AU"></span> <span class="fi fi-gr fis"></span>
-                </CardTitle>
+               
                 <Fab
                     icon={"+"}
                     mainButtonStyles={{ backgroundColor: '#e74c3c' }}
@@ -324,493 +312,6 @@ function CustomerProgressArticle() {
 
 
                 </Fab>
-
-
-
-
-                <Nav pills className="nav-pills-info"
-
-                >
-                    <NavItem>
-                        <NavLink
-                            className={hTabs === "ht1" ? "active" : ""}
-                            onClick={() => sethTabs("ht1")}
-                        >
-
-                            Detail
-                        </NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink
-                            className={hTabs === "ht2" ? "active" : ""}
-                            onClick={() => sethTabs("ht2")}
-                        >
-
-                            Translation
-                        </NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink
-                            className={hTabs === "ht3" ? "active" : ""}
-                            onClick={() => sethTabs("ht3")}
-                        >
-                            Feedbacks
-                        </NavLink>
-                    </NavItem>
-
-                </Nav>
-
-
-
-
-                <TabContent activeTab={hTabs} className="tab-space">
-
-                    <TabPane tabId="ht1">
-
-
-                        <Row style={{
-                            marginTop: "40px",
-                        }}>
-                            <Col xs={12} md={12}>
-
-
-                                <Card>
-
-                                    <CardHeader>
-                                        <CardTitle style={{
-                                            marginLeft: "",
-                                            color: "green",
-                                        }}>
-                                            <CategoryIcon></CategoryIcon>
-                                            Computer Science</CardTitle>
-                                    </CardHeader>
-
-                                    <CardHeader>
-                                        <CardTitle tag="h4" style={{
-                                            color: "green",
-                                            marginTop: "-10px",
-                                        }}>Computer Vision AI</CardTitle>
-                                        <CardTitle style={{
-                                            marginLeft: "",
-                                            color: "black",
-                                        }}>
-                                            <AccountCircleIcon></AccountCircleIcon>
-                                            Tran Manh Hung</CardTitle>
-                                        <CardTitle style={{
-                                            marginLeft: "",
-                                            color: "black",
-                                        }}>
-                                            <ReactCountryFlag
-                                                countryCode="US"
-                                                svg
-                                                style={{
-                                                    width: '2em',
-                                                    height: '2em',
-                                                }}
-                                                title="US"
-                                            />
-                                            <ArrowRightAltIcon></ArrowRightAltIcon>
-                                            <ReactCountryFlag
-                                                countryCode="VN"
-                                                svg
-                                                style={{
-                                                    width: '2em',
-                                                    height: '2em',
-                                                }}
-                                                title="US"
-                                            />
-
-                                        </CardTitle>
-                                        <CardTitle style={{
-                                            marginLeft: "",
-                                            color: "black",
-                                        }}>
-                                            <GTranslateIcon></GTranslateIcon>
-                                            Translator : 2/10</CardTitle>
-
-                                        <CardTitle style={{
-                                            marginLeft: "",
-                                            color: "black",
-                                        }}>
-                                            <CalendarMonthIcon></CalendarMonthIcon>
-                                            06/08/2022 12:00 AM</CardTitle>
-                                        <CardTitle style={{
-                                            marginLeft: "",
-                                            color: "orange",
-                                        }}>
-                                            <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
-                                            Pending</CardTitle>
-                                        <CardTitle style={{
-                                            marginLeft: "",
-                                            color: "black",
-                                        }}>
-                                            <DescriptionIcon></DescriptionIcon>
-                                            Description :
-
-
-                                            <CardContent>
-                                                <div className="card-description">
-                                                    <p>This impressive paella is a perfect party dish and
-                                                        a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.</p>
-                                                </div>
-
-                                            </CardContent>
-
-
-                                        </CardTitle>
-                                    </CardHeader>
-
-                                </Card>
-
-                            </Col>
-
-                        </Row>
-                        <CardActions disableSpacing>
-                            <Col md={8}>
-
-                            </Col>
-                            <Col md={1}>
-                                <Button onClick={onClickEditArti} className="btn-info" color="primary" style={
-                                    {
-
-                                        fontSize: "10px",
-
-                                    }
-                                }>
-                                    Edit
-                                </Button>
-                            </Col>
-                            <Col md={2}>
-                                <Button onClick={onClickAdd} className="btn-info" color="default" style={
-                                    {
-
-                                        fontSize: "10px",
-
-                                    }
-                                }>
-                                    Add an Feedback
-                                </Button>
-                            </Col>
-                            <Col md={1}>
-                                <Button onClick={onClickPostpose} className="btn-danger" color="primary" style={
-                                    {
-
-                                        fontSize: "10px",
-
-                                    }
-                                }>
-                                    Delete
-                                </Button>
-                            </Col>
-                        </CardActions>
-
-                    </TabPane>
-
-
-                    <TabPane tabId="ht2">
-
-
-
-
-                        <Row>
-                            <Col xs={12} md={12}>
-
-                                <Card>
-                                    <CardBody>
-
-                                        <Row>
-                                            <Col xs={12} md={2} size="sm" style={{
-                                                color: "orange",
-                                            }} >
-                                                <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
-                                                Pending
-
-                                            </Col>
-                                            <Col xs={12} md={5} size="sm"  >
-
-                                            </Col>
-                                            <Col xs={12} md={5} size="sm"  >
-
-                                            </Col>
-                                        </Row>
-
-                                    </CardBody>
-
-
-
-
-
-                                    <CardBody>
-
-                                        <Row>
-                                            <Col xs={12} md={2} size="sm"  >
-                                                <CropOriginalIcon></CropOriginalIcon>
-                                                Original Article
-                                            </Col>
-                                            <Col xs={12} md={5} size="sm"  >
-                                                <FormGroup className="form-file-upload form-file-simple">
-                                                    <Input
-                                                        type="text"
-                                                        className="inputFileVisible"
-                                                        placeholder="Dowdload File..."
-                                                        onClick={(e) => handleSingleFileInput(e)}
-                                                        defaultValue={singleFileName}
-                                                    />
-                                                    <input
-                                                        type="file"
-                                                        className="inputFileHidden"
-                                                        style={{ zIndex: -1 }}
-                                                        ref={singleFileRef}
-                                                        onChange={(e) => addSingleFile(e)}
-                                                    />
-                                                </FormGroup>
-                                            </Col>
-                                            <Col xs={12} md={5} size="sm"  >
-                                                <DownloadIcon></DownloadIcon>
-                                            </Col>
-                                        </Row>
-
-                                    </CardBody>
-                                    <CardBody>
-                                        <Row>
-                                            <Col xs={12} md={2} size="sm"  >
-                                                <TranslateIcon></TranslateIcon>
-                                                Translation Article
-                                            </Col>
-                                            <Col xs={12} md={5} size="sm"  >
-                                                <FormGroup className="form-file-upload form-file-simple">
-                                                    <Input
-                                                        type="text"
-                                                        className="inputFileVisible"
-                                                        placeholder="Dowdload File..."
-                                                        onClick={(e) => handleSingleFileInput(e)}
-                                                        defaultValue={singleFileName}
-                                                    />
-                                                    <input
-                                                        type="file"
-                                                        className="inputFileHidden"
-                                                        style={{ zIndex: -1 }}
-                                                        ref={singleFileRef}
-                                                        onChange={(e) => addSingleFile(e)}
-                                                    />
-                                                </FormGroup>
-                                            </Col>
-                                            <Col xs={12} md={5} size="sm"  >
-                                                <DownloadIcon></DownloadIcon>
-                                            </Col>
-                                        </Row>
-
-
-                                    </CardBody>
-
-                                    <CardBody>
-
-                                        <Row>
-                                            <Col xs={12} md={2} size="sm"  >
-                                                <AccountCircleIcon></AccountCircleIcon>
-                                                Translator
-                                            </Col>
-                                            <Col xs={12} md={5} size="sm"  >
-
-                                                Vo Khac Trieu
-                                            </Col>
-                                            <Col xs={12} md={5} size="sm"  >
-
-                                            </Col>
-                                        </Row>
-
-                                    </CardBody>
-                                    <CardBody>
-
-                                        <Row>
-                                            <Col xs={12} md={2} size="sm"  >
-                                                <AccountCircleIcon></AccountCircleIcon>
-                                                Auditor
-                                            </Col>
-                                            <Col xs={12} md={5} size="sm"  >
-                                                Tran Manh Hung
-                                            </Col>
-                                            <Col xs={12} md={5} size="sm"  >
-                                            </Col>
-                                        </Row>
-
-                                    </CardBody>
-
-                                </Card>
-                            </Col>
-
-                        </Row>
-                    </TabPane>
-                    <TabPane tabId="ht3">
-                        <Row>
-                            <Col xs={12} md={9} size="sm"  >
-                                Sort :
-                            </Col>
-                            <Col Col xs={12} md={3} size="sm" >
-
-                            </Col>
-                        </Row>
-
-                        <Row>
-
-                            <Col xs={12} md={3} size="sm">
-                                <Select
-                                    className="react-select warning"
-                                    classNamePrefix="react-select"
-                                    isMulti
-                                    closeMenuOnSelect={false}
-                                    placeholder="Sort "
-                                    name="multipleSelect"
-                                    value={singleSelect}
-                                    options={selectOptions}
-                                    onChange={(value) => setSingleSelect(value)}
-                                />
-                            </Col>
-                            <Col xs={12} md={3} size="sm">
-                                Number of Recruitments : 6
-                            </Col>
-                            <Col xs={12} md={3} size="sm">
-
-                            </Col>
-                            <Col xs={12} md={3} size="sm">
-
-                            </Col>
-                        </Row>
-
-
-
-                        <Row style={{
-                            marginTop: "40px",
-                        }}>
-                            <Col xs={12} md={12}>
-
-
-                                <Card>
-
-                                    <CardHeader>
-                                        <CardTitle style={{
-                                            marginLeft: "",
-                                            color: "green",
-                                        }}>
-                                            <CategoryIcon></CategoryIcon>
-                                            Computer Science</CardTitle>
-                                        <CardTitle style={{
-                                            marginLeft: "",
-                                            color: "#ec00f9",
-                                        }}>
-                                            <StarRateIcon></StarRateIcon>
-                                            <StarRateIcon></StarRateIcon>
-                                            <StarRateIcon></StarRateIcon>
-                                            <StarRateIcon></StarRateIcon>
-                                            <StarRateIcon></StarRateIcon>
-                                        </CardTitle>
-                                    </CardHeader>
-
-                                    <CardHeader>
-                                        <CardTitle tag="h4" style={{
-                                            color: "green",
-                                            marginTop: "-10px",
-                                        }}>Computer Vision AI</CardTitle>
-                                        <CardTitle style={{
-                                            marginLeft: "",
-                                            color: "black",
-                                        }}>
-                                            <AccountCircleIcon></AccountCircleIcon>
-                                            Tran Manh Hung</CardTitle>
-                                        <CardTitle style={{
-                                            marginLeft: "",
-                                            color: "black",
-                                        }}>
-                                            <ReactCountryFlag
-                                                countryCode="US"
-                                                svg
-                                                style={{
-                                                    width: '2em',
-                                                    height: '2em',
-                                                }}
-                                                title="US"
-                                            />
-                                            <ArrowRightAltIcon></ArrowRightAltIcon>
-                                            <ReactCountryFlag
-                                                countryCode="VN"
-                                                svg
-                                                style={{
-                                                    width: '2em',
-                                                    height: '2em',
-                                                }}
-                                                title="US"
-                                            />
-                                        </CardTitle>
-
-
-                                        <CardTitle style={{
-                                            marginLeft: "",
-                                            color: "black",
-                                        }}>
-                                            <CalendarMonthIcon></CalendarMonthIcon>
-                                            06/08/2022 12:00 AM</CardTitle>
-
-                                        <CardTitle style={{
-                                            marginLeft: "",
-                                            color: "black",
-                                        }}>
-                                            <DescriptionIcon></DescriptionIcon>
-                                            Description :
-
-
-                                            <CardContent>
-                                                <div className="card-description">
-                                                    <p>This impressive paella is a perfect party dish and
-                                                        a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.</p>
-                                                </div>
-
-                                            </CardContent>
-
-
-                                        </CardTitle>
-                                    </CardHeader>
-
-                                </Card>
-
-                            </Col>
-
-                        </Row>
-                        <CardActions disableSpacing>
-                            <Col md={5}>
-
-                            </Col>
-                            <Col md={1}>
-                                <Button onClick={onClickEdit} className="btn-info" color="primary" style={
-                                    {
-
-                                        fontSize: "10px",
-
-                                    }
-                                }>
-                                    Edit
-                                </Button>
-                            </Col>
-                            <Col md={6}>
-                                <Button onClick={onClickDelete} className="btn-right" color="primary" style={
-                                    {
-
-                                        fontSize: "10px",
-
-                                    }
-                                }>
-
-                                    Delete
-                                </Button>
-                            </Col>
-                        </CardActions>
-
-
-
-
-
-
-                    </TabPane>
-                </TabContent>
                 <Row>
                     <Col xs={12} md={5} size="sm">
 
