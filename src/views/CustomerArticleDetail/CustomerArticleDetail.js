@@ -34,13 +34,13 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Pagination,
-  PaginationItem,
-  PaginationLink,
+  CardFooter,
 } from "reactstrap";
 
 import Select from "react-select";
 import { Swiper, SwiperSlide } from 'swiper/react/swiper-react.js';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 // core components
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
 import { useHistory } from "react-router-dom";
@@ -81,11 +81,23 @@ function CustomerArticleDetail() {
   const [vTabsIcons, setvTabsIcons] = React.useState("vti1");
   const [pageSubcategories, setpageSubcategories] = React.useState("ps1");
   const singleFileRef = React.useRef();
+  const [page, setPage] = React.useState(1);
+  const onclickPage = (e, page) => {
+    setFakeData([]);
+    setPage(page);
+    console.log(page);
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/articles?pageNumber=${page}&pageSize=5`)
+      .then(res => {
+        setFakeData(res.data);
+      })
+      .catch(err => { console.log(err) })
+  }
   React.useEffect(() => {
     axios
-      .get('https://reqres.in/api/users')
+      .get(`${process.env.REACT_APP_API_URL}/articles?pageNumber=${page}&pageSize=5`)
       .then(res => {
-        setFakeData(res.data.data);
+        setFakeData(res.data);
       })
       .catch(err => { console.log(err) })
   }, [])
@@ -182,7 +194,7 @@ function CustomerArticleDetail() {
 
 
 
-           
+
             <Row style={{
               marginTop: "40px",
             }}>
@@ -292,13 +304,7 @@ function CustomerArticleDetail() {
               >
                 <i className="fa fa-help" />
               </Action>
-
-
-
             </Fab>
-
-
-
             {/* <Nav pills className="nav-pills-primary">
               <NavItem>
                 <NavLink
@@ -336,7 +342,6 @@ function CustomerArticleDetail() {
                 >
                   <NavItem>
                     <NavLink
-
                       className={pageSubcategories === "ps1" ? "active" : ""}
                       onClick={() => setpageSubcategories("ps1")}
                     >
@@ -377,14 +382,6 @@ function CustomerArticleDetail() {
                   activeTab={pageSubcategories}
                 >
                   <TabPane tabId="ps1">
-                    <Row>
-                      <Col xs={12} md={9} size="sm"  >
-                        Sort :
-                      </Col>
-                      <Col Col xs={12} md={3} size="sm" >
-
-                      </Col>
-                    </Row>
 
                     <Row>
 
@@ -429,34 +426,32 @@ function CustomerArticleDetail() {
                           </tr>
                         </thead>
                         <tbody>
-
-
                           {
                             fakeData.map((item, index) => {
                               return (<tr>
                                 <td className="text-center">{index + 1}</td>
-                                <td>{item.first_name}</td>
-                                <td>{item.last_name}</td>
-                                <td>$5000</td>
+                                <td>{item.name}</td>
+                                <td>{item.projectCategoryName}</td>
+                                <td>{item.fee}</td>
                                 <td>
                                   <ReactCountryFlag
-                                    countryCode="US"
+                                    countryCode={item.languageFrom}
                                     svg
                                     style={{
                                       width: '2em',
                                       height: '2em',
                                     }}
-                                    title="US"
+                                    title={item.languageFrom}
                                   />
                                   <ArrowRightAltIcon></ArrowRightAltIcon>
                                   <ReactCountryFlag
-                                    countryCode="VN"
+                                    countryCode={item.languageTo}
                                     svg
                                     style={{
                                       width: '2em',
                                       height: '2em',
                                     }}
-                                    title="US"
+                                    title={item.languageTo}
                                   />
 
                                 </td>
@@ -484,16 +479,17 @@ function CustomerArticleDetail() {
                         </tbody>
                       </Table>
                     </CardBody>
+                    <CardFooter style={{ alignItems: 'center' }} >
+                      <Stack spacing={2}>
+                        <Pagination 
+                        count={5}
+                          page ={page}
+                          onChange={onclickPage}
+                          variant="outlined" color="primary" />
+                      </Stack>
+                    </CardFooter>
                   </TabPane>
                   <TabPane tabId="ps2">
-                    <Row>
-                      <Col xs={12} md={9} size="sm"  >
-                        Sort :
-                      </Col>
-                      <Col Col xs={12} md={3} size="sm" >
-
-                      </Col>
-                    </Row>
 
                     <Row>
 
@@ -595,14 +591,6 @@ function CustomerArticleDetail() {
                     </CardBody>
                   </TabPane>
                   <TabPane tabId="ps3">
-                    <Row>
-                      <Col xs={12} md={9} size="sm"  >
-                        Sort :
-                      </Col>
-                      <Col Col xs={12} md={3} size="sm" >
-
-                      </Col>
-                    </Row>
 
                     <Row>
 
@@ -704,14 +692,6 @@ function CustomerArticleDetail() {
                     </CardBody>
                   </TabPane>
                   <TabPane tabId="ps4">
-                    <Row>
-                      <Col xs={12} md={9} size="sm"  >
-                        Sort :
-                      </Col>
-                      <Col Col xs={12} md={3} size="sm" >
-
-                      </Col>
-                    </Row>
 
                     <Row>
 
@@ -811,48 +791,12 @@ function CustomerArticleDetail() {
                         </tbody>
                       </Table>
                     </CardBody>
+                    <CardFooter>
+
+                    </CardFooter>
                   </TabPane>
                 </TabContent>
-                <Row>
-                  <Col xs={12} md={5} size="sm">
 
-                  </Col>
-                  <Col xs={12} md={3} size="sm">
-                    <Pagination>
-                      <PaginationItem>
-                        <PaginationLink href="#">
-                          <span aria-hidden="true">
-                            <i
-                              className="fa fa-angle-double-left"
-                              aria-hidden="true"
-                            />
-                          </span>
-                        </PaginationLink>
-                      </PaginationItem>
-                      <PaginationItem>
-                        <PaginationLink href="#">1</PaginationLink>
-                      </PaginationItem>
-                      <PaginationItem active>
-                        <PaginationLink href="#">2</PaginationLink>
-                      </PaginationItem>
-                      <PaginationItem>
-                        <PaginationLink href="#">3</PaginationLink>
-                      </PaginationItem>
-                      <PaginationItem>
-                        <PaginationLink href="#">
-                          <span aria-hidden="true">
-                            <i
-                              className="fa fa-angle-double-right"
-                              aria-hidden="true"
-                            />
-                          </span>
-                        </PaginationLink>
-                      </PaginationItem>
-                    </Pagination>
-                  </Col>
-                  <Col xs={12} md={4} size="sm">
-                  </Col>
-                </Row>
 
 
               </TabPane>

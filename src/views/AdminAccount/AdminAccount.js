@@ -27,11 +27,10 @@ import {
   Row,
   Col,
   Button,
-  Pagination,
-  PaginationItem,
-  PaginationLink,
+  CardFooter,
 } from "reactstrap";
-
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 import Select from "react-select";
 import { useHistory } from "react-router-dom";
 // core components
@@ -46,6 +45,7 @@ function AdminAccount() {
   let history = useHistory();
   const [singleRoleSelect, setSingleRoleSelect] = React.useState(null);
   const [multipleSelect, setMultipleSelect] = React.useState("");
+  const [page, setPage] = React.useState(1);
   const [roles, setRoles] = React.useState([]);
   const onClickView = () => {
     history.push("/admin/admin-view-info")
@@ -59,10 +59,21 @@ function AdminAccount() {
     alert(e.value)
     setSingleRoleSelect(() => e.value);
   }
+  const onclickPage = (e, page) => {
+    setUsers([]);;
+    setPage(page);
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/users?pageNumber=${page}&pageSize=5`)
+      .then(res => {
+        const data = res.data;
+        setUsers(data);
+      })
+      .catch(err => { console.log(err) })
+  }
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/users?pageNumber=1&pageSize=3`)
+      .get(`${process.env.REACT_APP_API_URL}/users?pageNumber=${page}&pageSize=5`)
       .then((res) => {
         const data = res.data;
         setUsers(data);
@@ -167,47 +178,17 @@ function AdminAccount() {
                   </tbody>
                 </Table>
               </CardBody>
-
+              <CardFooter style={{ alignItems: 'center' }} >
+                <Stack spacing={2}>
+                  <Pagination
+                    count={5}
+                    page={page}
+                    onChange={onclickPage}
+                    variant="outlined" color="primary" />
+                </Stack>
+              </CardFooter>
 
             </Card>
-          </Col>
-          <Col xs={12} md={5} size="sm">
-
-          </Col>
-          <Col xs={12} md={3} size="sm">
-            <Pagination>
-              <PaginationItem>
-                <PaginationLink href="#">
-                  <span aria-hidden="true">
-                    <i
-                      className="fa fa-angle-double-left"
-                      aria-hidden="true"
-                    />
-                  </span>
-                </PaginationLink>
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationLink href="#">1</PaginationLink>
-              </PaginationItem>
-              <PaginationItem active>
-                <PaginationLink href="#">2</PaginationLink>
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationLink href="#">3</PaginationLink>
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationLink href="#">
-                  <span aria-hidden="true">
-                    <i
-                      className="fa fa-angle-double-right"
-                      aria-hidden="true"
-                    />
-                  </span>
-                </PaginationLink>
-              </PaginationItem>
-            </Pagination>
-          </Col>
-          <Col xs={12} md={4} size="sm">
           </Col>
         </Row>
 

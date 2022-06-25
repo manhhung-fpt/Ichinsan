@@ -140,21 +140,6 @@ function AdminProjectDetails() {
                       onChange={(value) => setMultipleSelect(value)}
                     />
                   </Col>
-                  <Col xs={12} md={1} size="sm"></Col>
-                  <Col xs={12} md={3} size="sm">
-                  <Button onClick={onClickAdd} color="primary" className="btn-info" style={
-                      {
-
-                        fontSize: "10px",
-
-                      }
-                    }>
-                      <i className="now-ui-icons ui-2_settings-90" /> Add Auditor
-                    </Button>
-                  </Col>
-                  <Col xs={12} md={4} size="sm">
-
-                  </Col>
                 </Row>
               </CardHeader>
 
@@ -198,7 +183,7 @@ function AdminProjectDetails() {
                         )}
                         {project.actionType === Assign && (
                           <td className="text-right btns-mr-5">
-                            <Button onClick={toggleModalNotice} color="primary" className="btn-info" style={
+                            <Button onClick={onClickAdd} color="primary" className="btn-info" style={
                               {
 
                                 fontSize: "10px",

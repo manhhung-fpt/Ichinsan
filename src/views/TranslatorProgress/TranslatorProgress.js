@@ -194,26 +194,6 @@ function TranslatorProgress() {
                     </NavLink>
                   </NavItem>
                 </Nav>
-                <Row style={{
-                  marginTop: "20px"
-                }}>
-                  <Col xs={12} md={1} size="sm"  >
-                    Sort :
-                  </Col>
-                  <Col Col xs={12} md={2} size="sm" >
-                    <Select
-                      className="react-select primary"
-                      classNamePrefix="react-select"
-                      placeholder="Select a role"
-                      name="singleSelect"
-                      value={singleRoleSelect}
-                      options={rolesOptions}
-                      onChange={selectFilterHandler}
-                    />
-                  </Col>
-                  <Col Col xs={12} md={9} size="sm" >
-                  </Col>
-                </Row>
                 <TabContent
                   className="tab-space tab-subcategories"
                   activeTab={pageSubcategories}

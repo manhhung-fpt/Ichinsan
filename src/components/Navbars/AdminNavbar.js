@@ -18,7 +18,13 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 // used for making the prop types of this component
 import PropTypes from "prop-types";
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';  
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
+import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import RestoreIcon from '@mui/icons-material/Restore';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import ArchiveIcon from '@mui/icons-material/Archive';
+import Paper from '@mui/material/Paper';
 
 // reactstrap components
 import {
@@ -33,10 +39,15 @@ import {
   DropdownMenu,
   DropdownItem,
   Container,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
 } from "reactstrap";
 import { useHistory } from "react-router-dom";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import SearchIcon from '@mui/icons-material/Search';
+import Notification from "components/Notification/notification";
 
 function AdminNavbar(props) {
   const location = useLocation();
@@ -45,11 +56,21 @@ function AdminNavbar(props) {
   const [dropdownOpen, setDropdownOpen] = React.useState(false);
   const [color, setColor] = React.useState("transparent");
   const sidebarToggle = React.useRef();
-  
+  const [openNotification, setOpenNotification] = React.useState(false);
+  const [modalNotice, setModalNotice] = React.useState(false);
+
+  const onClickBell = () => {
+    setOpenNotification(!openNotification);
+  };
+  const toggleModalNotice = () => {
+    setModalNotice(!modalNotice);
+  };
+
+
   const logOutOnClick = () => {
     console.log(history);
     localStorage.clear();
-    history.push({pathname: "/auth/login-page"});
+    history.push({ pathname: "/auth/login-page" });
   }
   const toggle = () => {
     if (isOpen) {
@@ -100,7 +121,7 @@ function AdminNavbar(props) {
         window.location.href.indexOf("full-screen-maps") !== -1
           ? "navbar-absolute "
           : "navbar-absolute " +
-            (color === "transparent" ? "navbar-transparent " : "")
+          (color === "transparent" ? "navbar-transparent " : "")
       }
     >
       <Container fluid>
@@ -127,9 +148,9 @@ function AdminNavbar(props) {
         <Collapse isOpen={isOpen} navbar className="justify-content-end">
           <Nav navbar>
             <NavItem>
-            <Link to="/admin/Search" className="nav-link">
-            <SearchIcon></SearchIcon>
-            </Link>
+              <Link to="/admin/Search" className="nav-link">
+                <SearchIcon></SearchIcon>
+              </Link>
             </NavItem>
             {/* <NavItem>
               <Link to="/admin/customer-create-project" className="nav-link">
@@ -137,9 +158,50 @@ function AdminNavbar(props) {
               </Link>
             </NavItem> */}
             <NavItem>
-            <Link to="#pablo" className="nav-link">
-              <NotificationsNoneIcon></NotificationsNoneIcon>
+              <Link onClick={onClickBell} className="nav-link">
+                <NotificationsNoneIcon></NotificationsNoneIcon>
               </Link>
+              <Modal
+                isOpen={openNotification}
+                onCancel={onClickBell}
+                toggle={onClickBell}
+                style={{
+                  position: 'absolute',
+                  top: 30,
+                  right: 150,
+                  zIndex: 999999,
+                }}
+              >
+                {/* <div className={styles.notification}>
+                  <a className={styles.seeAll} onClick={() => onClickSeeAll()}>
+                    See All
+                  </a>
+                  <Notification
+                    inWeek={inWeek}
+                    width="100%"
+                    scrollable={true}
+                    setOpenNotification={setOpenNotification}
+                    isHeaderNoti={true}
+                  />
+                </div> */}
+                <ModalHeader toggle={onClickBell} style={{ width: '150%' }} >
+                  Alert and notification
+                </ModalHeader>
+                <ModalBody style={{ overflowY: 'scroll', scrollBehavior: 'smooth', height: 300 }}>
+                  <Notification></Notification>
+                </ModalBody>
+                <ModalFooter className="justify-content-center">
+                  <Paper>
+                    <BottomNavigation
+                      showLabels
+                    >
+                      <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
+                      <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
+                      <BottomNavigationAction label="Archive" icon={<ArchiveIcon />} />
+                    </BottomNavigation>
+                  </Paper>
+                </ModalFooter>
+              </Modal>
             </NavItem>
             <Dropdown
               nav
@@ -153,12 +215,12 @@ function AdminNavbar(props) {
                 </p>
               </DropdownToggle>
               <DropdownMenu right>
-                {!localStorage.getItem('name')  && (
-                <DropdownItem tag="a" href="/auth/login-page">Login</DropdownItem> )}
-                {localStorage.getItem('name')  && (
-                <DropdownItem tag="a"
-                onClick={logOutOnClick}
-                >Logout</DropdownItem> )}
+                {!localStorage.getItem('name') && (
+                  <DropdownItem tag="a" href="/auth/login-page">Login</DropdownItem>)}
+                {localStorage.getItem('name') && (
+                  <DropdownItem tag="a"
+                    onClick={logOutOnClick}
+                  >Logout</DropdownItem>)}
               </DropdownMenu>
             </Dropdown>
           </Nav>

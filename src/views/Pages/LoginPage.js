@@ -11,6 +11,7 @@ import {
   Button,
 } from "reactstrap";
 
+
 // core components
 import nowLogo from "assets/img/now-logo.png";
 import { auth } from "Firebase";
@@ -43,6 +44,18 @@ function LoginPage() {
       </SweetAlert>
     );
   };
+  const successAlert = () => {
+    setAlert(
+      <SweetAlert
+        success
+        style={{ display: "block", marginTop: "-100px" }}
+        title="Good job!"
+        confirmBtnBsStyle="info"
+      >
+        Login successfully
+      </SweetAlert>
+    );
+  };
   const getToken = (email) => {
     var axios = require('axios');
     var data = JSON.stringify({
@@ -71,6 +84,7 @@ function LoginPage() {
           localStorage.setItem("userId", userId);
           localStorage.setItem("profileId", profileId);
           localStorage.setItem("role", decoded.role);
+          successAlert();
           history.push("/admin/home")
         }
       })
