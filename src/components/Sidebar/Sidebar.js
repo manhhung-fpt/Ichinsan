@@ -24,6 +24,7 @@ import PerfectScrollbar from "perfect-scrollbar";
 
 // reactstrap components
 import { Nav, Collapse, Button } from "reactstrap";
+import { useHistory } from "react-router-dom";
 
 // core components
 import avatar from "assets/img/ryan.jpg";
@@ -35,6 +36,7 @@ function Sidebar(props) {
   const [openAvatar, setOpenAvatar] = React.useState(false);
   const [collapseStates, setCollapseStates] = React.useState({});
   const sidebar = React.useRef();
+  let history = useHistory();
   React.useEffect(() => {
     // if you are using a Windows Machine, the scrollbars will have a Mac look
     if (navigator.platform.indexOf("Win") > -1) {
