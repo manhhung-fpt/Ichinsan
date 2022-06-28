@@ -89,8 +89,14 @@ function Admin(props) {
           <Route
             path={prop.layout + prop.path}
             component={prop.component}
+            props={prop.props}
             key={key}
           />
+
+          // <Route
+          //   path={prop.layout+prop.path} key={key}>
+          //     {prop.component}
+          // </Route>
         );
       } else {
         return null;

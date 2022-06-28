@@ -23,11 +23,14 @@ import { VectorMap } from "react-jvectormap";
 import Switch from "react-bootstrap-switch";
 import axios from 'axios';
 import ProgressBar from 'react-bootstrap/ProgressBar';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
 // reactstrap components
 import {
     Table,
     CardBody,
+    CardText,
+    CardFooter,
     Row,
     Col,
     TabContent,
@@ -91,7 +94,9 @@ var selectOptions = [
     { value: "five", label: "Five" },
     { value: "six", label: "Six" },
 ];
-function TranslatorProgressArticle() {
+function TranslatorProgressArticle(props) {
+    const articleId = props.location.search.split("=")[1];
+    console.log(articleId);
 
     const [singleSelect, setSingleSelect] = React.useState(null);
     const [singleFileName, setSingleFileName] = React.useState("");
@@ -105,15 +110,21 @@ function TranslatorProgressArticle() {
     const location = useLocation();
     const [fakeData, setFakeData] = React.useState([]);
     const Edit = "edit";
+
+
+    const [article, setArticle] = React.useState({});
     React.useEffect(() => {
         axios
-            .get('https://reqres.in/api/users')
+            .get(`https://api-dotnet-test.herokuapp.com/api/articles/${articleId}`)
             .then(res => {
-                setFakeData(res.data.data);
+                //setFakeData(res.data.data);
+                setArticle(res.data);
             })
             .catch(err => { console.log(err) })
     }, [])
-    console.log(fakeData);
+    console.log(article)
+
+
     const handleSingleFileInput = (e) => {
         singleFileRef.current.click(e);
     };
@@ -176,592 +187,211 @@ function TranslatorProgressArticle() {
             <div className="content">
 
                 <Row>
-
-
-
-                    <Col lg={12} md={12} xs={12}>
-                        <Card>
-                            <CardHeader>
-                                <Button onClick={onClickBack} style={
-                                    {
-
-                                        fontSize: "10px",
-
-                                    }
-                                }>
-                                    <span className="btn-label" >
-                                        <i className="now-ui-icons arrows-1_minimal-left" />
-                                    </span>
-                                    Back
-                                </Button>
-                            </CardHeader>
-                            <Breadcrumbs separator="›" aria-label="breadcrumb" style={{ padding: '20px' }}>
-                                <Link underline="hover" color="inherit" href="/admin/translator-progress">
-                                    Translator Progress
-                                </Link>
-
-                                <Typography color="text.primary">Article Details</Typography>
-                            </Breadcrumbs>
-                            <CardBody>
-
-                                <CardTitle tag="h4" >Article</CardTitle>
-
-
-                                <Nav pills className="nav-pills-info"
-
-                                >
-                                    <NavItem>
-                                        <NavLink
-                                            className={hTabs === "ht1" ? "active" : ""}
-                                            onClick={() => sethTabs("ht1")}
-                                        >
-                                             Details
-                                        </NavLink>
-                                    </NavItem>
-                                    <NavItem>
-                                        <NavLink
-                                            className={hTabs === "ht2" ? "active" : ""}
-                                            onClick={() => sethTabs("ht2")}
-                                        >
-                                           Translations
-                                        </NavLink>
-                                    </NavItem>
-                                    
-
-                                    <NavItem>
-                                        <NavLink
-                                            className={hTabs === "ht3" ? "active" : ""}
-                                            onClick={() => sethTabs("ht3")}
-
-                                        >
-                                           Feedbacks
-                                        </NavLink>
-                                    </NavItem>
-
-                                </Nav>
-
-
-
-
-                                <TabContent activeTab={hTabs} className="tab-space">
-
-                                    <TabPane tabId="ht1">
-                                        <Row style={{
-                                            marginTop: "40px",
-                                        }}>
-                                            <Col xs={12} md={12}>
-
-
-                                                <Card>
-
-                                                    <CardHeader>
-                                                        <CardTitle style={{
-                                                            marginLeft: "",
-                                                            color: "green",
-                                                        }}>
-                                                            <CategoryIcon></CategoryIcon>
-                                                            Computer Science</CardTitle>
-
-                                                    </CardHeader>
-
-                                                    <CardHeader>
-                                                        <CardTitle tag="h4" style={{
-                                                            color: "green",
-                                                            marginTop: "-10px",
-                                                        }}>Computer Vision AI</CardTitle>
-                                                        <a href="/common/user-page">
-                                                            <CardTitle style={{
-                                                                marginLeft: "",
-                                                                color: "black",
-                                                            }}>
-                                                                <AccountCircleIcon></AccountCircleIcon>
-                                                                Tran Manh Hung</CardTitle>
-                                                        </a>
-                                                        <CardTitle style={{
-                                                            marginLeft: "",
-                                                            color: "black",
-                                                        }}>
-                                                            <ReactCountryFlag
-                                                                countryCode="US"
-                                                                svg
-                                                                style={{
-                                                                    width: '2em',
-                                                                    height: '2em',
-                                                                }}
-                                                                title="US"
-                                                            />
-                                                            <ArrowRightAltIcon></ArrowRightAltIcon>
-                                                            <ReactCountryFlag
-                                                                countryCode="VN"
-                                                                svg
-                                                                style={{
-                                                                    width: '2em',
-                                                                    height: '2em',
-                                                                }}
-                                                                title="US"
-                                                            />
-                                                        </CardTitle>
-
-
-                                                        <CardTitle style={{
-                                                            marginLeft: "",
-                                                            color: "black",
-                                                        }}>
-                                                            <CalendarMonthIcon></CalendarMonthIcon>
-                                                            06/08/2022 12:00 AM</CardTitle>
-
-                                                        <CardTitle style={{
-                                                            marginLeft: "",
-                                                            color: "black",
-                                                        }}>
-                                                            <DescriptionIcon></DescriptionIcon>
-                                                            Description :
-
-
-                                                            <CardContent>
-                                                                <div className="card-description">
-                                                                    <p>This impressive paella is a perfect party dish and
-                                                                        a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.</p>
-                                                                </div>
-
-                                                            </CardContent>
-
-
-                                                        </CardTitle>
-                                                    </CardHeader>
-
-                                                </Card>
-
-                                            </Col>
-
-                                        </Row>
-
-
-                                    </TabPane>
-
-                                    <TabPane tabId="ht2">
-                                        <Card>
-                                            <CardBody>
-
-                                                <Row>
-                                                    <Col xs={12} md={2} size="sm" style={{
-                                                        color: "orange",
-                                                    }} >
-                                                        <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
-                                                        Pending
-
-                                                    </Col>
-                                                    <Col xs={12} md={5} size="sm"  >
-
-                                                    </Col>
-                                                    <Col xs={12} md={5} size="sm"  >
-
-                                                    </Col>
-                                                </Row>
-
-                                            </CardBody>
-
-
-
-
-
-                                            <CardBody>
-
-                                                <Row>
-                                                    <Col xs={12} md={2} size="sm"  >
-                                                        <CropOriginalIcon></CropOriginalIcon>
-                                                        Original Article
-                                                    </Col>
-                                                    <Col xs={12} md={5} size="sm"  >
-                                                        <FormGroup className="form-file-upload form-file-simple">
-                                                            <Input
-                                                                type="text"
-                                                                className="inputFileVisible"
-                                                                placeholder="Dowdload File..."
-                                                                onClick={(e) => handleSingleFileInput(e)}
-                                                                defaultValue={singleFileName}
-                                                            />
-                                                            <input
-                                                                type="file"
-                                                                className="inputFileHidden"
-                                                                style={{ zIndex: -1 }}
-                                                                ref={singleFileRef}
-                                                                onChange={(e) => addSingleFile(e)}
-                                                            />
-                                                        </FormGroup>
-                                                    </Col>
-                                                    <Col xs={12} md={5} size="sm"  >
-                                                        <DownloadIcon></DownloadIcon>
-                                                    </Col>
-                                                </Row>
-
-                                            </CardBody>
-
-                                            <CardBody>
-                                                <Row>
-                                                    <Col xs={12} md={2} size="sm"  >
-                                                        <TranslateIcon></TranslateIcon>
-                                                        Translation Article
-                                                    </Col>
-
-                                                    <Col xs={12} md={5} size="sm"  >
-
-                                                        <FormGroup className="form-file-upload form-file-simple">
-                                                            <Input
-                                                                type="text"
-                                                                className="inputFileVisible"
-                                                                placeholder="Dowdload File..."
-                                                                onClick={(e) => handleSingleFileInput(e)}
-                                                                defaultValue={singleFileName}
-                                                            />
-                                                            <input
-                                                                type="file"
-                                                                className="inputFileHidden"
-                                                                style={{ zIndex: -1 }}
-                                                                ref={singleFileRef}
-                                                                onChange={(e) => addSingleFile(e)}
-                                                            />
-                                                        </FormGroup>
-
-
-
-
-                                                    </Col>
-                                                    {singleFile !== null && singleFileName !== "" ? (
-                                                        <Row>
-                                                            <Col xs={12} md={5} size="sm"  >
-                                                                <Button onClick={onClickPostpose} className="btn-danger" color="primary" style={
-                                                                    {
-
-                                                                        fontSize: "10px",
-
-                                                                    }
-                                                                }>
-                                                                    Edit
-                                                                </Button>
-                                                            </Col>
-                                                            <Col xs={12} md={5} size="sm"  >
-                                                                <Button onClick={onClickPostpose} className="btn-info" color="primary" style={
-                                                                    {
-
-                                                                        fontSize: "10px",
-
-                                                                    }
-                                                                }>
-                                                                    Remove
-                                                                </Button>
-                                                            </Col>
-                                                        </Row>
-
-                                                    ) : (
-                                                        <Button hidden onClick={onClickAdd} className="btn-info" color="default" style={
-                                                            {
-
-                                                                fontSize: "10px",
-
-                                                            }
-                                                        }>
-                                                            Add an Article
-                                                        </Button>
-                                                    )}
-
-                                                    <Col xs={12} md={5} size="sm"  >
-                                                        <DownloadIcon></DownloadIcon>
-                                                    </Col>
-                                                </Row>
-
-
-
-                                            </CardBody>
-                                            <CardBody>
-
-                                                <Row>
-                                                    <Col xs={12} md={2} size="sm"  >
-                                                        <CalendarMonthIcon></CalendarMonthIcon>
-                                                        Modified Date
-                                                    </Col>
-                                                    <Col xs={12} md={5} size="sm"  >
-
-                                                        06/08/2022 12:00 AM
-                                                    </Col>
-                                                    <Col xs={12} md={5} size="sm"  >
-
-                                                    </Col>
-                                                </Row>
-
-                                            </CardBody>
-                                            <CardBody>
-
-                                                <Row>
-                                                    <Col xs={12} md={2} size="sm"  >
-                                                        <AccountCircleIcon></AccountCircleIcon>
-                                                        Translator
-                                                    </Col>
-                                                    <Col xs={12} md={5} size="sm"  >
-
-                                                        Vo Khac Trieu
-                                                    </Col>
-                                                    <Col xs={12} md={5} size="sm"  >
-
-                                                    </Col>
-                                                </Row>
-
-                                            </CardBody>
-                                            <CardBody>
-
-                                                <Row>
-                                                    <Col xs={12} md={2} size="sm"  >
-                                                        <AccountCircleIcon></AccountCircleIcon>
-                                                        Auditor
-                                                    </Col>
-                                                    <Col xs={12} md={5} size="sm"  >
-                                                        Tran Manh Hung
-                                                    </Col>
-                                                    <Col xs={12} md={5} size="sm"  >
-                                                    </Col>
-                                                </Row>
-
-                                            </CardBody>
-
-                                        </Card>
-                                    </TabPane>
-                                    <TabPane tabId="ht3">
-                                        <Row style={{
-                                            marginTop: "40px",
-                                        }}>
-                                            <Col xs={12} md={3}>
-                                                <Card>
-
-                                                    <CardHeader>
-                                                        <CardTitle style={{
-                                                            marginLeft: "",
-                                                            color: "green",
-                                                        }}>
-                                                            <CategoryIcon></CategoryIcon>
-                                                            Computer Science</CardTitle>
-                                                        <CardTitle style={{
-                                                            marginLeft: "",
-                                                            color: "#ec00f9",
-                                                        }}>
-                                                            <StarRateIcon></StarRateIcon>
-                                                            <StarRateIcon></StarRateIcon>
-                                                            <StarRateIcon></StarRateIcon>
-                                                            <StarRateIcon></StarRateIcon>
-                                                            <StarRateIcon></StarRateIcon>
-                                                        </CardTitle>
-                                                    </CardHeader>
-
-                                                    <CardHeader>
-                                                        <CardTitle tag="h4" style={{
-                                                            color: "green",
-                                                            marginTop: "-10px",
-                                                        }}>Computer Vision AI</CardTitle>
-                                                        <CardTitle style={{
-                                                            marginLeft: "",
-                                                            color: "black",
-                                                        }}>
-                                                            <AccountCircleIcon></AccountCircleIcon>
-                                                            Tran Manh Hung</CardTitle>
-                                                        <CardTitle style={{
-                                                            marginLeft: "",
-                                                            color: "black",
-                                                        }}>
-                                                            <ReactCountryFlag
-                                                                countryCode="US"
-                                                                svg
-                                                                style={{
-                                                                    width: '2em',
-                                                                    height: '2em',
-                                                                }}
-                                                                title="US"
-                                                            />
-                                                            <ArrowRightAltIcon></ArrowRightAltIcon>
-                                                            <ReactCountryFlag
-                                                                countryCode="VN"
-                                                                svg
-                                                                style={{
-                                                                    width: '2em',
-                                                                    height: '2em',
-                                                                }}
-                                                                title="US"
-                                                            />
-                                                        </CardTitle>
-
-
-                                                        <CardTitle style={{
-                                                            marginLeft: "",
-                                                            color: "black",
-                                                        }}>
-                                                            <CalendarMonthIcon></CalendarMonthIcon>
-                                                            06/08/2022 12:00 AM</CardTitle>
-
-                                                        <CardTitle style={{
-                                                            marginLeft: "",
-                                                            color: "black",
-                                                        }}>
-                                                            <DescriptionIcon></DescriptionIcon>
-                                                            Description :
-
-
-                                                            <CardContent>
-                                                                <div className="card-description">
-                                                                    <p>This impressive paella is a perfect party dish and
-                                                                        a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.</p>
-                                                                </div>
-
-                                                            </CardContent>
-
-
-                                                        </CardTitle>
-                                                    </CardHeader>
-
-                                                </Card>
-
-                                            </Col>
-                                            <Col xs={12} md={3}>
-
-                                                <Card>
-
-                                                    <CardHeader>
-                                                        <CardTitle style={{
-                                                            marginLeft: "",
-                                                            color: "green",
-                                                        }}>
-                                                            <CategoryIcon></CategoryIcon>
-                                                            Computer Science</CardTitle>
-                                                        <CardTitle style={{
-                                                            marginLeft: "",
-                                                            color: "#ec00f9",
-                                                        }}>
-                                                            <StarRateIcon></StarRateIcon>
-                                                            <StarRateIcon></StarRateIcon>
-                                                            <StarRateIcon></StarRateIcon>
-                                                            <StarRateIcon></StarRateIcon>
-                                                            <StarRateIcon></StarRateIcon>
-                                                        </CardTitle>
-                                                    </CardHeader>
-
-                                                    <CardHeader>
-                                                        <CardTitle tag="h4" style={{
-                                                            color: "green",
-                                                            marginTop: "-10px",
-                                                        }}>Computer Vision AI</CardTitle>
-                                                        <CardTitle style={{
-                                                            marginLeft: "",
-                                                            color: "black",
-                                                        }}>
-                                                            <AccountCircleIcon></AccountCircleIcon>
-                                                            Tran Manh Hung</CardTitle>
-                                                        <CardTitle style={{
-                                                            marginLeft: "",
-                                                            color: "black",
-                                                        }}>
-                                                            <ReactCountryFlag
-                                                                countryCode="US"
-                                                                svg
-                                                                style={{
-                                                                    width: '2em',
-                                                                    height: '2em',
-                                                                }}
-                                                                title="US"
-                                                            />
-                                                            <ArrowRightAltIcon></ArrowRightAltIcon>
-                                                            <ReactCountryFlag
-                                                                countryCode="VN"
-                                                                svg
-                                                                style={{
-                                                                    width: '2em',
-                                                                    height: '2em',
-                                                                }}
-                                                                title="US"
-                                                            />
-                                                        </CardTitle>
-
-
-                                                        <CardTitle style={{
-                                                            marginLeft: "",
-                                                            color: "black",
-                                                        }}>
-                                                            <CalendarMonthIcon></CalendarMonthIcon>
-                                                            06/08/2022 12:00 AM</CardTitle>
-
-                                                        <CardTitle style={{
-                                                            marginLeft: "",
-                                                            color: "black",
-                                                        }}>
-                                                            <DescriptionIcon></DescriptionIcon>
-                                                            Description :
-
-
-                                                            <CardContent>
-                                                                <div className="card-description">
-                                                                    <p>This impressive paella is a perfect party dish and
-                                                                        a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.</p>
-                                                                </div>
-
-                                                            </CardContent>
-
-
-                                                        </CardTitle>
-                                                    </CardHeader>
-
-                                                </Card>
-
-                                            </Col>
-                                            <Col xs={12} md={3}>
-
-                                            </Col>
-                                            <Col xs={12} md={3}>
-
-                                            </Col>
-                                        </Row>
-
-                                    </TabPane>
-                                </TabContent>
-                            </CardBody>
-                            <Row>
-                                <Col xs={12} md={5} size="sm">
-
-                                </Col>
-                                <Col xs={12} md={3} size="sm">
-                                    <Pagination>
-                                        <PaginationItem>
-                                            <PaginationLink href="#">
-                                                <span aria-hidden="true">
-                                                    <i
-                                                        className="fa fa-angle-double-left"
-                                                        aria-hidden="true"
-                                                    />
-                                                </span>
-                                            </PaginationLink>
-                                        </PaginationItem>
-                                        <PaginationItem>
-                                            <PaginationLink href="#">1</PaginationLink>
-                                        </PaginationItem>
-                                        <PaginationItem active>
-                                            <PaginationLink href="#">2</PaginationLink>
-                                        </PaginationItem>
-                                        <PaginationItem>
-                                            <PaginationLink href="#">3</PaginationLink>
-                                        </PaginationItem>
-                                        <PaginationItem>
-                                            <PaginationLink href="#">
-                                                <span aria-hidden="true">
-                                                    <i
-                                                        className="fa fa-angle-double-right"
-                                                        aria-hidden="true"
-                                                    />
-                                                </span>
-                                            </PaginationLink>
-                                        </PaginationItem>
-                                    </Pagination>
-                                </Col>
-                                <Col xs={12} md={4} size="sm">
-                                </Col>
-                            </Row>
-                        </Card>
+                    <Col xs={12}>
+                        <Button onClick={onClickBack} style={
+                            {
+
+                                fontSize: "10px",
+
+                            }
+                        }>
+                            <span className="btn-label" >
+                                <i className="now-ui-icons arrows-1_minimal-left" />
+                            </span>
+                            Back
+                        </Button>
                     </Col>
                 </Row>
+                <Breadcrumbs separator="›" aria-label="breadcrumb" style={{ padding: '20px' }}>
+                    <Link underline="hover" color="inherit" href="/admin/translator-progress">
+                        Translator Progress
+                    </Link>
+
+                    <Typography color="text.primary">Article Details</Typography>
+                </Breadcrumbs>
+
+                <CardTitle id="card1" tag="h4" >Article Detail :</CardTitle>
+
+                <Row>
+
+                    <Col xs={12} lg={6}>
+                        <Card>
+                            <a style={{ all: "unset", cursor: "pointer" }} href={`translator-progress-article?id=${article.id}`}>
+                                <CardHeader>
+                                    <Row>
+                                        <Col xs={12} md={8}>
+                                            <CardTitle style={{
+                                                color: "#2CA8FF",
+                                                fontSize: "20px",
+                                                fontWeight: "bold",
+                                            }}>
+                                                Null
+                                                {article.categoryName}</CardTitle>
+                                        </Col>
+                                        <Col xs={12} md={4}>
+                                            <CardTitle style={{
+                                                color: "#2CA8FF",
+                                                fontSize: "20px",
+                                                fontWeight: "bold",
+                                            }}>
+                                                <AttachMoneyIcon style={{
+                                                    color: "black",
+                                                }}></AttachMoneyIcon>
+                                                {article.fee}</CardTitle>
+                                        </Col>
+                                    </Row>
+                                </CardHeader>
+                                <CardBody style={{
+                                    marginTop: "-20px",
+                                }}>
+                                    <CardTitle style={{
+                                        color: "black",
+                                        fontSize: "24px",
+                                        fontWeight: "bold",
+                                    }}>
+                                        {article.originalContent}
+                                    </CardTitle>
+                                    <CardText style={{
+                                        color: "black",
+                                        fontSize: "16px",
+                                    }}>
+                                        {article.description}
+                                    </CardText>
+                                    <CardTitle style={{
+                                        color: "black",
+                                        fontSize: "24px",
+                                        fontWeight: "bold",
+                                    }}>
+                                        <ReactCountryFlag
+                                            countryCode={article.languageFrom}
+                                            svg
+                                            style={{
+                                                width: '2em',
+                                                height: '2em',
+                                            }}
+
+                                        />
+                                        <ArrowRightIcon style={{
+                                            fontSize: "40px",
+                                            marginLeft: "10px",
+                                            marginRight: "10px",
+                                        }}></ArrowRightIcon>
+                                        <ReactCountryFlag
+                                            countryCode={article.languageTo}
+                                            svg
+                                            style={{
+                                                width: '2em',
+                                                height: '2em',
+                                            }}
+
+                                        />
+                                    </CardTitle>
+                                </CardBody>
+                                <CardFooter style={{
+                                    fontSize: "16px",
+                                    marginTop: "-20px",
+                                    color: "red",
+                                }}>
+                                    {article.deadline}
+                                </CardFooter>
+                            </a>
+                        </Card>
+                    </Col>
+
+                </Row>
+
+                <CardTitle id="card1" tag="h4" >Translation :</CardTitle>
+
+                <Row>
+
+                    <Col xs={12} lg={8}>
+                        <Card>
+                            <a style={{ all: "unset", cursor: "pointer" }} href={`translator-progress-article?id=${article.id}`}>
+                                <CardHeader>
+                                    <Row>
+                                        <Col xs={12} md={8}>
+                                            <CardTitle style={{
+                                                color: "#2CA8FF",
+                                                fontSize: "20px",
+                                                fontWeight: "bold",
+                                            }}>
+                                                Null
+                                                {article.categoryName}</CardTitle>
+                                        </Col>
+                                        <Col xs={12} md={4}>
+                                            <CardTitle style={{
+                                                color: "#2CA8FF",
+                                                fontSize: "20px",
+                                                fontWeight: "bold",
+                                            }}>
+                                                <AttachMoneyIcon style={{
+                                                    color: "black",
+                                                }}></AttachMoneyIcon>
+                                                {article.fee}</CardTitle>
+                                        </Col>
+                                    </Row>
+                                </CardHeader>
+                                <CardBody style={{
+                                    marginTop: "-20px",
+                                }}>
+                                    <CardTitle style={{
+                                        color: "black",
+                                        fontSize: "24px",
+                                        fontWeight: "bold",
+                                    }}>
+                                        {article.originalContent}
+                                    </CardTitle>
+                                    <CardText style={{
+                                        color: "black",
+                                        fontSize: "16px",
+                                    }}>
+                                        {article.description}
+                                    </CardText>
+                                    <CardTitle style={{
+                                        color: "black",
+                                        fontSize: "24px",
+                                        fontWeight: "bold",
+                                    }}>
+                                        <ReactCountryFlag
+                                            countryCode={article.languageFrom}
+                                            svg
+                                            style={{
+                                                width: '2em',
+                                                height: '2em',
+                                            }}
+
+                                        />
+                                        <ArrowRightIcon style={{
+                                            fontSize: "40px",
+                                            marginLeft: "10px",
+                                            marginRight: "10px",
+                                        }}></ArrowRightIcon>
+                                        <ReactCountryFlag
+                                            countryCode={article.languageTo}
+                                            svg
+                                            style={{
+                                                width: '2em',
+                                                height: '2em',
+                                            }}
+
+                                        />
+                                    </CardTitle>
+                                </CardBody>
+                                <CardFooter style={{
+                                    fontSize: "16px",
+                                    marginTop: "-20px",
+                                    color: "red",
+                                }}>
+                                    {article.deadline}
+                                </CardFooter>
+                            </a>
+                        </Card>
+                    </Col>
+
+                </Row>
+
+
+
 
             </div>
         </>

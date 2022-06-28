@@ -251,6 +251,7 @@ let routes = [
     name: "Translator Article",
     icon: "now-ui-icons business_badge",
     component: TranslatorProgressArticle,
+    props: {a:"a"},
     rolePermission: "Translator",
     hideInDetail: true,
     layout: "/admin",
