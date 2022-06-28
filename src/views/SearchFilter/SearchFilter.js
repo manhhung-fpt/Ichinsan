@@ -18,6 +18,7 @@ import {
     Col,
     CardBody,
     Button,
+    CardFooter,
 } from "reactstrap";
 import PanelHeader from "components/PanelHeader/PanelHeader";
 // core components
@@ -43,6 +44,8 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import ReactCountryFlag from "react-country-flag"
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 import moment from "moment";
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -73,6 +76,7 @@ function SearchFilter() {
     const [salaryTo, setSalaryTo] = React.useState('');
     const [dateRange, setDateRange] = React.useState(null);
     const [deadLine, setDeadline] = React.useState(null);
+    const [page, setPage] = React.useState(1);
 
     useEffect(() => {
         var axios = require('axios');
@@ -111,13 +115,10 @@ function SearchFilter() {
             });
     }, []);
     //Handle Submit
-    const handleSubmit = event => {
+    const handleSubmit = (event, page) => {
         setArticle([]);
+        setPage(page);
         event.preventDefault();
-        console.log('personName', personName);
-        console.log('personName', languageName);
-        console.log('personName', salaryFrom);
-        console.log('personName', salaryTo);
         var axios = require('axios');
         var data = '';
 
@@ -125,13 +126,14 @@ function SearchFilter() {
         var language = languageName.length > 0 ? '&language=' + languageName : '';
         var sFrom = salaryFrom ? '&from=' + salaryFrom : '';
         var sTo = salaryTo ? '&to=' + salaryTo : '';
-        var datePost = dateRange ? '&datePost=' + moment(dateRange).format('YYYY-MM-D')  : '';
-        var deadline = deadLine ? '&deadline=' + moment(deadLine).format('YYYY-MM-D')  : '';
-        
+        var datePost = dateRange ? '&datePost=' + moment(dateRange).format('YYYY-MM-D') : '';
+        var deadline = deadLine ? '&deadline=' + moment(deadLine).format('YYYY-MM-D') : '';
+        var pages = page ? page : '1'
+
 
         var config = {
             method: 'get',
-            url: 'https://api-dotnet-test.herokuapp.com/api/articles?pageNumber=1' + categoryName + language + sFrom + sTo + datePost + deadline,
+            url: `https://api-dotnet-test.herokuapp.com/api/articles?pageNumber=${pages}&pageSize=9` + categoryName + language + sFrom + sTo + datePost + deadline,
             data: data
         };
 
@@ -156,6 +158,7 @@ function SearchFilter() {
     const handleChangeSalaryFrom = (event) => {
         setSalaryFrom(event.target.value);
     };
+
 
     const handleChangeSalaryTo = (event) => {
         setSalaryTo(event.target.value);
@@ -186,7 +189,7 @@ function SearchFilter() {
 
         var config = {
             method: 'get',
-            url: 'https://api-dotnet-test.herokuapp.com/api/articles?pageNumber=1',
+            url: 'https://api-dotnet-test.herokuapp.com/api/articles?pageNumber=1&pageSize=9',
             headers: {},
             data: data
         };
@@ -249,72 +252,84 @@ function SearchFilter() {
                     <Col xs={12} md={9}
 
                     >
-                        <Row>
-                            {articles.map((article, index) => (
-                                <Col md={4} style={{
-                                    marginBottom: '30px',
-                                }}
-                                >
-                                    <a classname="card" href="" >
-                                        <Card>
-                                            <CardHeader>
-                                                <CardTitle style={{
-                                                    marginLeft: "",
-                                                    color: "green",
-                                                }}>
-                                                    <CategoryIcon></CategoryIcon>
-                                                    {article.categoryName}</CardTitle>
-                                            </CardHeader>
+                        <div style={{ height: 700 }}>
+                            <Row>
+                                {articles.map((article, index) => (
+                                    <Col md={4} style={{
+                                    }}
+                                    >
+                                        <a classname="card" href="" >
+                                            <Card>
+                                                <CardHeader>
+                                                    <CardTitle style={{
+                                                        marginLeft: "",
+                                                        color: "green",
+                                                    }}>
+                                                        <CategoryIcon></CategoryIcon>
+                                                        {article.categoryName}</CardTitle>
+                                                </CardHeader>
 
-                                            <CardHeader>
-                                                <CardTitle tag="h4" style={{
-                                                    color: "green",
-                                                    marginTop: "-10px",
-                                                }}>{article.projectName}</CardTitle>
-                                                <CardTitle style={{
-                                                    marginLeft: "",
-                                                    color: "red",
-                                                }}>
-                                                    <AttachMoneyIcon></AttachMoneyIcon>
-                                                    {article.fee}</CardTitle>
-                                                <CardTitle style={{
-                                                    marginLeft: "",
-                                                    color: "red",
-                                                }}>
-                                                    <ReactCountryFlag
-                                                        countryCode={article.languageFrom}
-                                                        svg
-                                                        style={{
-                                                            width: '2em',
-                                                            height: '2em',
-                                                        }}
-                                                        title="US"
-                                                    />
-                                                    <ArrowRightAltIcon></ArrowRightAltIcon>
-                                                    <ReactCountryFlag
-                                                        countryCode={article.languageTo}
-                                                        svg
-                                                        style={{
-                                                            width: '2em',
-                                                            height: '2em',
-                                                        }}
-                                                        title="US"
-                                                    />
-                                                </CardTitle>
+                                                <CardHeader>
+                                                    <CardTitle tag="h4" style={{
+                                                        color: "green",
+                                                        marginTop: "-10px",
+                                                    }}>{article.projectName}</CardTitle>
+                                                    <CardTitle style={{
+                                                        marginLeft: "",
+                                                        color: "red",
+                                                    }}>
+                                                        <AttachMoneyIcon></AttachMoneyIcon>
+                                                        {article.fee}</CardTitle>
+                                                    <CardTitle style={{
+                                                        marginLeft: "",
+                                                        color: "red",
+                                                    }}>
+                                                        <ReactCountryFlag
+                                                            countryCode={article.languageFrom}
+                                                            svg
+                                                            style={{
+                                                                width: '2em',
+                                                                height: '2em',
+                                                            }}
+                                                            title="US"
+                                                        />
+                                                        <ArrowRightAltIcon></ArrowRightAltIcon>
+                                                        <ReactCountryFlag
+                                                            countryCode={article.languageTo}
+                                                            svg
+                                                            style={{
+                                                                width: '2em',
+                                                                height: '2em',
+                                                            }}
+                                                            title="US"
+                                                        />
+                                                    </CardTitle>
 
-                                            </CardHeader>
+                                                </CardHeader>
 
-                                            <div class="go-corner" href="#">
-                                                <div class="go-arrow">
-                                                    →
+                                                <div class="go-corner" href="#">
+                                                    <div class="go-arrow">
+                                                        →
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                        </Card>
-                                    </a>
-                                </Col>
-                            ))};
-                        </Row>
+                                            </Card>
+                                        </a>
+                                    </Col>
+                                ))}
+
+                            </Row>
+                        </div>
+                        <div sx ={{ marginTop :20 }}>
+                            <Row></Row>
+                        <Stack spacing={2}>
+                            <Pagination
+                                count={5}
+                                page={page}
+                                onChange={handleSubmit}
+                                variant="outlined" color="primary" />
+                        </Stack>
+                        </div>
                     </Col>
                     <Col xs={12} md={3}
                     >
@@ -422,7 +437,7 @@ function SearchFilter() {
                                             <InputLabel id="demo-simple-select-helper-label">Date Post</InputLabel>
                                             <LocalizationProvider dateAdapter={AdapterDateFns}>
                                                 <DatePicker
-                                                sx={{ m: 1, width: 250 }}
+                                                    sx={{ m: 1, width: 250 }}
                                                     label="Basic example"
                                                     value={dateRange}
                                                     onChange={(newValue) => {
@@ -431,11 +446,11 @@ function SearchFilter() {
                                                     renderInput={(params) => <TextField sx={{ m: 1, width: 250 }} {...params} />}
                                                 />
                                             </LocalizationProvider>
-                                            
+
                                             <InputLabel id="demo-simple-select-helper-label">Deadline Range</InputLabel>
                                             <LocalizationProvider dateAdapter={AdapterDateFns}>
                                                 <DatePicker
-                                                sx={{ m: 1, width: 250 }}
+                                                    sx={{ m: 1, width: 250 }}
                                                     label="Basic example"
                                                     value={deadLine}
                                                     onChange={(newValue) => {
@@ -458,6 +473,7 @@ function SearchFilter() {
                                 </form>
 
                             </CardBody>
+
 
                         </Card>
                     </Col>
