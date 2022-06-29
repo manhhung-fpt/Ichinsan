@@ -100,7 +100,7 @@ function TranslatorProgress() {
       })
   }, []);
 
-  
+
 
 
   React.useEffect(() => {
@@ -129,24 +129,7 @@ function TranslatorProgress() {
     setSingleRoleSelect(() => e.value);
   }
   const [count, setCount] = React.useState(0);
-  const onclickProject = () => {
-    history.push("/admin/admin-projec-category");
-  }
-  const onclickFeedBack = () => {
-    history.push("/admin/admin-feedback-category");
-  }
-  const onClickBack = () => {
-    history.push("/admin/customer-home")
-  }
-  const onClick = () => {
-    history.push("/admin/customer-add-article")
-  };
-  const onClickCard = () => {
-    history.push("/admin/customer-progress-project")
-  };
-  const onClickView = () => {
-    history.push("/admin/translator-progress-article")
-  };
+
 
   return (
     <>
@@ -179,7 +162,9 @@ function TranslatorProgress() {
                 </SwiperSlide>
               </Swiper>
             </Card>
-            <CardTitle tag="h4"> Progress</CardTitle>
+            <CardTitle tag="h4" style={{
+              fontWeight: "bold",
+            }}> Progress : </CardTitle>
 
 
 

@@ -1,14 +1,17 @@
 
 import React from "react";
+import { useEffect, useState } from "react";
 import axios from 'axios';
 import ReactCountryFlag from "react-country-flag"
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 // reactstrap components
 import {
 
   Card,
   CardHeader,
-
+  CardBody,
   CardTitle,
+  CardFooter,
   Row,
   Col,
 
@@ -20,14 +23,17 @@ import {
   Pagination,
   PaginationItem,
   PaginationLink,
+  CardText,
 } from "reactstrap";
 
 import Select from "react-select";
 // core components
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import TranslateIcon from '@mui/icons-material/Translate';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
+
+import CardContent from '@mui/material/CardContent';
 
 import { Swiper, SwiperSlide } from 'swiper/react/swiper-react.js';
 // Styles must use direct files imports
@@ -36,10 +42,11 @@ import 'swiper/modules/scrollbar/scrollbar.scss'; // Scrollbar module
 import 'swiper/modules/navigation/navigation.scss'; // Navigation module
 import 'swiper/modules/pagination/pagination.scss'; // Pagination module
 import 'swiper/modules/effect-fade/effect-fade.scss'; // Pagination module
-
+import { Button } from 'react-bootstrap';
 import CategoryIcon from '@mui/icons-material/Category';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import SignalWifiStatusbar4BarIcon from '@mui/icons-material/SignalWifiStatusbar4Bar';
+import moment from "moment";
 
 var selectOptions = [
   { value: "Category1", label: "Category1" },
@@ -54,7 +61,7 @@ var rolesOptions = [
   { value: "Option2", label: "Option2" },
   { value: "Option3", label: "Option3" },
 ];
-function TranslatorRecruiment() {
+function TranslatorProgress() {
 
   const [singleSelect, setSingleSelect] = React.useState(null);
   const [singleFileName, setSingleFileName] = React.useState("");
@@ -64,8 +71,38 @@ function TranslatorRecruiment() {
   const [fakeData, setFakeData] = React.useState([]);
   const [vTabs, setvTabs] = React.useState("vt1");
   const [vTabsIcons, setvTabsIcons] = React.useState("vti1");
-  const [pageSubcategories, setpageSubcategories] = React.useState("ps1");
+
+  const statusOptions = [
+    { value: 1, content: 'ps1', label: "Pending" },
+    { value: 2, content: 'ps2', label: "Approved" },
+    { value: 3, content: 'ps3', label: "Rejected" },
+    // { value: 4, content: 'ps4', label: "Postponed" },
+    // { value: 5, content: 'ps5', label: "Postponed" },
+  ]
+  const [pageSubcategories, setpageSubcategories] = React.useState(statusOptions[0].content);
+
+
+
+
   const singleFileRef = React.useRef();
+
+
+  const [articles, setArticles] = useState([]);
+  React.useEffect(() => {
+    axios
+      .get("https://api-dotnet-test.herokuapp.com/api/articles?pageNumber=1&pageSize=3")
+      .then((res) => {
+        const data = res.data;
+        setArticles(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }, []);
+
+
+
+
   React.useEffect(() => {
     axios
       .get('https://reqres.in/api/users')
@@ -92,24 +129,7 @@ function TranslatorRecruiment() {
     setSingleRoleSelect(() => e.value);
   }
   const [count, setCount] = React.useState(0);
-  const onclickProject = () => {
-    history.push("/admin/admin-projec-category");
-  }
-  const onclickFeedBack = () => {
-    history.push("/admin/admin-feedback-category");
-  }
-  const onClickBack = () => {
-    history.push("/admin/customer-home")
-  }
-  const onClick = () => {
-    history.push("/admin/customer-add-article")
-  };
-  const onClickCard = () => {
-    history.push("/admin/customer-progress-project")
-  };
-  const onClickView = () => {
-    history.push("/admin/translator-progress-article")
-  };
+
 
   return (
     <>
@@ -142,481 +162,149 @@ function TranslatorRecruiment() {
                 </SwiperSlide>
               </Swiper>
             </Card>
-            <CardTitle tag="h4"> Progress</CardTitle>
+            <CardTitle tag="h4" style={{
+              fontWeight: "bold",
+            }}> Recruitment : </CardTitle>
+
+
+
+
             <TabContent activeTab={hTabs} className="tab-space">
-              
               <TabPane tabId="ht1">
                 <Nav
                   pills
                   className="nav-pills-info nav-pills-icons justify-content-center"
                 >
-                  <NavItem>
-                    <NavLink
-                      className={pageSubcategories === "ps1" ? "active" : ""}
-                      onClick={() => setpageSubcategories("ps1")}
+                  {statusOptions.map((status, index) => (
+                    <NavItem
+                      style={{
+
+                      }}
                     >
+                      <NavLink
+                        className={pageSubcategories === `${status.content}` ? "active" : ""}
+                        onClick={() => setpageSubcategories(status.content)}
+                      >
 
-                      Pending
-                    </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink
-                      className={pageSubcategories === "ps2" ? "active" : ""}
-                      onClick={() => setpageSubcategories("ps2")}
-                    >
-
-                      Aprroved
-                    </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink
-                      className={pageSubcategories === "ps3" ? "active" : ""}
-                      onClick={() => setpageSubcategories("ps3")}
-                    >
-
-                      Rejected
-                    </NavLink>
-                  </NavItem>
-
+                        {status.label}
+                      </NavLink>
+                    </NavItem>
+                  ))
+                  }
                 </Nav>
                 <TabContent
                   className="tab-space tab-subcategories"
                   activeTab={pageSubcategories}
+                  style={{}}
                 >
-                  <TabPane tabId="ps1">
-                    <Row style={{
-                      marginTop: "40px",
-                    }}>
-                      <Col xs={12} md={3}>
-                        <a classname="card" href="" onClick={onClickView}>
-                          <Card>
 
-                            <CardHeader>
-                              <CardTitle style={{
-                                marginLeft: "",
-                                color: "green",
-                              }}>
-                                <CategoryIcon></CategoryIcon>
-                                Computer Science</CardTitle>
-                            </CardHeader>
+                  {
+                    statusOptions.map((statusOption, index) => {
+                      return <TabPane tabId={statusOption.content}>
+                        <Row>
+                          {articles
+                            .filter(a => a.status === statusOption.label)
+                            .map((article, index) => {
+                              return <Col xs={12} lg={4}>
+                                <Card>
+                                  <a style={{ all: "unset", cursor: "pointer" }} href={`translator-progress-article?id=${article.id}`}>
+                                    <CardHeader>
+                                      <Row>
+                                        <Col xs={12} md={8}>
+                                          <CardTitle style={{
+                                            color: "#2CA8FF",
+                                            fontSize: "20px",
+                                            fontWeight: "bold",
+                                          }}>
 
-                            <CardHeader>
-                              <CardTitle tag="h4" style={{
-                                color: "green",
-                                marginTop: "-10px",
-                              }}>Computer Vision AI</CardTitle>
-                              <CardTitle style={{
-                                marginLeft: "",
-                                color: "orange",
-                              }}>
-                                <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
-                                    Pending</CardTitle>
-                              <CardTitle style={{
-                                marginLeft: "",
-                                color: "red",
-                              }}>
-                                <AttachMoneyIcon></AttachMoneyIcon>
-                                5000</CardTitle>
-                              <CardTitle style={{
-                                marginLeft: "",
-                                color: "red",
-                              }}>
-                                <ReactCountryFlag
-                                  countryCode="US"
-                                  svg
-                                  style={{
-                                    width: '2em',
-                                    height: '2em',
-                                  }}
-                                  title="US"
-                                />
-                                <ArrowRightAltIcon></ArrowRightAltIcon>
-                                <ReactCountryFlag
-                                  countryCode="VN"
-                                  svg
-                                  style={{
-                                    width: '2em',
-                                    height: '2em',
-                                  }}
-                                  title="US"
-                                />
-                              </CardTitle>
+                                            {article.categoryName}</CardTitle>
+                                        </Col>
+                                        <Col xs={12} md={4}>
+                                          <CardTitle style={{
+                                            color: "#2CA8FF",
+                                            fontSize: "20px",
+                                            fontWeight: "bold",
+                                          }}>
+                                            <AttachMoneyIcon style={{
+                                              color: "black",
+                                            }}></AttachMoneyIcon>
+                                            {article.fee}</CardTitle>
+                                        </Col>
+                                      </Row>
+                                    </CardHeader>
+                                    <CardBody style={{
+                                      marginTop: "-20px",
+                                    }}>
+                                      <CardTitle style={{
+                                        color: "black",
+                                        fontSize: "24px",
+                                        fontWeight: "bold",
+                                      }}>
+                                        {article.name}
+                                      </CardTitle>
+                                      <CardText style={{
+                                        color: "black",
+                                        fontSize: "16px",
+                                      }}>
+                                        {article.description}
+                                      </CardText>
+                                      <CardTitle style={{
+                                        color: "black",
+                                        fontSize: "24px",
+                                        fontWeight: "bold",
+                                      }}>
+                                        <ReactCountryFlag
+                                          countryCode={article.languageFrom}
+                                          svg
+                                          style={{
+                                            width: '2em',
+                                            height: '2em',
+                                          }}
 
-                            </CardHeader>
+                                        />
+                                        <ArrowRightIcon style={{
+                                          fontSize: "40px",
+                                          marginLeft: "10px",
+                                          marginRight: "10px",
+                                        }}></ArrowRightIcon>
+                                        <ReactCountryFlag
+                                          countryCode={article.languageTo}
+                                          svg
+                                          style={{
+                                            width: '2em',
+                                            height: '2em',
+                                          }}
 
-                            <div class="go-corner" href="#">
-                              <div class="go-arrow">
-                                →
-                              </div>
-                            </div>
+                                        />
+                                      </CardTitle>
+                                    </CardBody>
 
-                          </Card>
-                        </a>
-                      </Col>
-                      <Col xs={12} md={3}>
-                        <a classname="card" href="" onClick={onClickView}>
-                          <Card>
-
-                            <CardHeader>
-                              <CardTitle style={{
-                                marginLeft: "",
-                                color: "green",
-                              }}>
-                                <CategoryIcon></CategoryIcon>
-                                Computer Science</CardTitle>
-                            </CardHeader>
-
-                            <CardHeader>
-                              <CardTitle tag="h4" style={{
-                                color: "green",
-                                marginTop: "-10px",
-                              }}>Computer Vision AI</CardTitle>
-                              <CardTitle style={{
-                                marginLeft: "",
-                                color: "orange",
-                              }}>
-                                <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
-                                    Pending</CardTitle>
-                              <CardTitle style={{
-                                marginLeft: "",
-                                color: "red",
-                              }}>
-                                <AttachMoneyIcon></AttachMoneyIcon>
-                                5000</CardTitle>
-                              <CardTitle style={{
-                                marginLeft: "",
-                                color: "red",
-                              }}>
-                                <ReactCountryFlag
-                                  countryCode="US"
-                                  svg
-                                  style={{
-                                    width: '2em',
-                                    height: '2em',
-                                  }}
-                                  title="US"
-                                />
-                                <ArrowRightAltIcon></ArrowRightAltIcon>
-                                <ReactCountryFlag
-                                  countryCode="VN"
-                                  svg
-                                  style={{
-                                    width: '2em',
-                                    height: '2em',
-                                  }}
-                                  title="US"
-                                />
-                              </CardTitle>
-                            </CardHeader>
-
-                            <div class="go-corner" href="#">
-                              <div class="go-arrow">
-                                →
-                              </div>
-                            </div>
-
-                          </Card>
-                        </a>
-                      </Col>
-                      <Col xs={12} md={3}>
-
-                      </Col>
-                      <Col xs={12} md={3}>
-
-                      </Col>
-                    </Row>
+                                    <CardFooter style={{
+                                      fontSize: "16px",
+                                      marginTop: "-20px",
+                                      color: "red",
 
 
+                                    }}>
+                                      {moment(new Date(article.deadline)).format("DD/MM/YYYY, h:mm:ss A")}
+                                    </CardFooter>
+                                    <div class="go-corner" href="#" style={{
+                                      backgroundColor: "#2CA8FF",
+                                    }}>
+                                      <div class="go-arrow">
+                                        <ArrowRightIcon></ArrowRightIcon>
+                                      </div>
+                                    </div>
+                                  </a>
+                                </Card>
+                              </Col>
+                            })}
+                        </Row>
+                      </TabPane>
+                    }
+                    )
+                  }
 
-                  </TabPane>
-                  <TabPane tabId="ps2">
-                    <Row style={{
-                      marginTop: "40px",
-                    }}>
-                      <Col xs={12} md={3}>
-                        <a classname="card" href="" onClick={onClickView}>
-                          <Card>
-
-                            <CardHeader>
-                              <CardTitle style={{
-                                marginLeft: "",
-                                color: "green",
-                              }}>
-                                <CategoryIcon></CategoryIcon>
-                                Computer Science</CardTitle>
-                            </CardHeader>
-
-                            <CardHeader>
-                              <CardTitle tag="h4" style={{
-                                color: "green",
-                                marginTop: "-10px",
-                              }}>Computer Vision AI</CardTitle>
-                              <CardTitle style={{
-                                marginLeft: "",
-                                color: "green",
-                              }}>
-                                <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
-                                    Approved</CardTitle>
-                              <CardTitle style={{
-                                marginLeft: "",
-                                color: "red",
-                              }}>
-                                <AttachMoneyIcon></AttachMoneyIcon>
-                                5000</CardTitle>
-                              <CardTitle style={{
-                                marginLeft: "",
-                                color: "red",
-                              }}>
-                                <ReactCountryFlag
-                                  countryCode="US"
-                                  svg
-                                  style={{
-                                    width: '2em',
-                                    height: '2em',
-                                  }}
-                                  title="US"
-                                />
-                                <ArrowRightAltIcon></ArrowRightAltIcon>
-                                <ReactCountryFlag
-                                  countryCode="VN"
-                                  svg
-                                  style={{
-                                    width: '2em',
-                                    height: '2em',
-                                  }}
-                                  title="US"
-                                />
-                              </CardTitle>
-
-                            </CardHeader>
-
-                            <div class="go-corner" href="#">
-                              <div class="go-arrow">
-                                →
-                              </div>
-                            </div>
-
-                          </Card>
-                        </a>
-                      </Col>
-                      <Col xs={12} md={3}>
-                        <a classname="card" href="" onClick={onClickView}>
-                          <Card>
-
-                            <CardHeader>
-                              <CardTitle style={{
-                                marginLeft: "",
-                                color: "green",
-                              }}>
-                                <CategoryIcon></CategoryIcon>
-                                Computer Science</CardTitle>
-                            </CardHeader>
-
-                            <CardHeader>
-                              <CardTitle tag="h4" style={{
-                                color: "green",
-                                marginTop: "-10px",
-                              }}>Computer Vision AI</CardTitle>
-                              <CardTitle style={{
-                                marginLeft: "",
-                                color: "green",
-                              }}>
-                                <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
-                                    Approved</CardTitle>
-                              <CardTitle style={{
-                                marginLeft: "",
-                                color: "red",
-                              }}>
-                                <AttachMoneyIcon></AttachMoneyIcon>
-                                5000</CardTitle>
-                              <CardTitle style={{
-                                marginLeft: "",
-                                color: "red",
-                              }}>
-                                <ReactCountryFlag
-                                  countryCode="US"
-                                  svg
-                                  style={{
-                                    width: '2em',
-                                    height: '2em',
-                                  }}
-                                  title="US"
-                                />
-                                <ArrowRightAltIcon></ArrowRightAltIcon>
-                                <ReactCountryFlag
-                                  countryCode="VN"
-                                  svg
-                                  style={{
-                                    width: '2em',
-                                    height: '2em',
-                                  }}
-                                  title="US"
-                                />
-                              </CardTitle>
-                            </CardHeader>
-
-                            <div class="go-corner" href="#">
-                              <div class="go-arrow">
-                                →
-                              </div>
-                            </div>
-
-                          </Card>
-                        </a>
-                      </Col>
-                      <Col xs={12} md={3}>
-
-                      </Col>
-                      <Col xs={12} md={3}>
-
-                      </Col>
-                    </Row>
-
-                  </TabPane>
-                  <TabPane tabId="ps3">
-                    <Row style={{
-                      marginTop: "40px",
-                    }}>
-                      <Col xs={12} md={3}>
-                        <a classname="card" href="" onClick={onClickView}>
-                          <Card>
-
-                            <CardHeader>
-                              <CardTitle style={{
-                                marginLeft: "",
-                                color: "green",
-                              }}>
-                                <CategoryIcon></CategoryIcon>
-                                Computer Science</CardTitle>
-                            </CardHeader>
-
-                            <CardHeader>
-                              <CardTitle tag="h4" style={{
-                                color: "green",
-                                marginTop: "-10px",
-                              }}>Computer Vision AI</CardTitle>
-                              <CardTitle style={{
-                                marginLeft: "",
-                                color: "red",
-                              }}>
-                                <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
-                                    Rejected</CardTitle>
-                              <CardTitle style={{
-                                marginLeft: "",
-                                color: "red",
-                              }}>
-                                <AttachMoneyIcon></AttachMoneyIcon>
-                                5000</CardTitle>
-                              <CardTitle style={{
-                                marginLeft: "",
-                                color: "red",
-                              }}>
-                                <ReactCountryFlag
-                                  countryCode="US"
-                                  svg
-                                  style={{
-                                    width: '2em',
-                                    height: '2em',
-                                  }}
-                                  title="US"
-                                />
-                                <ArrowRightAltIcon></ArrowRightAltIcon>
-                                <ReactCountryFlag
-                                  countryCode="VN"
-                                  svg
-                                  style={{
-                                    width: '2em',
-                                    height: '2em',
-                                  }}
-                                  title="US"
-                                />
-                              </CardTitle>
-
-                            </CardHeader>
-
-                            <div class="go-corner" href="#">
-                              <div class="go-arrow">
-                                →
-                              </div>
-                            </div>
-
-                          </Card>
-                        </a>
-                      </Col>
-                      <Col xs={12} md={3}>
-                        <a classname="card" href="" onClick={onClickView}>
-                          <Card>
-
-                            <CardHeader>
-                              <CardTitle style={{
-                                marginLeft: "",
-                                color: "green",
-                              }}>
-                                <CategoryIcon></CategoryIcon>
-                                Computer Science</CardTitle>
-                            </CardHeader>
-
-                            <CardHeader>
-                              <CardTitle tag="h4" style={{
-                                color: "green",
-                                marginTop: "-10px",
-                              }}>Computer Vision AI</CardTitle>
-                               <CardTitle style={{
-                                marginLeft: "",
-                                color: "red",
-                              }}>
-                                <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
-                                    Rejected</CardTitle>
-                              <CardTitle style={{
-                                marginLeft: "",
-                                color: "red",
-                              }}>
-                                <AttachMoneyIcon></AttachMoneyIcon>
-                                5000</CardTitle>
-                              <CardTitle style={{
-                                marginLeft: "",
-                                color: "red",
-                              }}>
-                                <ReactCountryFlag
-                                  countryCode="US"
-                                  svg
-                                  style={{
-                                    width: '2em',
-                                    height: '2em',
-                                  }}
-                                  title="US"
-                                />
-                                <ArrowRightAltIcon></ArrowRightAltIcon>
-                                <ReactCountryFlag
-                                  countryCode="VN"
-                                  svg
-                                  style={{
-                                    width: '2em',
-                                    height: '2em',
-                                  }}
-                                  title="US"
-                                />
-                              </CardTitle>
-                            </CardHeader>
-
-                            <div class="go-corner" href="#">
-                              <div class="go-arrow">
-                                →
-                              </div>
-                            </div>
-
-                          </Card>
-                        </a>
-                      </Col>
-                      <Col xs={12} md={3}>
-
-                      </Col>
-                      <Col xs={12} md={3}>
-
-                      </Col>
-                    </Row>
-
-                  </TabPane>
 
                 </TabContent>
                 <Row>
@@ -659,13 +347,18 @@ function TranslatorRecruiment() {
                   <Col xs={12} md={4} size="sm">
                   </Col>
                 </Row>
+
+
               </TabPane>
+
+
             </TabContent>
+
           </Col>
         </Row>
-      </div>
+      </div >
     </>
   );
 }
 
-export default TranslatorRecruiment;
+export default TranslatorProgress;

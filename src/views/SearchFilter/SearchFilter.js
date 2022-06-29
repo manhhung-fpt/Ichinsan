@@ -19,11 +19,13 @@ import {
     CardBody,
     Button,
     CardFooter,
+    CardText
 } from "reactstrap";
 import PanelHeader from "components/PanelHeader/PanelHeader";
 // core components
 import TranslateIcon from '@mui/icons-material/Translate';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import TextField from '@mui/material/TextField';
 import { LocalizationProvider } from '@mui/x-date-pickers-pro';
 import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
@@ -253,7 +255,7 @@ function SearchFilter() {
 
                     >
                         <div style={{ height: 700 }}>
-                            <Row>
+                            {/* <Row>
                                 {articles.map((article, index) => (
                                     <Col md={4} style={{
                                     }}
@@ -318,18 +320,112 @@ function SearchFilter() {
                                     </Col>
                                 ))}
 
+                            </Row> */}
+                            <Row>
+                                {articles
+
+                                    .map((article, index) => {
+                                        return <Col xs={12} lg={4}>
+                                            <Card
+                                                style={{
+                                                    marginTop: "10px",
+                                                }}
+                                            >
+                                                <a style={{ all: "unset", cursor: "pointer" }} href={`translator-progress-article?id=${article.id}`}>
+                                                    <CardHeader>
+                                                        <Row>
+                                                            <Col xs={12} md={8}>
+                                                                <CardTitle style={{
+                                                                    color: "#2CA8FF",
+                                                                    fontSize: "20px",
+                                                                    fontWeight: "bold",
+                                                                }}>
+
+                                                                    {article.categoryName}</CardTitle>
+                                                            </Col>
+                                                            <Col xs={12} md={4}>
+                                                                <CardTitle style={{
+                                                                    color: "#2CA8FF",
+                                                                    fontSize: "20px",
+                                                                    fontWeight: "bold",
+                                                                }}>
+                                                                    <AttachMoneyIcon style={{
+                                                                        color: "black",
+                                                                    }}></AttachMoneyIcon>
+                                                                    {article.fee}</CardTitle>
+                                                            </Col>
+                                                        </Row>
+                                                    </CardHeader>
+                                                    <CardBody style={{
+                                                        marginTop: "-20px",
+                                                    }}>
+                                                        <CardTitle style={{
+                                                            color: "black",
+                                                            fontSize: "24px",
+                                                            fontWeight: "bold",
+                                                        }}>
+                                                            {article.name}
+                                                        </CardTitle>
+                                                        <CardText style={{
+                                                            color: "black",
+                                                            fontSize: "16px",
+                                                        }}>
+                                                            {article.description}
+                                                        </CardText>
+                                                        <CardTitle style={{
+                                                            color: "black",
+                                                            fontSize: "24px",
+                                                            fontWeight: "bold",
+                                                        }}>
+                                                            <ReactCountryFlag
+                                                                countryCode={article.languageFrom}
+                                                                svg
+                                                                style={{
+                                                                    width: '2em',
+                                                                    height: '2em',
+                                                                }}
+
+                                                            />
+                                                            <ArrowRightIcon style={{
+                                                                fontSize: "40px",
+                                                                marginLeft: "10px",
+                                                                marginRight: "10px",
+                                                            }}></ArrowRightIcon>
+                                                            <ReactCountryFlag
+                                                                countryCode={article.languageTo}
+                                                                svg
+                                                                style={{
+                                                                    width: '2em',
+                                                                    height: '2em',
+                                                                }}
+
+                                                            />
+                                                        </CardTitle>
+                                                    </CardBody>
+
+                                                    <CardFooter style={{
+                                                        fontSize: "16px",
+                                                        marginTop: "-20px",
+                                                        color: "red",
+
+
+                                                    }}>
+                                                        {moment(new Date(article.deadline)).format("DD/MM/YYYY, h:mm:ss A")}
+                                                    </CardFooter>
+                                                    <div class="go-corner" href="#" style={{
+                                                        backgroundColor: "#2CA8FF",
+                                                    }}>
+                                                        <div class="go-arrow">
+                                                            <ArrowRightIcon></ArrowRightIcon>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </Card>
+                                        </Col>
+                                    })}
                             </Row>
                         </div>
-                        <div sx ={{ marginTop :20 }}>
-                            <Row></Row>
-                        <Stack spacing={2}>
-                            <Pagination
-                                count={5}
-                                page={page}
-                                onChange={handleSubmit}
-                                variant="outlined" color="primary" />
-                        </Stack>
-                        </div>
+
                     </Col>
                     <Col xs={12} md={3}
                     >
@@ -476,10 +572,22 @@ function SearchFilter() {
 
 
                         </Card>
+                        <div style={{ marginTop: 20 }}>
+                           
+                            <Stack spacing={2}>
+                                <Pagination
+                                    count={5}
+                                    page={page}
+                                    onChange={handleSubmit}
+                                    variant="outlined" color="primary" />
+                            </Stack>
+                        </div>
                     </Col>
 
                 </Row>
+
             </div>
+
         </>
     );
 }
