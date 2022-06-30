@@ -17,17 +17,36 @@
 import React from "react";
 import classnames from "classnames";
 // reactstrap components
-import { Row, Col } from "reactstrap";
+
+import {
+  TabContent,
+  TabPane,
+  Nav,
+  NavItem,
+  NavLink,
+  Card,
+  FormGroup,
+  Input,
+  CardHeader,
+  CardTitle,
+  CardBody,
+  Row,
+  Col,
+  Collapse,
+} from "reactstrap";
 
 const Step2 = React.forwardRef((props, ref) => {
-  const [activeChoices, setActiveChoices] = React.useState([]);
+  const [activeChoices, setActiveChoices] = React.useState([1]);
+  const [Website, setWebsite] = React.useState("");
   React.useImperativeHandle(ref, () => ({
     isValidated: undefined,
     state: {
       activeChoices,
+      Website
     },
   }));
   const choiceChange = (number) => {
+    setActiveChoices([]);
     let newState = activeChoices;
     if (newState.includes(number)) {
       newState = newState.filter((prop) => prop !== number);
@@ -36,83 +55,146 @@ const Step2 = React.forwardRef((props, ref) => {
     }
     setActiveChoices(newState);
   };
+  const [vTabs, setvTabs] = React.useState("vt1");
+  const [vTabsIcons, setvTabsIcons] = React.useState("vti1");
+  const [pageSubcategories, setpageSubcategories] = React.useState("ps1");
   return (
     <>
-      <h5 className="info-text"> What are you doing? (checkboxes) </h5>
+      <h5 className="info-text"> What are you doing ? </h5>
       <Row className="justify-content-center">
         <Col xs={12} lg={10}>
           <Row>
-            <Col sm="4">
-              <div
-                className={classnames("choice", {
-                  active: activeChoices.includes(1),
-                })}
-                data-toggle="wizard-checkbox"
-                onClick={() => choiceChange(1)}
-              >
-                <input
-                  defaultValue="Design"
-                  name="jobb"
-                  type="checkbox"
-                  onChange={() => choiceChange(1)}
-                  checked={classnames({
-                    active: activeChoices.includes(1),
-                  })}
-                />
-                <div className="icon">
-                  <i className="now-ui-icons design-2_ruler-pencil" />
-                </div>
-                <h6>Design</h6>
-              </div>
-            </Col>
-            <Col sm="4">
-              <div
-                className={classnames("choice", {
-                  active: activeChoices.includes(2),
-                })}
-                data-toggle="wizard-checkbox"
-                onClick={() => choiceChange(2)}
-              >
-                <input
-                  defaultValue="Code"
-                  name="jobb"
-                  type="checkbox"
-                  onChange={() => choiceChange(2)}
-                  checked={classnames({
-                    active: activeChoices.includes(2),
-                  })}
-                />
-                <div className="icon">
-                  <i className="now-ui-icons business_bulb-63" />
-                </div>
-                <h6>Code</h6>
-              </div>
-            </Col>
-            <Col sm="4">
-              <div
-                className={classnames("choice", {
-                  active: activeChoices.includes(3),
-                })}
-                data-toggle="wizard-checkbox"
-                onClick={() => choiceChange(3)}
-              >
-                <input
-                  defaultValue="Develop"
-                  name="jobb"
-                  type="checkbox"
-                  onChange={() => choiceChange(3)}
-                  checked={classnames({
-                    active: activeChoices.includes(3),
-                  })}
-                />
-                <div className="icon">
-                  <i className="now-ui-icons tech_tv" />
-                </div>
-                <h6>Develop</h6>
-              </div>
-            </Col>
+            <Col xs={3} style={{ marginLeft :45}}></Col>
+                <Nav
+                  pills
+                  className="nav-pills-primary nav-pills-icons justify-content-center"
+                >
+                  <NavItem>
+                    <NavLink
+                      className={pageSubcategories === "ps1" ? "active" : ""}
+                      onClick={() => setpageSubcategories("ps1")}
+                    >
+                      <i className="now-ui-icons design-2_ruler-pencil" />
+                      <div
+                        className={classnames("choice", {
+                          active: activeChoices.includes(1),
+                        })}
+                        data-toggle="wizard-checkbox"
+                        onClick={() => choiceChange(1)}
+                      >
+                        <input
+                          defaultValue="Design"
+                          name="jobb"
+                          type="checkbox"
+                          onChange={() => choiceChange(1)}
+                          checked={classnames({
+                            active: activeChoices.includes(1),
+                          })}
+                        />
+                        <h6>Translator</h6>
+                      </div>
+                    </NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink
+                      className={pageSubcategories === "ps2" ? "active" : ""}
+                      onClick={() => setpageSubcategories("ps2")}
+                    >
+                      <i className="now-ui-icons business_bulb-63" />
+                      <div
+                        className={classnames("choice", {
+                          active: activeChoices.includes(2),
+                        })}
+                        data-toggle="wizard-checkbox"
+                        onClick={() => choiceChange(2)}
+                      >
+                        <input
+                          defaultValue="Code"
+                          name="jobb"
+                          type="checkbox"
+                          onChange={() => choiceChange(2)}
+                          checked={classnames({
+                            active: activeChoices.includes(2),
+                          })}
+                        />
+                        <h6>Auditor</h6>
+                      </div>
+                    </NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink
+                      className={pageSubcategories === "ps3" ? "active" : ""}
+                      onClick={() => setpageSubcategories("ps3")}
+                    >
+                      <i className="now-ui-icons tech_tv" />
+                      <div
+                        className={classnames("choice", {
+                          active: activeChoices.includes(3),
+                        })}
+                        data-toggle="wizard-checkbox"
+                        onClick={() => choiceChange(3)}
+                      >
+                        <input
+                          defaultValue="Develop"
+                          name="jobb"
+                          type="checkbox"
+                          onChange={() => choiceChange(3)}
+                          checked={classnames({
+                            active: activeChoices.includes(3),
+                          })}
+                        />
+                        <h6>Customer</h6>
+                      </div>
+                    </NavLink>
+                  </NavItem>
+                </Nav>
+                <TabContent
+                  className="tab-space tab-subcategories"
+                  activeTab={pageSubcategories}
+                  style={{ width: 850 }}
+                >
+                  <TabPane tabId="ps1">
+                  With a translator role, you can find any article that are suitable for your skills or interests.
+                    <br />
+                    Futhermore, you can receive auditor's feedback to imporve and your traslation skill.
+                    <br />
+                    <br/>
+                    Let's get started,But firstly, add at least one skill bellow.
+                    
+  
+                  </TabPane>
+                  <TabPane tabId="ps2">
+                    With an auditor role, you will review translator's traslation article
+                    <br />
+                    You will be assigned by adminstrations
+                    <br />
+                    Let's get started,But first, choose your technique for auditor role and at lease one skill
+                  </TabPane>
+                  <TabPane tabId="ps3">
+                    With customer role, you can create project for your translator to apply.
+                    <br />
+                    <br />
+                    Futhermore, your articles will be checked carefully by auditor gruop that Admin assign.
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <FormGroup>
+                        <label >
+                          Website (Optional)
+                        </label>
+                        <Input style={{ width: 250 }}    
+                          placeholder="ichisan.com.." type="email" 
+                          onChange={(e) => setWebsite(e.target.value)}
+                          />
+                          
+                      </FormGroup>
+                  </TabPane>
+                </TabContent>
+              
           </Row>
         </Col>
+
       </Row>
     </>
   );

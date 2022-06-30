@@ -25,12 +25,24 @@ import { Col } from "reactstrap";
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
 
 import Step1 from "./Step1.js";
+import Step2 from "./Step2.js";
+import Step3 from "./Step3.js";
 
 var steps = [
   {
     stepName: "About",
     stepIcon: "now-ui-icons users_circle-08",
     component: Step1,
+  },
+  {
+    stepName: "Account",
+    stepIcon: "now-ui-icons ui-1_settings-gear-63",
+    component: Step2,
+  },
+  {
+    stepName: "Address",
+    stepIcon: "now-ui-icons ui-1_email-85",
+    component: Step3,
   },
 ];
 
@@ -48,9 +60,9 @@ function Wizard() {
             description="This information will let us know more about you."
             headerTextCenter
             color="blue"
-            // finishButtonClasses="btn-wd"
-            // nextButtonClasses="btn-wd"
-            // previousButtonClasses="btn-wd"
+             finishButtonClasses="btn-wd"
+             nextButtonClasses="btn-wd"
+             previousButtonClasses="btn-wd"
           />
         </Col>
       </div>
