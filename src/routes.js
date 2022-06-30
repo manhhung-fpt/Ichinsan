@@ -11,6 +11,7 @@ import Typography from "views/Components/Typography.js";
 import Wizard from "views/Forms/Wizard/Wizard.js";
 import UserPage from "views/Pages/UserPage.js";
 import LoginPage from "views/Pages/LoginPage.js";
+import RegisterPage from "views/Pages/RegisterPage";
 
 import AdminAccount from "views/AdminAccount/AdminAccount.js";
 import AdminProject from "views/AdminProject/AdminProject.js";
@@ -331,14 +332,15 @@ let routes = [
   //       component: RTL,
   //       layout: "/admin",
   //     },
-  //     {
-  //       path: "/register-page",
-  //       name: "Register Page",
-  //       short: "Register",
-  //       mini: "RP",
-  //       component: RegisterPage,
-  //       layout: "/auth",
-  //     },
+      {
+        path: "/register-page",
+        name: "Register Page",
+        short: "Register",
+        mini: "RP",
+        hideInDetail: true,
+        component: RegisterPage,
+        layout: "/auth",
+      },
 
   //     {
   //       path: "/pricing-page",

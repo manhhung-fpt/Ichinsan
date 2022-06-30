@@ -136,12 +136,18 @@ function LoginPage() {
                       block
                       color="primary"
                       size="lg"
-                      href="#pablo"
                       className="mb-3 btn-round"
                       onClick={signInWithGooggle}
                     >
                       Sign in with Googgle
                     </Button>
+                    <div className="pull-left">
+                      <h6>
+                        <a href="/auth/register-page" className="link footer-link">
+                          Dont have an account ?
+                        </a>
+                      </h6>
+                    </div>
                   </CardFooter>
                 </Card>
               </Form>

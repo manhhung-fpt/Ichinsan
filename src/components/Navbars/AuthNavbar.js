@@ -63,6 +63,11 @@ function AuthNavbar() {
                 <i className="now-ui-icons design_bullet-list-67" /> Dashboard
               </Link>
             </NavItem>
+            <NavItem className={activeRoute("/auth/register-page")}>
+              <Link to="/auth/register-page" className="nav-link">
+                <i className="now-ui-icons tech_mobile" /> Register
+              </Link>
+            </NavItem>
             <NavItem className={activeRoute("/auth/login-page")}>
               <Link to="/auth/login-page" className="nav-link">
                 <i className="now-ui-icons users_circle-08" /> Login
