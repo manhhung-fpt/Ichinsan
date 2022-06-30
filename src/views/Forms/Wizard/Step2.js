@@ -36,7 +36,7 @@ import {
 } from "reactstrap";
 
 const Step2 = React.forwardRef((props, ref) => {
-  const [activeChoices, setActiveChoices] = React.useState([1]);
+  const [activeChoices, setActiveChoices] = React.useState([]);
   const [Website, setWebsite] = React.useState("");
   React.useImperativeHandle(ref, () => ({
     isValidated: undefined,
@@ -46,13 +46,19 @@ const Step2 = React.forwardRef((props, ref) => {
     },
   }));
   const choiceChange = (number) => {
+    debugger
+    console.log(number);
     setActiveChoices([]);
-    let newState = activeChoices;
-    if (newState.includes(number)) {
-      newState = newState.filter((prop) => prop !== number);
-    } else {
-      newState = newState.concat([number]);
+    if(number === 1){
+      setpageSubcategories("ps1")
+    } else if(number === 2){
+      setpageSubcategories("ps2")
+    }else if(number === 3){
+      setpageSubcategories("ps3")
     }
+    let newState = activeChoices;
+      newState = newState.concat([number]);
+      console.log(newState);
     setActiveChoices(newState);
   };
   const [vTabs, setvTabs] = React.useState("vt1");
@@ -72,7 +78,8 @@ const Step2 = React.forwardRef((props, ref) => {
                   <NavItem>
                     <NavLink
                       className={pageSubcategories === "ps1" ? "active" : ""}
-                      onClick={() => setpageSubcategories("ps1")}
+                      
+                    onClick={() => choiceChange(1)}
                     >
                       <i className="now-ui-icons design-2_ruler-pencil" />
                       <div
@@ -80,7 +87,7 @@ const Step2 = React.forwardRef((props, ref) => {
                           active: activeChoices.includes(1),
                         })}
                         data-toggle="wizard-checkbox"
-                        onClick={() => choiceChange(1)}
+                        
                       >
                         <input
                           defaultValue="Design"
@@ -98,7 +105,8 @@ const Step2 = React.forwardRef((props, ref) => {
                   <NavItem>
                     <NavLink
                       className={pageSubcategories === "ps2" ? "active" : ""}
-                      onClick={() => setpageSubcategories("ps2")}
+                    
+                      onClick={() => choiceChange(2)}
                     >
                       <i className="now-ui-icons business_bulb-63" />
                       <div
@@ -106,7 +114,7 @@ const Step2 = React.forwardRef((props, ref) => {
                           active: activeChoices.includes(2),
                         })}
                         data-toggle="wizard-checkbox"
-                        onClick={() => choiceChange(2)}
+                        
                       >
                         <input
                           defaultValue="Code"
@@ -124,7 +132,8 @@ const Step2 = React.forwardRef((props, ref) => {
                   <NavItem>
                     <NavLink
                       className={pageSubcategories === "ps3" ? "active" : ""}
-                      onClick={() => setpageSubcategories("ps3")}
+                      
+                      onClick={() => choiceChange(3)}
                     >
                       <i className="now-ui-icons tech_tv" />
                       <div
@@ -132,7 +141,7 @@ const Step2 = React.forwardRef((props, ref) => {
                           active: activeChoices.includes(3),
                         })}
                         data-toggle="wizard-checkbox"
-                        onClick={() => choiceChange(3)}
+                        
                       >
                         <input
                           defaultValue="Develop"

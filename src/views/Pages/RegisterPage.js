@@ -31,9 +31,9 @@ function RegisterPage() {
   const [emailFocus, setemailFocus] = React.useState(false);
   const role = [
     
-    { key: 1, name: 'Customer' },
-    { key: 2, name: 'Translator' },
-    { key: 3, name: 'Auditor' },
+    { key: 1, name: 'Translator' },
+    { key: 2, name: 'Auditor' },
+    { key: 3, name: 'Customer'},
   ];
   const finishButtonClick = (allStates) => {
     console.log(allStates);
