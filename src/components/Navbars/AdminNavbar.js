@@ -187,7 +187,7 @@ function AdminNavbar(props) {
                 <ModalHeader toggle={onClickBell} style={{ width: '150%' }} >
                   Alert and notification
                 </ModalHeader>
-                <ModalBody style={{ overflowY: 'scroll', scrollBehavior: 'smooth', height: 500}}>
+                <ModalBody style={{ overflowY: 'scroll', scrollBehavior: 'smooth', height: 300 }}>
                   <Notification></Notification>
                 </ModalBody>
                 <ModalFooter className="justify-content-center">

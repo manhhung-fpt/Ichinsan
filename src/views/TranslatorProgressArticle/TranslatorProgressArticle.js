@@ -119,7 +119,7 @@ function TranslatorProgressArticle(props) {
     const singleFileRef = React.useRef();
 
 
-    const [article, setArticle] = React.useState({});
+    
     const [modalNotice, setModalNotice] = React.useState(false);
     const [modalEdit, setModalEdit] = React.useState(false);
 
@@ -130,6 +130,8 @@ function TranslatorProgressArticle(props) {
         setModalNotice(!modalNotice);
     };
 
+    
+    const [article, setArticle] = React.useState({});
     React.useEffect(() => {
         axios
             .get(`https://api-dotnet-test.herokuapp.com/api/articles/${articleId}`)
@@ -154,24 +156,7 @@ function TranslatorProgressArticle(props) {
         setSingleFile(files);
         setSingleFileName(fileNames);
     };
-    const createTableData = () => {
-        var tableRows = [];
-        for (var i = 0; i < table_data.length; i++) {
-            tableRows.push(
-                <tr key={i}>
-                    <td>
-                        <div className="flag">
-                            <img src={table_data[i].flag} alt="us_flag" />
-                        </div>
-                    </td>
-                    <td>{table_data[i].country}</td>
-                    <td className="text-right">{table_data[i].count}</td>
-                    <td className="text-right">{table_data[i].percentage}</td>
-                </tr>
-            );
-        }
-        return tableRows;
-    };
+   
     let history = useHistory();
     const onClick = () => {
         history.push("/admin/admin-projec/admin-project-details")

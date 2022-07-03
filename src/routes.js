@@ -40,6 +40,7 @@ import TranslatorProgressArticle from './views/TranslatorProgressArticle/Transla
 import TranslatorRecruiment from './views/TranslatorRecruitment/TranslatorRecruiment';
 import AdminViewAccount from './views/AdminViewAccount/AdminViewAccount';
 import CustomerRecruitmentDetail from './views/CustomerRecruitmentDetail/CustomerRecruitmentDetail';
+import TranslatorViewArticle from './views/TranslatorViewArticle/TranslatorViewArticle';
 
 
 let routes = [
@@ -226,6 +227,7 @@ let routes = [
     name: "Customer Article Detail",
     icon: "now-ui-icons business_badge",
     component: CustomerArticleDetail,
+    props: {a:"a"},
     hideInDetail: true,
     rolePermission: "Customer",
     layout: "/admin",
@@ -263,6 +265,16 @@ let routes = [
     icon: "now-ui-icons business_badge",
     component: TranslatorRecruiment,
     rolePermission: "Translator",
+    layout: "/admin",
+  },
+  {
+    path: "/recruitment-view-article",
+    name: "Translator View Article",
+    icon: "now-ui-icons business_badge",
+    component: TranslatorViewArticle,
+    props: {a:"a"},
+    rolePermission: "Translator",
+    hideInDetail: true,
     layout: "/admin",
   },
   {

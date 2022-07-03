@@ -207,7 +207,7 @@ function TranslatorProgress() {
                             .map((article, index) => {
                               return <Col xs={12} lg={4}>
                                 <Card>
-                                  <a style={{ all: "unset", cursor: "pointer" }} href={`translator-progress-article?id=${article.id}`}>
+                                  <a style={{ all: "unset", cursor: "pointer" }} href={`recruitment-view-article?id=${article.id}`}>
                                     <CardHeader>
                                       <Row>
                                         <Col xs={12} md={8}>

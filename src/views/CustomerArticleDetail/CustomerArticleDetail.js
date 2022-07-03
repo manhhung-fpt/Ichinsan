@@ -14,96 +14,156 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, { useRef } from "react";
+import React from "react";
+import { useState, useEffect } from "react";
+// react plugin used to create charts
+import { Line } from "react-chartjs-2";
+// react plugin for creating vector maps
+import { VectorMap } from "react-jvectormap";
+import Switch from "react-bootstrap-switch";
 import axios from 'axios';
-import ReactCountryFlag from "react-country-flag"
-import { Fab, Action } from 'react-tiny-fab';
+import ProgressBar from 'react-bootstrap/ProgressBar';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import moment from "moment";
 
 // reactstrap components
 import {
-  Table,
   Card,
-  CardHeader,
+  Table,
   CardBody,
-  CardTitle,
+  CardText,
+  CardFooter,
   Row,
   Col,
-  Button,
   TabContent,
   TabPane,
   Nav,
   NavItem,
   NavLink,
-  CardFooter,
+  Pagination,
+  PaginationItem,
+  PaginationLink,
+  Button,
+  CardTitle,
+  CardHeader,
+  ButtonToolbar,
+  ButtonGroup,
+  FormGroup,
+  Input,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
 } from "reactstrap";
 
-import Select from "react-select";
-import { Swiper, SwiperSlide } from 'swiper/react/swiper-react.js';
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
 // core components
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
-import { useHistory } from "react-router-dom";
+
+import { useHistory, useLocation } from "react-router-dom";
+import { Fab, Action } from 'react-tiny-fab';
+
+import Select from "react-select";
+
 import CardContent from '@mui/material/CardContent';
+import CardActions from '@mui/material/CardActions';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import DescriptionIcon from '@mui/icons-material/Description';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import CategoryIcon from '@mui/icons-material/Category';
+import GTranslateIcon from '@mui/icons-material/GTranslate';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
+import SpellcheckIcon from '@mui/icons-material/Spellcheck';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import ReactCountryFlag from "react-country-flag"
+import SignalWifiStatusbar4BarIcon from '@mui/icons-material/SignalWifiStatusbar4Bar';
+import TranslateIcon from '@mui/icons-material/Translate';
+import DownloadIcon from '@mui/icons-material/Download';
+import CropOriginalIcon from '@mui/icons-material/CropOriginal';
+import StarRateIcon from '@mui/icons-material/StarRate';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
+import UploadIcon from '@mui/icons-material/Upload';
 
-import CategoryIcon from '@mui/icons-material/Category';
-import GTranslateIcon from '@mui/icons-material/GTranslate';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import SignalWifiStatusbar4BarIcon from '@mui/icons-material/SignalWifiStatusbar4Bar';
-import DescriptionIcon from '@mui/icons-material/Description';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import 'react-tiny-fab/dist/styles.css';
-import Scrollbar from 'smooth-scrollbar';
-import { red } from '@mui/material/colors';
+
+
+import { table_data } from "variables/general.js";
 
 var selectOptions = [
-  { value: "Category1", label: "Category1" },
-  { value: "Category2", label: "Category2" },
-  { value: "Category3", label: "Category3" },
-  { value: "Category4", label: "Category4" },
-  { value: "Category5", label: "Category5" },
-  { value: "Category6", label: "Category6" },
+  { value: "one", label: "One" },
+  { value: "two", label: "Two" },
+  { value: "three", label: "Three" },
+  { value: "four", label: "Four" },
+  { value: "five", label: "Five" },
+  { value: "six", label: "Six" },
 ];
-function CustomerArticleDetail() {
+function TranslatorProgressArticle(props) {
+  const [modalClassic, setModalClassic] = React.useState(false);
+  const projectId = props.location.search.split("=")[1];
+  console.log(projectId);
 
   const [singleSelect, setSingleSelect] = React.useState(null);
   const [singleFileName, setSingleFileName] = React.useState("");
+  const [multipleFileName, setMultipleFileName] = React.useState("");
+  // eslint-disable-next-line
   const [singleFile, setSingleFile] = React.useState(null);
   const [openedCollapses, setOpenCollapses] = React.useState(["collapseOne"]);
   const [hTabs, sethTabs] = React.useState("ht1");
-  const [fakeData, setFakeData] = React.useState([]);
   const [vTabs, setvTabs] = React.useState("vt1");
   const [vTabsIcons, setvTabsIcons] = React.useState("vti1");
   const [pageSubcategories, setpageSubcategories] = React.useState("ps1");
+
+  const location = useLocation();
+  const [fakeData, setFakeData] = React.useState([]);
+  const Edit = "edit";
   const singleFileRef = React.useRef();
-  const [page, setPage] = React.useState(1);
-  const onclickPage = (e, page) => {
-    setFakeData([]);
-    setPage(page);
-    console.log(page);
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/articles?pageNumber=${page}&pageSize=5`)
-      .then(res => {
-        setFakeData(res.data);
-      })
-      .catch(err => { console.log(err) })
-  }
+  const statusOptions = [
+    { value: 1, content: 'ps1', label: "Pending" },
+    { value: 2, content: 'ps2', label: "In Progress" },
+    { value: 3, content: 'ps3', label: "Review" },
+    { value: 4, content: 'ps4', label: "Done" },
+    { value: 5, content: 'ps5', label: "Postponed" },
+  ]
+
+
+  const [modalNotice, setModalNotice] = React.useState(false);
+  const [modalEdit, setModalEdit] = React.useState(false);
+
+  const toggleModalClassic = () => {
+    setModalClassic(!modalClassic);
+  };
+  const toggleModalNotice = () => {
+    setModalNotice(!modalNotice);
+  };
+  const [articles, setArticles] = useState([]);
   React.useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/articles?pageNumber=${page}&pageSize=5`)
+      .get("https://api-dotnet-test.herokuapp.com/api/articles?pageNumber=1&pageSize=3")
+      .then((res) => {
+        const data = res.data;
+        setArticles(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }, []);
+
+  const [project, setProject] = React.useState({});
+  React.useEffect(() => {
+    axios
+      .get(`https://api-dotnet-test.herokuapp.com/api/projects/${projectId}`)
       .then(res => {
-        setFakeData(res.data);
+        //setFakeData(res.data.data);
+        setProject(res.data);
       })
       .catch(err => { console.log(err) })
   }, [])
-  console.log(fakeData);
-  let history = useHistory();
+  console.log(project)
 
+
+  const handleSingleFileInput = (e) => {
+    singleFileRef.current.click(e);
+  };
   const addSingleFile = (e, type) => {
     let fileNames = "";
     let files = e.target.files;
@@ -113,708 +173,332 @@ function CustomerArticleDetail() {
     setSingleFile(files);
     setSingleFileName(fileNames);
   };
-  const [count, setCount] = React.useState(0);
-  const onclickProject = () => {
-    history.push("/admin/admin-projec-category");
-  }
-  const onclickFeedBack = () => {
-    history.push("/admin/admin-feedback-category");
-  }
+
+  let history = useHistory();
+  const onClick = () => {
+    history.push("/admin/admin-projec/admin-project-details")
+  };
   const onClickBack = () => {
     history.push("/admin/customer-home")
-  }
-  const onClick = () => {
-    history.push("/admin/customer-add-article")
-  };
-  const onClickCard = () => {
-    history.push("/admin/customer-progress-project")
   };
   const onClickView = () => {
     history.push("/admin/customer-progress-article")
   };
-
+  const onClickFeedback = () => {
+    history.push("/admin/customer-create=feedback")
+  };
+  const onClickAdd = () => {
+    history.push("/admin/customer-add-article")
+  };
+  const onClickPostpose = () => {
+    history.push("/admin/translator-progress")
+  };
+  const onClickEdit = () => {
+    history.push("/admin/customer-edit-project")
+  };
 
 
   return (
     <>
-      <PanelHeader size="sm" />
-      <div className="content">
-        <Row>
-          <Col md="12" >
+      <PanelHeader
+        size="sm" />
 
-            {/* <Button onClick={onClickBack} style={
+      <div className="content">
+
+        <Row>
+          <Col xs={12}>
+            <Button onClick={onClickBack} style={
               {
 
                 fontSize: "10px",
 
               }
             }>
-              <span className="btn-label">
+              <span className="btn-label" >
                 <i className="now-ui-icons arrows-1_minimal-left" />
               </span>
               Back
-            </Button> */}
-            <Card>
-
-              <Swiper
-
-                style={
-                  {
-                    height: "300px",
-                    width: "50%",
-                  }
-                }
-              >
-                <SwiperSlide>
-                  <img src="https://as1.ftcdn.net/v2/jpg/04/72/19/88/1000_F_472198810_bvrfLv3QhdQKQYjJXWTCCVFmvBARuoJy.jpg"></img>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <img src="https://as1.ftcdn.net/v2/jpg/04/72/19/88/1000_F_472198810_bvrfLv3QhdQKQYjJXWTCCVFmvBARuoJy.jpg"></img>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <img src="https://as1.ftcdn.net/v2/jpg/04/72/19/88/1000_F_472198810_bvrfLv3QhdQKQYjJXWTCCVFmvBARuoJy.jpg"></img>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <img src="https://as1.ftcdn.net/v2/jpg/04/72/19/88/1000_F_472198810_bvrfLv3QhdQKQYjJXWTCCVFmvBARuoJy.jpg"></img>
-                </SwiperSlide>
-              </Swiper>
-            </Card>
-
+            </Button>
 
             <Breadcrumbs separator="›" aria-label="breadcrumb" style={{ padding: '20px' }}>
               <Link underline="hover" color="inherit" href="/admin/customer-home">
                 Customer Home
               </Link>
-              <Typography color="text.primary"> Project Details</Typography>
+
+              <Typography color="text.primary">Project Details</Typography>
             </Breadcrumbs>
+            <TabContent
+              className="tab-space tab-subcategories">
+              <TabPane>
+                <Fab
+                  icon={"+"}
+                  mainButtonStyles={{ backgroundColor: '#e74c3c' }}
+                  alwaysShowTitle={false}
+                // onClick={someFunctionForTheMainButton}
+                >
 
-            <CardTitle id="card" tag="h4">Project Detail
-              <span class="fi fi-AU"></span> <span class="fi fi-gr fis"></span>
-            </CardTitle>
+                  <Action
 
+                    text="Article Detail"
+                    onClick={() => window.location.href = "#card1"}
+                  >
+                  </Action>
+                  <Action
 
+                    text="Translations"
+                    onClick={() => window.location.href = "#card2"}
+                  >
+                  </Action>
+                  <Action
 
+                    text="Feedback"
+                    onClick={() => window.location.href = "#card3"}
+                  >
+                  </Action>
+                </Fab>
+                <CardTitle id="card1" tag="h4">Project Detail :</CardTitle>
 
-            <Row style={{
-              marginTop: "40px",
-            }}>
-              <Col xs={12} md={6}>
+                <Row>
 
-                <a classname="card" href="" onClick={onClickCard}>
-                  <Card>
+                  <Col xs={12} lg={6}>
+                    <Card>
+                      <a style={{ all: "unset", cursor: "pointer" }} href={`customer-arti-detail?id=${project.id}`}>
+                        <CardHeader>
+                          <Row>
+                            <Col xs={12} md={8}>
+                              <CardTitle style={{
+                                color: "#2CA8FF",
+                                fontSize: "20px",
+                                fontWeight: "bold",
+                              }}>
 
-                    <CardHeader>
-                      <CardTitle style={{
-                        marginLeft: "",
-                        color: "green",
-                      }}>
-                        <CategoryIcon></CategoryIcon>
-                        Computer Science</CardTitle>
-                    </CardHeader>
+                                {project.projectCategoryName}</CardTitle>
+                            </Col>
+                            <Col xs={12} md={4}>
 
-                    <CardHeader>
-                      <CardTitle tag="h4" style={{
-                        color: "green",
-                        marginTop: "-10px",
-                      }}>Computer Vision AI</CardTitle>
-                      {/* <CardTitle style={{
-                            marginLeft: "",
-                            color: "red",
+                            </Col>
+                          </Row>
+                        </CardHeader>
+                        <CardBody style={{
+                          marginTop: "-20px",
+                        }}>
+                          <CardTitle style={{
+                            color: "black",
+                            fontSize: "24px",
+                            fontWeight: "bold",
                           }}>
-                            <AttachMoneyIcon></AttachMoneyIcon>
-                            5000</CardTitle> */}
-                      <CardTitle style={{
-                        marginLeft: "",
-                        color: "black",
-                      }}>
-                        <AccountCircleIcon></AccountCircleIcon>
-                        Tran Manh Hung</CardTitle>
-                      <CardTitle style={{
-                        marginLeft: "",
-                        color: "black",
-                      }}>
-                        <GTranslateIcon></GTranslateIcon>
-                        Translator : 2/10</CardTitle>
-
-                      <CardTitle style={{
-                        marginLeft: "",
-                        color: "black",
-                      }}>
-                        <CalendarMonthIcon></CalendarMonthIcon>
-                        06/08/2022 12:00 AM</CardTitle>
-                      <CardTitle style={{
-                        marginLeft: "",
-                        color: "orange",
-                      }}>
-                        <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
-                        Pending</CardTitle>
-                      <CardTitle style={{
-                        marginLeft: "",
-                        color: "black",
-                      }}>
-                        <DescriptionIcon></DescriptionIcon>
-                        Description :
-
-
-                        <CardContent>
-                          <div className="card-description">
-                            <p>This impressive paella is a perfect party dish and
-                              a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.</p>
-                          </div>
-
-                        </CardContent>
-
-
-                      </CardTitle>
-                    </CardHeader>
-
-                    <div class="go-corner" href="#">
-                      <div class="go-arrow">
-                        →
-                      </div>
-                    </div>
-
-                  </Card>
-                </a>
-              </Col>
-
-            </Row>
-
-
-            <CardTitle id="card1" tag="h4">Project Article
-              <span class="fi fi-AU"></span> <span class="fi fi-gr fis"></span>
-            </CardTitle>
-
-            <Fab
-              icon={"+"}
-              mainButtonStyles={{ backgroundColor: '#e74c3c' }}
-              alwaysShowTitle={false}
-            // onClick={someFunctionForTheMainButton}
-            >
-
-              <Action
-
-                text="Project Detail"
-                onClick={() => window.location.href = "#card"}
-              >
-              </Action>
-              <Action
-                text="Project Article"
-                onClick={() => window.location.href = "#card1"}
-              >
-                <i className="fa fa-help" />
-              </Action>
-            </Fab>
-            {/* <Nav pills className="nav-pills-primary">
-              <NavItem>
-                <NavLink
-                  className={hTabs === "ht1" ? "active" : ""}
-                  onClick={() => sethTabs("ht1")}
-
-                >
-                  Articles
-
-
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink
-                  className={hTabs === "ht2" ? "active" : ""}
-                  onClick={() => sethTabs("ht2")}
-                >
-                  Details
-                </NavLink>
-              </NavItem>
-
-            </Nav> */}
-
-
-
-
-            <TabContent id="email" activeTab={hTabs} className="tab-space">
-              <TabPane tabId="ht1">
-
-
-
-                <Nav
-                  pills
-                  className="nav-pills-info nav-pills-icons justify-content-center"
-                >
-                  <NavItem>
-                    <NavLink
-                      className={pageSubcategories === "ps1" ? "active" : ""}
-                      onClick={() => setpageSubcategories("ps1")}
-                    >
-
-                      Pending
-                    </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink
-                      className={pageSubcategories === "ps2" ? "active" : ""}
-                      onClick={() => setpageSubcategories("ps2")}
-                    >
-
-                      In-Progress
-                    </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink
-                      className={pageSubcategories === "ps3" ? "active" : ""}
-                      onClick={() => setpageSubcategories("ps3")}
-                    >
-
-                      Done
-                    </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink
-                      className={pageSubcategories === "ps4" ? "active" : ""}
-                      onClick={() => setpageSubcategories("ps4")}
-                    >
-
-                      Postponed
-                    </NavLink>
-                  </NavItem>
-                </Nav>
-                <TabContent
-                  className="tab-space tab-subcategories"
-                  activeTab={pageSubcategories}
-                >
-                  <TabPane tabId="ps1">
-
-                    <Row>
-
-                      <Col xs={12} md={3} size="sm">
-                        <Select
-                          className="react-select primary"
-                          classNamePrefix="react-select"
-                          placeholder="Single Select"
-                          name="singleSelect"
-                          value={singleSelect}
-                          options={selectOptions}
-                          onChange={(value) => setSingleSelect(value)}
-                        />
-                      </Col>
-                      <Col xs={12} md={3} size="sm">
-                        <CardTitle style={{
-                          marginLeft: "",
-                          color: "orange",
-                        }}>
-                          <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
-                          Pending</CardTitle>
-                      </Col>
-                      <Col xs={12} md={3} size="sm">
-
-                      </Col>
-                      <Col xs={12} md={3} size="sm">
-
-                      </Col>
-                    </Row>
-                    <CardBody>
-                      <Table responsive>
-                        <thead className="text-primary">
-                          <tr>
-                            <th className="text-center">#</th>
-                            <th>Article Tittle</th>
-                            <th>Category Name</th>
-                            <th>Salary</th>
-                            <th>Language</th>
-                            <th className="text-right">View</th>
-
-
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {
-                            fakeData.map((item, index) => {
-                              return (<tr>
-                                <td className="text-center">{index + 1}</td>
-                                <td>{item.name}</td>
-                                <td>{item.projectCategoryName}</td>
-                                <td>{item.fee}</td>
-                                <td>
-                                  <ReactCountryFlag
-                                    countryCode={item.languageFrom}
-                                    svg
-                                    style={{
-                                      width: '2em',
-                                      height: '2em',
-                                    }}
-                                    title={item.languageFrom}
-                                  />
-                                  <ArrowRightAltIcon></ArrowRightAltIcon>
-                                  <ReactCountryFlag
-                                    countryCode={item.languageTo}
-                                    svg
-                                    style={{
-                                      width: '2em',
-                                      height: '2em',
-                                    }}
-                                    title={item.languageTo}
-                                  />
-
-                                </td>
-                                <td className="text-right btns-mr-5">
-
-                                  <Button onClick={onClickView} style={
-                                    {
-
-                                      fontSize: "10px",
-
-                                    }
-                                  }>
-
-                                    View
-                                  </Button>
-
-                                </td>
-
-
-                              </tr>);
-                            })
-                          }
-
-
-                        </tbody>
-                      </Table>
-                    </CardBody>
-                    <CardFooter style={{ alignItems: 'center' }} >
-                      <Stack spacing={2}>
-                        <Pagination 
-                        count={5}
-                          page ={page}
-                          onChange={onclickPage}
-                          variant="outlined" color="primary" />
-                      </Stack>
-                    </CardFooter>
-                  </TabPane>
-                  <TabPane tabId="ps2">
-
-                    <Row>
-
-                      <Col xs={12} md={3} size="sm">
-                        <Select
-                          className="react-select primary"
-                          classNamePrefix="react-select"
-                          placeholder="Single Select"
-                          name="singleSelect"
-                          value={singleSelect}
-                          options={selectOptions}
-                          onChange={(value) => setSingleSelect(value)}
-                        />
-                      </Col>
-                      <Col xs={12} md={3} size="sm">
-                        <CardTitle style={{
-                          marginLeft: "",
-                          color: "blue",
-                        }}>
-                          <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
-                          In-process</CardTitle>
-                      </Col>
-                      <Col xs={12} md={3} size="sm">
-
-                      </Col>
-                      <Col xs={12} md={3} size="sm">
-
-                      </Col>
-                    </Row>
-                    <CardBody>
-                      <Table responsive>
-                        <thead className="text-primary">
-                          <tr>
-                            <th className="text-center">#</th>
-                            <th>Article Tittle</th>
-                            <th>Category Name</th>
-                            <th>Salary</th>
-                            <th>Language</th>
-                            <th className="text-right">View</th>
-
-
-                          </tr>
-                        </thead>
-                        <tbody>
-
-
-                          {
-                            fakeData.map((item, index) => {
-                              return (<tr>
-                                <td className="text-center">{index + 1}</td>
-                                <td>{item.first_name}</td>
-                                <td>Computer Science</td>
-                                <td>$5000</td>
-                                <td>
-                                  <ReactCountryFlag
-                                    countryCode="US"
-                                    svg
-                                    style={{
-                                      width: '2em',
-                                      height: '2em',
-                                    }}
-                                    title="US"
-                                  />
-                                  <ArrowRightAltIcon></ArrowRightAltIcon>
-                                  <ReactCountryFlag
-                                    countryCode="VN"
-                                    svg
-                                    style={{
-                                      width: '2em',
-                                      height: '2em',
-                                    }}
-                                    title="US"
-                                  />
-
-                                </td>
-                                <td className="text-right btns-mr-5">
-
-                                  <Button onClick={onClickView} style={
-                                    {
-
-                                      fontSize: "10px",
-
-                                    }
-                                  }>
-
-                                    View
-                                  </Button>
-
-                                </td>
-
-
-                              </tr>);
-                            })
-                          }
-
-
-                        </tbody>
-                      </Table>
-                    </CardBody>
-                  </TabPane>
-                  <TabPane tabId="ps3">
-
-                    <Row>
-
-                      <Col xs={12} md={3} size="sm">
-                        <Select
-                          className="react-select primary"
-                          classNamePrefix="react-select"
-                          placeholder="Single Select"
-                          name="singleSelect"
-                          value={singleSelect}
-                          options={selectOptions}
-                          onChange={(value) => setSingleSelect(value)}
-                        />
-                      </Col>
-                      <Col xs={12} md={3} size="sm">
-                        <CardTitle style={{
-                          marginLeft: "",
-                          color: "green",
-                        }}>
-                          <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
-                          Done</CardTitle>
-                      </Col>
-                      <Col xs={12} md={3} size="sm">
-
-                      </Col>
-                      <Col xs={12} md={3} size="sm">
-
-                      </Col>
-                    </Row>
-                    <CardBody>
-                      <Table responsive>
-                        <thead className="text-primary">
-                          <tr>
-                            <th className="text-center">#</th>
-                            <th>Article Tittle</th>
-                            <th>Category Name</th>
-                            <th>Salary</th>
-                            <th>Language</th>
-                            <th className="text-right">View</th>
-
-
-                          </tr>
-                        </thead>
-                        <tbody>
-
-
-                          {
-                            fakeData.map((item, index) => {
-                              return (<tr>
-                                <td className="text-center">{index + 1}</td>
-                                <td>{item.first_name}</td>
-                                <td>Computer Vision</td>
-                                <td>$1000</td>
-                                <td>
-                                  <ReactCountryFlag
-                                    countryCode="US"
-                                    svg
-                                    style={{
-                                      width: '2em',
-                                      height: '2em',
-                                    }}
-                                    title="US"
-                                  />
-                                  <ArrowRightAltIcon></ArrowRightAltIcon>
-                                  <ReactCountryFlag
-                                    countryCode="VN"
-                                    svg
-                                    style={{
-                                      width: '2em',
-                                      height: '2em',
-                                    }}
-                                    title="US"
-                                  />
-
-                                </td>
-                                <td className="text-right btns-mr-5">
-
-                                  <Button onClick={onClickView} style={
-                                    {
-
-                                      fontSize: "10px",
-
-                                    }
-                                  }>
-
-                                    View
-                                  </Button>
-
-                                </td>
-
-
-                              </tr>);
-                            })
-                          }
-
-
-                        </tbody>
-                      </Table>
-                    </CardBody>
-                  </TabPane>
-                  <TabPane tabId="ps4">
-
-                    <Row>
-
-                      <Col xs={12} md={3} size="sm">
-                        <Select
-                          className="react-select primary"
-                          classNamePrefix="react-select"
-                          placeholder="Single Select"
-                          name="singleSelect"
-                          value={singleSelect}
-                          options={selectOptions}
-                          onChange={(value) => setSingleSelect(value)}
-                        />
-                      </Col>
-                      <Col xs={12} md={3} size="sm">
-                        <CardTitle style={{
-                          marginLeft: "",
+                            {project.name}
+                          </CardTitle>
+                          <CardText style={{
+                            color: "black",
+                            fontSize: "16px",
+                          }}>
+                            {project.customerName}
+                          </CardText>
+                          <CardText style={{
+                            color: "black",
+                            fontSize: "16px",
+                          }}>
+                            {project.status}
+                          </CardText>
+                        </CardBody>
+                        <CardFooter style={{
+                          fontSize: "16px",
+                          marginTop: "-20px",
                           color: "red",
                         }}>
-                          <SignalWifiStatusbar4BarIcon></SignalWifiStatusbar4BarIcon>
-                          Postponed</CardTitle>
-                      </Col>
-                      <Col xs={12} md={3} size="sm">
+                          {moment(new Date(project.createdOn)).format("DD/MM/YYYY, h:mm:ss A")}
+                        </CardFooter>
+                      </a>
+                    </Card>
+                  </Col>
 
-                      </Col>
-                      <Col xs={12} md={3} size="sm">
+                </Row>
 
-                      </Col>
-                    </Row>
-                    <CardBody>
-                      <Table responsive>
-                        <thead className="text-primary">
-                          <tr>
-                            <th className="text-center">#</th>
-                            <th>Article Tittle</th>
-                            <th>Category Name</th>
-                            <th>Salary</th>
-                            <th>Language</th>
-                            <th className="text-right">View</th>
+                <CardTitle id="card2" tag="h4"
 
+                >Project Article :</CardTitle>
 
-                          </tr>
-                        </thead>
-                        <tbody>
+                <Row>
 
+                  <Col xs={12} >
+                    <Card>
+                      <TabContent activeTab={hTabs} className="tab-space">
+                        <TabPane tabId="ht1">
+                          <Nav
+                            pills
+                            className="nav-pills-info nav-pills-icons justify-content-center"
 
-                          {
-                            fakeData.map((item, index) => {
-                              return (<tr>
-                                <td className="text-center">{index + 1}</td>
-                                <td>{item.first_name}</td>
-                                <td>Healthy Vegetable</td>
-                                <td>$50</td>
-                                <td>
-                                  <ReactCountryFlag
-                                    countryCode="US"
-                                    svg
-                                    style={{
-                                      width: '2em',
-                                      height: '2em',
-                                    }}
-                                    title="US"
-                                  />
-                                  <ArrowRightAltIcon></ArrowRightAltIcon>
-                                  <ReactCountryFlag
-                                    countryCode="VN"
-                                    svg
-                                    style={{
-                                      width: '2em',
-                                      height: '2em',
-                                    }}
-                                    title="US"
-                                  />
+                          >
+                            {statusOptions.map((status, index) => (
+                              <NavItem
+                                style={{
 
-                                </td>
-                                <td className="text-right btns-mr-5">
+                                }}
+                              >
+                                <NavLink
+                                  className={pageSubcategories === `${status.content}` ? "active" : ""}
+                                  onClick={() => setpageSubcategories(status.content)}
+                                >
 
-                                  <Button onClick={onClickView} style={
-                                    {
+                                  {status.label}
+                                </NavLink>
+                              </NavItem>
+                            ))
+                            }
+                          </Nav>
+                          <TabContent
+                            className="tab-space tab-subcategories"
+                            activeTab={pageSubcategories}
+                            style={{}}
+                          >
 
-                                      fontSize: "10px",
+                            {
+                              statusOptions.map((statusOption, index) => {
+                                return <TabPane tabId={statusOption.content}>
+                                  <Row>
+                                    <Col xs={12} >
 
-                                    }
-                                  }>
-
-                                    View
-                                  </Button>
-
-                                </td>
+                                      <Table responsive>
+                                        <thead className="text-primary">
+                                          <tr>
+                                            <th className="text-center">#</th>
+                                            <th>Article Tittle</th>
+                                            <th>Category Name</th>
+                                            <th>Salary</th>
+                                            <th>Language</th>
+                                            <th className="text-right">View</th>
 
 
-                              </tr>);
-                            })
-                          }
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          {articles
+                                            .filter(a => a.status === statusOption.label)
+                                            .map((article, index) => {
+                                              return (<tr>
+                                                <td className="text-center">{index + 1}</td>
+                                                <td>{article.name}</td>
+                                                <td>{article.categoryName}</td>
+                                                <td>{article.fee}</td>
+                                                <td>
+                                                  <ReactCountryFlag
+                                                    countryCode={article.languageFrom}
+                                                    svg
+                                                    style={{
+                                                      width: '2em',
+                                                      height: '2em',
+                                                    }}
+                                                    title={article.languageFrom}
+                                                  />
+                                                  <ArrowRightAltIcon></ArrowRightAltIcon>
+                                                  <ReactCountryFlag
+                                                    countryCode={article.languageTo}
+                                                    svg
+                                                    style={{
+                                                      width: '2em',
+                                                      height: '2em',
+                                                    }}
+                                                    title={article.languageTo}
+                                                  />
+
+                                                </td>
+                                                <td className="text-right btns-mr-5">
+
+                                                  <Button onClick={onClickView} style={
+                                                    {
+
+                                                      fontSize: "10px",
+
+                                                    }
+                                                  }>
+
+                                                    View
+                                                  </Button>
+
+                                                </td>
 
 
-                        </tbody>
-                      </Table>
-                    </CardBody>
-                    <CardFooter>
+                                              </tr>);
+                                            })
+                                          }
 
-                    </CardFooter>
-                  </TabPane>
-                </TabContent>
+
+
+                                        </tbody>
+                                      </Table>
+
+                                    </Col>
+
+                                  </Row>
+                                </TabPane>
+                              }
+                              )
+                            }
+
+
+                          </TabContent>
+                          <Row>
+                            <Col xs={12} md={5} size="sm">
+
+                            </Col>
+                            <Col xs={12} md={3} size="sm">
+                              <Pagination>
+                                <PaginationItem>
+                                  <PaginationLink href="#">
+                                    <span aria-hidden="true">
+                                      <i
+                                        className="fa fa-angle-double-left"
+                                        aria-hidden="true"
+                                      />
+                                    </span>
+                                  </PaginationLink>
+                                </PaginationItem>
+                                <PaginationItem>
+                                  <PaginationLink href="#">1</PaginationLink>
+                                </PaginationItem>
+                                <PaginationItem active>
+                                  <PaginationLink href="#">2</PaginationLink>
+                                </PaginationItem>
+                                <PaginationItem>
+                                  <PaginationLink href="#">3</PaginationLink>
+                                </PaginationItem>
+                                <PaginationItem>
+                                  <PaginationLink href="#">
+                                    <span aria-hidden="true">
+                                      <i
+                                        className="fa fa-angle-double-right"
+                                        aria-hidden="true"
+                                      />
+                                    </span>
+                                  </PaginationLink>
+                                </PaginationItem>
+                              </Pagination>
+                            </Col>
+                            <Col xs={12} md={4} size="sm">
+                            </Col>
+                          </Row>
+
+
+                        </TabPane>
+
+
+                      </TabContent>
+                    </Card>
+
+                  </Col>
+                </Row>
+
 
 
 
               </TabPane>
-              <TabPane tabId="ht2">
-
-
-
-              </TabPane>
-
             </TabContent>
-
           </Col>
         </Row>
-
       </div>
     </>
-
   );
 }
 
-export default CustomerArticleDetail;
+export default TranslatorProgressArticle;

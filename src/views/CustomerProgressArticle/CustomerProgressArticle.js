@@ -16,7 +16,7 @@
 */
 import React from "react";
 import Datetime from "react-datetime";
-
+import { useEffect, useState } from "react";
 // react plugin used to create charts
 import { Line } from "react-chartjs-2";
 // react plugin for creating vector maps
@@ -119,6 +119,23 @@ function CustomerProgressArticle() {
         setSingleFile(files);
         setSingleFileName(fileNames);
     };
+
+
+    const [customers, setCustomers] = useState([]);
+    React.useEffect(() => {
+        axios
+            .get("https://api-dotnet-test.herokuapp.com/api/applications/customers?pageNumber=1&pageSize=5")
+            .then((res) => {
+                const data = res.data;
+                setCustomers(data);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }, []);
+
+
+
     const createTableData = () => {
         var tableRows = [];
         for (var i = 0; i < table_data.length; i++) {
@@ -138,33 +155,11 @@ function CustomerProgressArticle() {
         return tableRows;
     };
     let history = useHistory();
-    const onClick = () => {
-        history.push("/admin/admin-projec/admin-project-details")
-    };
+
     const onClickBack = () => {
         history.push("/admin/customer-arti-detail")
     };
-    const onClickFeedback = () => {
-        history.push("/admin/customer-create=feedback")
-    };
-    const onClickCard = () => {
-        history.push("/admin/customer-arti-detail")
-    };
-    const onClickAdd = () => {
-        history.push("/admin/customer-create=feedback")
-    };
-    const onClickPostpose = () => {
-        history.push("/admin/customer-arti-detail")
-    };
-    const onClickEdit = () => {
-        history.push("/admin/customer-edit-feedback")
-    };
-    const onClickEditArti = () => {
-        history.push("/admin/customer-edit-article")
-    };
-    const onClickDelete = () => {
-        history.push("/admin/customer-arti-detail")
-    };
+
     const onClickView = () => {
         history.push("/admin/customer-recruitment-detail")
     };
@@ -207,106 +202,75 @@ function CustomerProgressArticle() {
                     <Typography color="text.primary">Project Recruitment</Typography>
                 </Breadcrumbs>
 
-                <CardTitle  id="card2" tag="h4" >Project Recruitment</CardTitle>
-                
+                <CardTitle id="card2" tag="h4" >Project Recruitment</CardTitle>
+
+
 
 
                 <Row>
+                    <Col xs={12} >
+                        <Card>
+                            {/* <a style={{ all: "unset", cursor: "pointer" }} href={`customer-progress-article?id=${article.id}`}> */}
+                            <CardHeader>
 
-                    <Col xs={12} md={3} size="sm">
-                        <Select
-                            className="react-select warning"
-                            classNamePrefix="react-select"
-                            isMulti
-                            closeMenuOnSelect={false}
-                            placeholder="Sort "
-                            name="multipleSelect"
-                            value={singleSelect}
-                            options={selectOptions}
-                            onChange={(value) => setSingleSelect(value)}
-                        />
-                    </Col>
-                    <Col xs={12} md={3} size="sm">
-                        Number of Recruitments : 5
-                    </Col>
-                    <Col xs={12} md={3} size="sm">
+                            </CardHeader>
+                            <CardBody style={{
+                                marginTop: "-20px",
+                            }}>
+                                <Table responsive>
+                                    <thead className="text-primary">
+                                        <tr>
+                                            <th className="text-center">#</th>
+                                            <th>Article Name</th>
+                                            <th>Applicants</th>
+                                            <th>Dealine</th>
+                                            <th>Status</th>
+                                            <th className="text-right">View</th>
 
-                    </Col>
-                    <Col xs={12} md={3} size="sm">
 
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {customers.map((customer, index) => {
+                                            return (<tr>
+                                                <td className="text-center">{index + 1}</td>
+                                                <td>{customer.articleName}</td>
+                                                <td>{customer.totalApplicants}</td>
+                                                <td>{customer.deadlineApply}</td>
+                                                <td >
+                                                    {/* <Switch defaultValue={false} /> */}
+                                                    <Button style={{
+                                                        backgroundColor: "orange",
+                                                    }}>{customer.status}</Button>
+
+                                                </td>
+                                                <td>
+                                                    <Button onClick={onClickView} color="info" className="btn-right" style={
+                                                        {
+
+                                                            fontSize: "10px",
+
+                                                        }
+                                                    }>
+
+                                                        View
+                                                    </Button>
+                                                </td>
+
+                                            </tr>);
+                                        })
+                                        }
+
+
+                                    </tbody>
+                                </Table>
+                            </CardBody>
+                        </Card>
                     </Col>
+
                 </Row>
-                <CardBody>
-                    <Table responsive>
-                        <thead className="text-primary">
-                            <tr>
-                                <th className="text-center">ID</th>
-                                <th>Article Name</th>
-                                <th>Applicants</th>
-                                <th>Dealine</th>
-                                <th>Status</th>
-                                <th>View</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
 
 
-                            {
-                                fakeData.map((item, index) => {
-                                    return (<tr>
-                                        <td className="text-center">{index + 1}</td>
-                                        <td>{item.first_name}</td>
-                                        <td>{item.last_name}</td>
-                                        <td>{item.id}</td>
-                                        <td >
-                                            {/* <Switch defaultValue={false} /> */}
-                                            <Button style={{
-                                                backgroundColor: "orange",
-                                            }}>Pending</Button>
-
-                                        </td>
-                                        <td>
-                                            <Button onClick={onClickView} color="info" className="btn-right" style={
-                                                {
-
-                                                    fontSize: "10px",
-
-                                                }
-                                            }>
-
-                                                View
-                                            </Button>
-                                        </td>
-
-                                    </tr>);
-                                })
-                            }
-
-
-                        </tbody>
-                    </Table>
-                </CardBody>
-
-               
-                <Fab
-                    icon={"+"}
-                    mainButtonStyles={{ backgroundColor: '#e74c3c' }}
-                    alwaysShowTitle={false}
-                // onClick={someFunctionForTheMainButton}
-                >
-
-                    <Action
-
-                        text="Project Recruitment"
-                        onClick={() => window.location.href = "#card2"}
-                    >
-                    </Action>
-                  
-
-
-
-                </Fab>
                 <Row>
                     <Col xs={12} md={5} size="sm">
 
