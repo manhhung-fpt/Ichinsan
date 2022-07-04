@@ -84,8 +84,8 @@ var selectOptions = [
     { value: "five", label: "Five" },
     { value: "six", label: "Six" },
 ];
-function CustomerProgressArticle() {
-
+function CustomerProgressArticle(props) {
+    const articleId = props.location.search.split("=")[1];
     const [singleSelect, setSingleSelect] = React.useState(null);
     const [singleFileName, setSingleFileName] = React.useState("");
     const [singleFile, setSingleFile] = React.useState(null);
@@ -160,9 +160,11 @@ function CustomerProgressArticle() {
         history.push("/admin/customer-arti-detail")
     };
 
-    const onClickView = () => {
-        history.push("/admin/customer-recruitment-detail")
-    };
+
+   
+    const [article, setArticle] = React.useState({});
+    
+
 
     return (
         <>
@@ -210,7 +212,7 @@ function CustomerProgressArticle() {
                 <Row>
                     <Col xs={12} >
                         <Card>
-                            {/* <a style={{ all: "unset", cursor: "pointer" }} href={`customer-progress-article?id=${article.id}`}> */}
+                           
                             <CardHeader>
 
                             </CardHeader>
@@ -245,7 +247,8 @@ function CustomerProgressArticle() {
 
                                                 </td>
                                                 <td>
-                                                    <Button onClick={onClickView} color="info" className="btn-right" style={
+                                                <a style={{ all: "unset", cursor: "pointer" }} href={`customer-recruitment-detail?id=${customer.articleId}`}>
+                                                    <Button  color="info" className="btn-right" style={
                                                         {
 
                                                             fontSize: "10px",
@@ -255,6 +258,7 @@ function CustomerProgressArticle() {
 
                                                         View
                                                     </Button>
+                                                    </a>
                                                 </td>
 
                                             </tr>);
@@ -265,6 +269,7 @@ function CustomerProgressArticle() {
                                     </tbody>
                                 </Table>
                             </CardBody>
+                            
                         </Card>
                     </Col>
 

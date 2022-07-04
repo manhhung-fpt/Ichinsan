@@ -203,6 +203,7 @@ let routes = [
     name: "Customer Recruitment",
     icon: "now-ui-icons business_badge",
     component: CustomerProgressArticle,
+    
     rolePermission: "Customer",
     layout: "/admin",
   },
