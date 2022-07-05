@@ -29,30 +29,29 @@ function RegisterPage() {
   const [firstnameFocus, setfirstnameFocus] = React.useState(false);
   const [lastnameFocus, setlastnameFocus] = React.useState(false);
   const [emailFocus, setemailFocus] = React.useState(false);
-  const role = [
-    
-    { key: 1, name: 'Translator' },
-    { key: 2, name: 'Auditor' },
-    { key: 3, name: 'Customer'},
-  ];
   const finishButtonClick = (allStates) => {
     console.log(allStates);
     
     let email = allStates.About.email
-    let fullName = allStates.About.lastname + allStates.About.firstname
+    let fullName =allStates.About.firstname +' '+ allStates.About.lastname 
     let phoneNumber = allStates.About.phoneNumber
     let dob = allStates.About.dob
     let gender = allStates.About.select.value
     let num = allStates.Role.activeChoices[0]
     let Website = allStates.Role.Website
-     
-    console.log(email);
-    console.log(fullName);
-    console.log(phoneNumber);
-    console.log(dob);
-    console.log(gender);
-    console.log(role);
+    let role =''
+     if(num === 1 ){
+      role = 'Translator'
+     }else if(num === undefined){
+      role = 'Translator'
+     }else if(num === 2){
+      role = 'Auditor'
+     }else if(num === 3){
+      role = 'Customer'
+    }
+    console.log(num);
     console.log(allStates.Role.activeChoices[0]);
+    console.log(role);
     var axios = require('axios');
     var data = JSON.stringify({
       "email": email,
@@ -61,7 +60,7 @@ function RegisterPage() {
       "dob": dob,
       "gender": gender,
       "website": Website,
-      "role": role[num].name,
+      "role": role
     });
 
     var config = {
@@ -108,6 +107,32 @@ function RegisterPage() {
           localStorage.setItem("userId", userId);
           localStorage.setItem("profileId", profileId);
           localStorage.setItem("role", decoded.role);
+          getProfile(profileId)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+  const getProfile = (id) => {
+    var axios = require('axios');
+
+
+    var config = {
+      method: 'get',
+      url: `https://api-dotnet-test.herokuapp.com/api/profiles/${id}`,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+
+    };
+    axios(config)
+      .then(function (response) {
+        debugger
+        const profile = response.data[0];  
+        const name = profile.fullName;
+          console.log(profile);
+          console.log(profile.fullName);
+           localStorage.setItem("name", name);
           history.push("/admin/home")
 
       })

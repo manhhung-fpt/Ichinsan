@@ -46,7 +46,6 @@ const Step2 = React.forwardRef((props, ref) => {
     },
   }));
   const choiceChange = (number) => {
-    debugger
     console.log(number);
     setActiveChoices([]);
     if(number === 1){
@@ -56,10 +55,7 @@ const Step2 = React.forwardRef((props, ref) => {
     }else if(number === 3){
       setpageSubcategories("ps3")
     }
-    let newState = activeChoices;
-      newState = newState.concat([number]);
-      console.log(newState);
-    setActiveChoices(newState);
+    setActiveChoices([number]);
   };
   const [vTabs, setvTabs] = React.useState("vt1");
   const [vTabsIcons, setvTabsIcons] = React.useState("vti1");
