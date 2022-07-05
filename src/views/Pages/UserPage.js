@@ -18,12 +18,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import Datetime from "react-datetime";
 // reactstrap components
 import {
   Button,
   Card,
   CardHeader,
+  Label,
   CardBody,
+  CardFooter,
   Row,
   Col,
   Form,
@@ -37,9 +40,15 @@ import PanelHeader from "components/PanelHeader/PanelHeader.js";
 function User() {
   var token = localStorage.getItem("token");
   var userprofile = jwt_decode(token);
-  console.log(userprofile);
   const [profiles, setProfiles] = useState({});
-  
+  const [profilesDetail, setProfilesDetail] = useState({})
+  const [dob, setDob] = useState('');
+  const [name, setName] = useState(profilesDetail.fullName);
+  const [phoneNumber, setPhoneNumber] = useState(profilesDetail.phoneNumber);
+  const [website, setWebsite] = useState(profilesDetail.website);
+  const [gender, setGender] = useState(profilesDetail.gender);
+  const [aboutMe, setAboutMe] = useState(profilesDetail.aboutMe);
+
 
   useEffect(() => {
     axios
@@ -48,6 +57,8 @@ function User() {
       .then((res) => {
         const data = res.data;
         console.log(data);
+        let profileId = data.profileId
+        getProfileDetail(profileId)
         setProfiles(data);
       })
 
@@ -55,6 +66,48 @@ function User() {
         console.log(err);
       })
   }, []);
+
+  const getProfileDetail = (id) => {
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/profiles/${id}`)
+      .then((res) => {
+        const data = res.data[0];
+        console.log(data);
+        setProfilesDetail(data)
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+  const editProfile = () =>{
+    var axios = require('axios');
+  
+    var data = JSON.stringify({
+      "fullName":  `${name}`,
+      "phoneNumber":`${phoneNumber}` ,
+      "dob": `${dob}`,
+      "gender": `${gender}`,
+      "website": `${website}`,
+      "aboutMe": `${aboutMe}`
+    });
+
+    var config = {
+      method: 'post',
+      url: `https://api-dotnet-test.herokuapp.com/api/profiles/${localStorage.profileId}`,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: data
+    };
+
+    axios(config)
+      .then(function (response) {
+
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 
   return (
     <>
@@ -89,11 +142,11 @@ function User() {
                         <label>Username </label>
 
                         <Input
-                          disabled
                           // defaultValue={localStorage.getItem("name")}
-                          defaultValue={profiles.fullName}
+                          defaultValue={profilesDetail.fullName}
                           placeholder="Username"
                           type="text"
+                          onChange={(e) => setName(e)}
                         />
                       </FormGroup>
                     </Col>
@@ -114,8 +167,8 @@ function User() {
                       <FormGroup>
                         <label>Gender</label>
                         <Input
-                          defaultValue={profiles.gender}
-
+                          defaultValue={profilesDetail.gender}
+                          onChange={(e) => setGender()}
                           // placeholder="Male"
                           type="text"
                         />
@@ -125,9 +178,10 @@ function User() {
                       <FormGroup>
                         <label>Phone number</label>
                         <Input
-                          defaultValue={profiles.phoneNumber}
+                          defaultValue={profilesDetail.phoneNumber}
                           // placeholder="Phone number"
                           type="text"
+                          onChange={(e) => setPhoneNumber(e)}
                         />
                       </FormGroup>
                     </Col>
@@ -137,6 +191,7 @@ function User() {
                       <FormGroup>
                         <label>Role</label>
                         <Input
+                          disabled
                           defaultValue={profiles.role}
                           placeholder="Role"
                           type="text"
@@ -147,7 +202,8 @@ function User() {
                       <FormGroup>
                         <label>Balance</label>
                         <Input
-                          defaultValue={profiles.balance}
+                          disabled
+                          defaultValue={profilesDetail.balance}
                           placeholder="Balance"
                           type="text"
                         />
@@ -156,10 +212,9 @@ function User() {
                     <Col className="pl-1" md="4">
                       <FormGroup>
                         <label>Date of Birth</label>
-                        <Input
-                          defaultValue={profiles.DateOfBirth}
-                          placeholder="Balance"
-                          type="text"
+                        <Datetime
+                          onChange={(e) => setDob(e)}
+                          inputProps={{ placeholder: "Your Day of Birth" }}
                         />
                       </FormGroup>
                     </Col>
@@ -169,9 +224,10 @@ function User() {
                       <FormGroup>
                         <label>Website</label>
                         <Input
-                          defaultValue={profiles.WebSite}
+                          defaultValue={profilesDetail.website}
                           placeholder="Website"
                           type="text"
+                          onChange={(e) => setWebsite(e)}
                         />
                       </FormGroup>
                     </Col>
@@ -183,17 +239,27 @@ function User() {
                         <label>About Me</label>
                         <Input
                           cols="80"
-                          defaultValue="Lamborghini Mercy, Your chick she so thirsty, I'm in
-                            that two seat Lambo."
+                          defaultValue={profilesDetail.aboutMe}
                           placeholder="Here can be your description"
                           rows="4"
                           type="textarea"
+                          onChange={(e) => setAboutMe(e)}
                         />
                       </FormGroup>
                     </Col>
                   </Row>
                 </Form>
               </CardBody>
+              <CardFooter className="text-right">
+                <FormGroup check className="pull-left">
+                  <Label check>
+
+                  </Label>
+                </FormGroup>
+                <Button color="primary" onClick={editProfile} >
+                  Edit
+                </Button>
+              </CardFooter>
             </Card>
           </Col>
           <Col md="4">
@@ -211,12 +277,10 @@ function User() {
                     />
                     <h5 className="title">{localStorage.getItem("name")}</h5>
                   </a>
-                  <p className="description">michael24</p>
+                  <p className="description">{profilesDetail.fullName}</p>
                 </div>
                 <p className="description text-center">
-                  {'"'}Lamborghini Mercy <br />
-                  Your chick she so thirsty <br />
-                  I'm in that two seat Lambo{'"'}
+                  {'"'}{profilesDetail.aboutMe}{'"'}
                 </p>
               </CardBody>
               <hr />

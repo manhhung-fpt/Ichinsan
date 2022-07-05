@@ -1,5 +1,6 @@
 
 import React from "react";
+import { useEffect } from "react";
 
 // reactstrap components
 import {
@@ -12,50 +13,91 @@ import {
   Col,
   Button,
 } from "reactstrap";
+import axios from "axios";
 
-import Select from "react-select";
+import Select from '@mui/material/Select';
+import { MenuItem } from "@mui/material";
 // core components
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
 import { useHistory } from "react-router-dom";
 import CardActions from '@mui/material/CardActions';
-var selectOptions = [
-  { value: "Category1", label: "Category1" },
-  { value: "Category2", label: "Category2" },
-  { value: "Category3", label: "Category3" },
-  { value: "Category4", label: "Category4" },
-  { value: "Category5", label: "Category5" },
-  { value: "Category6", label: "Category6" },
-];
 function CustomerCreate() {
-  const [singleSelect, setSingleSelect] = React.useState(null);
-  const [singleFileName, setSingleFileName] = React.useState("");
-  const [singleFile, setSingleFile] = React.useState(null);
-  const [openedCollapses, setOpenCollapses] = React.useState(["collapseOne"]);
-  const [hTabs, sethTabs] = React.useState("ht1");
-  const [vTabs, setvTabs] = React.useState("vt1");
-  const [vTabsIcons, setvTabsIcons] = React.useState("vti1");
-  const [pageSubcategories, setpageSubcategories] = React.useState("ps1");
-  const singleFileRef = React.useRef();
-
+  const [singleSelect, setSingleSelect] = React.useState("");
+  const [projectName, setProjectName] = React.useState("");
+  const [summary, setSummary] = React.useState("");
+  const [description, setDescription] = React.useState("");
+  const [category, setCategory] = React.useState([]);
   let history = useHistory();
-  const addSingleFile = (e, type) => {
-    let fileNames = "";
-    let files = e.target.files;
-    for (let i = 0; i < e.target.files.length; i++) {
-      fileNames = fileNames + e.target.files[i].name;
-    }
-    setSingleFile(files);
-    setSingleFileName(fileNames);
-  };
+
   const [count, setCount] = React.useState(0);
-  const onclickProject = () => {
-    history.push("/admin/admin-projec-category");
+  const [count1, setCount1] = React.useState(0);
+  const [count2, setCount2] = React.useState(0);
+
+  const sumbitForm = () => {
+    var axios = require('axios');
+    var data = JSON.stringify({
+      "name": projectName,
+      "categoryName": singleSelect,
+      "description": description
+    });
+
+    var config = {
+      method: 'post',
+      url: 'https://api-dotnet-test.herokuapp.com/api/projects',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: data
+    };
+
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
   }
-  const onclickFeedBack = () => {
-    history.push("/admin/admin-feedback-category");
-  }
+
   const onClickBack = () => {
     history.push("/admin/customer-home")
+  }
+  /// service for category
+  useEffect(() => {
+    var axios = require('axios');
+    var data = '';
+    var config = {
+      method: 'get',
+      url: 'https://api-dotnet-test.herokuapp.com/api/projectcategories',
+      headers: {},
+      data: data
+    };
+    axios(config)
+      .then(function (response) {
+        setCategory(response.data)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
+  const handleChange = (event) => {
+    setSingleSelect(event.target.value);
+  };
+
+  const onChangeProjectName = (e) => {
+    setProjectName(e.target.value)
+    setCount(e.target.value.length)
+  }
+  const onChangeSummary = (e) => {
+    setSummary(e.target.value)
+    setCount1(e.target.value.length)
+
+  }
+  const onChangeDescription = (e) => {
+    setDescription(e.target.value)
+    setCount2(e.target.value.length)
+
   }
 
   return (
@@ -90,12 +132,10 @@ function CustomerCreate() {
                     <FormGroup>
                       <Input
                         cols="80"
-                        defaultValue="Lamborghini Mercy, Your chick she so thirsty, I'm in
-                            that two seat Lambo."
-                        placeholder="Here can be your description"
+                        placeholder="What is your project name going to be ?"
                         rows="4"
                         type="textarea"
-                        onChange={e => setCount(e.target.value.length)}
+                        onChange={onChangeProjectName}
                       />
                     </FormGroup>
                     {count}/500
@@ -112,42 +152,28 @@ function CustomerCreate() {
                   </Col>
                   <Col xs={12} md={5} size="sm"  >
                     <Select
-                      className="react-select primary"
-                      classNamePrefix="react-select"
+
+                      sx={{ m: 1, minWidth: 500 }}
                       placeholder="Single Select"
                       name="Choose Category"
                       value={singleSelect}
-                      options={selectOptions}
-                      onChange={(value) => setSingleSelect(value)}
-                    />
+                      displayEmpty
+                      onChange={handleChange}
+                    >
+                      {category.map((c, index) => (
+                        <MenuItem
+                          key={c.name}
+                          value={c.name}
+                        >
+                          {c.name}
+                        </MenuItem>
+                      ))}
+                    </Select>
                   </Col>
                   <Col xs={12} md={5} size="sm"  ></Col>
                 </Row>
               </CardBody>
-              <CardBody>
 
-                <Row>
-                  <Col xs={12} md={2} size="sm"  >
-                    Summary
-                  </Col>
-                  <Col xs={12} md={5} size="sm"  >
-                    <FormGroup>
-                      <Input
-                        cols="80"
-                        defaultValue="Lamborghini Mercy, Your chick she so thirsty, I'm in
-            that two seat Lambo."
-                        placeholder="Here can be your description"
-                        rows="4"
-                        type="textarea"
-                        onChange={e => setCount(e.target.value.length)}
-                      />
-                    </FormGroup>
-                    {count}/500
-                  </Col>
-                  <Col xs={12} md={5} size="sm"  ></Col>
-                </Row>
-
-              </CardBody>
               <CardBody>
 
                 <Row>
@@ -158,15 +184,13 @@ function CustomerCreate() {
                     <FormGroup>
                       <Input
                         cols="80"
-                        defaultValue="Lamborghini Mercy, Your chick she so thirsty, I'm in
-                            that two seat Lambo."
                         placeholder="Here can be your description"
                         rows="4"
                         type="textarea"
-                        onChange={e => setCount(e.target.value.length)}
+                        onChange={onChangeDescription}
                       />
                     </FormGroup>
-                    {count}/500
+                    {count2}/500
                   </Col>
                   <Col xs={12} md={5} size="sm"  ></Col>
                 </Row>
@@ -188,7 +212,7 @@ function CustomerCreate() {
                   </Button>
                 </Col>
                 <Col md={6}>
-                  <Button color="primary" className="btn-right" style={
+                  <Button onClick={sumbitForm} color="primary" className="btn-right" style={
                     {
 
                       fontSize: "10px",

@@ -238,7 +238,7 @@ function Sidebar(props) {
           </div>
           <Nav>{createLinks(props.routes)}</Nav>
           <div style={{ position: 'absolute', bottom: '0' }}>
-            {localStorage.getItem('name') && (
+            {localStorage?.getItem('token') && (
               <>
                 <Button onClick={logOutOnClick}  color="primary" className="btn-info" style={
                   {

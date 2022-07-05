@@ -215,9 +215,9 @@ function AdminNavbar(props) {
                 </p>
               </DropdownToggle>
               <DropdownMenu right>
-                {!localStorage.getItem('name') && (
+                {!localStorage.getItem('token') && (
                   <DropdownItem tag="a" href="/auth/login-page">Login</DropdownItem>)}
-                {localStorage.getItem('name') && (
+                {localStorage.getItem('token') && (
                   <DropdownItem tag="a"
                     onClick={logOutOnClick}
                   >Logout</DropdownItem>)}
