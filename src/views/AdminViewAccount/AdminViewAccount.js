@@ -18,6 +18,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import moment from "moment";
+import Datetime from "react-datetime";
+
 // reactstrap components
 import {
   Button,
@@ -34,29 +37,45 @@ import {
 // core components
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
 import { useHistory } from "react-router-dom";
+import { CardText } from 'reactstrap';
+import User from "views/Pages/UserPage";
 
-function AdminViewAccount() {
+
+function AdminViewAccount(props) {
+  const profileId = props.location.search.split("=")[1];
+  const userId = props.location.search.split("=")[1];
+
+  // const [id, setId] = React.useState("");
   let history = useHistory();
-  var token = localStorage.getItem("token");
-  var userprofile = jwt_decode(token);
-  console.log(userprofile);
-  const [profiles, setProfiles] = useState({});
-  
 
-  useEffect(() => {
+
+  const [profiles, setProfiles] = React.useState({});
+  React.useEffect(() => {
     axios
-      // .get(`https://62a586f2b9b74f766a3afda9.mockapi.io/api/projectDetails/Users/1`)
-      .get(`${process.env.REACT_APP_API_URL}/users/${localStorage.userId}`)
-      .then((res) => {
-        const data = res.data;
-        console.log(data);
-        setProfiles(data);
+      .get(`https://api-dotnet-test.herokuapp.com/api/profiles/${profileId}`)
+      .then(res => {
+        //setFakeData(res.data.data);
+        setProfiles(res.data[0]);
       })
+      .catch(err => { console.log(err) })
+  }, [])
+  console.log(profileId)
 
-      .catch((err) => {
-        console.log(err);
+
+  const [users, setUsers] = React.useState({});
+  React.useEffect(() => {
+    axios
+      .get(`https://api-dotnet-test.herokuapp.com/api/users/${userId}`)
+      .then(res => {
+        //setFakeData(res.data.data);
+        setUsers(res.data[0]);
       })
-  }, []);
+      .catch(err => { console.log(err) })
+  }, [])
+
+
+
+
   const onClickBack = () => {
     history.push("/admin/admin-account")
   }
@@ -72,7 +91,8 @@ function AdminViewAccount() {
         <Row>
           <Col md="8">
             <Card>
-            <CardHeader>
+
+              <CardHeader>
                 <Button onClick={onClickBack} style={
                   {
 
@@ -89,41 +109,31 @@ function AdminViewAccount() {
               <CardHeader>
                 <h5 className="title">User Infor</h5>
               </CardHeader>
+
               <CardBody>
                 <Form>
                   <Row>
-                    <Col className="pr-1" md="5">
-                      <FormGroup>
-                        <label>Company</label>
-                        <Input
-                          defaultValue="Ichisan FPT"
-                          disabled
-                          placeholder="Company"
-                          type="text"
-                        />
-                      </FormGroup>
-                    </Col>
-                    <Col className="px-1" md="3">
+
+                    <Col className="pr-1" md="6">
                       <FormGroup>
                         <label>Username </label>
-
                         <Input
                           disabled
-                          // defaultValue={localStorage.getItem("name")}
                           defaultValue={profiles.fullName}
                           placeholder="Username"
                           type="text"
                         />
                       </FormGroup>
                     </Col>
-                    <Col className="pl-1" md="4">
+                    <Col className="pl-1" md="6">
                       <FormGroup>
                         <label >
                           Email address
                         </label>
                         <Input
                           disabled
-                          defaultValue={localStorage.getItem("email")}
+                          defaultValue={profiles.email}
+                          // defaultValue={localStorage.getItem("email")}
                           placeholder="Email" type="email" />
                       </FormGroup>
                     </Col>
@@ -179,11 +189,17 @@ function AdminViewAccount() {
                       <FormGroup>
                         <label>Date of Birth</label>
                         <Input
-                          defaultValue={profiles.DateOfBirth}
-                          placeholder="Balance"
-                          type="text"
+                          defaultValue= {moment(new Date(profiles.dob)).format("DD/MM/YYYY")}
+                          // defaultValue={profiles.dob}
+                          placeholder=""
+                          type="datetime-local"
                           disabled
                         />
+                        {/* <Datetime
+                        inputProps={{ placeholder: "Datetime Picker Here" }}
+                        defaultValue= {moment(new Date(profiles.dob)).format("DD/MM/YYYY")}
+                        disabled
+                      /> */}
                       </FormGroup>
                     </Col>
                   </Row>
@@ -219,7 +235,9 @@ function AdminViewAccount() {
                   </Row>
                 </Form>
               </CardBody>
+
             </Card>
+
           </Col>
           <Col md="4">
             <Card className="card-user">

@@ -215,6 +215,7 @@ function User() {
                         <Datetime
                           onChange={(e) => setDob(e)}
                           inputProps={{ placeholder: "Your Day of Birth" }}
+                          defaultValue={profilesDetail.dob}
                         />
                       </FormGroup>
                     </Col>

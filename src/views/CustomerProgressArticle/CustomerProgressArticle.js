@@ -222,12 +222,12 @@ function CustomerProgressArticle(props) {
                                 <Table responsive>
                                     <thead className="text-primary">
                                         <tr>
-                                            <th className="text-center">#</th>
+                                            <th >#</th>
                                             <th>Article Name</th>
                                             <th>Applicants</th>
                                             <th>Dealine</th>
                                             <th>Status</th>
-                                            <th className="text-right">View</th>
+                                            <th >View</th>
 
 
                                         </tr>
@@ -235,7 +235,7 @@ function CustomerProgressArticle(props) {
                                     <tbody>
                                         {customers.map((customer, index) => {
                                             return (<tr>
-                                                <td className="text-center">{index + 1}</td>
+                                                <td >{index + 1}</td>
                                                 <td>{customer.articleName}</td>
                                                 <td>{customer.totalApplicants}</td>
                                                 <td>{customer.deadlineApply}</td>

@@ -119,7 +119,7 @@ function TranslatorProgressArticle(props) {
     const singleFileRef = React.useRef();
 
 
-    
+
     const [modalNotice, setModalNotice] = React.useState(false);
     const [modalEdit, setModalEdit] = React.useState(false);
 
@@ -130,7 +130,7 @@ function TranslatorProgressArticle(props) {
         setModalNotice(!modalNotice);
     };
 
-    
+
     const [article, setArticle] = React.useState({});
     React.useEffect(() => {
         axios
@@ -156,7 +156,7 @@ function TranslatorProgressArticle(props) {
         setSingleFile(files);
         setSingleFileName(fileNames);
     };
-   
+
     let history = useHistory();
     const onClick = () => {
         history.push("/admin/admin-projec/admin-project-details")
@@ -323,6 +323,13 @@ function TranslatorProgressArticle(props) {
                                                 }}>
                                                     {moment(new Date(article.deadline)).format("DD/MM/YYYY, h:mm:ss A")}
                                                 </CardFooter>
+                                                <div class="go-corner" href="#" style={{
+                                                    backgroundColor: "#2CA8FF",
+                                                }}>
+                                                    <div class="go-arrow">
+                                                        <ArrowRightIcon></ArrowRightIcon>
+                                                    </div>
+                                                </div>
                                             </a>
                                         </Card>
                                     </Col>
@@ -613,6 +620,13 @@ function TranslatorProgressArticle(props) {
                                                 }}>
 
                                                 </CardFooter>
+                                                <div class="go-corner" href="#" style={{
+                                                    backgroundColor: "#2CA8FF",
+                                                }}>
+                                                    <div class="go-arrow">
+                                                        <ArrowRightIcon></ArrowRightIcon>
+                                                    </div>
+                                                </div>
                                             </a>
                                         </Card>
                                     </Col>
