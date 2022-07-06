@@ -2,6 +2,10 @@
 import React from "react";
 import Switch from "react-bootstrap-switch";
 import Datetime from "react-datetime";
+import { useEffect } from "react";
+import { storage } from "Firebase";
+import { ref, uploadBytes, getDownloadURL, getBytes } from "firebase/storage";
+import { async } from "@firebase/util";
 
 // reactstrap components
 import {
@@ -15,19 +19,18 @@ import {
   Button,
 } from "reactstrap";
 
-import Select from "react-select";
 // core components
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
 import { useHistory } from "react-router-dom";
 import CardActions from '@mui/material/CardActions';
-var selectOptions = [
-  { value: "English", label: "English" },
-]; var selectOptions1 = [
+import Select from '@mui/material/Select';
+import { MenuItem } from "@mui/material";
+import moment from "moment";
+import Docxtemplater from "docxtemplater";
+import JSZip from "jszip";
 
-  { value: "Japanese", label: "Japanese" },
-];
-
-function CustomerAddArticle() {
+function CustomerAddArticle(props) {
+  const projectId = props.location.search.split("=")[1];
   const [singleSelect, setSingleSelect] = React.useState(null);
   const [singleSelect1, setSingleSelect1] = React.useState(null);
   const [singleFileName, setSingleFileName] = React.useState("");
@@ -41,39 +44,133 @@ function CustomerAddArticle() {
   const [vTabsIcons, setvTabsIcons] = React.useState("vti1");
   const [pageSubcategories, setpageSubcategories] = React.useState("ps1");
   const singleFileRef = React.useRef();
+  const PizZip = require('pizzip')
+  const [fileURL, setFileURL] = React.useState("");
+  const [title, setTitle] = React.useState("");
+  const [languageFrom, setLanguageFrom] = React.useState("");
+  const [languageCodeFrom, setLanguageCodeFrom] = React.useState("");
+  const [languageTo, setLanguageTo] = React.useState("");
+  const [description, setDescription] = React.useState("");
+  const [deadLine, setDeadline] = React.useState("");
+  const [count, setCount] = React.useState(0);
+  const [count1, setCount1] = React.useState(0);
+  const [count2, setCount2] = React.useState(0);
+  const [language, setLanguageList] = React.useState([])
+  const [countWord, setCountWord] = React.useState(0);
+
+  const handleChangeTitle = (event) => {
+    setTitle(event.target.value);
+    setCount1(event.target.value.length);
+  };
+
+  const onChangeLanguageFrom = (e) => {
+    setLanguageFrom(e.target.value)
+    setLanguageCodeFrom(e.target.key)
+    console.log(languageCodeFrom);
+  }
+  const onChangeLanguageTo = (e) => {
+    setLanguageTo(e.target.value)
+  }
+  const onChangeDescription = (e) => {
+    setDescription(e.target.value)
+    setCount2(e.target.value.length)
+
+  }
+
+  const handleSubmit = () => {
+    const fileRef = ref(storage, `originalArticles/${singleFileName}`)
+    getDownloadURL(fileRef).then((response) => {
+      setFileURL(response)
+    })
+    // add article service
+    var axios = require('axios');
+    var data = JSON.stringify({
+      "projectId": projectId,
+      "name": title,
+      "languageFrom": languageFrom,
+      "languageTo": languageTo,
+      "description": description,
+      "originalContent": fileURL,
+      "deadline": moment(deadLine).format('YYYY-MM-D'),
+      "numberOfWords": countWord,
+      "fee": countWord/500
+    });
+
+    var config = {
+      method: 'post',
+      url: 'https://api-dotnet-test.herokuapp.com/api/articles',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: data
+    };
+
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+  }
 
   let history = useHistory();
-  const addSingleFile = (e, type) => {
+  const addSingleFile = async (e, type) => {
+    setSingleFile(null);
+    setSingleFileName("");
+    e.preventDefault();
     let fileNames = "";
     let files = e.target.files;
+    let file = e.target.files[0];
+    console.log(file);
+    const reader = new FileReader();
+    reader.readAsBinaryString(file);
+    reader.onload = async (e) =>{
+      const content = e.target.result;
+    var doc = new Docxtemplater(new PizZip(content), {delimiters: {start: '12op1j2po1j2poj1po', end: 'op21j4po21jp4oj1op24j'}});
+    var text = doc.getFullText();
+    setCountWord(text.length)
+    }
+    
+    
     for (let i = 0; i < e.target.files.length; i++) {
       fileNames = fileNames + e.target.files[i].name;
     }
-    setSingleFile(files);
+    setSingleFile(file);
     setSingleFileName(fileNames);
+    const fileRef = ref(storage, `originalArticles/${fileNames}`)
+    uploadBytes(fileRef, file).then((res) => {
+      getDownloadURL(res.ref).then((response) => {
+        setFileURL(response)
+      })
+    })
   };
-  const addSingleFile1 = (e, type) => {
-    let fileNames = "";
-    let files = e.target.files;
-    for (let i = 0; i < e.target.files.length; i++) {
-      fileNames = fileNames + e.target.files[i].name;
-    }
-    setSingleFile1(files);
-    setSingleFileName1(fileNames);
-  };
-  const [count, setCount] = React.useState(0);
-  const onclickProject = () => {
-    history.push("/admin/admin-projec-category");
-  }
-  const onclickFeedBack = () => {
-    history.push("/admin/admin-feedback-category");
-  }
+  
   const onClickBack = () => {
     history.push("/admin/customer-arti-detail");
   }
   const handleSingleFileInput = (e) => {
     singleFileRef.current.click(e);
   };
+  useEffect(() => {
+    var axios = require('axios');
+    var data = '';
+    var config = {
+      method: 'get',
+      url: 'https://api-dotnet-test.herokuapp.com/api/languages',
+      headers: {},
+      data: data
+    };
+    axios(config)
+      .then(function (response) {
+        setLanguageList(response.data)
+        console.log(response.data[0].name)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <>
@@ -107,15 +204,13 @@ function CustomerAddArticle() {
                     <FormGroup>
                       <Input
                         cols="80"
-                        defaultValue="Lamborghini Mercy, Your chick she so thirsty, I'm in
-                            that two seat Lambo."
                         placeholder="Here can be your tittle"
                         rows="4"
                         type="textarea"
-                        onChange={e => setCount(e.target.value.length)}
+                        onChange={handleChangeTitle}
                       />
                     </FormGroup>
-                    {count}/500
+                    {count1}/500
                   </Col>
                   <Col xs={12} md={5} size="sm"  ></Col>
                 </Row>
@@ -129,14 +224,24 @@ function CustomerAddArticle() {
                   </Col>
                   <Col xs={12} md={5} size="sm"  >
                     <Select
-                      className="react-select primary"
-                      classNamePrefix="react-select"
-                      placeholder="Choose Language"
+
+                      sx={{ m: 1, minWidth: 500 }}
+                      placeholder="Single Select"
                       name="Choose Category"
-                      value={singleSelect1}
-                      options={selectOptions1}
-                      onChange={(value) => setSingleSelect1(value)}
-                    />
+                      value={languageFrom}
+                      displayEmpty
+                      onChange={onChangeLanguageFrom}
+                      
+                    >
+                      {language.map((l, index) => (
+                        <MenuItem
+                          key={l.code}
+                          value={l.code}
+                        >
+                          {l.name}
+                        </MenuItem>
+                      ))}
+                    </Select>
                   </Col>
                   <Col xs={12} md={5} size="sm"  ></Col>
                 </Row>
@@ -149,14 +254,23 @@ function CustomerAddArticle() {
                   </Col>
                   <Col xs={12} md={5} size="sm"  >
                     <Select
-                      className="react-select primary"
-                      classNamePrefix="react-select"
-                      placeholder="Choose Language"
+
+                      sx={{ m: 1, minWidth: 500 }}
+                      placeholder="Single Select"
                       name="Choose Category"
-                      value={singleSelect}
-                      options={selectOptions}
-                      onChange={(value) => setSingleSelect(value)}
-                    />
+                      value={languageTo}
+                      displayEmpty
+                      onChange={onChangeLanguageTo}
+                    >
+                      {language.map((l, index) => (
+                        <MenuItem
+                          key={l.code}
+                          value={l.code}
+                        >
+                          {l.name}
+                        </MenuItem>
+                      ))}
+                    </Select>
                   </Col>
                   <Col xs={12} md={5} size="sm"  ></Col>
                 </Row>
@@ -172,15 +286,13 @@ function CustomerAddArticle() {
                     <FormGroup>
                       <Input
                         cols="80"
-                        defaultValue="Lamborghini Mercy, Your chick she so thirsty, I'm in
-                            that two seat Lambo."
                         placeholder="Here can be your description"
                         rows="4"
                         type="textarea"
-                        onChange={e => setCount(e.target.value.length)}
+                        onChange={onChangeDescription}
                       />
                     </FormGroup>
-                    {count}/500
+                    {count2}/500
                   </Col>
                   <Col xs={12} md={5} size="sm"  ></Col>
                 </Row>
@@ -226,39 +338,15 @@ function CustomerAddArticle() {
                     <FormGroup>
                       <Datetime
                         inputProps={{ placeholder: "Datetime Picker Here" }}
+                        value={deadLine}
+                        onChange={(newValue) => {
+                          setDeadline(newValue);
+                      }}
                       />
                     </FormGroup>
                   </Col>
                   <Col xs={12} md={5} size="sm"  >
 
-                  </Col>
-                </Row>
-
-              </CardBody>
-              <CardBody>
-
-                <Row>
-                  <Col xs={12} md={2} size="sm"  >
-                    Due Date
-                  </Col>
-                  <Col xs={12} md={4} size="sm"  >
-                    <FormGroup>
-                      <Datetime
-                        timeFormat={false}
-                        inputProps={{ placeholder: "Datetime Picker Here" }}
-                      />
-                    </FormGroup>
-                  </Col>
-                  <Col xs={12} md={2} size="sm"  >
-                    Due Time
-                  </Col>
-                  <Col xs={12} md={4} size="sm"  >
-                    <FormGroup>
-                      <Datetime
-                        dateFormat={false}
-                        inputProps={{ placeholder: "Datetime Picker Here" }}
-                      />
-                    </FormGroup>
                   </Col>
                 </Row>
 
@@ -270,7 +358,7 @@ function CustomerAddArticle() {
                     Word Count
                   </Col>
                   <Col xs={12} md={5} size="sm"  >
-                    {count}/500
+                    {countWord} words (1$ per 500 words)
                   </Col>
                   <Col xs={12} md={5} size="sm"  >
 
@@ -290,7 +378,7 @@ function CustomerAddArticle() {
                         color: "red",
                       }
                     }>
-                      $ 5000
+                      {countWord/500} $
                     </span>
                   </Col>
                   <Col xs={12} md={5} size="sm"  >
@@ -315,7 +403,7 @@ function CustomerAddArticle() {
                   </Button>
                 </Col>
                 <Col md={6}>
-                  <Button color="primary" className="btn-right" style={
+                  <Button onClick={handleSubmit} color="primary" className="btn-right" style={
                     {
 
                       fontSize: "10px",
