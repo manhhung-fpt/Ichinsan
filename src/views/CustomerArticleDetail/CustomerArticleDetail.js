@@ -257,7 +257,20 @@ function TranslatorProgressArticle(props) {
                   </Action>
                 </Fab>
                 <CardTitle id="card1" tag="h4">Project Detail :</CardTitle>
+                <a style={{ all: "unset", cursor: "pointer" }} href={`customer-add-article?id=${projectId}`}>
+                  <Button color="info" className="btn-right" style={
+                    {
+                      marginTop: "10px",
+                      float: "right",
+                      fontSize: "12px",
+                      backgroundColor: "#08becf",
 
+                    }
+                  }>
+
+                    Create Article +
+                  </Button>
+                </a>
                 <Row>
 
                   <Col xs={12} lg={6}>

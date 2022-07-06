@@ -2,8 +2,7 @@
 import React from "react";
 import StarRateIcon from '@mui/icons-material/StarRate';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
-import Breadcrumbs from '@mui/material/Breadcrumbs';
-import Link from '@mui/material/Link';
+import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 // reactstrap components
 import {
@@ -40,6 +39,7 @@ function CustomerCreateFeedback() {
   const [vTabsIcons, setvTabsIcons] = React.useState("vti1");
   const [pageSubcategories, setpageSubcategories] = React.useState("ps1");
   const singleFileRef = React.useRef();
+  const [value, setValue] = React.useState(2);
 
   let history = useHistory();
   const addSingleFile = (e, type) => {
@@ -144,14 +144,14 @@ function CustomerCreateFeedback() {
                   <Col xs={12} md={2} size="sm"  >
                     Rating
                   </Col>
-                  <Col xs={12} md={5} size="sm" style={{
-                    color: "#ec00f9"
-                  }}>
-                    <StarRateIcon></StarRateIcon>
-                    <StarRateIcon></StarRateIcon>
-                    <StarRateIcon></StarRateIcon>
-                    <StarRateIcon></StarRateIcon>
-                    <StarOutlineIcon></StarOutlineIcon>
+                  <Col xs={12} md={5} size="sm" >
+                    <Rating
+                      name="simple-controlled"
+                      value={value}
+                      onChange={(event, newValue) => {
+                        setValue(newValue);
+                      }}
+                    />
                   </Col>
                   <Col xs={12} md={5} size="sm"  >
 
