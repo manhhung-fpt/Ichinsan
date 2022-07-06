@@ -97,7 +97,7 @@ var selectOptions = [
     { value: "five", label: "Five" },
     { value: "six", label: "Six" },
 ];
-function TranslatorProgressArticle(props) {
+function AuditorProgressArticle(props) {
     const [modalClassic, setModalClassic] = React.useState(false);
     const articleId = props.location.search.split("=")[1];
     console.log(articleId);
@@ -143,18 +143,6 @@ function TranslatorProgressArticle(props) {
     }, [])
     console.log(article)
 
-    const [translators, setTranslators] = useState([]);
-    React.useEffect(() => {
-        axios
-            .get("https://api-dotnet-test.herokuapp.com/api/applications/translators?pageNumber=1&pageSize=5")
-            .then((res) => {
-                const data = res.data;
-                setTranslators(data);
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-    }, []);
 
     const handleSingleFileInput = (e) => {
         singleFileRef.current.click(e);
@@ -174,7 +162,7 @@ function TranslatorProgressArticle(props) {
         history.push("/admin/admin-projec/admin-project-details")
     };
     const onClickBack = () => {
-        history.push("/admin/customer-progress-article")
+        history.push("/admin/translator-progress")
     };
     const onClickView = () => {
         history.push("/admin/customer-progress-article")
@@ -183,15 +171,14 @@ function TranslatorProgressArticle(props) {
         history.push("/admin/customer-create=feedback")
     };
     const onClickAdd = () => {
-        history.push("/admin/customer-create=feedback")
+        history.push("/admin/customer-create=feedback ")
     };
     const onClickPostpose = () => {
-        history.push("/admin/customer-home")
+        history.push("/admin/translator-progress")
     };
-
-    // const onClickEditArti = () => {
-    //     history.push("/admin/customer-edit-article ")
-    // };
+    const onClickEdit = () => {
+        history.push("/admin/customer-edit-project")
+    };
 
 
     return (
@@ -253,42 +240,12 @@ function TranslatorProgressArticle(props) {
                                     </Action>
                                 </Fab>
                                 <CardTitle id="card1" tag="h4">Article Detail :</CardTitle>
-                                <CardActions disableSpacing>
 
-                                    <Col md={1}>
-                                        <a style={{ all: "unset", cursor: "pointer" }} href={`customer-edit-article?id=${articleId}`}>
-                                            <Button className="btn-info" color="primary" style={
-                                                {
-
-                                                    fontSize: "10px",
-
-                                                }
-                                            }>
-                                                Edit
-                                            </Button>
-                                        </a>
-                                    </Col>
-
-                                    <Col md={1}>
-                                        <Button onClick={onClickPostpose} className="btn-danger" color="primary" style={
-                                            {
-
-                                                fontSize: "10px",
-
-                                            }
-                                        }>
-                                            Delete
-                                        </Button>
-                                    </Col>
-                                    <Col md={10}>
-
-                                    </Col>
-                                </CardActions>
                                 <Row>
 
                                     <Col xs={12} lg={6}>
                                         <Card>
-                                            <a style={{ all: "unset", cursor: "pointer" }} href={`customer-recruitment-detail?id=${article.id}`}>
+                                            <a style={{ all: "unset", cursor: "pointer" }} href={`translator-progress-article?id=${article.id}`}>
                                                 <CardHeader>
                                                     <Row>
                                                         <Col xs={12} md={8}>
@@ -297,7 +254,7 @@ function TranslatorProgressArticle(props) {
                                                                 fontSize: "20px",
                                                                 fontWeight: "bold",
                                                             }}>
-
+                                                                Null
                                                                 {article.categoryName}</CardTitle>
                                                         </Col>
                                                         <Col xs={12} md={4}>
@@ -387,7 +344,7 @@ function TranslatorProgressArticle(props) {
 
                                     <Col xs={12} lg={8}>
                                         <Card>
-                                            <a style={{ all: "unset", cursor: "pointer" }} href={`customer-recruitment-detail?id=${article.id}`}>
+                                            <a style={{ all: "unset", cursor: "pointer" }} href={`translator-progress-article?id=${article.id}`}>
                                                 <CardHeader>
                                                     <Row>
                                                         <Col xs={12} md={4}>
@@ -418,21 +375,10 @@ function TranslatorProgressArticle(props) {
                                                                 fontWeight: "bold",
                                                             }}>
                                                                 Null
-
-                                                                {/* 
-                                                <input
-                                                    type="file"
-                                                    className="inputFileHidden"
-                                                    style={{ zIndex: -1 }}
-                                                    ref={singleFileRef}
-                                                    onChange={(e) => addSingleFile(e)}
-                                                /> */}
-
                                                             </CardTitle>
                                                         </Col>
                                                     </Row>
                                                 </CardHeader>
-
                                                 <CardHeader>
                                                     <Row>
                                                         <Col xs={12} md={4}>
@@ -441,11 +387,9 @@ function TranslatorProgressArticle(props) {
                                                                 fontSize: "20px",
                                                                 fontWeight: "bold",
                                                             }}>
-                                                                <TranslateIcon
-                                                                    style={{
-                                                                        marginRight: "10px",
-                                                                    }}
-                                                                ></TranslateIcon>
+                                                                <TranslateIcon style={{
+                                                                    marginRight: "10px",
+                                                                }}></TranslateIcon>
                                                                 Translation Article :
                                                             </CardTitle>
                                                         </Col>
@@ -455,7 +399,7 @@ function TranslatorProgressArticle(props) {
                                                                 fontSize: "20px",
                                                                 fontWeight: "bold",
                                                             }}>
-                                                                <UploadIcon></UploadIcon>
+                                                                <DownloadIcon></DownloadIcon>
                                                             </CardTitle>
                                                         </Col>
                                                         <Col xs={12} md={7}>
@@ -464,63 +408,12 @@ function TranslatorProgressArticle(props) {
                                                                 fontSize: "20px",
                                                                 fontWeight: "bold",
                                                             }}>
-
-                                                                <Input
-                                                                    type="text"
-                                                                    className="inputFileVisible"
-                                                                    placeholder="Dowdload File..."
-                                                                    onClick={(e) => handleSingleFileInput(e)}
-                                                                    defaultValue={singleFileName}
-                                                                />
-                                                                <input
-                                                                    type="file"
-                                                                    className="inputFileHidden"
-                                                                    style={{ zIndex: -1 }}
-                                                                    ref={singleFileRef}
-                                                                    onChange={(e) => addSingleFile(e)}
-                                                                />
-
+                                                                Null
                                                             </CardTitle>
-                                                            {singleFile !== null && singleFileName !== "" ? (
-                                                                <Row>
-                                                                    <Col xs={12} md={5} size="sm"  >
-                                                                        <Button onClick={onClickPostpose} className="btn-danger" color="primary" style={
-                                                                            {
-
-                                                                                fontSize: "10px",
-
-                                                                            }
-                                                                        }>
-                                                                            Edit
-                                                                        </Button>
-                                                                    </Col>
-                                                                    <Col xs={12} md={5} size="sm"  >
-                                                                        <Button onClick={onClickPostpose} className="btn-info" color="primary" style={
-                                                                            {
-
-                                                                                fontSize: "10px",
-
-                                                                            }
-                                                                        }>
-                                                                            Remove
-                                                                        </Button>
-                                                                    </Col>
-                                                                </Row>
-
-                                                            ) : (
-                                                                <Button hidden onClick={onClickAdd} className="btn-info" color="default" style={
-                                                                    {
-
-                                                                        fontSize: "10px",
-
-                                                                    }
-                                                                }>
-                                                                    Add an Article
-                                                                </Button>
-                                                            )}
                                                         </Col>
                                                     </Row>
                                                 </CardHeader>
+
                                                 <CardBody style={{
                                                     marginTop: "-20px",
                                                 }}>
@@ -582,78 +475,6 @@ function TranslatorProgressArticle(props) {
                                     </Col>
 
                                 </Row>
-                                <CardTitle id="card2" tag="h4"
-
-                                >Recruitments Table :</CardTitle>
-
-                                <Row>
-                                    <Col xs={12} >
-                                        <Card>
-
-                                            <CardHeader>
-
-                                            </CardHeader>
-                                            <CardBody style={{
-                                                marginTop: "-20px",
-                                            }}>
-                                                <Table responsive>
-                                                    <thead className="text-primary">
-                                                        <tr>
-                                                            <th >#</th>
-                                                            <th>Translator Name</th>
-                                                            <th>Level</th>
-                                                            <th>Apply Date</th>
-                                                            <th>Status</th>
-                                                            <th>Choose</th>
-
-
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        {translators.map((translator, index) => {
-                                                            return (<tr>
-                                                                <td >{index + 1}</td>
-                                                                <td>{translator.applyBy}</td>
-                                                                <td>{translator.level}</td>
-                                                                <td>
-                                                                    {moment(new Date(translator.appliedOn)).format("DD/MM/YYYY, h:mm:ss A")}
-                                                                </td>
-                                                                <td >
-                                                                    {/* <Switch defaultValue={false} /> */}
-                                                                    <Button style={{
-                                                                        backgroundColor: "orange",
-                                                                    }}>{translator.status}</Button>
-
-                                                                </td>
-                                                                <td>
-                                                                    <a style={{ all: "unset", cursor: "pointer" }} href={`customer-recruitment-detail?id=${translator.articleId}`}>
-                                                                        <Button color="info" className="btn-right" style={
-                                                                            {
-
-                                                                                fontSize: "10px",
-
-                                                                            }
-                                                                        }>
-
-                                                                            Choose
-                                                                        </Button>
-                                                                    </a>
-                                                                </td>
-
-                                                            </tr>);
-                                                        })
-                                                        }
-
-
-                                                    </tbody>
-                                                </Table>
-                                            </CardBody>
-
-                                        </Card>
-                                    </Col>
-
-                                </Row>
-
                                 <CardTitle id="card3" tag="h4" >Article Feedback :</CardTitle>
                                 <CardActions disableSpacing>
                                     <Col md={1}>
@@ -696,7 +517,7 @@ function TranslatorProgressArticle(props) {
 
                                     <Col xs={12} lg={6}>
                                         <Card>
-                                            <a style={{ all: "unset", cursor: "pointer" }} href={`customer-recruitment-detail?id=${article.id}`}>
+                                            <a style={{ all: "unset", cursor: "pointer" }} href={`translator-progress-article?id=${article.id}`}>
                                                 <CardHeader>
                                                     <Row>
                                                         <Col xs={12} md={8}>
@@ -705,7 +526,7 @@ function TranslatorProgressArticle(props) {
                                                                 fontSize: "20px",
                                                                 fontWeight: "bold",
                                                             }}>
-                                                               
+                                                                Null
                                                                 {article.categoryName}</CardTitle>
                                                         </Col>
                                                         <Col xs={12} md={4}>
@@ -771,6 +592,13 @@ function TranslatorProgressArticle(props) {
                                                 }}>
 
                                                 </CardFooter>
+                                                <div class="go-corner" href="#" style={{
+                                                    backgroundColor: "#2CA8FF",
+                                                }}>
+                                                    <div class="go-arrow">
+                                                        <ArrowRightIcon></ArrowRightIcon>
+                                                    </div>
+                                                </div>
                                             </a>
                                         </Card>
                                     </Col>
@@ -813,4 +641,4 @@ function TranslatorProgressArticle(props) {
     );
 }
 
-export default TranslatorProgressArticle;
+export default AuditorProgressArticle;

@@ -309,6 +309,13 @@ function TranslatorProgressArticle(props) {
                         }}>
                           {moment(new Date(project.createdOn)).format("DD/MM/YYYY, h:mm:ss A")}
                         </CardFooter>
+                        <div class="go-corner" href="#" style={{
+                          backgroundColor: "#2CA8FF",
+                        }}>
+                          <div class="go-arrow">
+                            <ArrowRightIcon></ArrowRightIcon>
+                          </div>
+                        </div>
                       </a>
                     </Card>
                   </Col>

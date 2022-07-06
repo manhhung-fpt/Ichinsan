@@ -41,6 +41,10 @@ import TranslatorRecruiment from './views/TranslatorRecruitment/TranslatorRecrui
 import AdminViewAccount from './views/AdminViewAccount/AdminViewAccount';
 import CustomerRecruitmentDetail from './views/CustomerRecruitmentDetail/CustomerRecruitmentDetail';
 import TranslatorViewArticle from './views/TranslatorViewArticle/TranslatorViewArticle';
+import AuditorProgress from './views/AuditorProgress/AuditorProgress';
+import AuditorProgressArticle from './views/AuditorProgressArticle/AuditorProgressArticle';
+import AuditorCreateFeedback from './views/AuditorCreateFeedback/AuditorCreateFeedback';
+import AuditorEditFeedback from './views/AuditorEditFeedback/AuditorEditFeedback';
 
 
 let routes = [
@@ -75,6 +79,7 @@ let routes = [
     name: "Admin View Info",
     icon: "now-ui-icons business_badge",
     component: AdminViewAccount,
+    props: {a:"a"},
     layout: "/admin",
     hideInDetail: true,
     rolePermission: "Admin"
@@ -275,6 +280,40 @@ let routes = [
     component: TranslatorViewArticle,
     props: {a:"a"},
     rolePermission: "Translator",
+    hideInDetail: true,
+    layout: "/admin",
+  },
+  {
+    path: "/auditor-progress",
+    name: "Auditor Progress",
+    icon: "now-ui-icons business_badge",
+    component: AuditorProgress,
+    rolePermission: "Auditor",
+    layout: "/admin",
+  },
+  {
+    path: "/auditor-progress-article",
+    name: "Auditor Article",
+    icon: "now-ui-icons business_badge",
+    component: AuditorProgressArticle,
+    props: {a:"a"},
+    rolePermission: "Auditor",
+    hideInDetail: true,
+    layout: "/admin",
+  },
+  {
+    path: "/auditor-create=feedback",
+    name: "Auditor Create Feedback",
+    icon: "now-ui-icons business_badge",
+    component: AuditorCreateFeedback,
+    hideInDetail: true,
+    layout: "/admin",
+  },
+  {
+    path: "/auditor-edit-feedback",
+    name: "Auditor Edit Feedback",
+    icon: "now-ui-icons business_badge",
+    component: AuditorEditFeedback,
     hideInDetail: true,
     layout: "/admin",
   },

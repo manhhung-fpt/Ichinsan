@@ -241,7 +241,7 @@ function TranslatorViewArticle(props) {
                                         onClick={() => window.location.href = "#card1"}
                                     >
                                     </Action>
-                                    
+
                                 </Fab>
                                 <CardTitle id="card1" tag="h4">Article Detail :</CardTitle>
 
@@ -327,13 +327,20 @@ function TranslatorViewArticle(props) {
                                                 }}>
                                                     {moment(new Date(article.deadline)).format("DD/MM/YYYY, h:mm:ss A")}
                                                 </CardFooter>
+                                                <div class="go-corner" href="#" style={{
+                                                    backgroundColor: "#2CA8FF",
+                                                }}>
+                                                    <div class="go-arrow">
+                                                        <ArrowRightIcon></ArrowRightIcon>
+                                                    </div>
+                                                </div>
                                             </a>
                                         </Card>
                                     </Col>
 
                                 </Row>
 
-                               
+
                             </TabPane>
                         </TabContent>
                     </Col>

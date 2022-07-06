@@ -52,18 +52,19 @@ function AdminAccount() {
   }
 
   // useState 
-  const [users, setUsers] = useState([]);
+
   const [sortField, setSortField] = useState("");
 
   const selectFilterHandler = (e) => {
     alert(e.value)
     setSingleRoleSelect(() => e.value);
   }
+  const [users, setUsers] = useState([]);
   const onclickPage = (e, page) => {
     setUsers([]);;
     setPage(page);
     axios
-      .get(`${process.env.REACT_APP_API_URL}/users?pageNumber=${page}&pageSize=5`)
+      .get(`https://api-dotnet-test.herokuapp.com/api/users?pageNumber=1&pageSize=5`)
       .then(res => {
         const data = res.data;
         setUsers(data);
@@ -73,7 +74,7 @@ function AdminAccount() {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/users?pageNumber=${page}&pageSize=5`)
+      .get(`https://api-dotnet-test.herokuapp.com/api/users?pageNumber=1&pageSize=5`)
       .then((res) => {
         const data = res.data;
         setUsers(data);
@@ -159,17 +160,17 @@ function AdminAccount() {
 
                         </td>
                         <td className="text-right btns-mr-5">
-                          <a href="/admin/wizard"></a>
-                          <Button onClick={onClickView} color="primary" className="btn-round" style={
-                            {
+                          <a style={{ all: "unset", cursor: "pointer" }} href={`admin-view-info?id=${user.profileId}`}>
+                            <Button onClick={onClickView} color="primary" className="btn-round" style={
+                              {
 
-                              fontSize: "10px",
+                                fontSize: "10px",
 
-                            }
-                          }>
-                            <i className="now-ui-icons users_single-02" /> View
-                          </Button>
-
+                              }
+                            }>
+                              <i className="now-ui-icons users_single-02" /> View
+                            </Button>
+                          </a>
                         </td>
                       </tr>
                     )
