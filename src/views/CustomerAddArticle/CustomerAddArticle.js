@@ -90,7 +90,7 @@ function CustomerAddArticle(props) {
       "languageFrom": languageFrom,
       "languageTo": languageTo,
       "description": description,
-      "originalContent": fileURL,
+      "originalContent": singleFileName,
       "deadline": moment(deadLine).format('YYYY-MM-D'),
       "numberOfWords": countWord,
       "fee": countWord/500
