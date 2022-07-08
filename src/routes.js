@@ -45,6 +45,7 @@ import AuditorProgress from './views/AuditorProgress/AuditorProgress';
 import AuditorProgressArticle from './views/AuditorProgressArticle/AuditorProgressArticle';
 import AuditorCreateFeedback from './views/AuditorCreateFeedback/AuditorCreateFeedback';
 import AuditorEditFeedback from './views/AuditorEditFeedback/AuditorEditFeedback';
+import SearchView from './views/SearchFilter/SearchView';
 
 
 let routes = [
@@ -160,7 +161,14 @@ let routes = [
     hideInDetail: true,
     layout: "/admin",
   },
- 
+  {
+    path: "/SearchView",
+    name: "Search View",
+    icon: "now-ui-icons business_badge",
+    component:  SearchView,
+    hideInDetail: true,
+    layout: "/admin",
+  },
   
   {
     path: "/customer-progress-project",

@@ -10,7 +10,7 @@
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
-    "@ladjs/country-language": "^1.0.1",
+    "@ladjs/country-language": "github:ladjs/country-language",
     "@material-ui/core": "^4.12.4",
     "@material-ui/icons": "^4.11.3",
     "@mui/icons-material": "^5.8.0",

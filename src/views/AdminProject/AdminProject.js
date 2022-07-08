@@ -1,7 +1,8 @@
 
-import React from "react";
+
 import Switch from "react-bootstrap-switch";
 import axios from 'axios';
+import React, { useEffect, useState } from "react";
 
 // reactstrap components
 import {
@@ -10,6 +11,7 @@ import {
   CardHeader,
   CardBody,
   CardTitle,
+  CardFooter,
   Row,
   Col,
   Button,
@@ -18,7 +20,7 @@ import {
   PaginationLink,
 } from "reactstrap";
 import { useHistory } from "react-router-dom";
-
+import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
@@ -39,12 +41,13 @@ function AdminProject() {
   let history = useHistory();
   const [singleSelect, setSingleSelect] = React.useState(null);
   const [multipleSelect, setMultipleSelect] = React.useState(null);
+  const [page, setPage] = React.useState(1);
   // fake API Data
   const [fakeData, setFakeData] = React.useState([]);
 
   React.useEffect(() => {
     axios
-      .get('https://reqres.in/api/users')
+      .get('https://api-dotnet-test.herokuapp.com/api/projects/admins?pageNumber=1&pageSize=6')
       .then(res => {
         setFakeData(res.data.data);
       })
@@ -52,6 +55,32 @@ function AdminProject() {
   }, [])
   console.log(fakeData);
 
+
+  const [projects, setProjects] = useState([]);
+  React.useEffect(() => {
+    axios
+      .get("https://api-dotnet-test.herokuapp.com/api/projects/admins?pageNumber=1&pageSize=6")
+      .then((res) => {
+        const data = res.data;
+        setProjects(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }, []);
+
+
+  const onclickPage = (e, page) => {
+    setProjects([]);;
+    setPage(page);
+    axios
+      .get(`https://api-dotnet-test.herokuapp.com/api/projects/admins?pageNumber=1&pageSize=6`)
+      .then(res => {
+        const data = res.data;
+        setProjects(data);
+      })
+      .catch(err => { console.log(err) })
+  }
 
   const onClick = () => {
     history.push("/admin/admin-projec/admin-project-details")
@@ -65,20 +94,10 @@ function AdminProject() {
             <Card>
 
               <CardHeader>
-                <CardTitle tag="h4">Account Project</CardTitle>
+                <CardTitle tag="h4">Projects</CardTitle>
                 <Row>
                   <Col xs={12} md={3} size="sm">
-                    <Select
-                      className="react-select warning"
-                      classNamePrefix="react-select"
-                      isMulti
-                      closeMenuOnSelect={false}
-                      placeholder="Sort Multiple Select"
-                      name="multipleSelect"
-                      value={multipleSelect}
-                      options={selectOptions}
-                      onChange={(value) => setMultipleSelect(value)}
-                    />
+
                   </Col>
                   <Col xs={12} md={3} size="sm">
 
@@ -99,7 +118,7 @@ function AdminProject() {
                       <th>Project Name</th>
                       <th>Customer</th>
                       <th>Auditor</th>
-                      <th className="text-right">Status</th>
+                      <th >Status</th>
                       <th className="text-right">View</th>
                     </tr>
                   </thead>
@@ -107,18 +126,16 @@ function AdminProject() {
 
 
                     {
-                      fakeData.map((item, index) => {
+                      projects.map((project, index) => {
                         return (<tr>
                           <td className="text-center">{index + 1}</td>
-                          <td>{item.first_name}</td>
-                          <td>{item.last_name}</td>
-                          <td>{item.email}</td>
-                          <td className="text-right">
-                            <Switch defaultValue={false} />
-
-
+                          <td>{project.name}</td>
+                          <td>{project.customerName}</td>
+                          <td>{project.email}</td>
+                          <td >
+                            {project.status}
                           </td>
-                          <td className="text-right btns-mr-5">
+                          <td className="text-right">
 
                             <Button onClick={onClick} color="primary" className="btn-round" style={
                               {
@@ -139,47 +156,17 @@ function AdminProject() {
                   </tbody>
                 </Table>
               </CardBody>
+              <CardFooter style={{ alignItems: 'center' }} >
+                <Stack spacing={2}>
+                  <Pagination
+                    count={5}
+                    page={page}
+                    onChange={onclickPage}
+                    variant="outlined" color="primary" />
+                </Stack>
+              </CardFooter>
             </Card>
           </Col>
-          <Col xs={12} md={5} size="sm">
-
-          </Col>
-          <Col xs={12} md={3} size="sm">
-            <Pagination>
-              <PaginationItem>
-                <PaginationLink href="#">
-                  <span aria-hidden="true">
-                    <i
-                      className="fa fa-angle-double-left"
-                      aria-hidden="true"
-                    />
-                  </span>
-                </PaginationLink>
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationLink href="#">1</PaginationLink>
-              </PaginationItem>
-              <PaginationItem active>
-                <PaginationLink href="#">2</PaginationLink>
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationLink href="#">3</PaginationLink>
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationLink href="#">
-                  <span aria-hidden="true">
-                    <i
-                      className="fa fa-angle-double-right"
-                      aria-hidden="true"
-                    />
-                  </span>
-                </PaginationLink>
-              </PaginationItem>
-            </Pagination>
-          </Col>
-          <Col xs={12} md={4} size="sm">
-          </Col>
-
         </Row>
       </div>
     </>

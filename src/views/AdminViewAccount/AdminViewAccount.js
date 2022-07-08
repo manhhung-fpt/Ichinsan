@@ -39,6 +39,7 @@ import PanelHeader from "components/PanelHeader/PanelHeader.js";
 import { useHistory } from "react-router-dom";
 import { CardText } from 'reactstrap';
 import User from "views/Pages/UserPage";
+import format from "date-fns/format";
 
 
 function AdminViewAccount(props) {
@@ -72,8 +73,6 @@ function AdminViewAccount(props) {
       })
       .catch(err => { console.log(err) })
   }, [])
-
-
 
 
   const onClickBack = () => {
@@ -186,20 +185,18 @@ function AdminViewAccount(props) {
                       </FormGroup>
                     </Col>
                     <Col className="pl-1" md="4">
+
                       <FormGroup>
                         <label>Date of Birth</label>
+
+                       
                         <Input
-                          defaultValue= {moment(new Date(profiles.dob)).format("DD/MM/YYYY")}
-                          // defaultValue={profiles.dob}
-                          placeholder=""
-                          type="datetime-local"
+                          defaultValue={profiles.birthday}
+                          placeholder="Birthday"
+                          type="text"
                           disabled
                         />
-                        {/* <Datetime
-                        inputProps={{ placeholder: "Datetime Picker Here" }}
-                        defaultValue= {moment(new Date(profiles.dob)).format("DD/MM/YYYY")}
-                        disabled
-                      /> */}
+                      
                       </FormGroup>
                     </Col>
                   </Row>
@@ -208,7 +205,7 @@ function AdminViewAccount(props) {
                       <FormGroup>
                         <label>Website</label>
                         <Input
-                          defaultValue={profiles.WebSite}
+                          defaultValue={profiles.website}
                           placeholder="Website"
                           type="text"
                           disabled
@@ -223,9 +220,8 @@ function AdminViewAccount(props) {
                         <label>About Me</label>
                         <Input
                           cols="80"
-                          defaultValue="Lamborghini Mercy, Your chick she so thirsty, I'm in
-                            that two seat Lambo."
-                          placeholder="Here can be your description"
+                          defaultValue={profiles.aboutMe}
+                        
                           rows="4"
                           type="textarea"
                           disabled
@@ -254,13 +250,9 @@ function AdminViewAccount(props) {
                     />
                     <h5 className="title">{localStorage.getItem("name")}</h5>
                   </a>
-                  <p className="description">michael24</p>
+                  
                 </div>
-                <p className="description text-center">
-                  {'"'}Lamborghini Mercy <br />
-                  Your chick she so thirsty <br />
-                  I'm in that two seat Lambo{'"'}
-                </p>
+              
               </CardBody>
               <hr />
               <div className="button-container">

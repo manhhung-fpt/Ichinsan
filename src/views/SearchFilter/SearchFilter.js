@@ -331,7 +331,7 @@ function SearchFilter() {
                                                     marginTop: "10px",
                                                 }}
                                             >
-                                                <a style={{ all: "unset", cursor: "pointer" }} href={`translator-progress-article?id=${article.id}`}>
+                                                <a style={{ all: "unset", cursor: "pointer" }} href={`SearchView?id=${article.id}`}>
                                                     <CardHeader>
                                                         <Row>
                                                             <Col xs={12} md={8}>
