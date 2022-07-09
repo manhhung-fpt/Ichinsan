@@ -503,7 +503,7 @@ function TranslatorProgressArticle(props) {
                                                                 fontWeight: "bold",
                                                             }}
                                                         >
-                                                            Null {article.translator}
+                                                            {article.translator}
                                                         </Col>
                                                     </Row>
                                                     <Row>

@@ -42,18 +42,6 @@ function AdminProject() {
   const [singleSelect, setSingleSelect] = React.useState(null);
   const [multipleSelect, setMultipleSelect] = React.useState(null);
   const [page, setPage] = React.useState(1);
-  // fake API Data
-  const [fakeData, setFakeData] = React.useState([]);
-
-  React.useEffect(() => {
-    axios
-      .get('https://api-dotnet-test.herokuapp.com/api/projects/admins?pageNumber=1&pageSize=6')
-      .then(res => {
-        setFakeData(res.data.data);
-      })
-      .catch(err => { console.log(err) })
-  }, [])
-  console.log(fakeData);
 
 
   const [projects, setProjects] = useState([]);
@@ -131,12 +119,12 @@ function AdminProject() {
                           <td className="text-center">{index + 1}</td>
                           <td>{project.name}</td>
                           <td>{project.customerName}</td>
-                          <td>{project.email}</td>
+                          <td>{project.totaltAuditor}</td>
                           <td >
                             {project.status}
                           </td>
                           <td className="text-right">
-
+                          <a style={{ all: "unset", cursor: "pointer" }} href={`admin-project-details?id=${project.id}`}>
                             <Button onClick={onClick} color="primary" className="btn-round" style={
                               {
 
@@ -146,6 +134,7 @@ function AdminProject() {
                             }>
                               <i className="now-ui-icons users_single-02" /> View
                             </Button>
+                            </a>
 
                           </td>
                         </tr>);

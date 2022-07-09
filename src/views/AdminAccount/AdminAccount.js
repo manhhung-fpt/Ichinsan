@@ -64,7 +64,7 @@ function AdminAccount() {
     setUsers([]);;
     setPage(page);
     axios
-      .get(`https://api-dotnet-test.herokuapp.com/api/users?pageNumber=1&pageSize=5`)
+      .get(`https://api-dotnet-test.herokuapp.com/api/users?pageNumber=${page}&pageSize=5`)
       .then(res => {
         const data = res.data;
         setUsers(data);

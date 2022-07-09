@@ -74,7 +74,7 @@ function TranslatorProgress() {
 
   const statusOptions = [
     { value: 1, content: 'ps1', label: "Pending" },
-    { value: 2, content: 'ps2', label: "In Progress" },
+    { value: 2, content: 'ps2', label: "Inprogress" },
     { value: 3, content: 'ps3', label: "Done" },
     { value: 4, content: 'ps4', label: "Postponed" },
     // { value: 5, content: 'ps5', label: "Postponed" },
@@ -90,7 +90,7 @@ function TranslatorProgress() {
   const [projects, setProjects] = useState([]);
   React.useEffect(() => {
     axios
-      .get("https://api-dotnet-test.herokuapp.com/api/projects?pageNumber=1&pageSize=3")
+      .get("https://api-dotnet-test.herokuapp.com/api/projects?pageSize=30")
       .then((res) => {
         const data = res.data;
         setProjects(data);
