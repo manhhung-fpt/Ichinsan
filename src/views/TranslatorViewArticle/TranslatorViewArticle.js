@@ -119,7 +119,7 @@ function TranslatorViewArticle(props) {
     const singleFileRef = React.useRef();
 
 
-    const [article, setArticle] = React.useState({});
+
     const [modalNotice, setModalNotice] = React.useState(false);
     const [modalEdit, setModalEdit] = React.useState(false);
 
@@ -130,6 +130,8 @@ function TranslatorViewArticle(props) {
         setModalNotice(!modalNotice);
     };
 
+
+    const [article, setArticle] = React.useState({});
     React.useEffect(() => {
         axios
             .get(`https://api-dotnet-test.herokuapp.com/api/articles/${articleId}`)
@@ -154,24 +156,7 @@ function TranslatorViewArticle(props) {
         setSingleFile(files);
         setSingleFileName(fileNames);
     };
-    const createTableData = () => {
-        var tableRows = [];
-        for (var i = 0; i < table_data.length; i++) {
-            tableRows.push(
-                <tr key={i}>
-                    <td>
-                        <div className="flag">
-                            <img src={table_data[i].flag} alt="us_flag" />
-                        </div>
-                    </td>
-                    <td>{table_data[i].country}</td>
-                    <td className="text-right">{table_data[i].count}</td>
-                    <td className="text-right">{table_data[i].percentage}</td>
-                </tr>
-            );
-        }
-        return tableRows;
-    };
+
     let history = useHistory();
     const onClick = () => {
         history.push("/admin/admin-projec/admin-project-details")
@@ -219,8 +204,8 @@ function TranslatorViewArticle(props) {
                         </Button>
 
                         <Breadcrumbs separator="›" aria-label="breadcrumb" style={{ padding: '20px' }}>
-                            <Link underline="hover" color="inherit" href="/admin/translator-recruitment">
-                                Recruiment Progress
+                            <Link underline="hover" color="inherit" href="/admin/translator-progress">
+                                Translator Progress
                             </Link>
 
                             <Typography color="text.primary">Article Details</Typography>
@@ -241,7 +226,18 @@ function TranslatorViewArticle(props) {
                                         onClick={() => window.location.href = "#card1"}
                                     >
                                     </Action>
+                                    <Action
 
+                                        text="Translations"
+                                        onClick={() => window.location.href = "#card2"}
+                                    >
+                                    </Action>
+                                    <Action
+
+                                        text="Feedback"
+                                        onClick={() => window.location.href = "#card3"}
+                                    >
+                                    </Action>
                                 </Fab>
                                 <CardTitle id="card1" tag="h4">Article Detail :</CardTitle>
 
@@ -249,7 +245,7 @@ function TranslatorViewArticle(props) {
 
                                     <Col xs={12} lg={6}>
                                         <Card>
-                                            <a style={{ all: "unset", cursor: "pointer" }} href={`recruitment-view-article?id=${article.id}`}>
+                                            <a style={{ all: "unset", cursor: "pointer" }} href={`translator-progress-article?id=${article.id}`}>
                                                 <CardHeader>
                                                     <Row>
                                                         <Col xs={12} md={8}>
@@ -258,7 +254,7 @@ function TranslatorViewArticle(props) {
                                                                 fontSize: "20px",
                                                                 fontWeight: "bold",
                                                             }}>
-                                                                Null
+                                                                
                                                                 {article.categoryName}</CardTitle>
                                                         </Col>
                                                         <Col xs={12} md={4}>
@@ -339,6 +335,329 @@ function TranslatorViewArticle(props) {
                                     </Col>
 
                                 </Row>
+
+                                <CardTitle id="card2" tag="h4"
+
+                                >Translation :</CardTitle>
+
+                                <Row>
+
+                                    <Col xs={12} lg={8}>
+                                        <Card>
+                                            <a style={{ all: "unset", cursor: "pointer" }} href={`translator-progress-article?id=${article.id}`}>
+                                                <CardHeader>
+                                                    <Row>
+                                                        <Col xs={12} md={4}>
+                                                            <CardTitle style={{
+                                                                color: "black",
+                                                                fontSize: "20px",
+                                                                fontWeight: "bold",
+                                                            }}>
+                                                                <CropOriginalIcon style={{
+                                                                    marginRight: "10px",
+                                                                }}></CropOriginalIcon>
+                                                                Original Article :
+                                                            </CardTitle>
+                                                        </Col>
+                                                        <Col xs={12} md={1}>
+                                                            <CardTitle style={{
+                                                                color: "#2CA8FF",
+                                                                fontSize: "20px",
+                                                                fontWeight: "bold",
+                                                            }}>
+                                                                <DownloadIcon></DownloadIcon>
+                                                            </CardTitle>
+                                                        </Col>
+                                                        <Col xs={12} md={7}>
+                                                            <CardTitle style={{
+                                                                color: "#2CA8FF",
+                                                                fontSize: "20px",
+                                                                fontWeight: "bold",
+                                                            }}>
+                                                              
+
+                                                                {/* 
+                                                <input
+                                                    type="file"
+                                                    className="inputFileHidden"
+                                                    style={{ zIndex: -1 }}
+                                                    ref={singleFileRef}
+                                                    onChange={(e) => addSingleFile(e)}
+                                                /> */}
+
+                                                            </CardTitle>
+                                                        </Col>
+                                                    </Row>
+                                                </CardHeader>
+
+                                                <CardHeader>
+                                                    <Row>
+                                                        <Col xs={12} md={4}>
+                                                            <CardTitle style={{
+                                                                color: "black",
+                                                                fontSize: "20px",
+                                                                fontWeight: "bold",
+                                                            }}>
+                                                                <TranslateIcon
+                                                                    style={{
+                                                                        marginRight: "10px",
+                                                                    }}
+                                                                ></TranslateIcon>
+                                                                Translation Article :
+                                                            </CardTitle>
+                                                        </Col>
+                                                        <Col xs={12} md={1}>
+                                                            <CardTitle style={{
+                                                                color: "#2CA8FF",
+                                                                fontSize: "20px",
+                                                                fontWeight: "bold",
+                                                            }}>
+                                                                <UploadIcon></UploadIcon>
+                                                            </CardTitle>
+                                                        </Col>
+                                                        <Col xs={12} md={7}>
+                                                            <CardTitle style={{
+                                                                color: "#2CA8FF",
+                                                                fontSize: "20px",
+                                                                fontWeight: "bold",
+                                                            }}>
+
+                                                                <Input
+                                                                    type="text"
+                                                                    className="inputFileVisible"
+                                                                    placeholder="Dowdload File..."
+                                                                    onClick={(e) => handleSingleFileInput(e)}
+                                                                    defaultValue={singleFileName}
+                                                                />
+                                                                <input
+                                                                    type="file"
+                                                                    className="inputFileHidden"
+                                                                    style={{ zIndex: -1 }}
+                                                                    ref={singleFileRef}
+                                                                    onChange={(e) => addSingleFile(e)}
+                                                                />
+
+                                                            </CardTitle>
+                                                            {singleFile !== null && singleFileName !== "" ? (
+                                                                <Row>
+                                                                    <Col xs={12} md={5} size="sm"  >
+                                                                        <Button onClick={onClickPostpose} className="btn-danger" color="primary" style={
+                                                                            {
+
+                                                                                fontSize: "10px",
+
+                                                                            }
+                                                                        }>
+                                                                            Edit
+                                                                        </Button>
+                                                                    </Col>
+                                                                    <Col xs={12} md={5} size="sm"  >
+                                                                        <Button onClick={onClickPostpose} className="btn-info" color="primary" style={
+                                                                            {
+
+                                                                                fontSize: "10px",
+
+                                                                            }
+                                                                        }>
+                                                                            Remove
+                                                                        </Button>
+                                                                    </Col>
+                                                                </Row>
+
+                                                            ) : (
+                                                                <Button hidden onClick={onClickAdd} className="btn-info" color="default" style={
+                                                                    {
+
+                                                                        fontSize: "10px",
+
+                                                                    }
+                                                                }>
+                                                                    Add an Article
+                                                                </Button>
+                                                            )}
+                                                        </Col>
+                                                    </Row>
+                                                </CardHeader>
+                                                <CardBody style={{
+                                                    marginTop: "-20px",
+                                                }}>
+                                                    <Row>
+                                                        <Col xs={12} md={5}>
+                                                            <CardTitle style={{
+                                                                color: "black",
+                                                                fontSize: "20px",
+                                                                fontWeight: "bold",
+                                                            }}>
+                                                                <AccountCircleIcon
+                                                                    style={{
+                                                                        marginRight: "10px",
+                                                                    }}
+                                                                ></AccountCircleIcon>
+                                                                Translator Name :
+                                                            </CardTitle>
+                                                        </Col>
+                                                        <Col xs={12} md={7}
+                                                            style={{
+                                                                color: "#2CA8FF",
+                                                                fontSize: "20px",
+                                                                fontWeight: "bold",
+                                                            }}
+                                                        >
+                                                            {article.translator}
+                                                        </Col>
+                                                    </Row>
+                                                    <Row>
+                                                        <Col xs={12} md={5}>
+                                                            <CardTitle style={{
+                                                                color: "black",
+                                                                fontSize: "20px",
+                                                                fontWeight: "bold",
+                                                            }}>
+                                                                <AccountCircleIcon
+                                                                    style={{
+                                                                        marginRight: "10px",
+                                                                    }}
+                                                                ></AccountCircleIcon>
+                                                                Auditor Name :
+                                                            </CardTitle>
+                                                        </Col>
+                                                        <Col xs={12} md={7}
+                                                            style={{
+                                                                color: "#2CA8FF",
+                                                                fontSize: "20px",
+                                                                fontWeight: "bold",
+                                                            }}
+                                                        >
+                                                          {article.auditor}
+                                                        </Col>
+                                                    </Row>
+
+                                                </CardBody>
+
+                                            </a>
+                                        </Card>
+                                    </Col>
+
+                                </Row>
+                                <CardTitle id="card3" tag="h4" >Article Feedback :</CardTitle>
+
+                                <Row>
+
+                                    <Col xs={12} lg={6}>
+                                        <Card>
+                                            <a style={{ all: "unset", cursor: "pointer" }} href={`translator-progress-article?id=${article.id}`}>
+                                                <CardHeader>
+                                                    <Row>
+                                                        <Col xs={12} md={8}>
+                                                            <CardTitle style={{
+                                                                color: "#2CA8FF",
+                                                                fontSize: "20px",
+                                                                fontWeight: "bold",
+                                                            }}>
+                                                              
+                                                                {article.categoryName}</CardTitle>
+                                                        </Col>
+                                                        <Col xs={12} md={4}>
+
+                                                        </Col>
+                                                    </Row>
+                                                </CardHeader>
+                                                <CardBody style={{
+                                                    marginTop: "-20px",
+                                                }}>
+                                                    <CardTitle style={{
+                                                        color: "black",
+                                                        fontSize: "24px",
+                                                        fontWeight: "bold",
+                                                    }}>
+                                                        {article.originalContent}
+                                                    </CardTitle>
+                                                    <CardTitle style={{
+                                                        color: "#ea108f",
+                                                        fontSize: "24px",
+                                                        fontWeight: "bold",
+                                                    }}>
+                                                        <StarRateIcon></StarRateIcon>
+                                                        <StarRateIcon></StarRateIcon>
+                                                        <StarRateIcon></StarRateIcon>
+                                                        <StarRateIcon></StarRateIcon>
+                                                        <StarRateIcon></StarRateIcon>
+                                                    </CardTitle>
+                                                    <CardTitle style={{
+                                                        color: "black",
+                                                        fontSize: "24px",
+                                                        fontWeight: "bold",
+                                                    }}>
+                                                        <ReactCountryFlag
+                                                            countryCode={article.languageFrom}
+                                                            svg
+                                                            style={{
+                                                                width: '2em',
+                                                                height: '2em',
+                                                            }}
+
+                                                        />
+                                                        <ArrowRightIcon style={{
+                                                            fontSize: "40px",
+                                                            marginLeft: "10px",
+                                                            marginRight: "10px",
+                                                        }}></ArrowRightIcon>
+                                                        <ReactCountryFlag
+                                                            countryCode={article.languageTo}
+                                                            svg
+                                                            style={{
+                                                                width: '2em',
+                                                                height: '2em',
+                                                            }}
+
+                                                        />
+                                                    </CardTitle>
+                                                </CardBody>
+                                                <CardFooter style={{
+                                                    fontSize: "16px",
+                                                    marginTop: "-20px",
+                                                    color: "red",
+                                                }}>
+
+                                                </CardFooter>
+                                                <div class="go-corner" href="#" style={{
+                                                    backgroundColor: "#2CA8FF",
+                                                }}>
+                                                    <div class="go-arrow">
+                                                        <ArrowRightIcon></ArrowRightIcon>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </Card>
+                                    </Col>
+
+                                </Row>
+                                <Button color="primary" onClick={toggleModalClassic}>
+                                    See More
+                                </Button>
+                                <Modal
+                                    isOpen={modalClassic}
+                                    toggle={toggleModalClassic}
+                                    className="text-center"
+                                >
+                                    <ModalHeader
+                                        className="justify-content-center uppercase title"
+                                        toggle={toggleModalClassic}
+                                        tag="h4"
+                                    >
+                                        {article.originalContent}
+                                    </ModalHeader>
+                                    <ModalBody>
+                                        {article.description}
+                                    </ModalBody>
+                                    <ModalFooter>
+
+                                        <Button color="danger" onClick={toggleModalClassic}>
+                                            Close
+                                        </Button>
+                                    </ModalFooter>
+                                </Modal>
+
 
 
                             </TabPane>
