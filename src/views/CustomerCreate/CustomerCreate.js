@@ -21,6 +21,7 @@ import { MenuItem } from "@mui/material";
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
 import { useHistory } from "react-router-dom";
 import CardActions from '@mui/material/CardActions';
+import NotificationAlert from "react-notification-alert";
 function CustomerCreate() {
   const [singleSelect, setSingleSelect] = React.useState("");
   const [projectName, setProjectName] = React.useState("");
@@ -28,10 +29,32 @@ function CustomerCreate() {
   const [description, setDescription] = React.useState("");
   const [category, setCategory] = React.useState([]);
   let history = useHistory();
-
+  const notificationAlert = React.useRef();
   const [count, setCount] = React.useState(0);
   const [count1, setCount1] = React.useState(0);
   const [count2, setCount2] = React.useState(0);
+  const alertSuccesfully = () =>{
+    var options = {};
+    options = {
+      place: "tr",
+      message:"Create sucessfully",
+      type: "info",
+      icon: "now-ui-icons ui-1_bell-53",
+      autoDismiss: 7,
+    };
+    notificationAlert.current.notificationAlert(options);
+  }
+  const alertError = (e) =>{
+    var options = {};
+    options = {
+      place: "tr",
+      message:e,
+      type: "danger",
+      icon: "now-ui-icons ui-1_bell-53",
+      autoDismiss: 7,
+    };
+    notificationAlert.current.notificationAlert(options);
+  }
 
   const sumbitForm = () => {
     var axios = require('axios');
@@ -52,10 +75,13 @@ function CustomerCreate() {
 
     axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
+        alertSuccesfully()
+        setTimeout(() => {
+          history.push('/admin/customer-home');
+        }, 2000);
       })
       .catch(function (error) {
-        console.log(error);
+        alertError(error.message);
       });
 
   }
@@ -102,6 +128,7 @@ function CustomerCreate() {
 
   return (
     <>
+    <NotificationAlert ref={notificationAlert} />
       <PanelHeader size="sm" />
       <div className="content">
         <Row>

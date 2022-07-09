@@ -20,42 +20,43 @@ import bgImage from "assets/img/bg14.jpg";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-import SweetAlert from "react-bootstrap-sweetalert";
+import NotificationAlert from "react-notification-alert";
 
 
 
 
 function LoginPage() {
+  const notificationAlert = React.useRef();
   let history = useHistory();
   const [alert, setAlert] = React.useState(null);
   const closeAlert = () => {
     localStorage.clear();
     setAlert(null);
   }
-  const titleAndTextAlert = () => {
-    setAlert(
-      <SweetAlert
-        style={{ display: "block", marginTop: "-100px" }}
-        title="Alert"
-        onConfirm={closeAlert}
-        confirmBtnBsStyle="info"
-      >
-        This account is not in the system
-      </SweetAlert>
-    );
-  };
-  const successAlert = () => {
-    setAlert(
-      <SweetAlert
-        success
-        style={{ display: "block", marginTop: "-100px" }}
-        title="Good job!"
-        confirmBtnBsStyle="info"
-      >
-        Login successfully
-      </SweetAlert>
-    );
-  };
+  const alertSuccesfully = () =>{
+    var options = {};
+    options = {
+      place: "tr",
+      message:"Login sucessfully",
+      type: "info",
+      icon: "now-ui-icons ui-1_bell-53",
+      autoDismiss: 7,
+    };
+    notificationAlert.current.notificationAlert(options);
+  }
+  const alertError = (e) =>{
+    var options = {};
+    options = {
+      place: "tr",
+      message:e,
+      type: "danger",
+      icon: "now-ui-icons ui-1_bell-53",
+      autoDismiss: 7,
+    };
+    notificationAlert.current.notificationAlert(options);
+  }
+  
+  
   const getToken = (email) => {
     var axios = require('axios');
     var data = JSON.stringify({
@@ -74,7 +75,7 @@ function LoginPage() {
       .then(function (response) {
         console.log(response.data === 'User is not existed');
         if (response.data === 'User is not existed') {
-          titleAndTextAlert();
+          alertError(response.data)
         } else {
           var token = response.data.token;
           var decoded = jwt_decode(token);
@@ -84,12 +85,15 @@ function LoginPage() {
           localStorage.setItem("userId", userId);
           localStorage.setItem("profileId", profileId);
           localStorage.setItem("role", decoded.role);
-          successAlert();
-          history.push("/admin/home")
+          alertSuccesfully()
+          setTimeout(() => {
+            history.push("/admin/home");
+        }, 2000);
+          
         }
       })
       .catch(function (error) {
-        console.log(error);
+        alertError(error.message)
       });
   }
   const signInWithGooggle = () => {
@@ -119,6 +123,7 @@ function LoginPage() {
   }, []);
   return (
     <>
+    <NotificationAlert ref={notificationAlert} />
       <div className="content">
         <div className="login-page">
           <Container>

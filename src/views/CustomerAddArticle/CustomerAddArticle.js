@@ -28,13 +28,16 @@ import { MenuItem } from "@mui/material";
 import moment from "moment";
 import Docxtemplater from "docxtemplater";
 import JSZip from "jszip";
+import NotificationAlert from "react-notification-alert";
 
 function CustomerAddArticle(props) {
   const projectId = props.location.search.split("=")[1];
+  const notificationAlert = React.useRef();
   const [singleSelect, setSingleSelect] = React.useState(null);
   const [singleSelect1, setSingleSelect1] = React.useState(null);
   const [singleFileName, setSingleFileName] = React.useState("");
   const [singleFileName1, setSingleFileName1] = React.useState("");
+  
 
   const [singleFile, setSingleFile] = React.useState(null);
   const [singleFile1, setSingleFile1] = React.useState(null);
@@ -57,7 +60,28 @@ function CustomerAddArticle(props) {
   const [count2, setCount2] = React.useState(0);
   const [language, setLanguageList] = React.useState([])
   const [countWord, setCountWord] = React.useState(0);
-
+  const alertSuccesfully = () =>{
+    var options = {};
+    options = {
+      place: "tr",
+      message:"Publish sucessfully",
+      type: "info",
+      icon: "now-ui-icons ui-1_bell-53",
+      autoDismiss: 7,
+    };
+    notificationAlert.current.notificationAlert(options);
+  }
+  const alertError = (e) =>{
+    var options = {};
+    options = {
+      place: "tr",
+      message:e,
+      type: "danger",
+      icon: "now-ui-icons ui-1_bell-53",
+      autoDismiss: 7,
+    };
+    notificationAlert.current.notificationAlert(options);
+  }
   const handleChangeTitle = (event) => {
     setTitle(event.target.value);
     setCount1(event.target.value.length);
@@ -107,10 +131,13 @@ function CustomerAddArticle(props) {
 
     axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
+        alertSuccesfully()
+        setTimeout(() => {
+          history.push(`customer-arti-detail?id=${projectId}`);
+      }, 2000);
       })
       .catch(function (error) {
-        console.log(error);
+        alertError(error.message)
       });
 
   }
@@ -125,15 +152,13 @@ function CustomerAddArticle(props) {
     let file = e.target.files[0];
     console.log(file);
     const reader = new FileReader();
-    reader.readAsBinaryString(file);
+    reader.readAsBinaryString(file); 
     reader.onload = async (e) =>{
       const content = e.target.result;
     var doc = new Docxtemplater(new PizZip(content), {delimiters: {start: '12op1j2po1j2poj1po', end: 'op21j4po21jp4oj1op24j'}});
     var text = doc.getFullText();
     setCountWord(text.length)
     }
-    
-    
     for (let i = 0; i < e.target.files.length; i++) {
       fileNames = fileNames + e.target.files[i].name;
     }
@@ -174,6 +199,7 @@ function CustomerAddArticle(props) {
 
   return (
     <>
+    <NotificationAlert ref={notificationAlert} />
       <PanelHeader size="sm" />
       <div className="content">
         <Row>
@@ -411,7 +437,7 @@ function CustomerAddArticle(props) {
                     }
                   }>
 
-                    publish
+                    Publish
                   </Button>
                 </Col>
               </CardActions>

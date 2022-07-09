@@ -25,6 +25,8 @@ import axios from 'axios';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import moment from "moment";
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
 // reactstrap components
 import {
@@ -40,20 +42,9 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Pagination,
-  PaginationItem,
-  PaginationLink,
   Button,
   CardTitle,
   CardHeader,
-  ButtonToolbar,
-  ButtonGroup,
-  FormGroup,
-  Input,
-  Modal,
-  ModalBody,
-  ModalFooter,
-  ModalHeader,
 } from "reactstrap";
 
 // core components
@@ -100,7 +91,7 @@ var selectOptions = [
 function TranslatorProgressArticle(props) {
   const [modalClassic, setModalClassic] = React.useState(false);
   const projectId = props.location.search.split("=")[1];
-  console.log(projectId);
+  const [page, setPage] = React.useState(1);
 
   const [singleSelect, setSingleSelect] = React.useState(null);
   const [singleFileName, setSingleFileName] = React.useState("");
@@ -159,7 +150,17 @@ function TranslatorProgressArticle(props) {
       .catch(err => { console.log(err) })
   }, [])
   console.log(project)
-
+  const onclickPage = (e, page) => {
+    setArticles([]);
+    setPage(page);
+    axios
+      .get(`https://api-dotnet-test.herokuapp.com/api/articles?pageNumber=${page}&pageSize=3`)
+      .then(res => {
+        const data = res.data;
+        setArticles(data);
+      })
+      .catch(err => { console.log(err) })
+  }
 
   const handleSingleFileInput = (e) => {
     singleFileRef.current.click(e);
@@ -424,8 +425,8 @@ function TranslatorProgressArticle(props) {
 
                                                 </td>
                                                 <td className="text-right btns-mr-5">
-
-                                                  <Button onClick={onClickView} style={
+                                                <a style={{ all: "unset", cursor: "pointer" }} href={`customer-recruitment-detail?id=${article.id}`}>
+                                                  <Button  style={
                                                     {
 
                                                       fontSize: "10px",
@@ -435,8 +436,9 @@ function TranslatorProgressArticle(props) {
 
                                                     View
                                                   </Button>
-
+                                                  </a>
                                                 </td>
+                                                
 
 
                                               </tr>);
@@ -458,46 +460,13 @@ function TranslatorProgressArticle(props) {
 
 
                           </TabContent>
-                          <Row>
-                            <Col xs={12} md={5} size="sm">
-
-                            </Col>
-                            <Col xs={12} md={3} size="sm">
-                              <Pagination>
-                                <PaginationItem>
-                                  <PaginationLink href="#">
-                                    <span aria-hidden="true">
-                                      <i
-                                        className="fa fa-angle-double-left"
-                                        aria-hidden="true"
-                                      />
-                                    </span>
-                                  </PaginationLink>
-                                </PaginationItem>
-                                <PaginationItem>
-                                  <PaginationLink href="#">1</PaginationLink>
-                                </PaginationItem>
-                                <PaginationItem active>
-                                  <PaginationLink href="#">2</PaginationLink>
-                                </PaginationItem>
-                                <PaginationItem>
-                                  <PaginationLink href="#">3</PaginationLink>
-                                </PaginationItem>
-                                <PaginationItem>
-                                  <PaginationLink href="#">
-                                    <span aria-hidden="true">
-                                      <i
-                                        className="fa fa-angle-double-right"
-                                        aria-hidden="true"
-                                      />
-                                    </span>
-                                  </PaginationLink>
-                                </PaginationItem>
-                              </Pagination>
-                            </Col>
-                            <Col xs={12} md={4} size="sm">
-                            </Col>
-                          </Row>
+                          <Stack spacing={2}>
+                            <Pagination
+                              count={5}
+                              page={page}
+                              onChange={onclickPage}
+                              variant="outlined" color="primary" />
+                          </Stack>
 
 
                         </TabPane>
@@ -508,9 +477,6 @@ function TranslatorProgressArticle(props) {
 
                   </Col>
                 </Row>
-
-
-
 
               </TabPane>
             </TabContent>
