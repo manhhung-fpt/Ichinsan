@@ -47,6 +47,7 @@ function AdminProjectDetails(props) {
   let history = useHistory();
   const [projects, setProjects] = useState([]);
   const [projectDetail, setProjectDetail] = useState({})
+  const [auditorName, setAuditorName] = useState('')
   const Change = 'actionType 1';
   const Assign = 'actionType 2';
   useEffect(() => {
@@ -56,6 +57,7 @@ function AdminProjectDetails(props) {
         const data = res.data;
         setProjectDetail(data)
         setProjects(data.articleDetailList);
+        
       })
       .catch((err) => {
         console.log(err);
@@ -154,6 +156,7 @@ function AdminProjectDetails(props) {
                     <tr>
                       <th className="text-center">#</th>
                       <th>Article Name</th>
+                      <th>Auditor Name</th>
                       <th>Language</th>
                       <th>Deadline</th>
                       <th className="text-right">Status</th>
@@ -167,6 +170,7 @@ function AdminProjectDetails(props) {
 
                         <td className="text-center">{index + 1}</td>
                         <td>{project.name}</td>
+                        <td>{project.auditorName}</td>
                         <td><ReactCountryFlag
                           countryCode={project.languageFrom}
                           svg

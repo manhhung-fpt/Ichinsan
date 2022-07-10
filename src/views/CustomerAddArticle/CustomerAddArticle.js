@@ -173,7 +173,7 @@ function CustomerAddArticle(props) {
   };
   
   const onClickBack = () => {
-    history.push("/admin/customer-arti-detail");
+    history.push(`customer-arti-detail?id=${projectId}`);
   }
   const handleSingleFileInput = (e) => {
     singleFileRef.current.click(e);

@@ -6,7 +6,6 @@ import ReactCountryFlag from "react-country-flag"
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 // reactstrap components
 import {
-
   Card,
   CardHeader,
   CardBody,
@@ -14,21 +13,18 @@ import {
   CardFooter,
   Row,
   Col,
-
   TabContent,
   TabPane,
   Nav,
   NavItem,
   NavLink,
-  Pagination,
-  PaginationItem,
-  PaginationLink,
   CardText,
 } from "reactstrap";
 
 import Select from "react-select";
 // core components
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
+import { Pagination } from "@mui/material";
 import { Link, useHistory } from "react-router-dom";
 import TranslateIcon from '@mui/icons-material/Translate';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
@@ -85,12 +81,12 @@ function TranslatorProgress() {
 
 
   const singleFileRef = React.useRef();
-
+  const [page, setPage] = React.useState(1);
 
   const [articles, setArticles] = useState([]);
   React.useEffect(() => {
     axios
-      .get("https://api-dotnet-test.herokuapp.com/api/articles?pageNumber=1&pageSize=3")
+      .get("https://api-dotnet-test.herokuapp.com/api/articles?pageNumber=1&pageSize=20")
       .then((res) => {
         const data = res.data;
         setArticles(data);
@@ -99,7 +95,19 @@ function TranslatorProgress() {
         console.log(err);
       })
   }, []);
-
+  const onClickPage = (e, page) => {
+    setPage(page);
+    var pages = page ? page : '1'
+    axios
+      .get(`https://api-dotnet-test.herokuapp.com/api/articles?pageNumber=${pages}&pageSize=20`)
+      .then((res) => {
+        const data = res.data;
+        setArticles(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
 
 
 
@@ -308,43 +316,17 @@ function TranslatorProgress() {
 
                 </TabContent>
                 <Row>
-                  <Col xs={12} md={5} size="sm">
+                  <Col xs={12} md={4} size="sm">
 
                   </Col>
-                  <Col xs={12} md={3} size="sm">
-                    <Pagination>
-                      <PaginationItem>
-                        <PaginationLink href="#">
-                          <span aria-hidden="true">
-                            <i
-                              className="fa fa-angle-double-left"
-                              aria-hidden="true"
-                            />
-                          </span>
-                        </PaginationLink>
-                      </PaginationItem>
-                      <PaginationItem>
-                        <PaginationLink href="#">1</PaginationLink>
-                      </PaginationItem>
-                      <PaginationItem active>
-                        <PaginationLink href="#">2</PaginationLink>
-                      </PaginationItem>
-                      <PaginationItem>
-                        <PaginationLink href="#">3</PaginationLink>
-                      </PaginationItem>
-                      <PaginationItem>
-                        <PaginationLink href="#">
-                          <span aria-hidden="true">
-                            <i
-                              className="fa fa-angle-double-right"
-                              aria-hidden="true"
-                            />
-                          </span>
-                        </PaginationLink>
-                      </PaginationItem>
-                    </Pagination>
+                  <Col xs={12} md={5} size="sm">
+                    <Pagination
+                      count={10}
+                      page={page}
+                      onChange={onClickPage}
+                      variant="outlined" color="primary" />
                   </Col>
-                  <Col xs={12} md={4} size="sm">
+                  <Col xs={12} md={3} size="sm">
                   </Col>
                 </Row>
 

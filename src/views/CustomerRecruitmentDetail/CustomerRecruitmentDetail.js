@@ -25,6 +25,7 @@ import axios from 'axios';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import moment from "moment";
+import { Pagination } from "@mui/material";
 
 // reactstrap components
 import {
@@ -40,9 +41,6 @@ import {
     Nav,
     NavItem,
     NavLink,
-    Pagination,
-    PaginationItem,
-    PaginationLink,
     Button,
     CardTitle,
     CardHeader,
@@ -122,6 +120,21 @@ function TranslatorProgressArticle(props) {
 
     const [modalNotice, setModalNotice] = React.useState(false);
     const [modalEdit, setModalEdit] = React.useState(false);
+    const [page, setPage] = React.useState(1);
+
+    const onClickPage = (event, page) => {
+        setPage(page);
+        var pages = page ? page : '1'
+        axios
+        .get(`https://api-dotnet-test.herokuapp.com/api/applications/translators?pageNumber=${pages}&pageSize=5`)
+        .then((res) => {
+            const data = res.data;
+            setTranslators(data);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+    }
 
     const toggleModalClassic = () => {
         setModalClassic(!modalClassic);
@@ -648,6 +661,14 @@ function TranslatorProgressArticle(props) {
                                                     </tbody>
                                                 </Table>
                                             </CardBody>
+                                            <CardFooter>
+                                                <Pagination
+                                                    count={10}
+                                                    page={page}
+                                                    
+                                                    onChange={onClickPage}
+                                                    variant="outlined" color="primary" />
+                                            </CardFooter>
 
                                         </Card>
                                     </Col>
@@ -705,7 +726,7 @@ function TranslatorProgressArticle(props) {
                                                                 fontSize: "20px",
                                                                 fontWeight: "bold",
                                                             }}>
-                                                               
+
                                                                 {article.categoryName}</CardTitle>
                                                         </Col>
                                                         <Col xs={12} md={4}>
