@@ -236,7 +236,7 @@ function AdminViewAccount(props) {
 
           </Col>
           <Col md="4">
-            <Card className="card-user">
+            {/* <Card className="card-user">
               <div className="image">
                 <img alt="..." src={require("assets/img/bg5.jpg").default} />
               </div>
@@ -284,7 +284,7 @@ function AdminViewAccount(props) {
                   <i className="fab fa-google-plus-square" />
                 </Button>
               </div>
-            </Card>
+            </Card> */}
           </Col>
         </Row>
 

@@ -310,7 +310,12 @@ function User(props) {
                   <p className="description">{profilesDetail.fullName}</p>
                 </div>
               </CardBody>
-              <CardTitle id="card1" tag="h4">My Project :</CardTitle>
+              <CardTitle id="card1" tag="h4"
+              className="title"
+              style={{
+                marginLeft: "150px",
+              }}
+              >My Project</CardTitle>
               {projectList.map((project, index) => (
                 <Card
                   style={{

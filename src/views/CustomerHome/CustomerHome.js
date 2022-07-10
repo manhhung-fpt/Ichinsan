@@ -215,57 +215,57 @@ function TranslatorProgress() {
                                   style={{
                                     marginTop: "10px",
                                   }}>
+                                  <a style={{ all: "unset", cursor: "pointer" }} href={`customer-arti-detail?id=${project.id}`}>
+                                    <CardHeader>
+                                      <Row>
+                                        <Col xs={12} md={8}>
+                                          <CardTitle style={{
+                                            color: "#2CA8FF",
+                                            fontSize: "20px",
+                                            fontWeight: "bold",
+                                          }}>
 
-                                  <CardHeader>
-                                    <Row>
-                                      <Col xs={12} md={8}>
-                                        <CardTitle style={{
-                                          color: "#2CA8FF",
-                                          fontSize: "20px",
-                                          fontWeight: "bold",
-                                        }}>
+                                            {project.categoryName}</CardTitle>
+                                        </Col>
+                                        <Col xs={12} md={4}>
 
-                                          {project.categoryName}</CardTitle>
-                                      </Col>
-                                      <Col xs={12} md={4}>
-
-                                      </Col>
-                                    </Row>
-                                  </CardHeader>
-                                  <CardBody style={{
-                                    marginTop: "-20px",
-                                  }}>
-                                    <CardTitle style={{
-                                      color: "black",
-                                      fontSize: "24px",
-                                      fontWeight: "bold",
+                                        </Col>
+                                      </Row>
+                                    </CardHeader>
+                                    <CardBody style={{
+                                      marginTop: "-20px",
                                     }}>
-                                      {project.name}
-                                    </CardTitle>
-                                    <CardText style={{
-                                      color: "black",
-                                      fontSize: "16px",
-                                      // fontWeight: "bold",
-                                    }}>Current Translator :
-                                      {project.currentTranslatorNumber}
-                                    </CardText>
-                                    <CardText style={{
-                                      color: "red",
-                                      fontSize: "16px",
-                                      // fontWeight: "bold",
-                                    }}>Total Translator :
-                                      {project.totalTranslator}
-                                    </CardText>
-                                  </CardBody>
+                                      <CardTitle style={{
+                                        color: "black",
+                                        fontSize: "24px",
+                                        fontWeight: "bold",
+                                      }}>
+                                        {project.name}
+                                      </CardTitle>
+                                      <CardText style={{
+                                        color: "black",
+                                        fontSize: "16px",
+                                        // fontWeight: "bold",
+                                      }}>Current Translator :
+                                        {project.currentTranslatorNumber}
+                                      </CardText>
+                                      <CardText style={{
+                                        color: "red",
+                                        fontSize: "16px",
+                                        // fontWeight: "bold",
+                                      }}>Total Translator :
+                                        {project.totalTranslator}
+                                      </CardText>
+                                    </CardBody>
 
-                                  <div class="go-corner" href="#" style={{
-                                    backgroundColor: "#2CA8FF",
-                                  }}>
-                                    <div class="go-arrow">
-                                      <ArrowRightIcon></ArrowRightIcon>
+                                    <div class="go-corner" href="#" style={{
+                                      backgroundColor: "#2CA8FF",
+                                    }}>
+                                      <div class="go-arrow">
+                                        <ArrowRightIcon></ArrowRightIcon>
+                                      </div>
                                     </div>
-                                  </div>
-
+                                  </a>
                                 </Card>
                               </Col>
                             })}
