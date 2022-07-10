@@ -39,6 +39,7 @@ h3 {
 }
 
 .card:hover {
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0px 0px 10px 0px rgba(6, 3, 3, 0.2); */
+    box-shadow: rgba(18, 183, 238, 0.199) -5px 5px, rgba(18, 183, 238, 0.19) -10px 10px ;
     transition: 0.3s;
 }

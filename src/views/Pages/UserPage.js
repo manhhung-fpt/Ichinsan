@@ -19,6 +19,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import Datetime from "react-datetime";
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 // reactstrap components
 import {
   Button,
@@ -27,6 +28,7 @@ import {
   Label,
   CardBody,
   CardFooter,
+  CardTitle,
   Row,
   Col,
   Form,
@@ -36,8 +38,10 @@ import {
 
 // core components
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
+import { id } from "date-fns/locale";
 
-function User() {
+function User(props) {
+  const articleId = props.location.search.split("=")[1];
   var token = localStorage.getItem("token");
   var userprofile = jwt_decode(token);
   const [profiles, setProfiles] = useState({});
@@ -48,6 +52,7 @@ function User() {
   const [website, setWebsite] = useState(profilesDetail.website);
   const [gender, setGender] = useState(profilesDetail.gender);
   const [aboutMe, setAboutMe] = useState(profilesDetail.aboutMe);
+  const [projectList, setProjectList] = useState([]);
 
 
   useEffect(() => {
@@ -79,12 +84,36 @@ function User() {
         console.log(err);
       })
   }
-  const editProfile = () =>{
+
+  const [user, setUser] = React.useState({});
+  React.useEffect(() => {
+    axios
+      .get(`https://api-dotnet-test.herokuapp.com/api/users/${localStorage.userId}`)
+      .then(res => {
+        //setFakeData(res.data.data);
+        setUser(res.data);
+        setProjectList(res.data.projectList);
+      })
+      .catch(err => { console.log(err) })
+  }, [])
+  console.log(user)
+  const [article, setArticle] = React.useState({});
+  React.useEffect(() => {
+      axios
+          .get(`https://api-dotnet-test.herokuapp.com/api/articles/${articleId}`)
+          .then(res => {
+              //setFakeData(res.data.data);
+              setArticle(res.data);
+          })
+          .catch(err => { console.log(err) })
+  }, [])
+  console.log(article)
+  const editProfile = () => {
     var axios = require('axios');
-  
+
     var data = JSON.stringify({
-      "fullName":  `${name}`,
-      "phoneNumber":`${phoneNumber}` ,
+      "fullName": `${name}`,
+      "phoneNumber": `${phoneNumber}`,
       "dob": `${dob}`,
       "gender": `${gender}`,
       "website": `${website}`,
@@ -280,45 +309,80 @@ function User() {
                   </a>
                   <p className="description">{profilesDetail.fullName}</p>
                 </div>
-                <p className="description text-center">
-                  {'"'}{profilesDetail.aboutMe}{'"'}
-                </p>
               </CardBody>
-              <hr />
-              <div className="button-container">
-                <Button
-                  className="btn-icon btn-round"
-                  color="neutral"
-                  href="#pablo"
-                  onClick={(e) => e.preventDefault()}
-                  size="lg"
+              <CardTitle id="card1" tag="h4">My Project :</CardTitle>
+              {projectList.map((project, index) => (
+                <Card
+                  style={{
+                    marginTop: "10px",
+                  }}
                 >
-                  <i className="fab fa-facebook-square" />
-                </Button>
-                <Button
-                  className="btn-icon btn-round"
-                  color="neutral"
-                  href="#pablo"
-                  onClick={(e) => e.preventDefault()}
-                  size="lg"
-                >
-                  <i className="fab fa-twitter" />
-                </Button>
-                <Button
-                  className="btn-icon btn-round"
-                  color="neutral"
-                  href="#pablo"
-                  onClick={(e) => e.preventDefault()}
-                  size="lg"
-                >
-                  <i className="fab fa-google-plus-square" />
-                </Button>
-              </div>
-            </Card>
-          </Col>
-        </Row>
+                  <a style={{ all: "unset", cursor: "pointer" }} href={`admin/customer-arti-detail?id=${project.projectId}`}>
+                  <CardHeader>
+                    <Row>
+                      <Col xs={12} md={8}>
+                        <CardTitle style={{
+                          color: "#2CA8FF",
+                          fontSize: "20px",
+                          fontWeight: "bold",
+                        }}>
 
-      </div>
+
+                          {project.projectName}
+
+
+                        </CardTitle>
+                      </Col>
+                      <Col xs={12} md={4}>
+
+                      </Col>
+                    </Row>
+                  </CardHeader>
+                  <div class="go-corner" href="#" style={{
+                    backgroundColor: "#2CA8FF",
+                  }}>
+                    <div class="go-arrow">
+                      <ArrowRightIcon></ArrowRightIcon>
+                    </div>
+                  </div>
+                  </a>
+                </Card>
+              ))}
+            <hr />
+            <div className="button-container">
+              <Button
+                className="btn-icon btn-round"
+                color="neutral"
+                href="#pablo"
+                onClick={(e) => e.preventDefault()}
+                size="lg"
+              >
+                <i className="fab fa-facebook-square" />
+              </Button>
+              <Button
+                className="btn-icon btn-round"
+                color="neutral"
+                href="#pablo"
+                onClick={(e) => e.preventDefault()}
+                size="lg"
+              >
+                <i className="fab fa-twitter" />
+              </Button>
+              <Button
+                className="btn-icon btn-round"
+                color="neutral"
+                href="#pablo"
+                onClick={(e) => e.preventDefault()}
+                size="lg"
+              >
+                <i className="fab fa-google-plus-square" />
+              </Button>
+            </div>
+          </Card>
+        </Col>
+      </Row>
+
+    </div>
 
 
 

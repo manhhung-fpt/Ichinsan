@@ -254,7 +254,7 @@ function TranslatorViewArticle(props) {
                                                                 fontSize: "20px",
                                                                 fontWeight: "bold",
                                                             }}>
-                                                                
+
                                                                 {article.categoryName}</CardTitle>
                                                         </Col>
                                                         <Col xs={12} md={4}>
@@ -374,7 +374,7 @@ function TranslatorViewArticle(props) {
                                                                 fontSize: "20px",
                                                                 fontWeight: "bold",
                                                             }}>
-                                                              
+
 
                                                                 {/* 
                                                 <input
@@ -528,7 +528,7 @@ function TranslatorViewArticle(props) {
                                                                 fontWeight: "bold",
                                                             }}
                                                         >
-                                                          {article.auditor}
+                                                            {article.auditor}
                                                         </Col>
                                                     </Row>
 
@@ -554,7 +554,7 @@ function TranslatorViewArticle(props) {
                                                                 fontSize: "20px",
                                                                 fontWeight: "bold",
                                                             }}>
-                                                              
+
                                                                 {article.categoryName}</CardTitle>
                                                         </Col>
                                                         <Col xs={12} md={4}>
