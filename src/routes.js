@@ -69,7 +69,7 @@ let routes = [
 
   {
     path: "/admin-account",
-    name: "Admin Account",
+    name: "Account",
     icon: "now-ui-icons business_badge",
     component: AdminAccount,
     layout: "/admin",
@@ -77,7 +77,7 @@ let routes = [
   },
   {
     path: "/admin-view-info",
-    name: "Admin View Info",
+    name: "View Info",
     icon: "now-ui-icons business_badge",
     component: AdminViewAccount,
     props: {a:"a"},
@@ -87,7 +87,7 @@ let routes = [
   },
   {
     path: "/admin-project",
-    name: "Admin Project",
+    name: "Project",
     icon: "now-ui-icons business_badge",
     component: AdminProject,
     layout: "/admin",
@@ -95,7 +95,7 @@ let routes = [
   },
   {
     path: "/admin-projec/admin-project-details",
-    name: "Admin Project Details",
+    name: "Project Details",
     icon: "now-ui-icons business_badge",
     component: AdminProjectDetails,
     layout: "/admin",
@@ -103,7 +103,7 @@ let routes = [
   },
   {
     path: "/admin-add-auditor",
-    name: "Admin Add Auditor",
+    name: "Add Auditor",
     icon: "now-ui-icons business_badge",
     component: AdminAddAuditor,
     hideInDetail: true,
@@ -120,7 +120,7 @@ let routes = [
   },
   {
     path: "/admin-assign",
-    name: "Admin Assign",
+    name: "Assign",
     icon: "now-ui-icons business_badge",
     component: AdminAssign,
     hideInDetail: true,
@@ -128,7 +128,7 @@ let routes = [
   },
   {
     path: "/admin-category-home",
-    name: "Admin Category Home",
+    name: "Category Home",
     icon: "now-ui-icons business_badge",
     component: AdminCategoryHome,
     layout: "/admin",
@@ -145,7 +145,7 @@ let routes = [
   },
   {
     path: "/customer-home",
-    name: "Customer Progress",
+    name: "Progress",
     icon: "now-ui-icons business_badge",
     component: CustomerHome,
     layout: "/admin",
@@ -172,7 +172,7 @@ let routes = [
   
   {
     path: "/customer-progress-project",
-    name: "Customer Progress Project",
+    name: "Progress Project",
     icon: "now-ui-icons business_badge",
     component: CustomerProgressProject,
     hideInDetail: true,
@@ -181,7 +181,7 @@ let routes = [
   
   {
     path: "/customer-edit-project",
-    name: "Customer Edit Project",
+    name: "Edit Project",
     icon: "now-ui-icons business_badge",
     component: CustomerEditProject,
     hideInDetail: true,
@@ -189,7 +189,7 @@ let routes = [
   },
   {
     path: "/customer-article",
-    name: "Customer Article",
+    name: "Article",
     icon: "now-ui-icons business_badge",
     component: CustomeArticle,
     hideInDetail: true,
@@ -197,7 +197,7 @@ let routes = [
   },
   {
     path: "/customer-add-article",
-    name: "Customer Add Article",
+    name: "Add Article",
     icon: "now-ui-icons business_badge",
     component: CustomerAddArticle,
     hideInDetail: true,
@@ -205,7 +205,7 @@ let routes = [
   },
   {
     path: "/customer-edit-article",
-    name: "Customer Edit Article",
+    name: "Edit Article",
     icon: "now-ui-icons business_badge",
     component: CustomerEditArticle,
     hideInDetail: true,
@@ -213,7 +213,7 @@ let routes = [
   },
   {
     path: "/customer-progress-article",
-    name: "Customer Recruitment",
+    name: "Recruitment",
     icon: "now-ui-icons business_badge",
     component: CustomerProgressArticle,
     
@@ -222,7 +222,7 @@ let routes = [
   },
   {
     path: "/customer-create=feedback",
-    name: "Customer Create Feedback",
+    name: "Create Feedback",
     icon: "now-ui-icons business_badge",
     component: CustomerCreateFeedback,
     hideInDetail: true,
@@ -230,7 +230,7 @@ let routes = [
   },
   {
     path: "/customer-edit-feedback",
-    name: "Customer Edit Feedback",
+    name: "Edit Feedback",
     icon: "now-ui-icons business_badge",
     component: CustomerEditFeedback,
     hideInDetail: true,
@@ -238,7 +238,7 @@ let routes = [
   },
   {
     path: "/customer-arti-detail",
-    name: "Customer Article Detail",
+    name: "Article Detail",
     icon: "now-ui-icons business_badge",
     component: CustomerArticleDetail,
     props: {a:"a"},
@@ -257,7 +257,7 @@ let routes = [
   },
   {
     path: "/translator-recruitment",
-    name: "Translator Recruitment",
+    name: "Recruitment",
     icon: "now-ui-icons business_badge",
     component: TranslatorRecruiment,
     rolePermission: "Translator",
@@ -265,7 +265,7 @@ let routes = [
   },
   {
     path: "/recruitment-view-article",
-    name: "Translator View Article",
+    name: "View Article",
     icon: "now-ui-icons business_badge",
     component: TranslatorViewArticle,
     props: {a:"a"},
@@ -275,7 +275,7 @@ let routes = [
   },
   {
     path: "/translator-progress",
-    name: "Translator Progress",
+    name: "Progress",
     icon: "now-ui-icons business_badge",
     component: TranslatorProgress,
     rolePermission: "Translator",
@@ -283,7 +283,7 @@ let routes = [
   },
   {
     path: "/translator-progress-article",
-    name: "Translator Article",
+    name: "Article",
     icon: "now-ui-icons business_badge",
     component: TranslatorProgressArticle,
     props: {a:"a"},
@@ -294,7 +294,7 @@ let routes = [
   
   {
     path: "/auditor-progress",
-    name: "Auditor Progress",
+    name: "Progress",
     icon: "now-ui-icons business_badge",
     component: AuditorProgress,
     rolePermission: "Auditor",
@@ -302,7 +302,7 @@ let routes = [
   },
   {
     path: "/auditor-progress-article",
-    name: "Auditor Article",
+    name: "Article",
     icon: "now-ui-icons business_badge",
     component: AuditorProgressArticle,
     props: {a:"a"},
@@ -312,7 +312,7 @@ let routes = [
   },
   {
     path: "/auditor-create=feedback",
-    name: "Auditor Create Feedback",
+    name: "Create Feedback",
     icon: "now-ui-icons business_badge",
     component: AuditorCreateFeedback,
     hideInDetail: true,
@@ -320,7 +320,7 @@ let routes = [
   },
   {
     path: "/auditor-edit-feedback",
-    name: "Auditor Edit Feedback",
+    name: "Edit Feedback",
     icon: "now-ui-icons business_badge",
     component: AuditorEditFeedback,
     hideInDetail: true,
@@ -336,7 +336,7 @@ let routes = [
   },
   {
     path: "/admin-projec-category",
-    name: "Admin Project Category",
+    name: "Project Category",
     icon: "now-ui-icons business_badge",
     component: AdminProjectCategory,
     layout: "/admin",
@@ -344,7 +344,7 @@ let routes = [
   },
   {
     path: "/admin-feedback-category",
-    name: "Admin Feedback Category",
+    name: "Feedback Category",
     icon: "now-ui-icons business_badge",
     component: AdminFeedBackCategory,
     layout: "/admin",
@@ -352,7 +352,7 @@ let routes = [
   },
   {
     path: "/admin-add-category",
-    name: "Admin Add Category",
+    name: "Add Category",
     icon: "now-ui-icons business_badge",
     hideInDetail: true,
     component: AdminAddCategory,

@@ -51,22 +51,35 @@ var selectOptions = [
 function AdminAddAuditor() {
   let history = useHistory();
   const location = useLocation();
-  const Edit ="edit";
-  debugger
+  const Edit = "edit";
   const [singleSelect, setSingleSelect] = React.useState(null);
   const [multipleSelect, setMultipleSelect] = React.useState(null);
   const [projects, setProjects] = useState([]);
+  const [radioCheck, setRadioCheck] = useState('');
   useEffect(() => {
     axios
-      .get("https://62a586f2b9b74f766a3afda9.mockapi.io/api/projectDetails/articles")
+      .get("https://api-dotnet-test.herokuapp.com/api/users?pageNumber=1&pageSize=50")
       .then((res) => {
         const data = res.data;
-        setProjects(data);
+
+        filter123(data);
       })
       .catch((err) => {
         console.log(err);
       })
   }, []);
+  const filter123 = (data) => {
+    let newData = data.filter(e => e.role === 'Auditor')
+    setProjects(newData);
+
+  }
+  const onChangeSelect = (e) =>{
+    setRadioCheck(e.target.value)
+  }
+  const handleEdit = () =>{
+    // nhớ set lại default value khi ko có change select 
+    console.log(radioCheck);
+  }
   const onClickBack = () => {
     history.push("/admin/admin-projec/admin-project-details");
   }
@@ -109,11 +122,11 @@ function AdminAddAuditor() {
                   <Col xs={12} md={10} size="sm">
 
                   </Col>
-                  { location.state !== undefined && location.state.actionType === Edit ? (
+                  {location.state !== undefined && location.state.actionType === Edit ? (
                     <Col xs={12} md={2} size="sm">
-                      <Button color="danger" style={
+                      <Button onClick={handleEdit} color="danger" style={
                         {
-                          
+
                           fontSize: "10px",
 
                         }
@@ -205,14 +218,20 @@ function AdminAddAuditor() {
                         {projects.map((project, index) => (
                           <tr>
                             <td className="text-center">{index + 1}</td>
-                            <td>{project.auditorName}</td>
+                            <td>{project.email}</td>
                             <td>{project.language}</td>
                             <td>{project.level}</td>
                             <td className="text-center">
-                              <FormGroup check>
+                              <FormGroup  check>
                                 <Label check>
-                                  <Input defaultChecked type="checkbox" />
-                                  <span className="form-check-sign" />
+                                  <Input
+                                    defaultChecked = {project.email === 'admin@admin.com'}
+                                    value={project.email}
+                                    id="exampleRadios3"
+                                    name="exampleRadio"
+                                    type="radio"
+                                    onChange={onChangeSelect}
+                                  />
                                 </Label>
                               </FormGroup>
                             </td>
