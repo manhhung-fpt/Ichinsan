@@ -695,7 +695,17 @@ function TranslatorProgressArticle(props) {
                                 </Row>
 
                                 <CardTitle id="card3" tag="h4" >Article Feedback :</CardTitle>
+                                <Col md={2}>
+                                    <Button onClick={onClickAdd} className="btn-info" color="default" style={
+                                        {
 
+                                            fontSize: "10px",
+                                            backgroundColor: "#ffca00",
+                                        }
+                                    }>
+                                        Add an Feedback +
+                                    </Button>
+                                </Col>
                                 <Row>
 
                                     <Col xs={12} lg={10}>
@@ -771,17 +781,7 @@ function TranslatorProgressArticle(props) {
                                                                         Delete
                                                                     </Button>
                                                                 </Col>
-                                                                <Col md={2}>
-                                                                    <Button onClick={onClickAdd} className="btn-info" color="default" style={
-                                                                        {
 
-                                                                            fontSize: "10px",
-                                                                            backgroundColor: "#ffca00",
-                                                                        }
-                                                                    }>
-                                                                        Add an Feedback +
-                                                                    </Button>
-                                                                </Col>
 
                                                             </CardActions>
                                                         </a>
