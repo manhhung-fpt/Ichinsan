@@ -84,6 +84,7 @@ import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import UploadIcon from '@mui/icons-material/Upload';
+import NotificationAlert from "react-notification-alert";
 
 
 
@@ -98,6 +99,7 @@ var selectOptions = [
     { value: "six", label: "Six" },
 ];
 function TranslatorViewArticle(props) {
+    const notificationAlert = React.useRef();
     const [modalClassic, setModalClassic] = React.useState(false);
     const articleId = props.location.search.split("=")[1];
     console.log(articleId);
@@ -117,6 +119,9 @@ function TranslatorViewArticle(props) {
     const [fakeData, setFakeData] = React.useState([]);
     const Edit = "edit";
     const singleFileRef = React.useRef();
+    const [articlesId, setArticleId] = React.useState('')
+    const [projectId, setProjectId] = React.useState('')
+    const uId = localStorage.getItem("userId")
 
 
 
@@ -138,6 +143,8 @@ function TranslatorViewArticle(props) {
             .then(res => {
                 //setFakeData(res.data.data);
                 setArticle(res.data);
+                setArticleId(res.data.id)
+                setProjectId(res.data.projectId)
             })
             .catch(err => { console.log(err) })
     }, [])
@@ -156,6 +163,48 @@ function TranslatorViewArticle(props) {
         setSingleFile(files);
         setSingleFileName(fileNames);
     };
+    const alertSuccesfully = () =>{
+        var options = {};
+        options = {
+          place: "tr",
+          message:"Aplly Successfully",
+          type: "info",
+          icon: "now-ui-icons ui-1_bell-53",
+          autoDismiss: 7,
+        };
+        notificationAlert.current.notificationAlert(options);
+      }
+      
+    const apllyArticle = () => {
+        console.log('project:', projectId);
+        console.log('articles:', articleId);
+
+        console.log('user:', uId);
+        var axios = require('axios');
+        var data = JSON.stringify({
+            "projectId": projectId,
+            "articleId": articleId,
+            "appliedBy": uId
+        });
+
+        var config = {
+            method: 'post',
+            url: 'https://api-dotnet-test.herokuapp.com/api/applications',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: data
+        };
+
+        axios(config)
+            .then(function (response) {
+                alertSuccesfully()
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+    }
 
     let history = useHistory();
     const onClick = () => {
@@ -168,7 +217,7 @@ function TranslatorViewArticle(props) {
         history.push("/admin/customer-progress-article")
     };
     const onClickFeedback = () => {
-        history.push("/admin/customer-create=feedback")
+        history.push("/admin/customer-create-feedback")
     };
     const onClickAdd = () => {
         history.push("/admin/customer-add-article")
@@ -183,6 +232,7 @@ function TranslatorViewArticle(props) {
 
     return (
         <>
+        <NotificationAlert ref={notificationAlert} />
             <PanelHeader
                 size="sm" />
 
@@ -239,7 +289,20 @@ function TranslatorViewArticle(props) {
                                     >
                                     </Action>
                                 </Fab>
-                                <CardTitle id="card1" tag="h4">Article Detail :</CardTitle>
+                                <CardTitle id="card1" tag="h4">Article Detail :
+
+                                </CardTitle>
+                                <div className="pull-right">
+                                    <Button color="info" onClick={apllyArticle} style={
+                                        {
+
+                                            fontSize: "10px",
+
+                                        }
+                                    }>
+                                        Apply
+                                    </Button>
+                                </div>
 
                                 <Row>
 

@@ -112,7 +112,8 @@ function TranslatorProgressArticle(props) {
     const [pageSubcategories, setpageSubcategories] = React.useState("ps1");
 
     const location = useLocation();
-    const [fakeData, setFakeData] = React.useState([]);
+    
+    const [projectId, setProjectId] = React.useState('')
     const Edit = "edit";
     const singleFileRef = React.useRef();
 
@@ -151,6 +152,7 @@ function TranslatorProgressArticle(props) {
             .then(res => {
                 //setFakeData(res.data.data);
                 setArticle(res.data);
+                setProjectId(res.data.projectId)
             })
             .catch(err => { console.log(err) })
     }, [])
@@ -193,10 +195,10 @@ function TranslatorProgressArticle(props) {
         history.push("/admin/customer-progress-article")
     };
     const onClickFeedback = () => {
-        history.push("/admin/customer-create=feedback")
+        history.push("/admin/customer-create-feedback")
     };
     const onClickAdd = () => {
-        history.push("/admin/customer-create=feedback")
+        history.push(`customer-create-feedback?id=${articleId}&projectId=${projectId}`)
     };
     const onClickPostpose = () => {
         history.push("/admin/customer-home")
