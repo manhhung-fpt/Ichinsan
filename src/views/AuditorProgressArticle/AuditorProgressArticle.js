@@ -168,10 +168,10 @@ function AuditorProgressArticle(props) {
         history.push("/admin/customer-progress-article")
     };
     const onClickFeedback = () => {
-        history.push("/admin/customer-create=feedback")
+        history.push("/admin/customer-create-feedback")
     };
     const onClickAdd = () => {
-        history.push("/admin/customer-create=feedback ")
+        history.push("/admin/customer-create-feedback ")
     };
     const onClickPostpose = () => {
         history.push("/admin/translator-progress")

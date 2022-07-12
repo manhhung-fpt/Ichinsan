@@ -221,7 +221,7 @@ let routes = [
     layout: "/admin",
   },
   {
-    path: "/customer-create=feedback",
+    path: "/customer-create-feedback",
     name: "Create Feedback",
     icon: "now-ui-icons business_badge",
     component: CustomerCreateFeedback,

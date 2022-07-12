@@ -21,15 +21,22 @@ import Select from "react-select";
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
 import { useHistory } from "react-router-dom";
 import CardActions from '@mui/material/CardActions';
+import NotificationAlert from "react-notification-alert";
 var selectOptions = [
-  { value: "Category1", label: "Category1" },
-  { value: "Category2", label: "Category2" },
-  { value: "Category3", label: "Category3" },
-  { value: "Category4", label: "Category4" },
-  { value: "Category5", label: "Category5" },
-  { value: "Category6", label: "Category6" },
+  { value: 1, label: "Accuracy" },
+  { value: 2, label: "Spelling" },
+  { value: 3, label: "Punctuation" },
+  { value: 4, label: "Style" },
+  { value: 5, label: "Layout" },
+  { value: 6, label: "Client’s requirements" },
 ];
-function CustomerCreateFeedback() {
+function CustomerCreateFeedback(props) {
+  const queryParams = new URLSearchParams(props.location.search);
+
+  const articleId = queryParams.get("id");
+
+  const projectId = queryParams.get("projectId");
+  const notificationAlert = React.useRef();
   const [singleSelect, setSingleSelect] = React.useState(null);
   const [singleFileName, setSingleFileName] = React.useState("");
   const [singleFile, setSingleFile] = React.useState(null);
@@ -39,18 +46,69 @@ function CustomerCreateFeedback() {
   const [vTabsIcons, setvTabsIcons] = React.useState("vti1");
   const [pageSubcategories, setpageSubcategories] = React.useState("ps1");
   const singleFileRef = React.useRef();
-  const [value, setValue] = React.useState(2);
+  const [rating, setRating] = React.useState(2);
+  const [description, setDescription] = React.useState('');
+  const [count2, setCount2] = React.useState(0);
 
   let history = useHistory();
-  const addSingleFile = (e, type) => {
-    let fileNames = "";
-    let files = e.target.files;
-    for (let i = 0; i < e.target.files.length; i++) {
-      fileNames = fileNames + e.target.files[i].name;
-    }
-    setSingleFile(files);
-    setSingleFileName(fileNames);
-  };
+  const alertSuccesfully = () =>{
+    var options = {};
+    options = {
+      place: "tr",
+      message:"Submit review sucess",
+      type: "info",
+      icon: "now-ui-icons ui-1_bell-53",
+      autoDismiss: 7,
+    };
+    notificationAlert.current.notificationAlert(options);
+  }
+  const alertError = (e) =>{
+    var options = {};
+    options = {
+      place: "tr",
+      message: e,
+      type: "danger",
+      icon: "now-ui-icons ui-1_bell-53",
+      autoDismiss: 7,
+    };
+    notificationAlert.current.notificationAlert(options);
+  }
+  const uId = localStorage.getItem("userId")
+
+  const onChangeDescription = (e) => {
+    setDescription(e.target.value)
+    setCount2(e.target.value.length)
+  }
+  const submitReview = () => {
+    var axios = require('axios');
+    var data = JSON.stringify({
+      "projectId": projectId,
+      "articleId": articleId,
+      "feedbackCategoryId": singleSelect? singleSelect.value : null,
+      "content": description,
+      "rating": rating,
+      "createdBy": uId
+    });
+
+    var config = {
+      method: 'post',
+      url: 'https://api-dotnet-test.herokuapp.com/api/feedbacks',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: data
+    };
+
+    axios(config)
+      .then(function (response) {
+        alertSuccesfully()
+        
+      })
+      .catch(function (error) {
+        alertError(error.message);
+      });
+
+  }
   const [count, setCount] = React.useState(0);
   const onclickProject = () => {
     history.push("/admin/admin-projec-category");
@@ -64,6 +122,7 @@ function CustomerCreateFeedback() {
 
   return (
     <>
+    <NotificationAlert ref={notificationAlert} />
       <PanelHeader size="sm" />
       <div className="content">
         <Row>
@@ -83,42 +142,8 @@ function CustomerCreateFeedback() {
                   Back
                 </Button>
               </CardHeader>
-              {/* <Breadcrumbs separator="›" aria-label="breadcrumb" style={{ padding: '20px' }}>
-                <Link underline="hover" color="inherit" href="/admin/customer-home">
-                  Customer Home
-                </Link>
-                <Link underline="hover" color="inherit" href="/admin/customer-arti-detail">
-                  Project Article Deatails
-                </Link>
-                <Link underline="hover" color="inherit" href="/admin/customer-progress-project">
-                  Project Progress
-                </Link>
-                <Typography color="text.primary">Create Feddback</Typography>
-              </Breadcrumbs> */}
-              <CardBody>
-
-                <Row>
-                  <Col xs={12} md={2} size="sm"  >
-                    Tittle
-                  </Col>
-                  <Col xs={12} md={5} size="sm"  >
-                    <FormGroup>
-                      <Input
-                        cols="80"
-                        defaultValue="Lamborghini Mercy, Your chick she so thirsty, I'm in
-                            that two seat Lambo."
-                        placeholder="Here can be your description"
-                        rows="4"
-                        type="textarea"
-                        onChange={e => setCount(e.target.value.length)}
-                      />
-                    </FormGroup>
-                    {count}/500
-                  </Col>
-                  <Col xs={12} md={5} size="sm"  ></Col>
-                </Row>
-
-              </CardBody>
+            
+             
               <CardBody>
 
                 <Row>
@@ -147,9 +172,9 @@ function CustomerCreateFeedback() {
                   <Col xs={12} md={5} size="sm" >
                     <Rating
                       name="simple-controlled"
-                      value={value}
+                      value={rating}
                       onChange={(event, newValue) => {
-                        setValue(newValue);
+                        setRating(newValue);
                       }}
                     />
                   </Col>
@@ -170,15 +195,13 @@ function CustomerCreateFeedback() {
                     <FormGroup>
                       <Input
                         cols="80"
-                        defaultValue="Lamborghini Mercy, Your chick she so thirsty, I'm in
-                            that two seat Lambo."
                         placeholder="Here can be your description"
                         rows="4"
                         type="textarea"
-                        onChange={e => setCount(e.target.value.length)}
+                        onChange={onChangeDescription}
                       />
                     </FormGroup>
-                    {count}/500
+                    {count2}/500
                   </Col>
                   <Col xs={12} md={5} size="sm"  ></Col>
                 </Row>
@@ -200,7 +223,7 @@ function CustomerCreateFeedback() {
                   </Button>
                 </Col>
                 <Col md={6}>
-                  <Button color="primary" className="btn-right" style={
+                  <Button color="primary" onClick={submitReview} className="btn-right" style={
                     {
 
                       fontSize: "10px",

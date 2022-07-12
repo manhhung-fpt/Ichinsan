@@ -58,6 +58,7 @@ function AdminProjectDetails(props) {
         setProjectDetail(data)
         setProjects(data.articleDetailList);
         
+        
       })
       .catch((err) => {
         console.log(err);

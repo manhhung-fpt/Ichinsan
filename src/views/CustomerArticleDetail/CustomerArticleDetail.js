@@ -129,16 +129,17 @@ function TranslatorProgressArticle(props) {
   const [articles, setArticles] = useState([]);
   React.useEffect(() => {
     axios
-      .get("https://api-dotnet-test.herokuapp.com/api/articles?pageNumber=1&pageSize=3")
+      .get("https://api-dotnet-test.herokuapp.com/api/articles?pageNumber=1&pageSize=20")
       .then((res) => {
-        const data = res.data;
-        setArticles(data);
+        const data = res.data;     
+        setArticles(data)     
       })
       .catch((err) => {
         console.log(err);
       })
   }, []);
 
+  
   const [project, setProject] = React.useState({});
   React.useEffect(() => {
     axios
@@ -149,12 +150,11 @@ function TranslatorProgressArticle(props) {
       })
       .catch(err => { console.log(err) })
   }, [])
-  console.log(project)
   const onclickPage = (e, page) => {
     setArticles([]);
     setPage(page);
     axios
-      .get(`https://api-dotnet-test.herokuapp.com/api/articles?pageNumber=${page}&pageSize=3`)
+      .get(`https://api-dotnet-test.herokuapp.com/api/articles?pageNumber=${page}&pageSize=5`)
       .then(res => {
         const data = res.data;
         setArticles(data);
@@ -186,7 +186,7 @@ function TranslatorProgressArticle(props) {
     history.push("/admin/customer-progress-article")
   };
   const onClickFeedback = () => {
-    history.push("/admin/customer-create=feedback")
+    history.push("/admin/customer-create-feedback")
   };
   const onClickAdd = () => {
     history.push("/admin/customer-add-article")
@@ -395,7 +395,7 @@ function TranslatorProgressArticle(props) {
                                         </thead>
                                         <tbody>
                                           {articles
-                                            .filter(a => a.status === statusOption.label)
+                                            .filter(a => a.status === statusOption.label && a.projectId === projectId )
                                             .map((article, index) => {
                                               return (<tr>
                                                 <td className="text-center">{index + 1}</td>
