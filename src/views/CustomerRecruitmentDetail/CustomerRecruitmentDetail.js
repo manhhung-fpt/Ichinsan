@@ -26,6 +26,7 @@ import ProgressBar from 'react-bootstrap/ProgressBar';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import moment from "moment";
 import { Pagination } from "@mui/material";
+import Rating from '@mui/material/Rating';
 
 // reactstrap components
 import {
@@ -112,11 +113,12 @@ function TranslatorProgressArticle(props) {
     const [pageSubcategories, setpageSubcategories] = React.useState("ps1");
 
     const location = useLocation();
-    
+
     const [projectId, setProjectId] = React.useState('')
     const Edit = "edit";
     const singleFileRef = React.useRef();
 
+    const [rating, setRating] = React.useState(2);
 
 
     const [modalNotice, setModalNotice] = React.useState(false);
@@ -127,14 +129,14 @@ function TranslatorProgressArticle(props) {
         setPage(page);
         var pages = page ? page : '1'
         axios
-        .get(`https://api-dotnet-test.herokuapp.com/api/applications/translators?pageNumber=${pages}&pageSize=5`)
-        .then((res) => {
-            const data = res.data;
-            setTranslators(data);
-        })
-        .catch((err) => {
-            console.log(err);
-        })
+            .get(`https://api-dotnet-test.herokuapp.com/api/applications/translators?pageNumber=${pages}&pageSize=5`)
+            .then((res) => {
+                const data = res.data;
+                setTranslators(data);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
     }
 
     const toggleModalClassic = () => {
@@ -143,6 +145,19 @@ function TranslatorProgressArticle(props) {
     const toggleModalNotice = () => {
         setModalNotice(!modalNotice);
     };
+
+    const [feedbacks, setFeedbacks] = useState([]);
+    React.useEffect(() => {
+        axios
+            .get("https://api-dotnet-test.herokuapp.com/api/feedbacks?pageNumber=1&pageSize=5")
+            .then((res) => {
+                const data = res.data;
+                setFeedbacks(data)
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }, []);
 
 
     const [article, setArticle] = React.useState({});
@@ -268,40 +283,10 @@ function TranslatorProgressArticle(props) {
                                     </Action>
                                 </Fab>
                                 <CardTitle id="card1" tag="h4">Article Detail :</CardTitle>
-                                <CardActions disableSpacing>
 
-                                    <Col md={1}>
-                                        <a style={{ all: "unset", cursor: "pointer" }} href={`customer-edit-article?id=${articleId}`}>
-                                            <Button className="btn-info" color="primary" style={
-                                                {
-
-                                                    fontSize: "10px",
-
-                                                }
-                                            }>
-                                                Edit
-                                            </Button>
-                                        </a>
-                                    </Col>
-
-                                    <Col md={1}>
-                                        <Button onClick={onClickPostpose} className="btn-danger" color="primary" style={
-                                            {
-
-                                                fontSize: "10px",
-
-                                            }
-                                        }>
-                                            Delete
-                                        </Button>
-                                    </Col>
-                                    <Col md={10}>
-
-                                    </Col>
-                                </CardActions>
                                 <Row>
 
-                                    <Col xs={12} lg={6}>
+                                    <Col xs={12} lg={8}>
                                         <Card>
                                             <a style={{ all: "unset", cursor: "pointer" }} href={`customer-recruitment-detail?id=${article.id}`}>
                                                 <CardHeader>
@@ -381,6 +366,37 @@ function TranslatorProgressArticle(props) {
                                                 }}>
                                                     {moment(new Date(article.deadline)).format("DD/MM/YYYY, h:mm:ss A")}
                                                 </CardFooter>
+                                                <CardActions disableSpacing>
+
+                                                    <Col md={1}>
+                                                        <a style={{ all: "unset", cursor: "pointer" }} href={`customer-edit-article?id=${articleId}`}>
+                                                            <Button className="btn-info" color="primary" style={
+                                                                {
+
+                                                                    fontSize: "10px",
+
+                                                                }
+                                                            }>
+                                                                Edit
+                                                            </Button>
+                                                        </a>
+                                                    </Col>
+
+                                                    <Col md={1}>
+                                                        <Button onClick={onClickPostpose} className="btn-danger" color="primary" style={
+                                                            {
+
+                                                                fontSize: "10px",
+
+                                                            }
+                                                        }>
+                                                            Delete
+                                                        </Button>
+                                                    </Col>
+                                                    <Col md={10}>
+
+                                                    </Col>
+                                                </CardActions>
                                                 <div class="go-corner" href="#" style={{
                                                     backgroundColor: "#2CA8FF",
                                                 }}>
@@ -389,6 +405,7 @@ function TranslatorProgressArticle(props) {
                                                     </div>
                                                 </div>
                                             </a>
+
                                         </Card>
                                     </Col>
 
@@ -667,7 +684,7 @@ function TranslatorProgressArticle(props) {
                                                 <Pagination
                                                     count={10}
                                                     page={page}
-                                                    
+
                                                     onChange={onClickPage}
                                                     variant="outlined" color="primary" />
                                             </CardFooter>
@@ -678,124 +695,101 @@ function TranslatorProgressArticle(props) {
                                 </Row>
 
                                 <CardTitle id="card3" tag="h4" >Article Feedback :</CardTitle>
-                                <CardActions disableSpacing>
-                                    <Col md={1}>
-                                        <Button className="btn-info" color="primary" style={
-                                            {
 
-                                                fontSize: "10px",
-
-                                            }
-                                        }>
-                                            Edit
-                                        </Button>
-                                    </Col>
-                                    <Col md={1}>
-                                        <Button className="btn-right" color="primary" style={
-                                            {
-                                                backgroundColor: "red",
-                                                fontSize: "10px",
-
-                                            }
-                                        }>
-
-                                            Delete
-                                        </Button>
-                                    </Col>
-                                    <Col md={2}>
-                                        <Button onClick={onClickAdd} className="btn-info" color="default" style={
-                                            {
-
-                                                fontSize: "10px",
-                                                backgroundColor: "#ffca00",
-                                            }
-                                        }>
-                                            Add an Feedback +
-                                        </Button>
-                                    </Col>
-
-                                </CardActions>
                                 <Row>
 
-                                    <Col xs={12} lg={6}>
-                                        <Card>
-                                            <a style={{ all: "unset", cursor: "pointer" }} href={`customer-recruitment-detail?id=${article.id}`}>
-                                                <CardHeader>
-                                                    <Row>
-                                                        <Col xs={12} md={8}>
-                                                            <CardTitle style={{
-                                                                color: "#2CA8FF",
-                                                                fontSize: "20px",
-                                                                fontWeight: "bold",
+                                    <Col xs={12} lg={10}>
+                                        {feedbacks
+                                            .filter(a => a.articleId === articleId)
+                                            .map((feedback, index) => {
+                                                return (
+                                                    <Card
+                                                        style={{
+                                                            marginBottom: "10px",
+                                                        }}
+                                                    >
+                                                        <a style={{ all: "unset", cursor: "pointer" }} href={`customer-recruitment-detail?id=${article.id}`}>
+                                                            <CardHeader>
+                                                                <Row>
+                                                                    <Col xs={12} md={8}>
+                                                                        <CardTitle style={{
+                                                                            color: "#2CA8FF",
+                                                                            fontSize: "20px",
+                                                                            fontWeight: "bold",
+                                                                        }}>
+
+                                                                            {feedback.content}</CardTitle>
+                                                                    </Col>
+                                                                    <Col xs={12} md={4}>
+
+                                                                    </Col>
+                                                                </Row>
+                                                            </CardHeader>
+                                                            <CardBody style={{
+                                                                marginTop: "-20px",
                                                             }}>
+                                                                <CardTitle style={{
+                                                                    color: "black",
+                                                                    fontSize: "24px",
+                                                                    fontWeight: "bold",
+                                                                }}>
+                                                                    <Rating
+                                                                        name="simple-controlled"
+                                                                        value={feedback.rating}
 
-                                                                {article.categoryName}</CardTitle>
-                                                        </Col>
-                                                        <Col xs={12} md={4}>
+                                                                    />
+                                                                </CardTitle>
+                                                            </CardBody>
+                                                            <CardFooter style={{
+                                                                fontSize: "16px",
+                                                                marginTop: "-20px",
+                                                                color: "red",
+                                                            }}>
+                                                                {moment(new Date(feedback.createdOn)).format("DD/MM/YYYY, h:mm:ss A")}
+                                                            </CardFooter>
+                                                            <CardActions disableSpacing>
+                                                                <Col md={1}>
+                                                                    <Button className="btn-info" color="primary" style={
+                                                                        {
 
-                                                        </Col>
-                                                    </Row>
-                                                </CardHeader>
-                                                <CardBody style={{
-                                                    marginTop: "-20px",
-                                                }}>
-                                                    <CardTitle style={{
-                                                        color: "black",
-                                                        fontSize: "24px",
-                                                        fontWeight: "bold",
-                                                    }}>
-                                                        {article.originalContent}
-                                                    </CardTitle>
-                                                    <CardTitle style={{
-                                                        color: "#ea108f",
-                                                        fontSize: "24px",
-                                                        fontWeight: "bold",
-                                                    }}>
-                                                        <StarRateIcon></StarRateIcon>
-                                                        <StarRateIcon></StarRateIcon>
-                                                        <StarRateIcon></StarRateIcon>
-                                                        <StarRateIcon></StarRateIcon>
-                                                        <StarRateIcon></StarRateIcon>
-                                                    </CardTitle>
-                                                    <CardTitle style={{
-                                                        color: "black",
-                                                        fontSize: "24px",
-                                                        fontWeight: "bold",
-                                                    }}>
-                                                        <ReactCountryFlag
-                                                            countryCode={article.languageFrom}
-                                                            svg
-                                                            style={{
-                                                                width: '2em',
-                                                                height: '2em',
-                                                            }}
+                                                                            fontSize: "10px",
 
-                                                        />
-                                                        <ArrowRightIcon style={{
-                                                            fontSize: "40px",
-                                                            marginLeft: "10px",
-                                                            marginRight: "10px",
-                                                        }}></ArrowRightIcon>
-                                                        <ReactCountryFlag
-                                                            countryCode={article.languageTo}
-                                                            svg
-                                                            style={{
-                                                                width: '2em',
-                                                                height: '2em',
-                                                            }}
+                                                                        }
+                                                                    }>
+                                                                        Edit
+                                                                    </Button>
+                                                                </Col>
+                                                                <Col md={1}>
+                                                                    <Button className="btn-right" color="primary" style={
+                                                                        {
+                                                                            backgroundColor: "red",
+                                                                            fontSize: "10px",
 
-                                                        />
-                                                    </CardTitle>
-                                                </CardBody>
-                                                <CardFooter style={{
-                                                    fontSize: "16px",
-                                                    marginTop: "-20px",
-                                                    color: "red",
-                                                }}>
+                                                                        }
+                                                                    }>
 
-                                                </CardFooter>
-                                            </a>
-                                        </Card>
+                                                                        Delete
+                                                                    </Button>
+                                                                </Col>
+                                                                <Col md={2}>
+                                                                    <Button onClick={onClickAdd} className="btn-info" color="default" style={
+                                                                        {
+
+                                                                            fontSize: "10px",
+                                                                            backgroundColor: "#ffca00",
+                                                                        }
+                                                                    }>
+                                                                        Add an Feedback +
+                                                                    </Button>
+                                                                </Col>
+
+                                                            </CardActions>
+                                                        </a>
+
+                                                    </Card>
+                                                );
+                                            })
+                                        }
                                     </Col>
 
                                 </Row>
