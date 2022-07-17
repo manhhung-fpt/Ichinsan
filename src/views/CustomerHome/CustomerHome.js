@@ -44,6 +44,7 @@ import 'swiper/modules/navigation/navigation.scss'; // Navigation module
 import 'swiper/modules/pagination/pagination.scss'; // Pagination module
 import 'swiper/modules/effect-fade/effect-fade.scss'; // Pagination module
 import { Button } from 'react-bootstrap';
+import CircularProgress from '@mui/material/CircularProgress';
 import CategoryIcon from '@mui/icons-material/Category';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import SignalWifiStatusbar4BarIcon from '@mui/icons-material/SignalWifiStatusbar4Bar';
@@ -81,25 +82,22 @@ function TranslatorProgress() {
     // { value: 5, content: 'ps5', label: "Postponed" },
   ]
   const [pageSubcategories, setpageSubcategories] = React.useState(statusOptions[0].content);
-
-
-
-
   const singleFileRef = React.useRef();
-
-
   const [projects, setProjects] = useState([]);
+  const uId = localStorage.getItem("userId");
   React.useEffect(() => {
     axios
-      .get("https://api-dotnet-test.herokuapp.com/api/projects?pageSize=30")
+      .get("https://api-dotnet-test.herokuapp.com/api/users/ABBAC12E-27B6-4492-ACBB-034EC881BFFF")
       .then((res) => {
-        const data = res.data;
+        const data = res.data.projectList;
+        console.log(data);
         setProjects(data);
       })
       .catch((err) => {
         console.log(err);
       })
   }, []);
+
 
   let history = useHistory();
 
@@ -121,6 +119,7 @@ function TranslatorProgress() {
   const onClickCreate = () => {
     history.push("/admin/customer-create-project")
   };
+  console.log(projects);
 
   return (
     <>
@@ -206,6 +205,7 @@ function TranslatorProgress() {
                   {
                     statusOptions.map((statusOption, index) => {
                       return <TabPane tabId={statusOption.content}>
+                        {projects !== null ? (
                         <Row>
                           {projects
                             .filter(a => a.status === statusOption.label)
@@ -215,7 +215,7 @@ function TranslatorProgress() {
                                   style={{
                                     marginTop: "10px",
                                   }}>
-                                  <a style={{ all: "unset", cursor: "pointer" }} href={`customer-arti-detail?id=${project.id}`}>
+                                  <a style={{ all: "unset", cursor: "pointer" }} href={`customer-arti-detail?id=${project.projectId}`}>
                                     <CardHeader>
                                       <Row>
                                         <Col xs={12} md={8}>
@@ -225,7 +225,7 @@ function TranslatorProgress() {
                                             fontWeight: "bold",
                                           }}>
 
-                                            {project.categoryName}</CardTitle>
+                                            {project.projectCategoryName}</CardTitle>
                                         </Col>
                                         <Col xs={12} md={4}>
 
@@ -240,7 +240,7 @@ function TranslatorProgress() {
                                         fontSize: "24px",
                                         fontWeight: "bold",
                                       }}>
-                                        {project.name}
+                                        {project.projectName}
                                       </CardTitle>
                                       <CardText style={{
                                         color: "black",
@@ -269,7 +269,12 @@ function TranslatorProgress() {
                                 </Card>
                               </Col>
                             })}
+                            
                         </Row>
+                        ) : (
+                          <CircularProgress/>
+                        )}
+                        
                       </TabPane>
                     }
                     )
@@ -282,37 +287,7 @@ function TranslatorProgress() {
 
                   </Col>
                   <Col xs={12} md={3} size="sm">
-                    <Pagination>
-                      <PaginationItem>
-                        <PaginationLink href="#">
-                          <span aria-hidden="true">
-                            <i
-                              className="fa fa-angle-double-left"
-                              aria-hidden="true"
-                            />
-                          </span>
-                        </PaginationLink>
-                      </PaginationItem>
-                      <PaginationItem>
-                        <PaginationLink href="#">1</PaginationLink>
-                      </PaginationItem>
-                      <PaginationItem active>
-                        <PaginationLink href="#">2</PaginationLink>
-                      </PaginationItem>
-                      <PaginationItem>
-                        <PaginationLink href="#">3</PaginationLink>
-                      </PaginationItem>
-                      <PaginationItem>
-                        <PaginationLink href="#">
-                          <span aria-hidden="true">
-                            <i
-                              className="fa fa-angle-double-right"
-                              aria-hidden="true"
-                            />
-                          </span>
-                        </PaginationLink>
-                      </PaginationItem>
-                    </Pagination>
+                  
                   </Col>
                   <Col xs={12} md={4} size="sm">
                   </Col>

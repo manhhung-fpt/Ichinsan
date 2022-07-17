@@ -102,6 +102,9 @@ function CustomerCreateFeedback(props) {
     axios(config)
       .then(function (response) {
         alertSuccesfully()
+        setTimeout(() => {
+          history.push(`customer-arti-detail?id=${projectId}`);
+      }, 2000);
         
       })
       .catch(function (error) {

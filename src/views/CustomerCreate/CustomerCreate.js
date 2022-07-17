@@ -60,7 +60,7 @@ function CustomerCreate() {
     var axios = require('axios');
     var data = JSON.stringify({
       "name": projectName,
-      "categoryName": singleSelect,
+      "projectCategoryId": singleSelect,
       "description": description
     });
 
@@ -107,10 +107,11 @@ function CustomerCreate() {
         console.log(error);
       });
   }, []);
+
   const handleChange = (event) => {
     setSingleSelect(event.target.value);
   };
-
+  console.log(singleSelect);
   const onChangeProjectName = (e) => {
     setProjectName(e.target.value)
     setCount(e.target.value.length)
@@ -190,7 +191,7 @@ function CustomerCreate() {
                       {category.map((c, index) => (
                         <MenuItem
                           key={c.name}
-                          value={c.name}
+                          value={c.id}
                         >
                           {c.name}
                         </MenuItem>

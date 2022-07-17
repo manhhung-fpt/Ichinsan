@@ -53,32 +53,17 @@ import PanelHeader from "components/PanelHeader/PanelHeader.js";
 import { useHistory, useLocation } from "react-router-dom";
 import { Fab, Action } from 'react-tiny-fab';
 
-import Select from "react-select";
 
-import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import DescriptionIcon from '@mui/icons-material/Description';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import CategoryIcon from '@mui/icons-material/Category';
-import GTranslateIcon from '@mui/icons-material/GTranslate';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
-import SpellcheckIcon from '@mui/icons-material/Spellcheck';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+
 import ReactCountryFlag from "react-country-flag"
-import SignalWifiStatusbar4BarIcon from '@mui/icons-material/SignalWifiStatusbar4Bar';
-import TranslateIcon from '@mui/icons-material/Translate';
-import DownloadIcon from '@mui/icons-material/Download';
-import CropOriginalIcon from '@mui/icons-material/CropOriginal';
-import StarRateIcon from '@mui/icons-material/StarRate';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-import UploadIcon from '@mui/icons-material/Upload';
 
 
 
-import { table_data } from "variables/general.js";
+
 
 var selectOptions = [
   { value: "one", label: "One" },
@@ -127,17 +112,19 @@ function TranslatorProgressArticle(props) {
     setModalNotice(!modalNotice);
   };
   const [articles, setArticles] = useState([]);
-  React.useEffect(() => {
+  const getArticlesList = () =>{
     axios
-      .get("https://api-dotnet-test.herokuapp.com/api/articles?pageNumber=1&pageSize=20")
+      .get(`https://api-dotnet-test.herokuapp.com/api/projects/admins/${projectId}`)
       .then((res) => {
-        const data = res.data;     
-        setArticles(data)     
+        const data = res.data.articleDetailList;
+        console.log(data);
+        setArticles(data);     
       })
       .catch((err) => {
         console.log(err);
       })
-  }, []);
+    }
+
 
   
   const [project, setProject] = React.useState({});
@@ -147,20 +134,11 @@ function TranslatorProgressArticle(props) {
       .then(res => {
         //setFakeData(res.data.data);
         setProject(res.data);
+        getArticlesList();
       })
       .catch(err => { console.log(err) })
   }, [])
-  const onclickPage = (e, page) => {
-    setArticles([]);
-    setPage(page);
-    axios
-      .get(`https://api-dotnet-test.herokuapp.com/api/articles?pageNumber=${page}&pageSize=5`)
-      .then(res => {
-        const data = res.data;
-        setArticles(data);
-      })
-      .catch(err => { console.log(err) })
-  }
+  
 
   const handleSingleFileInput = (e) => {
     singleFileRef.current.click(e);
@@ -395,7 +373,7 @@ function TranslatorProgressArticle(props) {
                                         </thead>
                                         <tbody>
                                           {articles
-                                            .filter(a => a.status === statusOption.label && a.projectId === projectId )
+                                            .filter(a => a.status === statusOption.label)
                                             .map((article, index) => {
                                               return (<tr>
                                                 <td className="text-center">{index + 1}</td>
@@ -460,13 +438,7 @@ function TranslatorProgressArticle(props) {
 
 
                           </TabContent>
-                          <Stack spacing={2}>
-                            <Pagination
-                              count={5}
-                              page={page}
-                              onChange={onclickPage}
-                              variant="outlined" color="primary" />
-                          </Stack>
+                          
 
 
                         </TabPane>
