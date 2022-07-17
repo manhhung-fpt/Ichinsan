@@ -254,7 +254,7 @@ function SearchView(props) {
                                                                 fontSize: "20px",
                                                                 fontWeight: "bold",
                                                             }}>
-                                                                Null
+
                                                                 {article.categoryName}</CardTitle>
                                                         </Col>
                                                         <Col xs={12} md={4}>
@@ -336,209 +336,7 @@ function SearchView(props) {
 
                                 </Row>
 
-                                <CardTitle id="card2" tag="h4"
 
-                                >Translation :</CardTitle>
-
-                                <Row>
-
-                                    <Col xs={12} lg={8}>
-                                        <Card>
-                                            <a style={{ all: "unset", cursor: "pointer" }} href={`translator-progress-article?id=${article.id}`}>
-                                                <CardHeader>
-                                                    <Row>
-                                                        <Col xs={12} md={4}>
-                                                            <CardTitle style={{
-                                                                color: "black",
-                                                                fontSize: "20px",
-                                                                fontWeight: "bold",
-                                                            }}>
-                                                                <CropOriginalIcon style={{
-                                                                    marginRight: "10px",
-                                                                }}></CropOriginalIcon>
-                                                                Original Article :
-                                                            </CardTitle>
-                                                        </Col>
-                                                        <Col xs={12} md={1}>
-                                                            <CardTitle style={{
-                                                                color: "#2CA8FF",
-                                                                fontSize: "20px",
-                                                                fontWeight: "bold",
-                                                            }}>
-                                                                <DownloadIcon></DownloadIcon>
-                                                            </CardTitle>
-                                                        </Col>
-                                                        <Col xs={12} md={7}>
-                                                            <CardTitle style={{
-                                                                color: "#2CA8FF",
-                                                                fontSize: "20px",
-                                                                fontWeight: "bold",
-                                                            }}>
-                                                                Null
-
-                                                                {/* 
-                                                <input
-                                                    type="file"
-                                                    className="inputFileHidden"
-                                                    style={{ zIndex: -1 }}
-                                                    ref={singleFileRef}
-                                                    onChange={(e) => addSingleFile(e)}
-                                                /> */}
-
-                                                            </CardTitle>
-                                                        </Col>
-                                                    </Row>
-                                                </CardHeader>
-
-                                                <CardHeader>
-                                                    <Row>
-                                                        <Col xs={12} md={4}>
-                                                            <CardTitle style={{
-                                                                color: "black",
-                                                                fontSize: "20px",
-                                                                fontWeight: "bold",
-                                                            }}>
-                                                                <TranslateIcon
-                                                                    style={{
-                                                                        marginRight: "10px",
-                                                                    }}
-                                                                ></TranslateIcon>
-                                                                Translation Article :
-                                                            </CardTitle>
-                                                        </Col>
-                                                        <Col xs={12} md={1}>
-                                                            <CardTitle style={{
-                                                                color: "#2CA8FF",
-                                                                fontSize: "20px",
-                                                                fontWeight: "bold",
-                                                            }}>
-                                                                <UploadIcon></UploadIcon>
-                                                            </CardTitle>
-                                                        </Col>
-                                                        <Col xs={12} md={7}>
-                                                            <CardTitle style={{
-                                                                color: "#2CA8FF",
-                                                                fontSize: "20px",
-                                                                fontWeight: "bold",
-                                                            }}>
-
-                                                                <Input
-                                                                    type="text"
-                                                                    className="inputFileVisible"
-                                                                    placeholder="Dowdload File..."
-                                                                    onClick={(e) => handleSingleFileInput(e)}
-                                                                    defaultValue={singleFileName}
-                                                                />
-                                                                <input
-                                                                    type="file"
-                                                                    className="inputFileHidden"
-                                                                    style={{ zIndex: -1 }}
-                                                                    ref={singleFileRef}
-                                                                    onChange={(e) => addSingleFile(e)}
-                                                                />
-
-                                                            </CardTitle>
-                                                            {singleFile !== null && singleFileName !== "" ? (
-                                                                <Row>
-                                                                    <Col xs={12} md={5} size="sm"  >
-                                                                        <Button onClick={onClickPostpose} className="btn-danger" color="primary" style={
-                                                                            {
-
-                                                                                fontSize: "10px",
-
-                                                                            }
-                                                                        }>
-                                                                            Edit
-                                                                        </Button>
-                                                                    </Col>
-                                                                    <Col xs={12} md={5} size="sm"  >
-                                                                        <Button onClick={onClickPostpose} className="btn-info" color="primary" style={
-                                                                            {
-
-                                                                                fontSize: "10px",
-
-                                                                            }
-                                                                        }>
-                                                                            Remove
-                                                                        </Button>
-                                                                    </Col>
-                                                                </Row>
-
-                                                            ) : (
-                                                                <Button hidden onClick={onClickAdd} className="btn-info" color="default" style={
-                                                                    {
-
-                                                                        fontSize: "10px",
-
-                                                                    }
-                                                                }>
-                                                                    Add an Article
-                                                                </Button>
-                                                            )}
-                                                        </Col>
-                                                    </Row>
-                                                </CardHeader>
-                                                <CardBody style={{
-                                                    marginTop: "-20px",
-                                                }}>
-                                                    <Row>
-                                                        <Col xs={12} md={5}>
-                                                            <CardTitle style={{
-                                                                color: "black",
-                                                                fontSize: "20px",
-                                                                fontWeight: "bold",
-                                                            }}>
-                                                                <AccountCircleIcon
-                                                                    style={{
-                                                                        marginRight: "10px",
-                                                                    }}
-                                                                ></AccountCircleIcon>
-                                                                Translator Name :
-                                                            </CardTitle>
-                                                        </Col>
-                                                        <Col xs={12} md={7}
-                                                            style={{
-                                                                color: "#2CA8FF",
-                                                                fontSize: "20px",
-                                                                fontWeight: "bold",
-                                                            }}
-                                                        >
-                                                            Null {article.translator}
-                                                        </Col>
-                                                    </Row>
-                                                    <Row>
-                                                        <Col xs={12} md={5}>
-                                                            <CardTitle style={{
-                                                                color: "black",
-                                                                fontSize: "20px",
-                                                                fontWeight: "bold",
-                                                            }}>
-                                                                <AccountCircleIcon
-                                                                    style={{
-                                                                        marginRight: "10px",
-                                                                    }}
-                                                                ></AccountCircleIcon>
-                                                                Auditor Name :
-                                                            </CardTitle>
-                                                        </Col>
-                                                        <Col xs={12} md={7}
-                                                            style={{
-                                                                color: "#2CA8FF",
-                                                                fontSize: "20px",
-                                                                fontWeight: "bold",
-                                                            }}
-                                                        >
-                                                            Null {article.auditor}
-                                                        </Col>
-                                                    </Row>
-
-                                                </CardBody>
-
-                                            </a>
-                                        </Card>
-                                    </Col>
-
-                                </Row>
                                 <CardTitle id="card3" tag="h4" >Article Feedback :</CardTitle>
 
                                 <Row>
@@ -554,7 +352,7 @@ function SearchView(props) {
                                                                 fontSize: "20px",
                                                                 fontWeight: "bold",
                                                             }}>
-                                                                Null
+
                                                                 {article.categoryName}</CardTitle>
                                                         </Col>
                                                         <Col xs={12} md={4}>

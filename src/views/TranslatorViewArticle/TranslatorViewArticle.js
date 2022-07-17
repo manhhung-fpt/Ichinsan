@@ -135,7 +135,18 @@ function TranslatorViewArticle(props) {
         setModalNotice(!modalNotice);
     };
 
-
+    const [feedbacks, setFeedbacks] = useState([]);
+    React.useEffect(() => {
+        axios
+            .get("https://api-dotnet-test.herokuapp.com/api/feedbacks?pageNumber=1&pageSize=30")
+            .then((res) => {
+                const data = res.data;
+                setFeedbacks(data)
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }, []);
     const [article, setArticle] = React.useState({});
     React.useEffect(() => {
         axios
@@ -145,6 +156,7 @@ function TranslatorViewArticle(props) {
                 setArticle(res.data);
                 setArticleId(res.data.id)
                 setProjectId(res.data.projectId)
+                
             })
             .catch(err => { console.log(err) })
     }, [])
@@ -163,18 +175,18 @@ function TranslatorViewArticle(props) {
         setSingleFile(files);
         setSingleFileName(fileNames);
     };
-    const alertSuccesfully = () =>{
+    const alertSuccesfully = () => {
         var options = {};
         options = {
-          place: "tr",
-          message:"Aplly Successfully",
-          type: "info",
-          icon: "now-ui-icons ui-1_bell-53",
-          autoDismiss: 7,
+            place: "tr",
+            message: "Aplly Successfully",
+            type: "info",
+            icon: "now-ui-icons ui-1_bell-53",
+            autoDismiss: 7,
         };
         notificationAlert.current.notificationAlert(options);
-      }
-      
+    }
+
     const apllyArticle = () => {
         console.log('project:', projectId);
         console.log('articles:', articleId);
@@ -232,7 +244,7 @@ function TranslatorViewArticle(props) {
 
     return (
         <>
-        <NotificationAlert ref={notificationAlert} />
+            <NotificationAlert ref={notificationAlert} />
             <PanelHeader
                 size="sm" />
 
@@ -292,21 +304,11 @@ function TranslatorViewArticle(props) {
                                 <CardTitle id="card1" tag="h4">Article Detail :
 
                                 </CardTitle>
-                                <div className="pull-right">
-                                    <Button color="info" onClick={apllyArticle} style={
-                                        {
 
-                                            fontSize: "10px",
-
-                                        }
-                                    }>
-                                        Apply
-                                    </Button>
-                                </div>
 
                                 <Row>
 
-                                    <Col xs={12} lg={6}>
+                                    <Col xs={12} lg={8}>
                                         <Card>
                                             <a style={{ all: "unset", cursor: "pointer" }} href={`translator-progress-article?id=${article.id}`}>
                                                 <CardHeader>
@@ -341,7 +343,7 @@ function TranslatorViewArticle(props) {
                                                         fontSize: "24px",
                                                         fontWeight: "bold",
                                                     }}>
-                                                        {article.originalContent}
+                                                        {article.name}
                                                     </CardTitle>
                                                     <CardText style={{
                                                         color: "black",
@@ -386,6 +388,7 @@ function TranslatorViewArticle(props) {
                                                 }}>
                                                     {moment(new Date(article.deadline)).format("DD/MM/YYYY, h:mm:ss A")}
                                                 </CardFooter>
+
                                                 <div class="go-corner" href="#" style={{
                                                     backgroundColor: "#2CA8FF",
                                                 }}>
@@ -394,10 +397,22 @@ function TranslatorViewArticle(props) {
                                                     </div>
                                                 </div>
                                             </a>
+                                            <div className="pull-right">
+                                                <Button color="info" onClick={apllyArticle} style={
+                                                    {
+                                                        marginRight: "10px",
+                                                        fontSize: "14px",
+
+                                                    }
+                                                }>
+                                                    Apply
+                                                </Button>
+                                            </div>
                                         </Card>
                                     </Col>
 
                                 </Row>
+                                
 
                                 <CardTitle id="card2" tag="h4"
 

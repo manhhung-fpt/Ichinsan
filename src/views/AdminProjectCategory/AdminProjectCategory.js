@@ -83,24 +83,24 @@ function AdminProjectCategory() {
                 </Breadcrumbs>
                 <Row>
                   <Col xs={12} md={8} size="sm"  >
-                  <Col xs={12} md={2} size="sm">
-                    <Button color="info" onClick={toggleModalNotice} style={
-                      {
+                    <Col xs={12} md={2} size="sm">
+                      <Button color="info" onClick={toggleModalNotice} style={
+                        {
 
-                        fontSize: "10px",
+                          fontSize: "10px",
 
-                      }
-                    }>
-                      + Category
-                      <span className="btn-label">
-                        <i className="now-ui-icons arrows-1_minimal-right" />
-                      </span>
+                        }
+                      }>
+                        + Category
+                        <span className="btn-label">
+                          <i className="now-ui-icons arrows-1_minimal-right" />
+                        </span>
 
-                    </Button>
-                  </Col>
+                      </Button>
+                    </Col>
                   </Col>
                   <Col Col xs={12} md={4} size="sm" >
-                  <Select
+                    <Select
                       className="react-select primary"
                       classNamePrefix="react-select"
                       placeholder="Result of Page"
@@ -218,108 +218,108 @@ function AdminProjectCategory() {
                   </thead>
                   <tbody>
                     {
-                    pCategory.map((category, index) => {
-                      return (
-                      <tr>
-                        <td className="text-center">{index + 1}</td>
-                        <td>{category.name}</td>
-                        <td>
-                          {category.description}
-                        </td>
-                        <td className="text-right">
-                          <Switch defaultValue={false} />
-                        </td>
-                        <td className="text-right btns-mr-5">
+                      pCategory.map((category, index) => {
+                        return (
+                          <tr>
+                            <td className="text-center">{index + 1}</td>
+                            <td>{category.name}</td>
+                            <td>
+                              {category.description}
+                            </td>
+                            <td className="text-right">
+                              <Switch defaultValue={false} />
+                            </td>
+                            <td className="text-right btns-mr-5">
 
-                          <Button onClick={toggleModalEdit} color="primary" className="btn-round" style={
-                            {
+                              <Button onClick={toggleModalEdit} color="primary" className="btn-round" style={
+                                {
 
-                              fontSize: "10px",
+                                  fontSize: "10px",
 
-                            }
-                          }>
-                            <i className="now-ui-icons ui-2_settings-90" /> Edit
-                          </Button>
-                          <Modal
-                            isOpen={modalEdit}
-                            toggle={toggleModalEdit}
-                            className="modal-notice text-center"
-                          >
-                            <ModalHeader style={{ width: '150%' }} toggle={toggleModalEdit}>
-                              Edit Category
-                            </ModalHeader>
-                            <ModalBody>
-                              <Row>
-                                <Col md="12">
-                                  <Card>
-                                    <CardBody>
-                                      <Form>
-                                        <Row>
-                                          <Col className="pr-1" md="6">
-                                            <FormGroup>
-                                              <label>Category Name</label>
-                                              <Input
-                                                defaultValue={category.name}
-                                                placeholder="Company"
-                                                type="text"
-                                              />
-                                            </FormGroup>
-                                          </Col>
-                                        </Row>
-                                        <Row>
-                                          <Col md="12">
-                                            <FormGroup>
-                                              <label>Description</label>
-                                              <Input
-                                                cols="80"
-                                                defaultValue={category.description}
-                                                rows="4"
-                                                type="textarea"
-                                                onChange={e => setCount(e.target.value.length)}
-                                              />
-                                            </FormGroup>
-                                          </Col>
-                                        </Row>
-                                        <Row>
-                                          <Col md='9'></Col>
-                                          <Col md='3'>{count}/500</Col>
-                                        </Row>
-                                      </Form>
-                                    </CardBody>
-                                  </Card>
-                                </Col>
-                              </Row>
-                            </ModalBody>
-                            <ModalFooter className="justify-content-center">
-                              <Row>
-                                <Col md="6">
-                                  <Button color="primary" onClick={toggleModalEdit} style={
-                                    {
+                                }
+                              }>
+                                <i className="now-ui-icons ui-2_settings-90" /> Edit
+                              </Button>
+                              <Modal
+                                isOpen={modalEdit}
+                                toggle={toggleModalEdit}
+                                className="modal-notice text-center"
+                              >
+                                <ModalHeader style={{ width: '150%' }} toggle={toggleModalEdit}>
+                                  Edit Category
+                                </ModalHeader>
+                                <ModalBody>
+                                  <Row>
+                                    <Col md="12">
+                                      <Card>
+                                        <CardBody>
+                                          <Form>
+                                            <Row>
+                                              <Col className="pr-1" md="6">
+                                                <FormGroup>
+                                                  <label>Category Name</label>
+                                                  <Input
+                                                    defaultValue={category.name}
+                                                    placeholder="Company"
+                                                    type="text"
+                                                  />
+                                                </FormGroup>
+                                              </Col>
+                                            </Row>
+                                            <Row>
+                                              <Col md="12">
+                                                <FormGroup>
+                                                  <label>Description</label>
+                                                  <Input
+                                                    cols="80"
+                                                    defaultValue={category.description}
+                                                    rows="4"
+                                                    type="textarea"
+                                                    onChange={e => setCount(e.target.value.length)}
+                                                  />
+                                                </FormGroup>
+                                              </Col>
+                                            </Row>
+                                            <Row>
+                                              <Col md='9'></Col>
+                                              <Col md='3'>{count}/500</Col>
+                                            </Row>
+                                          </Form>
+                                        </CardBody>
+                                      </Card>
+                                    </Col>
+                                  </Row>
+                                </ModalBody>
+                                <ModalFooter className="justify-content-center">
+                                  <Row>
+                                    <Col md="6">
+                                      <Button color="primary" onClick={toggleModalEdit} style={
+                                        {
 
-                                      fontSize: "10px",
+                                          fontSize: "10px",
 
-                                    }
-                                  }>
-                                    Cancel
-                                  </Button>
-                                </Col>
-                                <Col md="6">
-                                  <Button color="info" style={
-                                    {
+                                        }
+                                      }>
+                                        Cancel
+                                      </Button>
+                                    </Col>
+                                    <Col md="6">
+                                      <Button color="info" style={
+                                        {
 
-                                      fontSize: "10px",
+                                          fontSize: "10px",
 
-                                    }
-                                  }>
-                                    Edit
-                                  </Button>
-                                </Col>
-                              </Row>
-                            </ModalFooter>
-                          </Modal>
-                        </td>
-                      </tr>);
-                    })}
+                                        }
+                                      }>
+                                        Edit
+                                      </Button>
+                                    </Col>
+                                  </Row>
+                                </ModalFooter>
+                              </Modal>
+                            </td>
+                          </tr>);
+                      })}
                   </tbody>
                 </Table>
               </CardBody>

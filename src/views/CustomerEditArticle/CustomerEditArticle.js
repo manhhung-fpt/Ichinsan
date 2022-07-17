@@ -1,4 +1,3 @@
-
 import React from "react";
 import Switch from "react-bootstrap-switch";
 import Datetime from "react-datetime";
@@ -23,6 +22,7 @@ import {
   Col,
   Button,
 } from "reactstrap";
+import NotificationAlert from "react-notification-alert";
 
 // core components
 import PanelHeader from "components/PanelHeader/PanelHeader.js";
@@ -56,9 +56,33 @@ function CustomerEditArticle(props) {
   const [countWord, setCountWord] = React.useState(0);
   const [description, setDescription] = React.useState("")
   const [fee, setFee] = React.useState(0);
-  const [articlesTitle, setArticleTtile]= React.useState("")
+  const [articlesTitle, setArticleTtile] = React.useState("")
   const [deadline, setDeadline] = React.useState("")
   const [fileURL, setFileURL] = React.useState("")
+  const notificationAlert = React.useRef();
+  const alertSuccesfully = () => {
+    var options = {};
+    options = {
+      place: "tr",
+      message: "Edit Article Successfully",
+      type: "info",
+      icon: "now-ui-icons ui-1_bell-53",
+      autoDismiss: 7,
+    };
+    notificationAlert.current.notificationAlert(options);
+  }
+  const alertFalied = (message) => {
+    var options = {};
+    options = {
+      place: "tr",
+      message: message,
+      type: "info",
+      icon: "now-ui-icons ui-1_bell-53",
+      autoDismiss: 7,
+    };
+    notificationAlert.current.notificationAlert(options);
+  }
+
 
   let history = useHistory();
   const CountryLanguage = require('@ladjs/country-language');
@@ -77,7 +101,7 @@ function CustomerEditArticle(props) {
       var doc = new Docxtemplater(new PizZip(content), { delimiters: { start: '12op1j2po1j2poj1po', end: 'op21j4po21jp4oj1op24j' } });
       var text = doc.getFullText();
       setCountWord(text.length)
-      setFee(text.length/500)
+      setFee(text.length / 500)
     }
     for (let i = 0; i < e.target.files.length; i++) {
       fileNames = fileNames + e.target.files[i].name;
@@ -98,10 +122,10 @@ function CustomerEditArticle(props) {
       "languageFrom": languageFrom,
       "languageTo": languageTo,
       "description": description,
-      "originalContent": singleFileName? singleFileName : articles.originalContent,
-      "deadline": moment(deadline).format('YYYY-MM-D'),
+      "originalContent": singleFileName ? singleFileName : articles.originalContent,
+      "deadline":deadline,
       "numberOfWords": countWord,
-      "fee":  countWord/500
+      "fee": countWord / 500
     });
     var config = {
       method: 'put',
@@ -115,11 +139,14 @@ function CustomerEditArticle(props) {
     axios(config)
       .then(function (response) {
         console.log(JSON.stringify(response.data));
+        alertSuccesfully();
       })
       .catch(function (error) {
+        alertFalied(error.message)
         console.log(error);
       });
   }
+  console.log(deadline);
   const onChangeDescription = (e) => {
     setDescription(e.target.value)
     setCount2(e.target.value.length)
@@ -144,7 +171,7 @@ function CustomerEditArticle(props) {
   const onChangeLanguageTo = (e) => {
     setLanguageTo(e.target.value)
   }
-  const onChangeTitle = (e) =>{
+  const onChangeTitle = (e) => {
     setArticleTtile(e.target.value)
     setCount(e.target.value.length)
   }
@@ -167,7 +194,7 @@ function CustomerEditArticle(props) {
         setDescription(data.description)
         setSingleFileName(data.originalContent)
         setDeadline(moment(data.deadline).format("DD/MM/YYYY, h:mm:ss a"))
-        
+
       })
       .catch((err) => {
         console.log(err);
@@ -216,6 +243,7 @@ function CustomerEditArticle(props) {
   }, []);
   return (
     <>
+      <NotificationAlert ref={notificationAlert} />
       <PanelHeader size="sm" />
       <div className="content">
         <Row>
@@ -388,16 +416,17 @@ function CustomerEditArticle(props) {
                   </Col>
                   <Col xs={12} md={5} size="sm"  >
                     <FormGroup
-                    
+
                     >
                       <Datetime
-                       
-                     inputProps={{ placeholder: "Datetime Picker Here",
-                                     value: deadline
-                      }}
-                      onChange={(newValue) => {
-                        setDeadline(moment(newValue).format("DD/MM/YYYY, h:mm:ss a"));
-                    }}
+
+                        inputProps={{
+                          placeholder: "Datetime Picker Here",
+                          value: deadline
+                        }}
+                        onChange={(newValue) => {
+                          setDeadline(moment(newValue).format("DD/MM/YYYY"));
+                        }}
                       />
                     </FormGroup>
                   </Col>
