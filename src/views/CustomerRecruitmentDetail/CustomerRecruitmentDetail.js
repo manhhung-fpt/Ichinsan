@@ -83,6 +83,8 @@ import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import UploadIcon from '@mui/icons-material/Upload';
+import { storage } from "Firebase";
+import { ref, uploadBytes, getDownloadURL, getBytes } from "firebase/storage";
 
 
 
@@ -99,8 +101,6 @@ var selectOptions = [
 function TranslatorProgressArticle(props) {
     const [modalClassic, setModalClassic] = React.useState(false);
     const articleId = props.location.search.split("=")[1];
-    console.log(articleId);
-
     const [singleSelect, setSingleSelect] = React.useState(null);
     const [singleFileName, setSingleFileName] = React.useState("");
     const [multipleFileName, setMultipleFileName] = React.useState("");
@@ -124,6 +124,8 @@ function TranslatorProgressArticle(props) {
     const [modalNotice, setModalNotice] = React.useState(false);
     const [modalEdit, setModalEdit] = React.useState(false);
     const [page, setPage] = React.useState(1);
+    const [originalContentUrL, setOriginalContentUrl] = React.useState('');
+
 
     const onClickPage = (event, page) => {
         setPage(page);
@@ -149,7 +151,7 @@ function TranslatorProgressArticle(props) {
     const [feedbacks, setFeedbacks] = useState([]);
     React.useEffect(() => {
         axios
-            .get("https://api-dotnet-test.herokuapp.com/api/feedbacks?pageNumber=1&pageSize=5")
+            .get("https://api-dotnet-test.herokuapp.com/api/feedbacks?pageNumber=1&pageSize=30")
             .then((res) => {
                 const data = res.data;
                 setFeedbacks(data)
@@ -167,11 +169,17 @@ function TranslatorProgressArticle(props) {
             .then(res => {
                 //setFakeData(res.data.data);
                 setArticle(res.data);
-                setProjectId(res.data.projectId)
+                setProjectId(res.data.projectId);
+                //Get URL froom firebase
+                console.log(res.data.originalContent);
+                const fileRef = ref(storage, `originalArticles/${res.data.originalContent}`)
+                getDownloadURL(fileRef).then((response) => {
+                    setOriginalContentUrl(response)
+                })
             })
             .catch(err => { console.log(err) })
     }, [])
-    console.log(article)
+    console.log(originalContentUrL);
 
     const [translators, setTranslators] = useState([]);
     React.useEffect(() => {
@@ -321,7 +329,7 @@ function TranslatorProgressArticle(props) {
                                                         fontSize: "24px",
                                                         fontWeight: "bold",
                                                     }}>
-                                                        {article.originalContent}
+                                                        {article.name}
                                                     </CardTitle>
                                                     <CardText style={{
                                                         color: "black",
@@ -440,7 +448,9 @@ function TranslatorProgressArticle(props) {
                                                                 fontSize: "20px",
                                                                 fontWeight: "bold",
                                                             }}>
-                                                                <DownloadIcon></DownloadIcon>
+                                                                <a href={originalContentUrL}>
+                                                                    <DownloadIcon></DownloadIcon>
+                                                                </a>
                                                             </CardTitle>
                                                         </Col>
                                                         <Col xs={12} md={7}>
@@ -449,17 +459,7 @@ function TranslatorProgressArticle(props) {
                                                                 fontSize: "20px",
                                                                 fontWeight: "bold",
                                                             }}>
-                                                                Null
-
-                                                                {/* 
-                                                <input
-                                                    type="file"
-                                                    className="inputFileHidden"
-                                                    style={{ zIndex: -1 }}
-                                                    ref={singleFileRef}
-                                                    onChange={(e) => addSingleFile(e)}
-                                                /> */}
-
+                                                                {article.originalContent}
                                                             </CardTitle>
                                                         </Col>
                                                     </Row>
