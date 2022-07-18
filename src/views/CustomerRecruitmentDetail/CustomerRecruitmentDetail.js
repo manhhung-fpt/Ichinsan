@@ -85,6 +85,7 @@ import Typography from '@mui/material/Typography';
 import UploadIcon from '@mui/icons-material/Upload';
 import { storage } from "Firebase";
 import { ref, uploadBytes, getDownloadURL, getBytes } from "firebase/storage";
+import NotificationAlert from "react-notification-alert";
 
 
 
@@ -101,6 +102,7 @@ var selectOptions = [
 function TranslatorProgressArticle(props) {
     const [modalClassic, setModalClassic] = React.useState(false);
     const articleId = props.location.search.split("=")[1];
+    const notificationAlert = React.useRef();
     const [singleSelect, setSingleSelect] = React.useState(null);
     const [singleFileName, setSingleFileName] = React.useState("");
     const [multipleFileName, setMultipleFileName] = React.useState("");
@@ -111,8 +113,61 @@ function TranslatorProgressArticle(props) {
     const [vTabs, setvTabs] = React.useState("vt1");
     const [vTabsIcons, setvTabsIcons] = React.useState("vti1");
     const [pageSubcategories, setpageSubcategories] = React.useState("ps1");
+    const uId = localStorage.getItem('userId')
+    const alertSuccesfully = () =>{
+        var options = {};
+        options = {
+          place: "tr",
+          message:"Choosed Translator Successfully",
+          type: "info",
+          icon: "now-ui-icons ui-1_bell-53",
+          autoDismiss: 7,
+        };
+        notificationAlert.current.notificationAlert(options);
+      }
+      const alertFalied = (message) =>{
+        var options = {};
+        options = {
+          place: "tr",
+          message:message,
+          type: "info",
+          icon: "now-ui-icons ui-1_bell-53",
+          autoDismiss: 7,
+        };
+        notificationAlert.current.notificationAlert(options);
+      }
 
     const location = useLocation();
+    const chooseTransaltor = (translator) => {
+        var axios = require('axios');
+        var data = JSON.stringify({
+            "id": translator.id,
+            "appliedBy": translator.appliedBy,
+            "isApproved": true,
+            "approvedBy": uId
+        });
+
+        var config = {
+            method: 'put',
+            url: `https://api-dotnet-test.herokuapp.com/api/applications/${translator.id}`,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: data
+        };
+
+        axios(config)
+            .then(function (response) {
+                console.log(JSON.stringify(response.data));
+                alertSuccesfully();
+            })
+            .catch(function (error) {
+                alertFalied(error.message)
+                console.log(error);
+            });
+
+
+    }
 
     const [projectId, setProjectId] = React.useState('')
     const Edit = "edit";
@@ -125,6 +180,7 @@ function TranslatorProgressArticle(props) {
     const [modalEdit, setModalEdit] = React.useState(false);
     const [page, setPage] = React.useState(1);
     const [originalContentUrL, setOriginalContentUrl] = React.useState('');
+    const [translators, setTranslators] = useState([]);
 
 
     const onClickPage = (event, page) => {
@@ -151,10 +207,9 @@ function TranslatorProgressArticle(props) {
     const [feedbacks, setFeedbacks] = useState([]);
     React.useEffect(() => {
         axios
-            .get("https://api-dotnet-test.herokuapp.com/api/feedbacks?pageNumber=1&pageSize=30")
-            .then((res) => {
-                const data = res.data;
-                setFeedbacks(data)
+            .get(`https://api-dotnet-test.herokuapp.com/api/articles/feedbacks/${articleId}`)
+            .then((res) => {               
+                setFeedbacks(res.data[0].feedbackList)
             })
             .catch((err) => {
                 console.log(err);
@@ -162,16 +217,17 @@ function TranslatorProgressArticle(props) {
     }, []);
 
 
-    const [article, setArticle] = React.useState({});
+    const [article, setArticle] = React.useState([]);
     React.useEffect(() => {
         axios
-            .get(`https://api-dotnet-test.herokuapp.com/api/articles/${articleId}`)
+            .get(`https://api-dotnet-test.herokuapp.com/api/articles/application/${articleId}`)
             .then(res => {
-                //setFakeData(res.data.data);
-                setArticle(res.data);
-                setProjectId(res.data.projectId);
+                
+                setArticle(res.data[0]);
+                setProjectId(res.data[0].projectId);
+                setTranslators(res.data[0].articleDetail)
                 //Get URL froom firebase
-                console.log(res.data.originalContent);
+                console.log(res.data[0].originalContent);
                 const fileRef = ref(storage, `originalArticles/${res.data.originalContent}`)
                 getDownloadURL(fileRef).then((response) => {
                     setOriginalContentUrl(response)
@@ -179,20 +235,9 @@ function TranslatorProgressArticle(props) {
             })
             .catch(err => { console.log(err) })
     }, [])
-    console.log(originalContentUrL);
+    console.log(translators);
+    console.log(article);
 
-    const [translators, setTranslators] = useState([]);
-    React.useEffect(() => {
-        axios
-            .get("https://api-dotnet-test.herokuapp.com/api/applications/translators?pageNumber=1&pageSize=5")
-            .then((res) => {
-                const data = res.data;
-                setTranslators(data);
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-    }, []);
 
     const handleSingleFileInput = (e) => {
         singleFileRef.current.click(e);
@@ -234,6 +279,7 @@ function TranslatorProgressArticle(props) {
 
     return (
         <>
+        <NotificationAlert ref={notificationAlert} />
             <PanelHeader
                 size="sm" />
 
@@ -633,7 +679,6 @@ function TranslatorProgressArticle(props) {
                                                         <tr>
                                                             <th >#</th>
                                                             <th>Translator Name</th>
-                                                            <th>Level</th>
                                                             <th>Apply Date</th>
                                                             <th>Status</th>
                                                             <th>Choose</th>
@@ -642,13 +687,13 @@ function TranslatorProgressArticle(props) {
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        {translators.map((translator, index) => {
+                                                        {translators?.map((translator, index) => {
                                                             return (<tr>
                                                                 <td >{index + 1}</td>
-                                                                <td>{translator.applyBy}</td>
-                                                                <td>{translator.level}</td>
+                                                                <td>{translator.appliedName}</td>
                                                                 <td>
-                                                                    {moment(new Date(translator.appliedOn)).format("DD/MM/YYYY, h:mm:ss A")}
+                                                                {/* translator.appliedOn */}
+                                                                    {moment(new Date()).format("DD/MM/YYYY")}
                                                                 </td>
                                                                 <td >
                                                                     {/* <Switch defaultValue={false} /> */}
@@ -658,18 +703,17 @@ function TranslatorProgressArticle(props) {
 
                                                                 </td>
                                                                 <td>
-                                                                    <a style={{ all: "unset", cursor: "pointer" }} href={`customer-recruitment-detail?id=${translator.articleId}`}>
-                                                                        <Button color="info" className="btn-right" style={
-                                                                            {
+                                                                    <Button onClick={() => {chooseTransaltor(translator)}}  color="info" className="btn-right" style={
+                                                                        {
 
-                                                                                fontSize: "10px",
+                                                                            fontSize: "10px",
 
-                                                                            }
-                                                                        }>
+                                                                        }
+                                                                    }>
 
-                                                                            Choose
-                                                                        </Button>
-                                                                    </a>
+                                                                        Choose
+                                                                    </Button>
+
                                                                 </td>
 
                                                             </tr>);

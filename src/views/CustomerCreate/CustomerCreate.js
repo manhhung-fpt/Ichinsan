@@ -33,40 +33,45 @@ function CustomerCreate() {
   const [count, setCount] = React.useState(0);
   const [count1, setCount1] = React.useState(0);
   const [count2, setCount2] = React.useState(0);
-  const alertSuccesfully = () =>{
+  const alertSuccesfully = () => {
     var options = {};
     options = {
       place: "tr",
-      message:"Create sucessfully",
+      message: "Create sucessfully",
       type: "info",
       icon: "now-ui-icons ui-1_bell-53",
       autoDismiss: 7,
     };
     notificationAlert.current.notificationAlert(options);
   }
-  const alertError = (e) =>{
+  const alertError = (e) => {
     var options = {};
     options = {
       place: "tr",
-      message:e,
+      message: e,
       type: "danger",
       icon: "now-ui-icons ui-1_bell-53",
       autoDismiss: 7,
     };
     notificationAlert.current.notificationAlert(options);
   }
-
+  const userName = localStorage.getItem('name');
+  const uId = localStorage.getItem('userId')
   const sumbitForm = () => {
     var axios = require('axios');
     var data = JSON.stringify({
-      "name": projectName,
+      "notiName": "Add Project",
+      "notiContent": `${userName} has created a project : ${projectName}`,
+      "userId": uId,
+      "projectName": projectName,
       "projectCategoryId": singleSelect,
-      "description": description
+      "customerId": uId,
+      "projectDescription": description
     });
 
     var config = {
       method: 'post',
-      url: 'https://api-dotnet-test.herokuapp.com/api/projects',
+      url: 'https://api-dotnet-test.herokuapp.com/api/projects/pushnoti',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -129,7 +134,7 @@ function CustomerCreate() {
 
   return (
     <>
-    <NotificationAlert ref={notificationAlert} />
+      <NotificationAlert ref={notificationAlert} />
       <PanelHeader size="sm" />
       <div className="content">
         <Row>
@@ -154,7 +159,7 @@ function CustomerCreate() {
 
                 <Row>
                   <Col xs={12} md={2} size="sm"  >
-                    Projetc Name
+                    Project Name
                   </Col>
                   <Col xs={12} md={5} size="sm"  >
                     <FormGroup>

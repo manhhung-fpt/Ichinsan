@@ -87,7 +87,7 @@ function TranslatorProgress() {
   const uId = localStorage.getItem("userId");
   React.useEffect(() => {
     axios
-      .get("https://api-dotnet-test.herokuapp.com/api/users/ABBAC12E-27B6-4492-ACBB-034EC881BFFF")
+      .get(`https://api-dotnet-test.herokuapp.com/api/users/${uId}`)
       .then((res) => {
         const data = res.data.projectList;
         console.log(data);
@@ -205,7 +205,7 @@ function TranslatorProgress() {
                   {
                     statusOptions.map((statusOption, index) => {
                       return <TabPane tabId={statusOption.content}>
-                        {projects !== null ? (
+                        {projects !== undefined ? (
                         <Row>
                           {projects
                             .filter(a => a.status === statusOption.label)
