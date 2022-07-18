@@ -178,11 +178,11 @@ function TranslatorViewArticle(props) {
     const alertSuccesfully = () => {
         var options = {};
         options = {
-            place: "tr",
-            message: "Aplly Successfully",
-            type: "info",
-            icon: "now-ui-icons ui-1_bell-53",
-            autoDismiss: 7,
+          place: "tr",
+          message:"Apllied Successfully",
+          type: "info",
+          icon: "now-ui-icons ui-1_bell-53",
+          autoDismiss: 7,
         };
         notificationAlert.current.notificationAlert(options);
     }

@@ -140,6 +140,9 @@ function CustomerEditArticle(props) {
       .then(function (response) {
         console.log(JSON.stringify(response.data));
         alertSuccesfully();
+        setTimeout(() => {
+          history.push(`customer-recruitment-detail?id=${articleId}`);
+      }, 2000);
       })
       .catch(function (error) {
         alertFalied(error.message)
