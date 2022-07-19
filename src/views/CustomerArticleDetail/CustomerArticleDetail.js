@@ -95,7 +95,7 @@ function TranslatorProgressArticle(props) {
   const singleFileRef = React.useRef();
   const statusOptions = [
     { value: 1, content: 'ps1', label: "Pending" },
-    { value: 2, content: 'ps2', label: "In Progress" },
+    { value: 2, content: 'ps2', label: "InProgress" },
     { value: 3, content: 'ps3', label: "Review" },
     { value: 4, content: 'ps4', label: "Done" },
     { value: 5, content: 'ps5', label: "Postponed" },

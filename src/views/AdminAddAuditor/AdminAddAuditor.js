@@ -30,6 +30,7 @@ import {
   Button,
   Form,
 } from "reactstrap";
+import NotificationAlert from "react-notification-alert";
 
 import Select from "react-select";
 // core components
@@ -48,7 +49,8 @@ var selectOptions = [
   { value: "five", label: "Five" },
   { value: "six", label: "Six" },
 ];
-function AdminAddAuditor() {
+function AdminAddAuditor(props) {
+  const notificationAlert = React.useRef();
   let history = useHistory();
   const location = useLocation();
   const Edit = "edit";
@@ -56,35 +58,94 @@ function AdminAddAuditor() {
   const [multipleSelect, setMultipleSelect] = React.useState(null);
   const [projects, setProjects] = useState([]);
   const [radioCheck, setRadioCheck] = useState('');
+  const [article, setArticle] = useState([]);
+  const [auditorId, setAuditorId] = useState('');
+  const [auditorName, setAuditorName] = useState('');
+  const alertSuccesfully = () =>{
+    var options = {};
+    options = {
+      place: "tr",
+      message:"Add sucessfully",
+      type: "info",
+      icon: "now-ui-icons ui-1_bell-53",
+      autoDismiss: 7,
+    };
+    notificationAlert.current.notificationAlert(options);
+  }
   useEffect(() => {
     axios
       .get("https://api-dotnet-test.herokuapp.com/api/users?pageNumber=1&pageSize=50")
       .then((res) => {
         const data = res.data;
-
         filter123(data);
       })
       .catch((err) => {
         console.log(err);
       })
   }, []);
+  const articleId = props.location.search.split("=")[1];
+  useEffect(() => {
+    axios
+      .get(`https://api-dotnet-test.herokuapp.com/api/articles/${articleId}`)
+      .then((res) => {
+        setArticle(res.data)
+        setAuditorId(res.data.auditorId)
+        setAuditorName(res.data.auditorName)
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }, []);
+  console.log(auditorId);
   const filter123 = (data) => {
     let newData = data.filter(e => e.role === 'Auditor')
     setProjects(newData);
 
   }
-  const onChangeSelect = (e) =>{
-    setRadioCheck(e.target.value)
+  const onChangeSelect = (auId) =>{
+    setRadioCheck(auId)
   }
   const handleEdit = () =>{
-    // nhớ set lại default value khi ko có change select 
-    console.log(radioCheck);
+    var axios = require('axios');
+        var data = JSON.stringify({
+            "name": article.name,
+            "languageFrom": article.languageFrom,
+            "languageTo": article.languageTo,
+            "description": article.description,
+            "originalContent": article.originalContent,
+            "deadline": article.deadline,
+            "numberOfWords": article.numberOfWords,
+            "fee": article.fee,
+            "auditorId": radioCheck,
+            "status" : 2
+        });
+        var config = {
+            method: 'put',
+            url: `https://api-dotnet-test.herokuapp.com/api/articles/${articleId}`,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: data
+        };
+
+        axios(config)
+            .then(function (response) {
+              alertSuccesfully()
+              setTimeout(() => {
+                history.push(`/admin/admin-projec/admin-project-details?id=${article.projectId}`);
+            }, 2000);
+            })
+            .catch(function (error) {
+            });
+    
   }
   const onClickBack = () => {
     history.push("/admin/admin-projec/admin-project-details");
   }
+  
   return (
     <>
+    <NotificationAlert ref={notificationAlert} />
       <PanelHeader size="sm" />
       <div className="content">
         <Row>
@@ -122,7 +183,7 @@ function AdminAddAuditor() {
                   <Col xs={12} md={10} size="sm">
 
                   </Col>
-                  {location.state !== undefined && location.state.actionType === Edit ? (
+                  {auditorId !== null ? (
                     <Col xs={12} md={2} size="sm">
                       <Button onClick={handleEdit} color="danger" style={
                         {
@@ -139,7 +200,7 @@ function AdminAddAuditor() {
                     </Col>
                   ) : (
                     <Col xs={12} md={2} size="sm">
-                      <Button color="info" style={
+                      <Button onClick={handleEdit} color="info" style={
                         {
 
                           fontSize: "10px",
@@ -218,19 +279,20 @@ function AdminAddAuditor() {
                         {projects.map((project, index) => (
                           <tr>
                             <td className="text-center">{index + 1}</td>
+          
                             <td>{project.email}</td>
-                            <td>{project.language}</td>
+                            <td></td>
                             <td>{project.level}</td>
                             <td className="text-center">
                               <FormGroup  check>
                                 <Label check>
                                   <Input
-                                    defaultChecked = {project.email === 'admin@admin.com'}
-                                    value={project.email}
+                                    defaultChecked = {project.id === auditorId}
+                                    value={project.auditorId}
                                     id="exampleRadios3"
                                     name="exampleRadio"
                                     type="radio"
-                                    onChange={onChangeSelect}
+                                    onChange={() => onChangeSelect(project.id)}
                                   />
                                 </Label>
                               </FormGroup>
