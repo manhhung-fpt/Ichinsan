@@ -114,28 +114,28 @@ function TranslatorProgressArticle(props) {
     const [vTabsIcons, setvTabsIcons] = React.useState("vti1");
     const [pageSubcategories, setpageSubcategories] = React.useState("ps1");
     const uId = localStorage.getItem('userId')
-    const alertSuccesfully = () =>{
+    const alertSuccesfully = () => {
         var options = {};
         options = {
-          place: "tr",
-          message:"Choosed Translator Successfully",
-          type: "info",
-          icon: "now-ui-icons ui-1_bell-53",
-          autoDismiss: 7,
+            place: "tr",
+            message: "Choosed Translator Successfully",
+            type: "info",
+            icon: "now-ui-icons ui-1_bell-53",
+            autoDismiss: 7,
         };
         notificationAlert.current.notificationAlert(options);
-      }
-      const alertFalied = (message) =>{
+    }
+    const alertFalied = (message) => {
         var options = {};
         options = {
-          place: "tr",
-          message:message,
-          type: "info",
-          icon: "now-ui-icons ui-1_bell-53",
-          autoDismiss: 7,
+            place: "tr",
+            message: message,
+            type: "info",
+            icon: "now-ui-icons ui-1_bell-53",
+            autoDismiss: 7,
         };
         notificationAlert.current.notificationAlert(options);
-      }
+    }
 
     const location = useLocation();
     const chooseTransaltor = (translator) => {
@@ -144,7 +144,8 @@ function TranslatorProgressArticle(props) {
             "id": translator.id,
             "appliedBy": translator.appliedBy,
             "isApproved": true,
-            "approvedBy": uId
+            "approvedBy": uId,
+            "status": 1
         });
 
         var config = {
@@ -160,6 +161,8 @@ function TranslatorProgressArticle(props) {
             .then(function (response) {
                 console.log(JSON.stringify(response.data));
                 alertSuccesfully();
+                /// update Status of an articles after add a transolator
+                upDateStatus();
             })
             .catch(function (error) {
                 alertFalied(error.message)
@@ -183,19 +186,7 @@ function TranslatorProgressArticle(props) {
     const [translators, setTranslators] = useState([]);
 
 
-    const onClickPage = (event, page) => {
-        setPage(page);
-        var pages = page ? page : '1'
-        axios
-            .get(`https://api-dotnet-test.herokuapp.com/api/applications/translators?pageNumber=${pages}&pageSize=5`)
-            .then((res) => {
-                const data = res.data;
-                setTranslators(data);
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-    }
+
 
     const toggleModalClassic = () => {
         setModalClassic(!modalClassic);
@@ -208,7 +199,7 @@ function TranslatorProgressArticle(props) {
     React.useEffect(() => {
         axios
             .get(`https://api-dotnet-test.herokuapp.com/api/articles/feedbacks/${articleId}`)
-            .then((res) => {               
+            .then((res) => {
                 setFeedbacks(res.data[0].feedbackList)
             })
             .catch((err) => {
@@ -222,12 +213,19 @@ function TranslatorProgressArticle(props) {
         axios
             .get(`https://api-dotnet-test.herokuapp.com/api/articles/application/${articleId}`)
             .then(res => {
-                
-                setArticle(res.data[0]);
+
                 setProjectId(res.data[0].projectId);
-                setTranslators(res.data[0].articleDetail)
+                setTranslators(res.data[0].applicationDetail)
+
+            })
+            .catch(err => { console.log(err) })
+    }, [])
+    React.useEffect(() => {
+        axios
+            .get(`https://api-dotnet-test.herokuapp.com/api/articles/${articleId}`)
+            .then(res => {
+                setArticle(res.data);
                 //Get URL froom firebase
-                console.log(res.data[0].originalContent);
                 const fileRef = ref(storage, `originalArticles/${res.data.originalContent}`)
                 getDownloadURL(fileRef).then((response) => {
                     setOriginalContentUrl(response)
@@ -235,6 +233,35 @@ function TranslatorProgressArticle(props) {
             })
             .catch(err => { console.log(err) })
     }, [])
+    const upDateStatus = () => {
+        var axios = require('axios');
+        var data = JSON.stringify({
+            "name": article.name,
+            "languageFrom": article.languageFrom,
+            "languageTo": article.languageTo,
+            "description": article.description,
+            "originalContent": article.originalContent,
+            "deadline": article.deadline,
+            "numberOfWords": article.numberOfWords,
+            "fee": article.fee,
+            "status" : 2
+        });
+        var config = {
+            method: 'put',
+            url: `https://api-dotnet-test.herokuapp.com/api/articles/${articleId}`,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: data
+        };
+
+        axios(config)
+            .then(function (response) {
+                console.log(JSON.stringify(response.data));
+            })
+            .catch(function (error) {
+            });
+    }
     console.log(translators);
     console.log(article);
 
@@ -279,7 +306,7 @@ function TranslatorProgressArticle(props) {
 
     return (
         <>
-        <NotificationAlert ref={notificationAlert} />
+            <NotificationAlert ref={notificationAlert} />
             <PanelHeader
                 size="sm" />
 
@@ -537,65 +564,14 @@ function TranslatorProgressArticle(props) {
                                                             </CardTitle>
                                                         </Col>
                                                         <Col xs={12} md={7}>
-                                                            <CardTitle style={{
+                                                        <CardTitle style={{
                                                                 color: "#2CA8FF",
                                                                 fontSize: "20px",
                                                                 fontWeight: "bold",
+                                                                
                                                             }}>
-
-                                                                <Input
-                                                                    type="text"
-                                                                    className="inputFileVisible"
-                                                                    placeholder="Dowdload File..."
-                                                                    onClick={(e) => handleSingleFileInput(e)}
-                                                                    defaultValue={singleFileName}
-                                                                />
-                                                                <input
-                                                                    type="file"
-                                                                    className="inputFileHidden"
-                                                                    style={{ zIndex: -1 }}
-                                                                    ref={singleFileRef}
-                                                                    onChange={(e) => addSingleFile(e)}
-                                                                />
-
+                                                                {article.originalContent}
                                                             </CardTitle>
-                                                            {singleFile !== null && singleFileName !== "" ? (
-                                                                <Row>
-                                                                    <Col xs={12} md={5} size="sm"  >
-                                                                        <Button onClick={onClickPostpose} className="btn-danger" color="primary" style={
-                                                                            {
-
-                                                                                fontSize: "10px",
-
-                                                                            }
-                                                                        }>
-                                                                            Edit
-                                                                        </Button>
-                                                                    </Col>
-                                                                    <Col xs={12} md={5} size="sm"  >
-                                                                        <Button onClick={onClickPostpose} className="btn-info" color="primary" style={
-                                                                            {
-
-                                                                                fontSize: "10px",
-
-                                                                            }
-                                                                        }>
-                                                                            Remove
-                                                                        </Button>
-                                                                    </Col>
-                                                                </Row>
-
-                                                            ) : (
-                                                                <Button hidden onClick={onClickAdd} className="btn-info" color="default" style={
-                                                                    {
-
-                                                                        fontSize: "10px",
-
-                                                                    }
-                                                                }>
-                                                                    Add an Article
-                                                                </Button>
-                                                            )}
                                                         </Col>
                                                     </Row>
                                                 </CardHeader>
@@ -624,7 +600,7 @@ function TranslatorProgressArticle(props) {
                                                                 fontWeight: "bold",
                                                             }}
                                                         >
-                                                            Null {article.translator}
+                                                            {article.translatorName}
                                                         </Col>
                                                     </Row>
                                                     <Row>
@@ -649,7 +625,7 @@ function TranslatorProgressArticle(props) {
                                                                 fontWeight: "bold",
                                                             }}
                                                         >
-                                                            Null {article.auditor}
+                                                             {article.auditorName}
                                                         </Col>
                                                     </Row>
 
@@ -691,19 +667,22 @@ function TranslatorProgressArticle(props) {
                                                             return (<tr>
                                                                 <td >{index + 1}</td>
                                                                 <td>{translator.appliedName}</td>
-                                                                <td>
-                                                                {/* translator.appliedOn */}
+                                                                <td>                                                                  
                                                                     {moment(new Date()).format("DD/MM/YYYY")}
                                                                 </td>
-                                                                <td >
-                                                                    {/* <Switch defaultValue={false} /> */}
+                                                                <td >  
+                                                                {translator.isApproved !== true  ? (                                                                  
                                                                     <Button style={{
                                                                         backgroundColor: "orange",
-                                                                    }}>{translator.status}</Button>
+                                                                    }}>{translator.statusName}</Button>
+                                                                ):( <Button style={{
+                                                                    backgroundColor: "orange",
+                                                                }}>{translator.statusName}</Button>)
 
+                                                                }
                                                                 </td>
                                                                 <td>
-                                                                    <Button onClick={() => {chooseTransaltor(translator)}}  color="info" className="btn-right" style={
+                                                                    <Button onClick={() => { chooseTransaltor(translator) }} color="info" className="btn-right" style={
                                                                         {
 
                                                                             fontSize: "10px",
@@ -724,14 +703,7 @@ function TranslatorProgressArticle(props) {
                                                     </tbody>
                                                 </Table>
                                             </CardBody>
-                                            <CardFooter>
-                                                <Pagination
-                                                    count={10}
-                                                    page={page}
 
-                                                    onChange={onClickPage}
-                                                    variant="outlined" color="primary" />
-                                            </CardFooter>
 
                                         </Card>
                                     </Col>

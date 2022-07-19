@@ -73,8 +73,7 @@ function TranslatorProgress() {
   const [vTabsIcons, setvTabsIcons] = React.useState("vti1");
 
   const statusOptions = [
-    { value: 1, content: 'ps1', label: "Pending" },
-    { value: 2, content: 'ps2', label: "In Progress" },
+    { value: 2, content: 'ps2', label: "InProgress" },
     { value: 3, content: 'ps3', label: "Done" },
     { value: 4, content: 'ps4', label: "Postponed" },
     // { value: 5, content: 'ps5', label: "Postponed" },
@@ -90,7 +89,7 @@ function TranslatorProgress() {
   const [articles, setArticles] = useState([]);
   React.useEffect(() => {
     axios
-      .get("https://api-dotnet-test.herokuapp.com/api/articles?pageNumber=1&pageSize=3")
+      .get("https://api-dotnet-test.herokuapp.com/api/articles/users?pageNumber=1&pageSize=60")
       .then((res) => {
         const data = res.data;
         setArticles(data);
@@ -129,6 +128,7 @@ function TranslatorProgress() {
     setSingleRoleSelect(() => e.value);
   }
   const [count, setCount] = React.useState(0);
+  const uid = localStorage.getItem('userId')
 
 
   return (
@@ -203,7 +203,7 @@ function TranslatorProgress() {
                       return <TabPane tabId={statusOption.content}>
                         <Row>
                           {articles
-                            .filter(a => a.status === statusOption.label)
+                            .filter(a => a.status === statusOption.label && uid === a.translatorId )
                             .map((article, index) => {
                               return <Col xs={12} lg={4}>
                                 <Card>
