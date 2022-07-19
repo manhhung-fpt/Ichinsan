@@ -79,10 +79,16 @@ function AdminProjectDetails(props) {
   const onClickBack = () => {
     history.push("/admin/admin-project")
   }
-  const editAuditor = (id) => {
-    history.push(`/admin/admin-add-auditor?id=${id}`);
+  const editAuditor = () => {
+    history.push({
+      pathname: '/admin/admin-add-auditor',
+      state: { actionType: 'edit' }
+    });
   }
 
+  const onClickAdd = () => {
+    history.push("/admin/admin-add-auditor");
+  }
   return (
     <>
       <PanelHeader size="sm" />
@@ -191,7 +197,7 @@ function AdminProjectDetails(props) {
                         </td>
                           <td className="text-right btns-mr-5">
                             {project.auditorName === null && (
-                              <Button onClick={() => editAuditor(project.id)} color="primary" className="btn-info" style={
+                              <Button onClick={editAuditor} color="primary" className="btn-info" style={
                                 {
   
                                   fontSize: "10px",
@@ -203,7 +209,7 @@ function AdminProjectDetails(props) {
 
                             )}
                             {project.auditorName !== null && (
-                              <Button onClick={() =>editAuditor(project.id)} color="primary" className="btn-round" style={
+                              <Button onClick={onClickAdd} color="primary" className="btn-round" style={
                                 {
   
                                   fontSize: "10px",
