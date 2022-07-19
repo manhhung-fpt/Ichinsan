@@ -57,6 +57,7 @@ function CustomerCreate() {
   }
   const userName = localStorage.getItem('name');
   const uId = localStorage.getItem('userId')
+  const imageUrl = localStorage.getItem('profilePic')
   const sumbitForm = () => {
     var axios = require('axios');
     var data = JSON.stringify({
@@ -66,7 +67,8 @@ function CustomerCreate() {
       "projectName": projectName,
       "projectCategoryId": singleSelect,
       "customerId": uId,
-      "projectDescription": description
+      "projectDescription": description,
+      "image": imageUrl
     });
 
     var config = {
