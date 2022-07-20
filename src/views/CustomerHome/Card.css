@@ -36,6 +36,7 @@ h3 {
 
 .card {
     margin-bottom: 0px;
+    box-shadow: 0 1px 15px 1px rgb(0 0 0 / 30%);
 }
 
 .card:hover {

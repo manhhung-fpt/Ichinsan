@@ -5,6 +5,8 @@ import axios from 'axios';
 import ReactCountryFlag from "react-country-flag"
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import "./Card.css";
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 // reactstrap components
 import {
 
@@ -73,7 +75,7 @@ function TranslatorProgress() {
   const [fakeData, setFakeData] = React.useState([]);
   const [vTabs, setvTabs] = React.useState("vt1");
   const [vTabsIcons, setvTabsIcons] = React.useState("vti1");
-
+  const [isLoading, setIsLoading] = React.useState(true);
   const statusOptions = [
     { value: 1, content: 'ps1', label: "Inprogress" },
     { value: 2, content: 'ps2', label: "Done" },
@@ -92,6 +94,7 @@ function TranslatorProgress() {
         const data = res.data.projectList;
         console.log(data);
         setProjects(data);
+        setIsLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -206,75 +209,83 @@ function TranslatorProgress() {
                     statusOptions.map((statusOption, index) => {
                       return <TabPane tabId={statusOption.content}>
                         {projects !== undefined ? (
-                        <Row>
-                          {projects
-                            .filter(a => a.status === statusOption.label)
-                            .map((project, index) => {
-                              return <Col xs={12} lg={4}>
-                                <Card
-                                  style={{
-                                    marginTop: "10px",
-                                  }}>
-                                  <a style={{ all: "unset", cursor: "pointer" }} href={`customer-arti-detail?id=${project.projectId}`}>
-                                    <CardHeader>
-                                      <Row>
-                                        <Col xs={12} md={8}>
-                                          <CardTitle style={{
-                                            color: "#2CA8FF",
-                                            fontSize: "20px",
-                                            fontWeight: "bold",
-                                          }}>
+                          <Row>
+                            {isLoading && <p>Loading...</p>}
+                            {projects
+                              .filter(a => a.status === statusOption.label)
+                              .map((project, index) => {
+                                return <Col xs={12} lg={4}>
 
-                                            {project.projectCategoryName}</CardTitle>
-                                        </Col>
-                                        <Col xs={12} md={4}>
-
-                                        </Col>
-                                      </Row>
-                                    </CardHeader>
-                                    <CardBody style={{
-                                      marginTop: "-20px",
+                                  <Card
+                                    style={{
+                                      marginTop: "10px",
                                     }}>
-                                      <CardTitle style={{
-                                        color: "black",
-                                        fontSize: "24px",
-                                        fontWeight: "bold",
+
+
+                                    <a style={{ all: "unset", cursor: "pointer" }} href={`customer-arti-detail?id=${project.projectId}`}>
+
+                                      <CardHeader>
+                                        <Row>
+                                          <Col xs={12} md={8}>
+                                            <CardTitle style={{
+                                              color: "#2CA8FF",
+                                              fontSize: "20px",
+                                              fontWeight: "bold",
+                                            }}>
+
+                                              {project.projectCategoryName}</CardTitle>
+                                          </Col>
+                                          <Col xs={12} md={4}>
+
+                                          </Col>
+                                        </Row>
+                                      </CardHeader>
+                                      <CardBody style={{
+                                        marginTop: "-20px",
                                       }}>
-                                        {project.projectName}
-                                      </CardTitle>
-                                      <CardText style={{
-                                        color: "black",
-                                        fontSize: "16px",
-                                        // fontWeight: "bold",
-                                      }}>Current Translator :
-                                        {project.currentTranslatorNumber}
-                                      </CardText>
-                                      <CardText style={{
-                                        color: "red",
-                                        fontSize: "16px",
-                                        // fontWeight: "bold",
-                                      }}>Total Translator :
-                                        {project.totalTranslator}
-                                      </CardText>
-                                    </CardBody>
+                                        <CardTitle style={{
+                                          color: "black",
+                                          fontSize: "24px",
+                                          fontWeight: "bold",
+                                        }}>
 
-                                    <div class="go-corner" href="#" style={{
-                                      backgroundColor: "#2CA8FF",
-                                    }}>
-                                      <div class="go-arrow">
-                                        <ArrowRightIcon></ArrowRightIcon>
+                                          {project.projectName}
+
+                                        </CardTitle>
+                                        <CardText style={{
+                                          color: "black",
+                                          fontSize: "16px",
+                                          // fontWeight: "bold",
+                                        }}>Current Translator :
+                                          {project.currentTranslatorNumber}
+                                        </CardText>
+                                        <CardText style={{
+                                          color: "red",
+                                          fontSize: "16px",
+                                          // fontWeight: "bold",
+                                        }}>Total Translator :
+                                          {project.totalTranslator}
+                                        </CardText>
+                                      </CardBody>
+
+                                      <div class="go-corner" href="#" style={{
+                                        backgroundColor: "#2CA8FF",
+                                      }}>
+                                        <div class="go-arrow">
+                                          <ArrowRightIcon></ArrowRightIcon>
+                                        </div>
                                       </div>
-                                    </div>
-                                  </a>
-                                </Card>
-                              </Col>
-                            })}
-                            
-                        </Row>
+                                    </a>
+
+                                  </Card>
+                                </Col>
+                              })}
+
+                          </Row>
                         ) : (
-                          <CircularProgress/>
+                          <CircularProgress />
                         )}
-                        
+
                       </TabPane>
                     }
                     )
@@ -287,7 +298,7 @@ function TranslatorProgress() {
 
                   </Col>
                   <Col xs={12} md={3} size="sm">
-                  
+
                   </Col>
                   <Col xs={12} md={4} size="sm">
                   </Col>
