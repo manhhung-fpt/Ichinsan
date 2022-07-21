@@ -63,8 +63,9 @@ let routes = [
     name: "Dashboard",
     icon: "now-ui-icons design_app",
     component: Dashboard,
+    hideInDetail: true,
     layout: "/admin",
-    mainScreen: true,
+   
   },
 
   {

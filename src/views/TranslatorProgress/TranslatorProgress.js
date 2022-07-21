@@ -74,8 +74,9 @@ function TranslatorProgress() {
 
   const statusOptions = [
     { value: 2, content: 'ps2', label: "InProgress" },
-    { value: 3, content: 'ps3', label: "Done" },
-    { value: 4, content: 'ps4', label: "Postponed" },
+    { value: 3, content: 'ps3', label: "Review" },
+    { value: 4, content: 'ps4', label: "Done" },
+    { value: 5, content: 'ps5', label: "Postponed" },
     // { value: 5, content: 'ps5', label: "Postponed" },
   ]
   const [pageSubcategories, setpageSubcategories] = React.useState(statusOptions[0].content);
@@ -310,39 +311,6 @@ function TranslatorProgress() {
                 <Row>
                   <Col xs={12} md={5} size="sm">
 
-                  </Col>
-                  <Col xs={12} md={3} size="sm">
-                    <Pagination>
-                      <PaginationItem>
-                        <PaginationLink href="#">
-                          <span aria-hidden="true">
-                            <i
-                              className="fa fa-angle-double-left"
-                              aria-hidden="true"
-                            />
-                          </span>
-                        </PaginationLink>
-                      </PaginationItem>
-                      <PaginationItem>
-                        <PaginationLink href="#">1</PaginationLink>
-                      </PaginationItem>
-                      <PaginationItem active>
-                        <PaginationLink href="#">2</PaginationLink>
-                      </PaginationItem>
-                      <PaginationItem>
-                        <PaginationLink href="#">3</PaginationLink>
-                      </PaginationItem>
-                      <PaginationItem>
-                        <PaginationLink href="#">
-                          <span aria-hidden="true">
-                            <i
-                              className="fa fa-angle-double-right"
-                              aria-hidden="true"
-                            />
-                          </span>
-                        </PaginationLink>
-                      </PaginationItem>
-                    </Pagination>
                   </Col>
                   <Col xs={12} md={4} size="sm">
                   </Col>

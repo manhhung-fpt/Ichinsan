@@ -136,7 +136,30 @@ function TranslatorProgressArticle(props) {
         };
         notificationAlert.current.notificationAlert(options);
     }
+    const reFresData = () => {
+        axios
+            .get(`https://api-dotnet-test.herokuapp.com/api/articles/application/${articleId}`)
+            .then(res => {
 
+                setProjectId(res.data[0].projectId);
+                setTranslators(res.data[0].applicationDetail)
+
+            })
+            .catch(err => { console.log(err) })
+    }
+    const reFresArticles = () => {
+        axios
+            .get(`https://api-dotnet-test.herokuapp.com/api/articles/${articleId}`)
+            .then(res => {
+                setArticle(res.data);
+                //Get URL froom firebase
+                const fileRef = ref(storage, `originalArticles/${res.data.originalContent}`)
+                getDownloadURL(fileRef).then((response) => {
+                    setOriginalContentUrl(response)
+                })
+            })
+            .catch(err => { console.log(err) })
+    }
     const location = useLocation();
     const chooseTransaltor = (translator) => {
         var axios = require('axios');
@@ -163,6 +186,9 @@ function TranslatorProgressArticle(props) {
                 alertSuccesfully();
                 /// update Status of an articles after add a transolator
                 upDateStatus();
+                reFresArticles();
+                reFresData();
+
             })
             .catch(function (error) {
                 alertFalied(error.message)
@@ -244,7 +270,7 @@ function TranslatorProgressArticle(props) {
             "deadline": article.deadline,
             "numberOfWords": article.numberOfWords,
             "fee": article.fee,
-            "status" : 2
+            "status": 3
         });
         var config = {
             method: 'put',
@@ -286,12 +312,7 @@ function TranslatorProgressArticle(props) {
     const onClickBack = () => {
         history.push("/admin/customer-progress-article")
     };
-    const onClickView = () => {
-        history.push("/admin/customer-progress-article")
-    };
-    const onClickFeedback = () => {
-        history.push("/admin/customer-create-feedback")
-    };
+
     const onClickAdd = () => {
         history.push(`customer-create-feedback?id=${articleId}&projectId=${projectId}`)
     };
@@ -564,11 +585,11 @@ function TranslatorProgressArticle(props) {
                                                             </CardTitle>
                                                         </Col>
                                                         <Col xs={12} md={7}>
-                                                        <CardTitle style={{
+                                                            <CardTitle style={{
                                                                 color: "#2CA8FF",
                                                                 fontSize: "20px",
                                                                 fontWeight: "bold",
-                                                                
+
                                                             }}>
                                                                 {article.originalContent}
                                                             </CardTitle>
@@ -625,7 +646,7 @@ function TranslatorProgressArticle(props) {
                                                                 fontWeight: "bold",
                                                             }}
                                                         >
-                                                             {article.auditorName}
+                                                            {article.auditorName}
                                                         </Col>
                                                     </Row>
 
@@ -667,22 +688,22 @@ function TranslatorProgressArticle(props) {
                                                             return (<tr>
                                                                 <td >{index + 1}</td>
                                                                 <td>{translator.appliedName}</td>
-                                                                <td>                                                                  
+                                                                <td>
                                                                     {moment(new Date()).format("DD/MM/YYYY")}
                                                                 </td>
-                                                                <td >  
-                                                                {translator.isApproved !== true  ? (                                                                  
-                                                                    <Button style={{
-                                                                        backgroundColor: "orange",
-                                                                    }}>{translator.statusName}</Button>
-                                                                ):( <Button style={{
-                                                                    backgroundColor: "orange",
-                                                                }}>{translator.statusName}</Button>)
+                                                                <td >
+                                                                    {translator.isApproved !== true ? (
+                                                                        <Button style={{
+                                                                            backgroundColor: "orange",
+                                                                        }}>{translator.statusName}</Button>
+                                                                    ) : (<Button style={{
+                                                                        backgroundColor: "green",
+                                                                    }}>Approved</Button>)
 
-                                                                }
+                                                                    }
                                                                 </td>
                                                                 <td>
-                                                                    <Button onClick={() => { chooseTransaltor(translator) }} color="info" className="btn-right" style={
+                                                                    {translator.isApproved !== true ? (<Button onClick={() => { chooseTransaltor(translator) }} color="info" className="btn-right" style={
                                                                         {
 
                                                                             fontSize: "10px",
@@ -691,8 +712,16 @@ function TranslatorProgressArticle(props) {
                                                                     }>
 
                                                                         Choose
-                                                                    </Button>
+                                                                    </Button>) : (<Button disabled onClick={() => { chooseTransaltor(translator) }} color="info" className="btn-right" style={
+                                                                        {
 
+                                                                            fontSize: "10px",
+
+                                                                        }
+                                                                    }>
+
+                                                                        Choose
+                                                                    </Button>)}
                                                                 </td>
 
                                                             </tr>);

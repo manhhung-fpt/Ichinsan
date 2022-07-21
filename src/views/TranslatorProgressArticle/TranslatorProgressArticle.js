@@ -85,6 +85,8 @@ import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import UploadIcon from '@mui/icons-material/Upload';
+import { storage } from "Firebase";
+import { ref, uploadBytes, getDownloadURL, getBytes } from "firebase/storage";
 
 
 
@@ -111,6 +113,7 @@ function TranslatorProgressArticle(props) {
     const [openedCollapses, setOpenCollapses] = React.useState(["collapseOne"]);
     const [hTabs, sethTabs] = React.useState("ht1");
     const [vTabs, setvTabs] = React.useState("vt1");
+    const [fileURL, setFileURL] = React.useState("");
     const [vTabsIcons, setvTabsIcons] = React.useState("vti1");
     const [pageSubcategories, setpageSubcategories] = React.useState("ps1");
 
@@ -137,6 +140,10 @@ function TranslatorProgressArticle(props) {
             .then(res => {
                 //setFakeData(res.data.data);
                 setArticle(res.data);
+                const fileRef = ref(storage, `originalArticles/${res.data.originalContent}`)
+                getDownloadURL(fileRef).then((response) => {
+                    setFileURL(response)
+                })
             })
             .catch(err => { console.log(err) })
     }, [])
@@ -153,7 +160,14 @@ function TranslatorProgressArticle(props) {
                 console.log(err);
             })
     }, []);
-
+const submitArticles = () =>{
+    const fileRef = ref(storage, `translationArticles/${singleFileName}`)
+    uploadBytes(fileRef, singleFile).then((res) => {
+        getDownloadURL(res.ref).then((response) => {
+          setFileURL(response)
+        })
+      })
+}
     const handleSingleFileInput = (e) => {
         singleFileRef.current.click(e);
     };
@@ -387,7 +401,9 @@ function TranslatorProgressArticle(props) {
                                                             fontSize: "20px",
                                                             fontWeight: "bold",
                                                         }}>
+                                                            <a href={fileURL}>
                                                             <DownloadIcon></DownloadIcon>
+                                                            </a>
                                                         </CardTitle>
                                                     </Col>
                                                     <Col xs={12} md={7}>
@@ -396,17 +412,7 @@ function TranslatorProgressArticle(props) {
                                                             fontSize: "20px",
                                                             fontWeight: "bold",
                                                         }}>
-
-
-                                                            {/* 
-                <input
-                    type="file"
-                    className="inputFileHidden"
-                    style={{ zIndex: -1 }}
-                    ref={singleFileRef}
-                    onChange={(e) => addSingleFile(e)}
-                /> */}
-
+                                                            {article.originalContent}
                                                         </CardTitle>
                                                     </Col>
                                                 </Row>
@@ -438,28 +444,7 @@ function TranslatorProgressArticle(props) {
                                                         </CardTitle>
                                                     </Col>
                                                     <Col xs={12} md={7}>
-                                                        {/* <CardTitle style={{
-                                color: "#2CA8FF",
-                                fontSize: "20px",
-                                fontWeight: "bold",
-                            }}>
-
-                                <Input
-                                    type="text"
-                                    className="inputFileVisible"
-                                    placeholder="Dowdload File..."
-                                    onClick={(e) => handleSingleFileInput(e)}
-                                    defaultValue={singleFileName}
-                                />
-                                <input
-                                    type="file"
-                                    className="inputFileHidden"
-                                    style={{ zIndex: -1 }}
-                                    ref={singleFileRef}
-                                    onChange={(e) => addSingleFile(e)}
-                                />
-
-                            </CardTitle> */}
+                                                       
                                                         <CardBody>
 
                                                             <Row>
@@ -490,43 +475,7 @@ function TranslatorProgressArticle(props) {
                                                             </Row>
 
                                                         </CardBody>
-                                                        {/* {singleFile !== null && singleFileName !== "" ? (
-                                                            <Row>
-                                                                <Col xs={12} md={5} size="sm"  >
-                                                                    <Button onClick={onClickPostpose} className="btn-danger" color="primary" style={
-                                                                        {
-
-                                                                            fontSize: "10px",
-
-                                                                        }
-                                                                    }>
-                                                                        Edit
-                                                                    </Button>
-                                                                </Col>
-                                                                <Col xs={12} md={5} size="sm"  >
-                                                                    <Button onClick={onClickPostpose} className="btn-info" color="primary" style={
-                                                                        {
-
-                                                                            fontSize: "10px",
-
-                                                                        }
-                                                                    }>
-                                                                        Remove
-                                                                    </Button>
-                                                                </Col>
-                                                            </Row>
-
-                                                        ) : (
-                                                            <Button hidden onClick={onClickAdd} className="btn-info" color="default" style={
-                                                                {
-
-                                                                    fontSize: "10px",
-
-                                                                }
-                                                            }>
-                                                                Add an Article
-                                                            </Button>
-                                                        )} */}
+                                                       
                                                     </Col>
                                                 </Row>
                                             </CardHeader>
@@ -555,7 +504,7 @@ function TranslatorProgressArticle(props) {
                                                             fontWeight: "bold",
                                                         }}
                                                     >
-                                                        {article.translator}
+                                                        {article.translatorName}
                                                     </Col>
                                                 </Row>
                                                 <Row>
@@ -580,7 +529,7 @@ function TranslatorProgressArticle(props) {
                                                             fontWeight: "bold",
                                                         }}
                                                     >
-                                                        {article.auditor}
+                                                        {article.auditorName}
                                                     </Col>
                                                 </Row>
 
@@ -589,27 +538,27 @@ function TranslatorProgressArticle(props) {
                                             {/* </a> */}
                                             <CardActions disableSpacing>
 
-                                                    <Col md={1}>
-                                                        <a style={{ all: "unset", cursor: "pointer" }} href={`translator-progress-article?id=${articleId}`}>
-                                                            <Button className="btn-info" color="primary" style={
-                                                                {
+                                                <Col md={1}>
+                                                    
+                                                        <Button onClick={() => submitArticles()} className="btn-info" color="primary" style={
+                                                            {
 
-                                                                    fontSize: "10px",
+                                                                fontSize: "10px",
 
-                                                                }
-                                                            }>
-                                                                Submit
-                                                            </Button>
-                                                        </a>
-                                                    </Col>
+                                                            }
+                                                        }>
+                                                            Submit
+                                                        </Button>
+                                                    
+                                                </Col>
 
-                                                    <Col md={1}>
-                                                        
-                                                    </Col>
-                                                    <Col md={10}>
+                                                <Col md={1}>
 
-                                                    </Col>
-                                                </CardActions>
+                                                </Col>
+                                                <Col md={10}>
+
+                                                </Col>
+                                            </CardActions>
                                         </Card>
                                     </Col>
 
