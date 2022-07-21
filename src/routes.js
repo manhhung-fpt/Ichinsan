@@ -55,7 +55,7 @@ let routes = [
     icon: "now-ui-icons shopping_shop",
     component: Home,
     layout: "/admin",
-    rolePermission: "Translator"
+    hideInDetail: true
 
   },
   {

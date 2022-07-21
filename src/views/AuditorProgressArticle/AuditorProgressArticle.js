@@ -177,7 +177,8 @@ function AuditorProgressArticle(props) {
             "numberOfWords": article.numberOfWords,
             "fee": article.fee,
             "auditorId": article.auditorId,
-            "status": 4
+            "status": 4,
+            "translatedContent": article.translatedContent
         });
         var config = {
             method: 'put',

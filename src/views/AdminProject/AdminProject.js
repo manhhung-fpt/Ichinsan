@@ -42,6 +42,7 @@ function AdminProject() {
   const [singleSelect, setSingleSelect] = React.useState(null);
   const [multipleSelect, setMultipleSelect] = React.useState(null);
   const [page, setPage] = React.useState(1);
+  const [isLoading, setIsLoading] = React.useState(true);
 
 
   const [projects, setProjects] = useState([]);
@@ -51,6 +52,7 @@ function AdminProject() {
       .then((res) => {
         const data = res.data;
         setProjects(data);
+        setIsLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -112,7 +114,7 @@ function AdminProject() {
                   </thead>
                   <tbody>
 
-
+                  {isLoading && <p>Loading...</p>}
                     {
                       projects.map((project, index) => {
                         return (<tr>

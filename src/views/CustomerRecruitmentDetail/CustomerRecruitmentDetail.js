@@ -125,6 +125,17 @@ function TranslatorProgressArticle(props) {
         };
         notificationAlert.current.notificationAlert(options);
     }
+    const alertPostponed = () => {
+        var options = {};
+        options = {
+            place: "tr",
+            message: "Postponed Successfully",
+            type: "info",
+            icon: "now-ui-icons ui-1_bell-53",
+            autoDismiss: 7,
+        };
+        notificationAlert.current.notificationAlert(options);
+    }
     const alertFalied = (message) => {
         var options = {};
         options = {
@@ -209,6 +220,7 @@ function TranslatorProgressArticle(props) {
     const [modalEdit, setModalEdit] = React.useState(false);
     const [page, setPage] = React.useState(1);
     const [originalContentUrL, setOriginalContentUrl] = React.useState('');
+    const [translatedContentUrl, setFileURL] = React.useState('');
     const [translators, setTranslators] = useState([]);
 
 
@@ -255,6 +267,12 @@ function TranslatorProgressArticle(props) {
                 const fileRef = ref(storage, `originalArticles/${res.data.originalContent}`)
                 getDownloadURL(fileRef).then((response) => {
                     setOriginalContentUrl(response)
+                })
+                const fileRef2 = ref(storage, `translationArticles/${res.data.translatedContent}`)
+                uploadBytes(fileRef2, singleFile).then((res) => {
+                    getDownloadURL(res.ref).then((response) => {
+                        setFileURL(response)
+                    })
                 })
             })
             .catch(err => { console.log(err) })
@@ -318,7 +336,37 @@ function TranslatorProgressArticle(props) {
         history.push(`customer-create-feedback?id=${articleId}&projectId=${projectId}`)
     };
     const onClickPostpose = () => {
-        history.push("/admin/customer-home")
+        var axios = require('axios');
+        var data = JSON.stringify({
+            "name": article.name,
+            "languageFrom": article.languageFrom,
+            "languageTo": article.languageTo,
+            "description": article.description,
+            "deadline": article.deadline,
+            "numberOfWords": article.numberOfWords,
+            "auditorId": article.auditorId,
+            "fee": article.fee,
+            "status": 5
+        });
+        var config = {
+            method: 'put',
+            url: `https://api-dotnet-test.herokuapp.com/api/articles/${articleId}`,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: data
+        };
+
+        axios(config)
+            .then(function (response) {
+                alertPostponed();
+                setTimeout(() => {
+                    history.push(`customer-arti-detail?id=${projectId}`);
+                }, 2000);
+                console.log(JSON.stringify(response.data));
+            })
+            .catch(function (error) {
+            });
     };
 
     // const onClickEditArti = () => {
@@ -391,7 +439,7 @@ function TranslatorProgressArticle(props) {
 
                                     <Col xs={12} lg={8}>
                                         <Card>
-                                            <a style={{ all: "unset", cursor: "pointer" }} href={`customer-recruitment-detail?id=${article.id}`}>
+                                            {/* <a style={{ all: "unset", cursor: "pointer" }} href={`customer-recruitment-detail?id=${article.id}`}> */}
                                                 <CardHeader>
                                                     <Row>
                                                         <Col xs={12} md={8}>
@@ -493,7 +541,7 @@ function TranslatorProgressArticle(props) {
 
                                                             }
                                                         }>
-                                                            Delete
+                                                            Postponed
                                                         </Button>
                                                     </Col>
                                                     <Col md={10}>
@@ -507,7 +555,7 @@ function TranslatorProgressArticle(props) {
                                                         <ArrowRightIcon></ArrowRightIcon>
                                                     </div>
                                                 </div>
-                                            </a>
+                                            {/* </a> */}
 
                                         </Card>
                                     </Col>
@@ -582,7 +630,9 @@ function TranslatorProgressArticle(props) {
                                                                 fontSize: "20px",
                                                                 fontWeight: "bold",
                                                             }}>
+                                                                <a href={translatedContentUrl}>
                                                                 <UploadIcon></UploadIcon>
+                                                                </a>
                                                             </CardTitle>
                                                         </Col>
                                                         <Col xs={12} md={7}>
@@ -592,7 +642,7 @@ function TranslatorProgressArticle(props) {
                                                                 fontWeight: "bold",
 
                                                             }}>
-                                                                {article.originalContent}
+                                                                {article.translatedContent}
                                                             </CardTitle>
                                                         </Col>
                                                     </Row>
@@ -816,7 +866,7 @@ function TranslatorProgressArticle(props) {
                                                                     </Button>
                                                                 </Col>
                                                                 <Col md={1}>
-                                                                    <Button className="btn-right" color="primary" style={
+                                                                    <Button onClick={onClickPostpose} className="btn-right" color="primary" style={
                                                                         {
                                                                             backgroundColor: "red",
                                                                             fontSize: "10px",
@@ -824,7 +874,7 @@ function TranslatorProgressArticle(props) {
                                                                         }
                                                                     }>
 
-                                                                        Delete
+                                                                        Postponed
                                                                     </Button>
                                                                 </Col>
 

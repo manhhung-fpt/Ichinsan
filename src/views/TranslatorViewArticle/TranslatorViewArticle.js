@@ -454,7 +454,7 @@ function TranslatorViewArticle(props) {
                                                             fontSize: "20px",
                                                             fontWeight: "bold",
                                                         }}>
-
+                                                           
 
                                                             {/* 
                                                 <input
@@ -464,7 +464,7 @@ function TranslatorViewArticle(props) {
                                                     ref={singleFileRef}
                                                     onChange={(e) => addSingleFile(e)}
                                                 /> */}
-
+                                                    {article.originalContent}
                                                         </CardTitle>
                                                     </Col>
                                                 </Row>

@@ -84,12 +84,14 @@ function TranslatorProgress() {
   const [page, setPage] = React.useState(1);
 
   const [articles, setArticles] = useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
   React.useEffect(() => {
     axios
       .get("https://api-dotnet-test.herokuapp.com/api/articles?pageNumber=1&pageSize=20")
       .then((res) => {
         const data = res.data;
         setArticles(data);
+        setIsLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -210,6 +212,7 @@ function TranslatorProgress() {
                     statusOptions.map((statusOption, index) => {
                       return <TabPane tabId={statusOption.content}>
                         <Row>
+                        {isLoading && <p>Loading...</p>}
                           {articles
                             .filter(a => a.status === statusOption.label)
                             .map((article, index) => {

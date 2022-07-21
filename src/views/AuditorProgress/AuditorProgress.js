@@ -87,12 +87,14 @@ function AuditorProgress() {
 
 
   const [articles, setArticles] = useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
   React.useEffect(() => {
     axios
       .get("https://api-dotnet-test.herokuapp.com/api/articles/users?pageNumber=1&pageSize=70")
       .then((res) => {
         const data = res.data;
         setArticles(data);
+        setIsLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -202,6 +204,7 @@ function AuditorProgress() {
                     statusOptions.map((statusOption, index) => {
                       return <TabPane tabId={statusOption.content}>
                         <Row>
+                        {isLoading && <p>Loading...</p>}
                           {articles
                             .filter(a => a.status === statusOption.label && uid === a.auditorId)
                             .map((article, index) => {

@@ -94,7 +94,7 @@ function LoginPage() {
               history.push("/admin/auditor-progress");
             }
             if(decoded.role == 'Translator'){
-              history.push("/admin/home");
+              history.push("/admin/translator-recruitment");
             }
             if(decoded.role == 'Customer'){
               history.push("/admin/customer-home");
