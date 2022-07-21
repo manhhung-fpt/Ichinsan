@@ -87,7 +87,19 @@ function LoginPage() {
           localStorage.setItem("role", decoded.role);
           alertSuccesfully()
           setTimeout(() => {
-            history.push("/admin/home");
+            if(decoded.role == 'Admin'){
+              history.push("/admin/admin-account");
+            }
+            if(decoded.role == 'Auditor'){
+              history.push("/admin/auditor-progress");
+            }
+            if(decoded.role == 'Translator'){
+              history.push("/admin/home");
+            }
+            if(decoded.role == 'Customer'){
+              history.push("/admin/customer-home");
+            }
+            
         }, 2000);
           
         }

@@ -92,7 +92,7 @@ function TranslatorProgressArticle(props) {
   const [vTabs, setvTabs] = React.useState("vt1");
   const [vTabsIcons, setvTabsIcons] = React.useState("vti1");
   const [pageSubcategories, setpageSubcategories] = React.useState("ps1");
-  const [isLoading, setIsLoading] = React.useState(true);
+
   const location = useLocation();
   const [fakeData, setFakeData] = React.useState([]);
   const Edit = "edit";
@@ -116,22 +116,21 @@ function TranslatorProgressArticle(props) {
     setModalNotice(!modalNotice);
   };
   const [articles, setArticles] = useState([]);
-  const getArticlesList = () => {
+  const getArticlesList = () =>{
     axios
       .get(`https://api-dotnet-test.herokuapp.com/api/projects/admins/${projectId}`)
       .then((res) => {
         const data = res.data.articleDetailList;
         console.log(data);
-        setArticles(data);
-        setIsLoading(false);
+        setArticles(data);     
       })
       .catch((err) => {
         console.log(err);
       })
-  }
+    }
 
 
-
+  
   const [project, setProject] = React.useState({});
   React.useEffect(() => {
     axios
@@ -143,7 +142,7 @@ function TranslatorProgressArticle(props) {
       })
       .catch(err => { console.log(err) })
   }, [])
-
+  
 
   const handleSingleFileInput = (e) => {
     singleFileRef.current.click(e);
@@ -260,8 +259,6 @@ function TranslatorProgressArticle(props) {
                   <Col xs={12} lg={6}>
                     <Card>
                       <a style={{ all: "unset", cursor: "pointer" }} href={`customer-arti-detail?id=${project.id}`}>
-                        {/* {isLoading && <DoubleBubble text={"Loading..."} bgColor={"white"}
-                          center={false} width={"100px"} height={"100px"} />} */}
                         <CardHeader>
                           <Row>
                             <Col xs={12} md={8}>
@@ -379,8 +376,6 @@ function TranslatorProgressArticle(props) {
                                           </tr>
                                         </thead>
                                         <tbody>
-                                          {isLoading && <DoubleBubble text={"Loading..."} bgColor={"white"}
-                                            center={true} width={"100px"} height={"100px"} />}
                                           {articles
                                             .filter(a => a.status === statusOption.label)
                                             .map((article, index) => {
@@ -412,20 +407,20 @@ function TranslatorProgressArticle(props) {
 
                                                 </td>
                                                 <td className="text-right btns-mr-5">
-                                                  <a style={{ all: "unset", cursor: "pointer" }} href={`customer-recruitment-detail?id=${article.id}`}>
-                                                    <Button style={
-                                                      {
+                                                <a style={{ all: "unset", cursor: "pointer" }} href={`customer-recruitment-detail?id=${article.id}`}>
+                                                  <Button  style={
+                                                    {
 
-                                                        fontSize: "10px",
+                                                      fontSize: "10px",
 
-                                                      }
-                                                    }>
+                                                    }
+                                                  }>
 
-                                                      View
-                                                    </Button>
+                                                    View
+                                                  </Button>
                                                   </a>
                                                 </td>
-
+                                                
 
 
                                               </tr>);
@@ -447,7 +442,7 @@ function TranslatorProgressArticle(props) {
 
 
                           </TabContent>
-
+                          
 
 
                         </TabPane>
