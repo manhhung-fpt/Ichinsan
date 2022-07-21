@@ -87,6 +87,7 @@ import Typography from '@mui/material/Typography';
 import UploadIcon from '@mui/icons-material/Upload';
 import { storage } from "Firebase";
 import { ref, uploadBytes, getDownloadURL, getBytes } from "firebase/storage";
+import NotificationAlert from "react-notification-alert";
 
 
 
@@ -102,6 +103,7 @@ var selectOptions = [
 ];
 function TranslatorProgressArticle(props) {
     const [modalClassic, setModalClassic] = React.useState(false);
+    const notificationAlert = React.useRef();
     const articleId = props.location.search.split("=")[1];
     console.log(articleId);
 
@@ -160,6 +162,28 @@ function TranslatorProgressArticle(props) {
                 console.log(err);
             })
     }, []);
+    const alertSuccesfully = () =>{
+        var options = {};
+        options = {
+          place: "tr",
+          message:"Submit sucessfully",
+          type: "info",
+          icon: "now-ui-icons ui-1_bell-53",
+          autoDismiss: 7,
+        };
+        notificationAlert.current.notificationAlert(options);
+      }
+      const alertFalied = (messages) =>{
+        var options = {};
+        options = {
+          place: "tr",
+          message:messages,
+          type: "danger",
+          icon: "now-ui-icons ui-1_bell-53",
+          autoDismiss: 7,
+        };
+        notificationAlert.current.notificationAlert(options);
+      }
     const submitArticles = () => {
         const fileRef = ref(storage, `translationArticles/${singleFileName}`)
         uploadBytes(fileRef, singleFile).then((res) => {
@@ -196,9 +220,10 @@ function TranslatorProgressArticle(props) {
 
         axios(config)
             .then(function (response) {
-                console.log(JSON.stringify(response.data));
+                alertSuccesfully()
             })
             .catch(function (error) {
+                alertFalied(error.message)
             });
     }
     const handleSingleFileInput = (e) => {
@@ -257,6 +282,7 @@ function TranslatorProgressArticle(props) {
 
     return (
         <>
+        <NotificationAlert ref={notificationAlert} />
             <PanelHeader
                 size="sm" />
 

@@ -74,6 +74,7 @@ function CustomerCreateFeedback(props) {
     notificationAlert.current.notificationAlert(options);
   }
   const uId = localStorage.getItem("userId")
+  const role = localStorage.getItem("role")
 
   const onChangeDescription = (e) => {
     setDescription(e.target.value)
@@ -102,9 +103,16 @@ function CustomerCreateFeedback(props) {
     axios(config)
       .then(function (response) {
         alertSuccesfully()
-        setTimeout(() => {
-          history.push(`customer-arti-detail?id=${projectId}`);
-      }, 2000);
+        if( role === 'Customer'){
+          setTimeout(() => {
+            history.push(`customer-arti-detail?id=${projectId}`);
+        }, 2000);
+        }else if(role === 'Auditor'){
+          setTimeout(() => {
+            history.push(`auditor-progress-article?id=${articleId}`);
+        }, 2000);
+        }
+        
         
       })
       .catch(function (error) {

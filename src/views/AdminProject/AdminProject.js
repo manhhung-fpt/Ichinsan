@@ -47,7 +47,7 @@ function AdminProject() {
   const [projects, setProjects] = useState([]);
   React.useEffect(() => {
     axios
-      .get("https://api-dotnet-test.herokuapp.com/api/projects/admins?pageNumber=1&pageSize=6")
+      .get("https://api-dotnet-test.herokuapp.com/api/projects/admins?pageNumber=1&pageSize=70")
       .then((res) => {
         const data = res.data;
         setProjects(data);

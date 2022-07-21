@@ -269,8 +269,9 @@ function TranslatorProgressArticle(props) {
             "originalContent": article.originalContent,
             "deadline": article.deadline,
             "numberOfWords": article.numberOfWords,
+            "auditorId": article.auditorId,
             "fee": article.fee,
-            "status": 3
+            "status": 2
         });
         var config = {
             method: 'put',

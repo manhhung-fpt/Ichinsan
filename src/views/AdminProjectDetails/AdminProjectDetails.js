@@ -246,39 +246,7 @@ function AdminProjectDetails(props) {
 
               </Col>
               <Col xs={12} md={1} size="sm"></Col>
-              <Col xs={12} md={3} size="sm">
-                <Pagination>
-                  <PaginationItem>
-                    <PaginationLink href="#">
-                      <span aria-hidden="true">
-                        <i
-                          className="fa fa-angle-double-left"
-                          aria-hidden="true"
-                        />
-                      </span>
-                    </PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink href="#">1</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem active>
-                    <PaginationLink href="#">2</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink href="#">3</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink href="#">
-                      <span aria-hidden="true">
-                        <i
-                          className="fa fa-angle-double-right"
-                          aria-hidden="true"
-                        />
-                      </span>
-                    </PaginationLink>
-                  </PaginationItem>
-                </Pagination>
-              </Col>
+              
               <Col xs={12} md={4} size="sm">
 
               </Col>

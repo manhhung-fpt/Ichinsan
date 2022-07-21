@@ -90,7 +90,7 @@ function TranslatorProgress() {
   const [articles, setArticles] = useState([]);
   React.useEffect(() => {
     axios
-      .get("https://api-dotnet-test.herokuapp.com/api/articles/users?pageNumber=1&pageSize=60")
+      .get("https://api-dotnet-test.herokuapp.com/api/articles/users?pageNumber=1&pageSize=70")
       .then((res) => {
         const data = res.data;
         setArticles(data);

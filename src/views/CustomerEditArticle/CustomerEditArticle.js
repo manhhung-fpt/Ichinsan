@@ -125,6 +125,7 @@ function CustomerEditArticle(props) {
       "originalContent": singleFileName ? singleFileName : articles.originalContent,
       "deadline":deadline,
       "numberOfWords": countWord,
+      "auditorId": articles.auditorId,
       "fee": countWord / 500
     });
     var config = {
