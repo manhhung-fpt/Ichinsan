@@ -181,6 +181,7 @@ function TranslatorProgressArticle(props) {
             "translatedContent": singleFileName,
             "deadline": article.deadline,
             "numberOfWords": article.numberOfWords,
+            "auditorId": article.auditorId,
             "fee": article.fee,
             "status": 3
         });

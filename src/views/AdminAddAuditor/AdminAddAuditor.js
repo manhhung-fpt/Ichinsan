@@ -117,7 +117,7 @@ function AdminAddAuditor(props) {
             "numberOfWords": article.numberOfWords,
             "fee": article.fee,
             "auditorId": radioCheck,
-            "status" : 2
+            "status" : 3
         });
         var config = {
             method: 'put',

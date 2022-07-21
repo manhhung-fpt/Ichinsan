@@ -145,6 +145,7 @@ function AuditorProgressArticle(props) {
             "originalContent": article.originalContent,
             "deadline": article.deadline,
             "numberOfWords": article.numberOfWords,
+            "auditorId": article.auditorId,
             "fee": article.fee,
             "status": 2
         });
@@ -175,6 +176,7 @@ function AuditorProgressArticle(props) {
             "deadline": article.deadline,
             "numberOfWords": article.numberOfWords,
             "fee": article.fee,
+            "auditorId": article.auditorId,
             "status": 4
         });
         var config = {
