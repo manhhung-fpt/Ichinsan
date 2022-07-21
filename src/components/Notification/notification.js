@@ -53,13 +53,16 @@ export default function Notification() {
             });
     }, []);
     console.log(notifications);
+    const onClickView = ()=>{
+
+    }
     const time = moment().locale('en')
     return (
         <Box sx={{ pb: 5 }} ref={ref}>
             <CssBaseline />
             <List>
                 {notifications.map((notification, index) => (
-                    <ListItem button  >
+                    <ListItem button onClick={(() => onClickView(notification))}  >
                         {/* <a style={{ all: "unset", cursor: "pointer" }} href={`customer-arti-detail?id=${notification.id}`}> */}
                             <ListItemAvatar>
                                 <Avatar alt="Profile Picture" src={notification.image} />

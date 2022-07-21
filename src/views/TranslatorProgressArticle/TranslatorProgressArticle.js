@@ -160,14 +160,46 @@ function TranslatorProgressArticle(props) {
                 console.log(err);
             })
     }, []);
-const submitArticles = () =>{
-    const fileRef = ref(storage, `translationArticles/${singleFileName}`)
-    uploadBytes(fileRef, singleFile).then((res) => {
-        getDownloadURL(res.ref).then((response) => {
-          setFileURL(response)
+    const submitArticles = () => {
+        const fileRef = ref(storage, `translationArticles/${singleFileName}`)
+        uploadBytes(fileRef, singleFile).then((res) => {
+            getDownloadURL(res.ref).then((response) => {
+                setFileURL(response)
+            })
         })
-      })
-}
+        upDateStatus();
+    }
+
+    const upDateStatus = () => {
+        var axios = require('axios');
+        var data = JSON.stringify({
+            "name": article.name,
+            "languageFrom": article.languageFrom,
+            "languageTo": article.languageTo,
+            "description": article.description,
+            "originalContent": article.originalContent,
+            "translatedContent": singleFileName,
+            "deadline": article.deadline,
+            "numberOfWords": article.numberOfWords,
+            "fee": article.fee,
+            "status": 3
+        });
+        var config = {
+            method: 'put',
+            url: `https://api-dotnet-test.herokuapp.com/api/articles/${articleId}`,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: data
+        };
+
+        axios(config)
+            .then(function (response) {
+                console.log(JSON.stringify(response.data));
+            })
+            .catch(function (error) {
+            });
+    }
     const handleSingleFileInput = (e) => {
         singleFileRef.current.click(e);
     };
@@ -402,7 +434,7 @@ const submitArticles = () =>{
                                                             fontWeight: "bold",
                                                         }}>
                                                             <a href={fileURL}>
-                                                            <DownloadIcon></DownloadIcon>
+                                                                <DownloadIcon></DownloadIcon>
                                                             </a>
                                                         </CardTitle>
                                                     </Col>
@@ -444,7 +476,7 @@ const submitArticles = () =>{
                                                         </CardTitle>
                                                     </Col>
                                                     <Col xs={12} md={7}>
-                                                       
+
                                                         <CardBody>
 
                                                             <Row>
@@ -475,7 +507,7 @@ const submitArticles = () =>{
                                                             </Row>
 
                                                         </CardBody>
-                                                       
+
                                                     </Col>
                                                 </Row>
                                             </CardHeader>
@@ -539,17 +571,17 @@ const submitArticles = () =>{
                                             <CardActions disableSpacing>
 
                                                 <Col md={1}>
-                                                    
-                                                        <Button onClick={() => submitArticles()} className="btn-info" color="primary" style={
-                                                            {
 
-                                                                fontSize: "10px",
+                                                    <Button onClick={() => submitArticles()} className="btn-info" color="primary" style={
+                                                        {
 
-                                                            }
-                                                        }>
-                                                            Submit
-                                                        </Button>
-                                                    
+                                                            fontSize: "10px",
+
+                                                        }
+                                                    }>
+                                                        Submit
+                                                    </Button>
+
                                                 </Col>
 
                                                 <Col md={1}>
